@@ -1,0 +1,19 @@
+\begin{algorithm}[H]
+\caption{Transfer a binary algorithm to on-line outcomes}
+\label{alg:boundary}
+\KwIn{Finite hypotheses, supplied ternary lines, binary tree-construction routine $B$.}
+\KwOut{An executable tree using the original supplied lines.}
+\ForEach{nonconstant supplied line $\ell$}{
+  $\epsilon_\ell\gets\frac12\min_{h:f_\ell(h)\ne0}|f_\ell(h)|$\;
+  Represent virtual bits $b_1=\mathbf1[f_\ell(h)<0]$ and
+  $b_2=\mathbf1[f_\ell(h)\le0]$ by the two shifted off-boundary lines\;
+}
+Construct a virtual binary tree with $B$\;
+Execute a requested virtual bit by querying its original line,
+caching the entire ternary sign; answer further requests from that cache\;
+\KwRet the contracted original-line tree\;
+\end{algorithm}
+
+Lines constant on the whole hypothesis set are discarded before taking
+the minimum nonzero affine value. Proposition~\ref{prop:boundary}
+proves that the approximation ratio increases by at most two.

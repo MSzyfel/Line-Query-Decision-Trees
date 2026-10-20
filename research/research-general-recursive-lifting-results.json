@@ -1,0 +1,72 @@
+[
+  {
+    "alphabets": [
+      8,
+      6
+    ],
+    "n": 48,
+    "m": 38,
+    "initial_greedy_raw_cost": 370,
+    "comparison_raw_cost": 338,
+    "reduced_family_synthesis_cost": 338,
+    "average_greedy": "185/24",
+    "average_comparison": "169/24",
+    "proved_average_bound": "59/8",
+    "represented_base_states": 158,
+    "reduced_family_states": 174,
+    "required_sources": 9,
+    "witnessed_context_fibers": 57,
+    "comparison_states_certified_in_quadratic_family": 95,
+    "integer_depth_prize_profit": 32,
+    "rare_positive_average_lower_bound": "7/2",
+    "information_average_lower_bound": 5.584962500721156,
+    "uses_exact_optimization_oracle": false
+  },
+  {
+    "alphabets": [
+      10,
+      8
+    ],
+    "n": 80,
+    "m": 48,
+    "initial_greedy_raw_cost": 782,
+    "comparison_raw_cost": 672,
+    "reduced_family_synthesis_cost": 672,
+    "average_greedy": "391/40",
+    "average_comparison": "42/5",
+    "proved_average_bound": "42/5",
+    "represented_base_states": 268,
+    "reduced_family_states": 288,
+    "required_sources": 11,
+    "witnessed_context_fibers": 91,
+    "comparison_states_certified_in_quadratic_family": 159,
+    "integer_depth_prize_profit": 110,
+    "rare_positive_average_lower_bound": "9/2",
+    "information_average_lower_bound": 6.321928094887363,
+    "uses_exact_optimization_oracle": false
+  },
+  {
+    "alphabets": [
+      10,
+      8,
+      6
+    ],
+    "n": 480,
+    "m": 294,
+    "initial_greedy_raw_cost": 6292,
+    "comparison_raw_cost": 5312,
+    "reduced_family_synthesis_cost": 5312,
+    "average_greedy": "1573/120",
+    "average_comparison": "166/15",
+    "proved_average_bound": "57/5",
+    "represented_base_states": 1906,
+    "reduced_family_states": 2086,
+    "required_sources": 92,
+    "witnessed_context_fibers": 571,
+    "comparison_states_certified_in_quadratic_family": 959,
+    "integer_depth_prize_profit": 980,
+    "rare_positive_average_lower_bound": "7/2",
+    "information_average_lower_bound": 8.906890595608518,
+    "uses_exact_optimization_oracle": false
+  }
+]

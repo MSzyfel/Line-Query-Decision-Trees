@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "feasible_compact_points": 36,
+  "layer_decomposed_partial_columns": 155,
+  "cross_template_example": {
+    "LP_point_objective": "3456",
+    "actual_cost": 2112,
+    "templates": 2,
+    "productive_applications": 2,
+    "stage_trace": [
+      {
+        "population": 256,
+        "work": 1728,
+        "completed": 192,
+        "profit": "1152"
+      },
+      {
+        "population": 64,
+        "work": 384,
+        "completed": 64,
+        "profit": "192"
+      }
+    ],
+    "uses_an_LP_optimizer": false,
+    "complete_template_costs": [
+      3807,
+      3807
+    ],
+    "LP_optimizer_not_run": true
+  },
+  "no_unrestricted_optimum_oracle": true,
+  "no_unrestricted_approximation_claim": true
+}

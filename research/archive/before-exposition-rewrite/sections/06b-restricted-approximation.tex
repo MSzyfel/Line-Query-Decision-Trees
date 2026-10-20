@@ -1,0 +1,217 @@
+\section{Stronger algorithms for small caps}
+\label{sec:small-caps}
+
+Consider instances with a distinguished hypothesis $p$ and orient
+each supplied query so that its \emph{cap} is the answer side missing
+$p$. Let $P$ be the other $N$ hypotheses. These assumptions concern
+the supplied queries themselves; a common external witness at a
+recursive flat state is not automatically a distinguished hypothesis.
+The restricted algorithms below clarify which small-cap constructions
+can support approximation hardness.
+
+\subsection{Exact maximum depth with bounded caps}
+
+\begin{theorem}\label{thm:bounded-cap-height}
+If every cap has size at most a fixed integer $b$, maximum depth is
+exactly solvable in polynomial time. A running-time bound is
+$m^{b-1}2^{O(b^2)}\operatorname{poly}(n,m,L)$, where $L$ is the
+input bit length.
+\end{theorem}
+\input{procedures/bounded-caps}
+
+\begin{proof}
+Algorithm~\ref{alg:bounded-caps} gives the construction.
+Let $K$ be the minimum number of supplied caps covering $P$.
+Minimum planar halfplane cover is exactly solvable in polynomial
+time~\cite{harpeledlee2012}. Separability ensures that the cover
+exists. The path identifying $p$ in any tree must cover $P$, so
+its height is at least $K$. Conversely, query a minimum cover along
+the all-miss spine and identify each positive hit group locally.
+A hit group has at most $b$ members and therefore admits a proper
+identification tree of height at most $b-1$. This gives height at
+most $K+b-1$. Only these $b$ target heights need to be tested.
+
+For a target $D\in[K,K+b-1]$, put $d_0=\max\{0,D-b+1\}$.
+Guess an ordered suffix of $q\le D-d_0\le b-1$ supplied queries
+on the witness spine. Guess also the set $R\subseteq P$ remaining
+just before that suffix. Require that the suffix caps cover $R$;
+thus $R$ is a subset of their union and has size at most $b(b-1)$.
+For each guess, compute a minimum cap cover of $P\setminus R$
+using only supplied caps disjoint from $R$, and require size at
+most $d_0$. An empty suffix permits $R=\varnothing$.
+
+Execute the guessed suffix on $R\cup\{p\}$. For each nonempty
+first-hit group $A_j$ at position $j$, compute its exact local
+identification height $h(A_j)$ by subset Bellman DP on at most
+$b$ hypotheses. Require $j+h(A_j)\le D-d_0$ and $q\le D-d_0$.
+These tests verify the entire suffix tree, including the witness
+leaf. The prefix cover takes at most $d_0$ queries, preserves $R$
+on its all-miss route, and its positive exits cost at most $b-1$
+additional queries. Thus its exits have height at most
+$d_0+b-1=D$ when $d_0>0$; if $d_0=0$, the prefix is empty.
+The suffix starts no later than depth $d_0$, so an accepted guess
+constructs a tree of height at most $D$.
+
+For completeness, take an optimal height-$D$ tree. If its witness
+path ends before depth $d_0$, use an empty suffix and $R=\varnothing$;
+its witness queries cover $P$ within $d_0$. Otherwise take the
+remaining witness queries after depth $d_0$ as the suffix, and the
+actual nonwitness state there as $R$. The prefix caps are disjoint
+from $R$ and cover $P\setminus R$. The suffix has at most $b-1$
+queries and covers $R$; its positive subtrees satisfy the exact
+local-height tests. This guess is accepted. There are
+$m^{O(b)}$ suffix descriptions and $2^{O(b^2)}$ candidate subsets
+per suffix, and all remaining computations are polynomial for
+fixed $b$. For $b=1$, a minimum cover itself is exact.
+\end{proof}
+
+\subsection{An EPTAS for weighted singleton and pair caps}
+
+Assume every cap has size one or two, all singleton caps for $P$
+are supplied, and the graph $G$ of two-point caps is a disjoint
+union of paths and cycles. The latter condition follows for planar
+instances with all singleton caps: every nonwitness point is a
+convex-hull vertex, and a two-point cap joins consecutive vertices.
+Let the positive raw weights be $w_0$ for $p$ and $w_v$ for $v\in P$,
+and put $\Omega=w_0+\sum_v w_v$.
+
+For a matching $M$, replace each matched pair by a group of mass
+$w_u+w_v$ and leave unmatched vertices as singleton groups. Let
+$J(M)$ be the group multiset, $k=N-|M|$, and
+$P(M)=\sum_{uv\in M}(w_u+w_v)$. With group masses
+$a_1\ge\cdots\ge a_k$, write $C(J)=\sum_j j a_j$. The exact
+matching invoice is
+\begin{equation}\label{eq:eptas-matching-invoice}
+ G(M)=w_0k+C(J(M))+P(M).
+\end{equation}
+Indeed an arbitrary tree's first-hit groups on the witness spine
+form a matching, sorted group order minimizes their weighted ranks,
+and a pair exit needs one more query. Every matching is executable
+using its pair tests and the supplied singleton tests. Hence
+minimizing \eqref{eq:eptas-matching-invoice} gives the optimum.
+
+\begin{theorem}\label{thm:pair-eptas}
+For this weighted singleton/pair path-and-cycle class, expected
+depth has a deterministic $(1+\varepsilon)$ approximation in time
+$2^{O(\varepsilon^{-3})}\operatorname{poly}(n,L,\log(1/\varepsilon))$
+for $0<\varepsilon\le1$. The polynomial exponent is independent
+of $\varepsilon$; this is an EPTAS, not an FPTAS.
+\end{theorem}
+\input{procedures/pair-eptas}
+
+\begin{proof}
+For $n=1$ the zero-query tree is exact, so assume $n\ge2$.
+Algorithm~\ref{alg:pair-eptas} records the steps.
+We work with raw weights; normalization preserves ratios. Write
+$F^*=\min_M G(M)=\Omega\OPT_E$ for the optimum raw cost, where
+$\OPT_E$ uses the normalized prior $w_h/\Omega$.
+Set
+\[
+ K=\lceil3/\varepsilon\rceil,\quad B=2K,\quad
+ H=\lceil3B/\varepsilon\rceil,\quad \eta=\varepsilon/3.
+\]
+Number edges consecutively on each path or cycle. For each common
+residue $r\in\{0,\ldots,K-1\}$, delete edges numbered $r$ modulo
+$K$. Each remaining component has at most $B$ vertices, allowing
+the possibly longer wraparound component of a cycle.
+
+Splitting a matched pair of weights $a\ge b$ at its original spine
+position into two consecutive singleton queries changes the cost of
+the temporary schedule, retaining the old group order, by exactly
+$R_j-a$, where $R_j$ is the later group mass plus $w_0$.
+These changes add for simultaneous splits; sorting afterward can
+only decrease the cost. The sum of $R_j$ over
+matched positions is at most the original tree's spine cost, hence
+at most its full invoice. Every edge is deleted in exactly one
+residue trial. Applying the splits to an optimal matching and then
+sorting the new groups shows that some residue admits a surviving
+matching of cost at most $(1+1/K)F^*$.
+
+Order individual nonwitness weights as $w_{(1)}\ge\cdots\ge w_{(N)}$.
+Because a first-hit group contains at most two vertices,
+rearrangement gives
+\[
+ F^*\ge\sum_{i=1}^N\lceil i/2\rceil w_{(i)},\qquad
+ \Omega_{\rm tail}:=\sum_{i>H}w_{(i)}
+ \le\frac{2F^*}{H+1}.
+\]
+For each residue, enumerate all matching configurations in components
+containing one of the $H$ heaviest vertices. There are at most $H$
+such components and at most $2^{BH}$ joint choices. This enumeration
+is independent of $n$ in its exponent. The remaining components'
+total vertex mass is at most $\Omega_{\rm tail}$. If $H\ge N$,
+all components are fixed and there is no rounding stage.
+
+For a remaining component $i$, enumerate its matching configurations
+$c$. A configuration supplies a group count $k_{ic}$, pair mass
+$P_{ic}$, and count function $z_{ic}(t)$, the number of groups of
+mass at least $t$. Choose fractional configuration weights
+$x_{ic}\ge0$, $\sum_c x_{ic}=1$. For the fixed heavy components use
+counts $Z_f(t)$, group count $k_f$, and pair mass $P_f$. Put
+$\mu(t)=Z_f(t)+\sum_{ic}x_{ic}z_{ic}(t)$ and minimize
+\begin{equation}\label{eq:pair-convex-relaxation}
+ Q(x)=w_0\left(k_f+\sum_{ic}x_{ic}k_{ic}\right)
+       +P_f+\sum_{ic}x_{ic}P_{ic}
+       +\frac12\int_0^\infty(\mu(t)^2+\mu(t))\,dt.
+\end{equation}
+For any integral group multiset with count function $Z(t)$,
+\[
+ C(J)=\frac12\int_0^\infty(Z(t)^2+Z(t))\,dt,
+\]
+since the groups above each threshold occupy ranks $1$ through
+$Z(t)$. Thus \eqref{eq:pair-convex-relaxation} is an exact invoice
+on integral configurations and a lower-bounding convex relaxation.
+Its quadratic part is a positive sum of squares of affine functions.
+The only breakpoints are singleton and available-pair masses, at
+most $N+|E(G)|=O(N)$ rational values. It is therefore a rational
+convex quadratic program with $N2^{O(B)}$ variables over a product
+of simplices. After normalizing by $\Omega$, solve it to additive
+accuracy $\eta$ using polynomial-time convex quadratic
+optimization~\cite{nestnem1994}. Equivalently the raw error is
+$\eta\Omega$. The bounded simplices, rational coefficients, and
+objective bound $O(n)$ give polynomial bit complexity and a feasible
+rational approximate solution.
+
+Independently round each light component according to its fractional
+configuration distribution. Its random count $X_i(t)$ satisfies
+$0\le X_i(t)\le B$ and
+$\operatorname{Var}X_i(t)\le B\mathbb E X_i(t)$. Independence and
+the rank integral give
+\begin{align*}
+ \mathbb E G(M)&=Q(x)+\frac12\int\sum_i\operatorname{Var}X_i(t)\,dt\\
+ &\le Q(x)+\frac B2\Omega_{\rm tail}
+ \le Q(x)+\frac{B}{H+1}F^*.
+\end{align*}
+The integral of a component's count function is its total group
+mass, which equals its vertex mass for every configuration.
+The witness and pair-continuation terms are linear, so they incur
+no variance penalty. Derandomize by exposing one component at a
+time and choosing a configuration with minimum conditional expected
+invoice. These expectations are exact rational first and second
+count moments at the same $O(n)$ breakpoints; each choice preserves
+the upper bound. Sorting the final groups yields a supplied-query
+tree.
+
+For the good residue, the enumeration contains the heavy part of
+an optimum surviving matching. Its fractional optimum is no greater
+than that matching's invoice. Also $\Omega\le F^*$, since every
+hypothesis needs at least one query in a nontrivial instance. The
+returned cost is consequently at most
+\[
+ \left(1+\frac1K+\eta+\frac B{H+1}\right)F^*
+ \le(1+\varepsilon)F^*.
+\]
+Dividing by $\Omega$ proves the normalized expected-depth guarantee.
+Return the cheapest tree over all residues and heavy configurations.
+Here $B=O(\varepsilon^{-1})$, $H=O(\varepsilon^{-2})$, so the
+enumeration costs $2^{O(\varepsilon^{-3})}$; quadratic optimization
+and derandomization have polynomial exponent independent of
+$\varepsilon$. All-singleton availability is essential both for the
+invoice's converse and for the splitting construction.
+\end{proof}
+
+The EPTAS includes the weighted pair-path instances in the
+expected-depth hardness reduction below. Its exponential dependence
+on $1/\varepsilon$ is compatible with strong NP-completeness.
+It rules out using this subclass to
+establish APX-hardness unless $\mathrm P=\mathrm{NP}$.

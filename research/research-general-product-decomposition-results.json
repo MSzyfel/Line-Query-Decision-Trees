@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "exact_Queyranne_vs_exhaustive_checks": 84,
+  "zero_information_vs_cartesian_count_checks": 5928,
+  "full_factorization_checks": 84,
+  "exact_optimum_additivity_checks": 40,
+  "actual_factor_code_execution_checks": 40,
+  "ordinary_greedy_product_identity_checks": 40,
+  "exact_global_partial_policy_tensorized_dual_checks": 80,
+  "pairwise_independent_XOR_rejected_as_product": true,
+  "selected_small_product_examples": [
+    {
+      "n": 4,
+      "factor_sizes": [
+        2,
+        1,
+        1,
+        1,
+        2
+      ],
+      "optimum_mean": "2",
+      "factor_greedy_mean": "2"
+    },
+    {
+      "n": 4,
+      "factor_sizes": [
+        2,
+        1,
+        2
+      ],
+      "optimum_mean": "2",
+      "factor_greedy_mean": "2"
+    },
+    {
+      "n": 4,
+      "factor_sizes": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "optimum_mean": "2",
+      "factor_greedy_mean": "2"
+    },
+    {
+      "n": 4,
+      "factor_sizes": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        2
+      ],
+      "optimum_mean": "2",
+      "factor_greedy_mean": "2"
+    },
+    {
+      "n": 4,
+      "factor_sizes": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      "optimum_mean": "2",
+      "factor_greedy_mean": "2"
+    },
+    {
+      "n": 4,
+      "factor_sizes": [
+        2,
+        2,
+        1
+      ],
+      "optimum_mean": "2",
+      "factor_greedy_mean": "2"
+    }
+  ],
+  "factorization_uses_no_exponential_oracle": true,
+  "exact_decision_tree_DP_is_validation_only": true,
+  "no_unrestricted_approximation_claim": true
+}

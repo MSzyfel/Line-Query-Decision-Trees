@@ -1,0 +1,66 @@
+\section{Allowing hypotheses on supplied lines}
+\label{sec:boundaries}
+
+Algorithm~\ref{alg:boundary} implements the reduction below.
+In this section a supplied line returns one of three answers:
+negative, zero, or positive. The \emph{zero}, or \emph{on-line},
+answer means the hypothesis lies on the queried line, and its
+answer class is $S_\ell^0=\{h\in S:f_\ell(h)=0\}$.
+A \emph{ternary decision tree} has an outgoing edge for each
+possible answer; a proper such tree retains only nonempty outcomes.
+Leaf depths and the two cost objectives are defined exactly as
+in the binary model.
+Use the two virtual binary predicates
+\[
+ b_1(h)=\mathbf1[f_\ell(h)<0],\qquad
+ b_2(h)=\mathbf1[f_\ell(h)\le0].
+\]
+Their pair of bits distinguishes the three outcomes.
+Requesting either bit is implemented by querying the original line
+once and storing its full sign. Both bits are then known. For analysis
+we count each requested virtual bit as a separate binary query;
+the actual number of supplied-line queries can only be smaller.
+
+These binary labelings have planar off-boundary representations.
+Any query whose answer is constant on the hypothesis set can be
+discarded. For every remaining query, choose $\epsilon_\ell$ to be
+half the minimum nonzero $|f_\ell(h)|$ on the finite hypothesis set.
+This rational value is computable in polynomial time and has
+polynomial encoding length. Then $b_1$ is represented
+by $f_\ell(x)<-\epsilon_\ell$ and $b_2$ by
+$f_\ell(x)<\epsilon_\ell$. Neither shifted boundary contains a
+hypothesis. The shifts are used only for preprocessing;
+their answers are obtained from the original supplied line.
+
+\begin{symboltable}
+$f_\ell(h)$ & Affine value whose sign is the answer for hypothesis $h$.\\
+$b_1(h),\ b_2(h)$ & Virtual bits for $f_\ell(h)<0$ and $f_\ell(h)\le0$; together they encode the ternary sign.\\
+$\epsilon_\ell$ & Positive shift smaller than every nonzero $|f_\ell(h)|$ for this finite state.
+\end{symboltable}
+
+\input{procedures/boundary}
+
+\begin{proposition}[Boundary reduction]\label{prop:boundary}
+An $\alpha$-approximation for either binary objective gives a
+$2\alpha$-approximation for the corresponding three-answer objective.
+\end{proposition}
+\begin{proof}
+Simulate every query of an optimal original tree by its two virtual
+bits. Each hypothesis uses at most twice as many binary queries,
+so the virtual optimum is at most twice the original optimum
+for either objective. Conversely, execute a constructed virtual
+tree by original line queries and cached signs. Its actual depth
+is no larger than its virtual depth on every hypothesis.
+The two comparisons prove the factor-two transfer.
+\end{proof}
+
+\begin{corollary}[Constant approximations with on-line outcomes]
+\label{cor:constant-boundaries}
+With on-line answers, expected depth has a polynomial-time
+approximation factor below $10.365952$ for arbitrary positive priors,
+and deterministic maximum depth has a factor below $8.929931$.
+\end{corollary}
+\begin{proof}
+Apply Proposition~\ref{prop:boundary} to
+Theorems~\ref{thm:two-phase-expected} and~\ref{thm:poly-slot-worst}.
+\end{proof}

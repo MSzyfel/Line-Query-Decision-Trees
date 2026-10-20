@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "body_rectangle_checks": 4237,
+  "all_half_band_query_checks": 158228,
+  "deterministic_policy_internal_nodes_checked": 413,
+  "padding_checks": 575,
+  "cap_potential_checks": 2150,
+  "fixtures": [
+    {
+      "M": 8,
+      "R": 6,
+      "L": 1,
+      "n": 48,
+      "tests": 58,
+      "raw_cost": 338,
+      "proven_body_work_lower": "5/6"
+    },
+    {
+      "M": 8,
+      "R": 6,
+      "L": 2,
+      "n": 288,
+      "tests": 108,
+      "raw_cost": 2796,
+      "proven_body_work_lower": "5/3"
+    },
+    {
+      "M": 10,
+      "R": 8,
+      "L": 1,
+      "n": 80,
+      "tests": 104,
+      "raw_cost": 682,
+      "proven_body_work_lower": "7/6"
+    }
+  ],
+  "symbolic_scaling": [
+    {
+      "M": 64,
+      "L": 10,
+      "log2_n": 65.54196310386875,
+      "ratio_lower": 1.0992847890972575
+    },
+    {
+      "M": 256,
+      "L": 32,
+      "log2_n": 263.6379099767093,
+      "ratio_lower": 3.509355115089081
+    },
+    {
+      "M": 1024,
+      "L": 102,
+      "log2_n": 1029.7123070556372,
+      "ratio_lower": 11.32594522707562
+    },
+    {
+      "M": 4096,
+      "L": 341,
+      "log2_n": 4103.759726974983,
+      "ratio_lower": 37.88272006873126
+    },
+    {
+      "M": 65536,
+      "L": 4096,
+      "log2_n": 65551.81966036811,
+      "ratio_lower": 455.0879631513385
+    }
+  ],
+  "no_unrestricted_constant_menu_impossibility_claim": true
+}

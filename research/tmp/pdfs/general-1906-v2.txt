@@ -1,0 +1,2339 @@
+                                                  A Tight Analysis of Greedy Yields Subexponential Time
+                                                        Approximation for Uniform Decision Tree
+                                                                      Ray Li∗, Percy Liang†, Stephen Mussmann‡
+
+                                                                                     October 23, 2019
+arXiv:1906.11385v2 [cs.DS] 21 Oct 2019
+
+
+
+
+                                                                                          Abstract
+                                                   Decision Tree is a classic formulation of active learning: given n hypotheses with non-
+                                               negative weights summing to 1 and a set of tests that each partition the hypotheses, output a
+                                               decision tree using the provided tests that uniquely identifies each hypothesis and has minimum
+                                               (weighted) average depth. Previous works showed that the greedy algorithm achieves a O(log n)
+                                               approximation ratio for this problem and it is NP-hard beat a O(log n) approximation, settling
+                                               the complexity of the problem.
+                                                   However, for Uniform Decision Tree, i.e. Decision Tree with uniform weights, the story
+                                               is more subtle. The greedy algorithm’s O(log n) approximation ratio was the best known, but the
+                                               largest approximation ratio known to be NP-hard is 4 − ε. We prove that the greedy algorithm
+                                               gives a O( loglog n
+                                                              COPT ) approximation for Uniform Decision Tree, where COPT is the cost of the
+                                               optimal tree and show this is best possible for the greedy algorithm. As a corollary, we resolve a
+                                               conjecture of Kosaraju, Przytycka, and Borgstrom [KPB99]. Our results also hold for instances
+                                               of Decision Tree whose weights are not too far from uniform. Leveraging this result, for all
+                                               α ∈ (0, 1), we exhibit a 9.01
+                                                                          α approximation algorithm to Uniform Decision Tree running in
+                                                                          α
+                                               subexponential time 2Õ(n ) . As a corollary, achieving any super-constant approximation ratio
+                                               on Uniform Decision Tree is not NP-hard, assuming the Exponential Time Hypothesis. This
+                                               work therefore adds approximating Uniform Decision Tree to a small list of natural problems
+                                               that have subexponential time algorithms but no known polynomial time algorithms. Like the
+                                               analysis of the greedy algorithm, our analysis of the subexponential time algorithm gives similar
+                                               approximation guarantees even for slightly nonuniform weights. A key technical contribution
+                                               of our work is showing a connection between greedy algorithms for Uniform Decision Tree
+                                               and for Min Sum Set Cover.
+
+
+                                         1    Introduction
+                                         In Decision Tree (also known as Split Tree), one is given n hypotheses with nonnegative
+                                         weights p1 , . . . , pn summing to 1 and a set of m K-ary tests that each partition the hypotheses, and
+                                         must output a decision tree using the provided tests that uniquely identifies each hypothesis and has
+                                         minimum (weighted) average depth.1 Decision Tree is a classic problem that arises naturally in
+                                         active learning [Das04, Now11, GB09] and hypothesis identification [Mor82]. Active learning with a
+                                           ∗
+                                             Department of Computer Science, Stanford University. Research supported by the National Science Foundation
+                                         Graduate Research Fellowship Program under Grant No. DGE - 1656518. Email: rayyli@cs.stanford.edu
+                                           †
+                                             Department of Computer Science, Stanford University. Email: pliang@cs.stanford.edu
+                                           ‡
+                                             Department of Computer Science, Stanford University. Research supported by the National Science Foundation
+                                         Graduate Research Fellowship Program under Grant No. DGE - 1656518. Email: mussmann@stanford.edu
+                                           1
+                                             We require such a decision tree always exists in a valid Decision Tree instance.
+
+
+                                                                                               1
+well-specified and finite hypothesis class with noiseless tests is precisely Decision Tree where the
+tests are data points and the answers are their labels. Decision Tree was first proved to be NP-
+hard by Hyafil and Rivest [HR76]. Since then, a large number works have provided algorithms for
+this question [GG74, Lov85, KPB99, Das04, CPR+ 11, CPRS09, GB09, GNR10, CJLM10, AH12].
+    A natural algorithm for Decision Tree is the greedy algorithm, which creates a decision tree
+by iteratively choosing the test that most evenly splits the set of remaining hypotheses. For binary
+tests (K = 2), there is a natural notion of “most even split,” but for K > 2, there are multiple
+possible definitions (see discussion in Section 2). It is well known that the greedy algorithm achieves
+                                                                                                1
+an O(log n) approximation ratio for Decision Tree assuming all weights are at least poly(n)        . It
+was first shown for binary tests and uniform weights (ph = 1/n for all h) [KPB99, AH12], then
+K-ary tests [CPRS09], and finally, general non-uniform weights [GB09]. Furthermore, it is NP-hard
+to achieve a o(log n) approximation ratio for Decision Tree [CPR+ 11], settling the complexity
+of approximating Decision Tree.
+    However, there are still gaps in our knowledge. For Uniform Decision Tree, i.e. Deci-
+sion Tree with uniform weights, the O(log n) approximation given by the greedy algorithm was
+previously the best known approximation achievable in polynomial time. Chakaravarthy et al.
+[CPR+ 11] proved that it is NP-hard to give a (4 − ε) approximation, giving the best known hard-
+ness of approximation result, and they asked whether the gap between the best approximation
+and hardness results could be improved. Previously, it was not even known whether the greedy
+algorithm could beat the O(log n) approximation ratio in previous analyses: the best lower bound
+on the greedy algorithm’s approximation ratio is Ω( logloglogn n ) [KPB99, Das04]. In the setting where
+the optimal solution to Uniform Decision Tree has cost O(log n), Kosaraju et al. [KPB99]
+showed that the greedy algorithm indeed gives an O( logloglogn n ) approximation, and they conjectured
+that the greedy algorithm gives an O( logloglogn n ) approximation in general.
+   For an extended discussion of related works, see Section 8.
+
+1.1     Our contributions
+We summarize the main contributions of our work below. The approximation guarantees of our
+algorithms are captured in Figure 1.
+
+      • Greedy algorithm. We give a new analysis of the greedy algorithm, showing that it gives
+        an O( loglog n       pmax
+                  COPT + log pmin ) approximation for Decision Tree, where COPT is the cost of the
+        optimal tree, pmax = maxh ph , and pmin = minh ph . This implies an O( loglog n
+                                                                                   COPT ) approximation
+        for instances of Uniform Decision Tree and of Decision Tree whose weights are close
+        to uniform. As COPT ≥ logK n always, this proves the conjecture of Kosaraju et al. [KPB99].
+
+      • Subexponential time algorithm. Leveraging the above greedy analysis, for α < 1, we give
+                               α
+        a subexponential2 2Õ(n ) -time 9.01
+                                         α approximation algorithm for Uniform Decision Tree.
+        Assuming the Exponential Time Hypothesis (ETH) [IP01, IPZ01]3 , this algorithm implies
+        that any superconstant approximation of Uniform Decision Tree is not NP-hard. Our
+        work adds approximating Uniform Decision Tree to a small list of natural problems whose
+                                                                                             o(1)
+        time complexity is known to be subexponential (and, for some approximation ratios, 2n )
+        but not known to be polynomial. Examples of such problems include Factoring [LLMP93],
+        Unique Games [Kho02, ABS15], Graph Isomorphism [Bab16], and approximating Nash
+                                                 α
+  2
+     Throughout this work, subexponential means 2n for some absolute α ∈ (0, 1). We make a distinction when
+               o(1)
+referring to 2n     runtimes.
+                                     o(1)
+   3
+     ETH states that there are no 2n      time algorithms for 3SAT.
+
+
+                                                     2
+                                                                    o(1)
+      Equilibrium [LMM03, Rub18], with the later two having 2n -time algorithms. Like in our
+      analysis of the greedy algorithm, our subexponential time algorithm gives a similar approxi-
+      mation guarantee even for slightly nonuniform weights, in particular when ppmax
+                                                                                  min
+                                                                                      ≤ 2O(1/α) .
+
+   • Approximation ratio tightness. We prove that the O( loglog    n
+                                                                 COPT ) approximation ratio for the
+     greedy algorithm is tight for Uniform Decision Tree. We also prove that the O(log ppmax   min
+                                                                                                   )
+     term in the approximation ratio for the greedy algorithm is necessary, in the sense that no
+     algorithm can give a o(log ppmax
+                                  min
+                                      ) approximation for Decision Tree when ppmax
+                                                                                min
+                                                                                    = nr for some
+     r ∈ (0, 1) unless P=NP.
+   • Repeatable, noisy tests. Kääriäinen[Kää06] provides a method to convert a solution
+     for Decision Tree into a solution for a variant of Decision Tree that handles noisy,
+     repeatable tests. An immediate corollary of our result for the greedy algorithm is that the
+     cost of a solution for the noisy problem derived from the greedy algorithm is at most COPT ·
+     O(log n log log n). Previously, this cost was bounded by COPT · O(log2 n log log n).
+
+1.2   Techniques
+Our work gives a new analysis of the greedy algorithm for Decision Tree. A key technical
+contribution of this work is to leverage upper bounds of Min Sum Set Cover and Set Cover
+for (Uniform) Decision Tree. Previously, only connections in the reverse direction (i.e. lower
+bounds) were known between these problems: NP-hardness of attaining a 4 − ε-approximation
+for Uniform Decision Tree was proved by reduction from Min Sum Set Cover, and NP-
+hardness of attaining a o(log n) approximation for Decision Tree was proved by reduction from
+Set Cover [CPR+ 11].
+    At a high level, our analysis goes as follows. By a simple double counting argument, we can
+compute the cost of a tree by summing the “weights” of the tree’s interior vertices, rather than sum-
+ming the depths of the hypotheses. However, rather than accounting for all the interior vertices
+at once, we separately analyze the vertices with “imbalanced” splits and those with “balanced”
+splits. Carefully choosing the definition of balanced and imbalanced is a key idea of the proof:
+previous analyses of the greedy algorithm [KPB99, CPR+ 11, GB09, AH12] either make no distinc-
+tion between interior vertices or use a different distinction. A global entropy argument accounts
+for the vertices with balanced splits. For the vertices with imbalanced splits, we use the fact that
+the greedy algorithm gives a constant factor approximation for Min Sum Set Cover [FLT04].
+For Uniform Decision Tree, putting the two bounds together gives the desired approximation
+result. For the general Decision Tree problem, we additionally prove and use a generalization of
+a result on the greedy algorithm’s performance for Set Cover [Lov75, Joh74, Chv79, Ste74].
+    For the subexponential time algorithm, we leverage our new result that the greedy algorithm
+gives an O( loglog n
+                 COPT ) approximation. We first run the greedy algorithm. If the greedy algorithm
+returns a tree with cost at least n3α/4 , we return the greedy tree knowing we have an O(1/α)
+approximation. Otherwise, we find by brute force the “optimal tree up to depth nα ” in time
+     α
+2Õ(n ) , then recurse.
+
+1.3   Organization of paper
+In Section 2, we formally introduce notation used throughout the paper. In Section 3, we state
+our results. In Section 4, we sketch a proof of Theorem 3.1, that the greedy algorithm gives
+an O( loglog n       pmax
+          COPT + log pmin ) approximation on Decision Tree. Since the proof of Theorem 3.1 is
+involved, we prove the special case of Theorem 3.1 for Uniform Decision Tree with binary tests
+
+                                                 3
+Figure 1: Approximation ratio differences between Decision Tree (DT) and Uniform Deci-
+sion Tree (UDT). The thicker lines represent the contributions of this work. The yellow approx-
+imation region is not NP-hard assuming the Exponential Time Hypothesis (ETH).
+
+
+in Section 6, and give the full proof in Appendix A. In Section 5, we state the subexponential
+time approximation algorithm and give a sketch of the analysis, and we give a formal analysis in
+Section 7. In Section 8, we describe some related work. In Section 9, we conclude with some open
+problems.
+    We leave some details to the appendices. A lemma on the greedy algorithm’s performance in a
+generalization of Set Cover that is used in the proof Theorem 3.1 is proved in Appendix B. In
+Appendix C, we prove Propositions 3.3 and 3.4, which show two ways that Theorem 3.1 is tight.
+                                                                                     1
+In Appendix D, we demonstrate a rounding trick that allows us to assume pmin ≥ poly(n)   without
+changing the difficulty of approximating Decision Tree.
+
+
+2    Preliminaries
+For a positive integer a, let [a] = {1, . . . , a}. All logs are base 2 when the base is not specified. The
+Decision Tree problem is as follows: given a set of hypotheses [n] with probabilities p1 , . . . , pn
+summing to 1, and m distinct K-ary tests, output a decision tree T with hypotheses as leaves,
+such that the weighted average of the depth of the leaves is minimal. Formally, a K-ary test is a
+map τ : [n] → [K]. We refer to K as the branching factor of the test τ , and the elements of [K]
+as the possible answers to the tests. We think of a test τ as defining a K-way partition of [n]. A
+decision tree T is a rooted tree such that each interior vertex v has the index jv ∈ [m] of some
+test, and the edge to the i-th child of v is labeled with i ∈ [K]. We say that a hypothesis h ∈ [n]
+is consistent with a vertex v if, in the root-to-v path, the edge following any vertex u has label
+τju (h). We let L(v) denote the set of hypotheses h that are consistent with v. We say a decision
+tree T is complete if, for all h ∈ [n], there exists a (unique) leaf v ∈ T such that L(v) = {h}, and
+for a complete decision tree T , let dT (h) denote the depth of this vertex v. The cost of a complete
+decision tree T is defined to be the average depth of the leaves, weighted by ph , i.e.
+
+                                               def
+                                                     X
+                                        C(T ) =              ph dT (h).
+                                                     h∈[n]
+
+We set TOPT to be a complete decision tree that minimizes C(TOPT ) (in general, there may be more
+                                                               def
+than one optimal decision tree), and abbreviate COPT = C(TOPT ).
+    This paper is concerned with the greedy algorithm for Decision Tree. We call a decision tree
+greedy if the test τjv of each interior vertex v minimizes the (weighted) number of hypotheses of
+
+
+                                                     4
+the largest partition in τjv ’s partitioning of L(v). Formally, a decision tree T is greedy if, for all
+interior vertices v ∈ T , we have
+                                                                   
+                                                              −1
+                                jv ∈ arg min max p(L(v) ∩ τj (k)) ,
+                                           j      k∈[K]
+                P
+where p(S) = h∈S ph for S ⊆ [n]. Given a Uniform Decision Tree instance, we let TG be a
+complete, greedy decision tree, choosing one arbitrarily if there is more than one. For brevity, we
+          def
+write CG = C(TG ).
+    We remark that, when K > 2, our notion of a “greedy” algorithm for Decision Tree is
+not the only one. As mentioned in the previous paragraph, our definition of greedy chooses,
+at each vertex in the decision tree, the test that minimizes the (weighted) number of candidate
+hypotheses, assuming a worst-case answer to the test. Our definition corresponds to the definition
+by [CPRS09], but other choices include maximizing the (weighted) number of pairs of hypotheses
+that are distinguished [CPR+ 11, GB09] and maximizing the mutual information between the test
+and the remaining hypotheses [ZRB05]. For binary tests, K = 2, these definitions are all equivalent.
+    Define DT(R) as Decision Tree with the guarantee that ppmax    min
+                                                                       ≤ R. In this notation, DT(1)
+is Uniform Decision Tree.
+
+
+3     Our results
+3.1    Greedy algorithm
+The main driver of this paper is Theorem 3.1, which relates the cost of the greedy algorithm to the
+optimal cost for Decision Tree.
+Theorem 3.1. For any instance of Decision Tree on n hypotheses, we have
+                                          1                 !
+                               12 · log( pmin )
+                                                     
+                                                       pmax
+                       CG ≤                     + ln           · COPT .                                     (1)
+                                 log COPT              pmin
+    Our theorem holds for any branching factor K, and when CG is the cost of an arbitrary tree
+produced by the greedy algorithm above. As COPT ≥ logK n always, our result implies that the
+greedy algorithm always gives an O( logloglogn n ) approximation for Uniform Decision Tree when the
+branching factor is a constant, resolving the conjecture of [KPB99]. Additionally, if COPT is Ω(nα )
+for constant α and the weights are uniform, then the greedy algorithm obtains a constant O(1/α)
+approximation. We use this fact crucially in designing our subexponential time approximation
+algorithms.
+    For the simpler case when K = 2 and the weights ph are uniform, we give a sketch of the proof
+in Section 4 and a full proof in Section 6. This full result is sketched in Section 4 and proven in full
+in Appendix A. For Uniform Decision Tree, the constant 12 can be improved to 6, and, when
+n is sufficiently large, 4 + ε, so that greedy gives a (4+ε)      log n
+                                                             log COPT approximation (see Section 4).
+    Note that the terms log( pmin1
+                                    ) and ln( ppmax
+                                                 min
+                                                      ) in the approximation ratio can be arbitrarily large.
+However, a rounding trick before running the greedy algorithm [GB09] allows us assume that all
+the weights are at least n12 , and hence log( pmin  1
+                                                        ) ≤ 2 log n and ln( ppmax
+                                                                              min
+                                                                                  ) ≤ 2 ln n in (1). The details
+are given in Appendix D.
+
+3.2    Subexponential time algorithm
+Using Theorem 3.1, we give a subexponential time algorithm that achieves a constant factor ap-
+proximation for the Decision Tree problem when the weights are close to uniform.
+
+                                                       5
+Theorem 3.2. For any α ∈ (0, 1) and R ≥ 1, there exists an ( 25
+                                                              α + log R) approximation algorithm
+                         O(nα log(Rn) log m)
+for DT(R) with runtime 2                     . For Uniform Decision Tree, for any ε > 0, we can
+achieve a 9+ε
+           α  approximation  in the same     runtime.
+    In Section 5, the subexponential time algorithm is stated and an analysis is sketched. The anal-
+ysis is given formally in Section 7. Importantly, this result implies that achieving a super-constant
+approximation ratio is not NP-hard, given the Exponential Time Hypothesis. As an informal proof,
+suppose for contradiction there was a polynomial reduction from 3-SAT to achieving a f (n) ap-
+proximation ratio for Uniform Decision Tree for some f (n) → ∞ as n → ∞. By Theorem 3.2,
+                  o(1)
+there exists a 2n -time algorithm to achieve a f (n) approximation for Uniform Decision Tree,
+               o(1)
+and thus a 2n -time algorithm to solve 3-SAT, contradicting the Exponential Time Hypothesis.
+This adds approximating Uniform Decision Tree to a list of interesting natural problems that
+                            o(1)
+have subexponential or 2n        time algorithms but are not known to be in P. Figure 1 illustrates
+the contrast between Decision Tree and Uniform Decision Tree.
+
+3.3   Approximation ratio tightness
+We also show that the O( loglog n
+                             COPT ) approximation ratio is tight up to a constant factor for the greedy
+algorithm by generalizing the example given by [Das04]. The proof is given in Appendix C.1.
+Proposition 3.3. There exists an n0 such that for all n ≥ n0 and any C ∗ ∈ [log n, n], there exists
+an instance of Uniform Decision Tree with branching factor 2 for which
+                                    C ∗ log n
+                             CG ≥              ,    and      COPT ≤ 8C ∗ .
+                                    16 log C ∗
+                                                                              
+                                                                        pmax
+    We also show that, when the weights are non-uniform, the ln         pmin       term in the approximation
+ratio of Theorem 3.1 is computationally necessary.
+Proposition 3.4. Let r ∈ (0, 1). Then, for n sufficiently large, approximating DT(2nr log n) to a
+           r
+factor of 12 log n is NP-hard.
+   In other words, even if the ratio pmax /pmin is guaranteed to be O(nr ) for a constant r ∈ (0, 1), one
+cannot give a o(log n) approximation algorithm unless P = NP. The proof is given in Appendix C.2.
+
+3.4   Decision tree with noise
+Theorem 3.1 implies an improved black-box result for a noisy variant of Decision Tree. Kääriäinen
+[Kää06] considers a variant of Decision Tree with binary tests where the output of each test may
+be corrupted by i.i.d. noise. Formally, there exists ε > 0 such that querying any test τ on any
+hypothesis h, outputs the correct answer τ (h) with probability 1 − δτ,h and the wrong answer with
+probability δτ,h , for some δτ,h ∈ [0, 1/2 − ε). Tests are repeatable, with each one producing different
+draws of the noise. Kääriäinen [Kää06] gives an algorithm that turns a decision tree of cost C for
+the noiseless problem into a decision tree with cost O(C log C log log C) for the noisy problem by
+repeating queries sufficiently many times.
+    Combining Kääriäinen’s result with the greedy algorithm for Uniform Decision Tree gives
+an algorithm for the noisy problem using an average of O(CG log CG log log CG ) queries. Previously,
+using the bound CG ≤ max(COPT · O(log n), n), the noisy problem’s cost was bounded by COPT ·
+O(log2 n log log n). However, by Theorem 3.1, we have CG ≤ COPT · O( loglog          n
+                                                                                   COPT ), so we in fact
+have cost at most COPT · O(log n log log n), improving the cost ratio to the optimal solution of the
+noiseless problem by a nearly quadratic factor.
+
+                                                   6
+4     Sketch of proof of Theorem 3.1
+In this section, we sketch a proof of Theorem 3.1. We first sketch the proof assuming that the
+branching factor is 2, so that TG is a binary tree, and that the distribution is uniform (ph = 1/n
+for all h ∈ [n]). Since the proof of Theorem 3.1 is involved, we give the details of this easier result
+in Section 6. At the end of the section, we give the additional ideas necessary to complete the full
+proof of Theorem 3.1. The details of the full proof are given in Appendix A.
+
+4.1    Uniform weights and binary tests
+                 def P                                                     1
+Recall that p(v) =    h∈L(v) ph and that, as the weights are uniform, ph = n for all h ∈ [n]. By
+a simple double counting argument (Lemma 6.2), we can compute the cost of the greedy tree by
+summing the weights of the vertices rather than summing the depths of leaves. That is,
+                                                            X
+                                                CG =                p(v),
+                                                            v∈TGo
+
+where the sum is over the interior vertices of TG .
+
+Defining balanced and imbalanced vertices. We then define balanced and imbalanced vertices
+                                                                             1
+with respect to a parameter δ ∈ (0, 1), which we eventually set to O( COPT       ). These definitions are
+crucial to the proof. A vertex is imbalanced 4 if there exists an integer s (called the level ) such that
+p(v) > 2δ s and p(v − ) ≤ δ s . Here, v − is the child of v containing a smaller weight of hypotheses in
+its subtree. We say v is balanced if it is not imbalanced. Note that imbalanced vertices exist only
+                             def log n
+for s ≤ smax , where smax = log      1 . We prove a structural result (Lemma 6.5) that shows that the
+                                      δ
+level-s imbalanced vertices of TG can be partitioned into downward paths, which we call chains,
+such that, for all s, each leaf has vertices from at most one level-s chain among its ancestors. The
+parameter δ quantifies how many chains we consider: smaller δ means fewer, longer chains, and
+larger δ means more, shorter chains. We optimize the choice of δ at the end of this proof sketch. In
+the remainder of the proof, we bound the weight of the balanced and imbalanced vertices separately.
+
+Bounding the weight of balanced vertices. To bound the weight of balanced vertices, we
+use an entropy argument. We consider the random variable corresponding to a uniformly random
+hypothesis from [n]. On one hand, this random variable has entropy log n. On the other hand, we
+can take a uniformly random hypothesis from [n] by an appropriate random walk down the decision
+tree. Starting from the root, at each vertex, we step to a child with probability proportional to
+the number of hypotheses in that child’s subtree. The total entropy of this process is given by
+P                              def   p(v − )
+   v∈TG p(v)H(v), where H(v) = H( p(v) ) is the entropy of the random walk’s step at v. A simple
+argument (Lemma 6.7) shows that, for all balanced vertices v, we have p(v − )/p(v) ≥ δ/2 and hence
+H(v) ≥ H(δ/2) ≥ 2δ log 2δ . We thus have
+                                                                   X
+                        X                    X              δ      2
+              log n =        p(v)H(v) ≥         p(v)H(v) ≥ log                   p(v).
+                                                            2      δ
+                           v∈TG                v balanced                            v balanced
+
+   4
+     We remark that imbalanced vertices can have p(v − ) arbitrarily close to p(v)
+                                                                               2
+                                                                                   , so the hypotheses at vertex v are
+not necessary split in an imbalanced way. However, as we show (Lemma 6.7), all balanced vertices are in fact split
+in a balanced way with p(v − )/p(v) ≥ δ/2, hence the terminology.
+
+
+
+                                                            7
+Hence,
+                                          X                  log n 2
+                                                    p(v) ≤         · .
+                                       v balanced
+                                                             log 2δ δ
+
+Bounding the weight of imbalanced vertices. To bound the cost of imbalanced vertices, we
+crucially use a connection to Min Sum Set Cover (MSSC). In MSSC, one is given a universe S
+and sets A1 , . . . , AM , and needs to construct an ordering σ : [M ] → [M ] of the sets that minimizes
+the cost: the cost of a solution σ is the average of the cover times of the elements in the universe
+S. That is, the cost MSSC(σ) of a solution σ is
+
+                                            def     1X
+                                MSSC(σ) =              min{` : h ∈ Aσ(`) }.
+                                                    n
+                                                     h∈S
+
+A result by Feige, Lovasz, and Tetali shows that the greedy algorithm gives a 4 approximation of
+MSSC, and they show this is tight by proving that finding a (4 − ε) approximation of MSSC is
+NP-hard. On the lower bound side, a connection between MSSC and Decision Tree was already
+known: Chakaravarthy et al. [CPR+ 11] proved that it is NP-hard to approximate Uniform Deci-
+sion Tree with ratio between than 4 − ε by a reduction to MSSC. The key technical contribution
+of our work is showing that there is also a connection on the upper bound side. Bounding the
+weight of imbalanced vertices works as follows.
+
+  1. For each chain P , define a corresponding instance MSSC(P ) (Definition 6.9) of
+     Min Sum Set Cover induced by the chain P = (P1 , . . . , P|P | ) as follows:
+
+                        def
+         • Universe S = L(P1 ), the set of all hypotheses that are consistent with P1 .
+         • For j = 1, . . . , m, the set Aj is the set of hypotheses in S that give the minority answer
+           of test j with respect to hypotheses S. (See Figure 2).
+                                                      def
+         • For each h = 1, . . . , n, a set Am+h = {h} ∩ S. These tests are included for technical
+           reasons.
+
+      Note we have a total of m + n sets, so that a solution is a permutation σ : [m + n] → [m + n].
+      The sets Aj for j = 1, . . . , m are chosen so that the second step below holds.
+
+  2. Prove that the weight of a chain P is bounded by the cost of a greedy solution to MSSC(P )
+     (Lemma 6.13), and hence, using a result of Feige, Lovasz, and Tetali (Theorem 6.12), by 4
+     times the optimal cost of MSSC(P ) (Corollary 6.14). That is, there exists a greedy solution
+     σG to MSSC(P ) such that
+                              X
+                                    p(v) ≤ MSSC(P ) (σG ) ≤ 4MSSC(P ) (σOPT )
+                              v∈P
+
+      This step is somewhat technical, as one must show that the greediness of the greedy decision
+      tree TG produces a greedy solution to MSSC(P ) . The choice of σG is natural: for ` = 1, . . . , |P |,
+      let σG (`) be the index of the test used at vertex P` in the chain P (see Figure 3). However,
+      showing that this σG is in fact a greedy solution to MSSC(P ) is a subtle argument that depends
+      on the carefully chosen definition of a chain.
+
+
+
+                                                        8
+                                                             Figure 3: MSSC sets Aj in the greedy tree. Im-
+Figure 2: Illustration of set Aj ⊂ S, the                    portantly (and subtly), sets Aj1 , Aj2 , . . . , cover
+part of test j’s partition of S containing the               the minority branches of the tree. We choose
+smaller fraction of S.                                       σG by reading off the tests of the greedy tree:
+                                                             σG (1) = j1 , . . . .
+
+
+  3. Prove that, for any integer s, the sum, over all level-s chains P , of optimal cost of MSSC(P ) ,
+     is bounded by COPT (Lemma 6.15). Hence,
+                                           X
+                                                  MSSC(P ) (σOPT ) ≤ COPT .
+                                          P ∈Ps
+
+     This step is also technical, as one must draw the connection between the optimal MSSC
+     solution and the optimal decision tree.
+
+  4. In total, we have
+                     X                  X X                     X
+                               p(v) =               p(v) ≤              4MSSC(P ) (σOPT ) ≤ 4COPT ,
+                   v level s            P ∈Ps v∈P               P ∈Ps
+
+     where the first inequality is by part 2 and the second inequality is by part 3. In other words,
+     for any integer s, the sum of the weights of all level s chains is at most 4COPT . Hence, the sum
+     of the weights of vertices in any chain, and thus the total weight of all imbalanced vertices, is
+                                                                                               log n
+     at most 4smax COPT (Lemma 6.16), where smax is the number of levels. As smax ≤ log            1 , we
+                                                                                                             δ
+     have
+                                               X                   4 log n
+                                                        p(v) ≤             · COPT .
+                                         v imbalanced
+                                                                    log 1δ
+
+   To finish the proof, we bound
+                 X                   X                      X                   log n 2 4 log n
+        CG =            p(v) =                 p(v) +                  p(v) ≤         · +        · COPT .
+                v∈TGo             v balanced            v imbalanced
+                                                                                log 2δ δ  log 1δ
+
+                                          1
+The above is optimized roughly when δ = COPT , giving the desired bound of CG ≤ log6 log n
+                                                                                     COPT · COPT .
+If n is sufficiently large, taking δ = εC10
+                                         OPT
+                                             yields CG ≤ (4+ε) log n
+                                                          log COPT · COPT .
+
+
+                                                            9
+4.2      General weights and larger K
+The proof of the general Theorem 3.1 follows similarly to the specific case given above. The two
+differences are that Theorem 3.1 is stated for general K and for general, not-necessarily-uniform
+distributions p1 , . . . , pn .
+    Adapting the proof to general K is the easier step. The main difference is the definition of an
+imbalanced vertex. Now, we say a vertex v is imbalanced if there is an integer s such that p(v) > 2δ s
+and p− (v) ≤ δ s , where p− (v) is the total weight of hypotheses in the subtrees of all children of v
+except the majority vertex, v + , the child of v with the largest weight of hypotheses. Under this
+definition, a similar analysis follows. Note that p− (v) could be much larger than p(v + ) in this
+case, but this does not affect the proof much. A little more care needed in the entropy argument
+for balanced vertices, and with the MSSC instance defined by a path P now taking Aj to be all
+hypotheses that do not take the majority answer of τj with respect to the MSSC universe. Note
+that, if we specialize to K = 2, the value p− (v) is simply p(v − ).
+    In the weighted case, we again define v to be imbalanced if there is an integer s such that
+p(v) > 2δ s and p− (v) ≤ δ s . We again bound the cost of the balanced vertices by an entropy
+argument, and the cost of the imbalanced vertices via a connection to Min-Sum-Set-Cover. However,
+because the entities are now weighted, we need to consider the greedy algorithm for a weighted
+generalization of MSSC called Weighted Min-Sum-Set-Cover (WMSSC). In order to make the
+condition between the greedy decision tree and the greedy solution to WMSSC, we need a somewhat
+technical definition: call a vertex v is h-heavy if h is consistent with v and ph > p− (v). Define
+q(v) = ph if there exists h such that v is h-heavy, and set q(v) = 0 otherwise. One can easily check
+that, for any vertex v, there is at most one h such that v is h-heavy, so q(v) is well defined. Now,
+we follow the argument in the uniform case, bounding
+                                         sX
+                                          max X X                           sX
+                                                                             max X
+                                                                                                   (P )
+             X
+                     (p(v) − q(v)) ≤                      (p(v) − q(v)) ≤               WMSSC(P ) (σG )
+        v imbalanced                      s=1 P ∈Ps v∈P                     s=1 P ∈Ps
+                                         sXmax X                               sX
+                                                                                max
+                                                                     (P )
+                                     ≤               4WMSSC(P ) (σOPT ) ≤             COPT = smax COPT ,
+                                         s=1 P ∈Ps                              s=1
+
+           (P )        (P )
+where σG and σOPT are the greedy solution and optimal solution, respectively, to the corresponding
+WMSSC. The first inequality holds because p(v) − q(v) ≥ 0 for all v and every imbalanced vertex
+is in some chain5 . The second inequality holds by a technical lemma (Lemma A.15) comparing the
+greedy decision tree with a greedy solution to WMSSC. Just as for MSSC, the greedy algorithm gives
+a 4 approximation forP WMSSC, so the third inequality holds. Additionally, for all s = 1, . . . , smax ,
+we can still bound P ∈Ps WMSSC(P ) (σOPT ), the sum of all WMSSC costs in a single level, by
+COPT , so the fourth inequality holds. To finish:
+                                                                                
+             X                              X                               pmax
+                     p(v) ≤ smax COPT +         q(v) ≤ smax COPT + 1 + ln          COPT .
+                                                                            pmin
+             v imbalanced                         v∈TG
+
+The last inequality (Lemma A.20) comes from comparing, for fixed h, the vertices v of the greedy
+tree TG that are h-heavy to an appropriate SET-COVER instance, and using        fact that the
+                                                                              the
+                                                                           pmax
+greedy algorithm on a weighted generalization of SET-COVER gives a 1 + ln pmin approximation
+(Theorem A.19).
+  5
+      It is inequality because some imbalanced vertices may be in multiple chains
+
+
+
+                                                           10
+5     Sketch of proof of Theorem 3.2
+5.1     Algorithm
+We describe the algorithm that achieves a 25   α + log R approximation for DT(R). In Section 7, we
+give the details and describe how the same algorithm with minor adjustments gives an improved
+approximation guarantee for Uniform Decision Tree.
+    The key idea in the algorithm is that, if the optimal tree has cost at least n3α/4 , then the greedy
+                                                                       def
+algorithm gives an O(1/α) approximation by Theorem 3.1. Fix b = d(12 log n + log R)nα e. Our
+algorithm first computes the greedy tree. If the cost of the greedy tree is at least n−α/4 b, we simply
+return the greedy tree. Otherwise, we perform an exhaustive search over decision trees of depth at
+most b such that all hypotheses not consistent with vertices at depth b are uniquely distinguished.
+We choose such a tree T with minimum cost (see definition of C(T ; H) below). Finally, at each
+leaf v of T at depth b, we recursively compute a decision tree that distinguishes the hypotheses
+consistent with v. The runtime of this algorithm is dominated by the exhaustive search, which we
+                       α
+can solve in time 2Õ(n ) using a divide-and-conquer algorithm.
+    Let C(T ; H) denote the cost of a decision tree T with respect to hypothesis set H, given by
+                                             def     1 X
+                                   C(T ; H) =            ph dT (h),
+                                                   p(H)
+                                                         h∈H
+
+where dT (h) is the depth of the deepest vertex of T consistent with h. In this way, we have
+C(T ) = C(T ; [n]). To solve the Decision Tree instance, we run Fulltreeα ([n]) below.
+
+
+Algorithm 1 FullTreeα (H)                           Algorithm 2 PartialTree(H, b0 )
+    Compute TG (H).                                   if b0 = 0 or |H| ≤ 1 then
+    if p(H) < n12 then                                   Return leaf node
+      Return TG (H)                                   end if
+    end if                                            for j = 1, . . . , m do
+    if C(TG (H); H) ≥ n−α/4 b then                       for k = 1, . . . , K do
+      Return TG (H)                                         Hj,k = {h ∈ H : τj (h) = k}
+    end if                                                  Tj,k = PartialTree(Hj,k , b0 − 1)
+    T = PartialTree(H, b).                               end for
+    for v ∈ leaves(T ) with dT (v) = b do                Create tree Tj using τj at root and Tj,k as
+      H 0 = hypotheses in H consistent with v.           subtrees
+      Tv = FullTreeα (H 0 )                           end for
+      Attach the root of Tv to T at vertex v.         j ∗ = arg minj C(Tj ; H)
+    end for                                           Return Tj ∗
+    return T
+
+
+5.2     Analysis sketch
+We now sketch an analysis of the algorithm. First, it is easy to check that FullTreeα ([n]) returns a
+valid decision tree. By Theorem 3.1, when the greedy tree is used in the recursive call FullTreeα (H),
+it gives an O(1/α) + log R approximation to the DT(R) instance induced by H. Hence, by careful
+bookkeeping, the greedy trees included in the output tree contribute at most (O(1/α)+log R)COP T
+to the cost (Lemma 7.4). If the greedy tree is not used, then, in the optimal tree, the weighted
+average depth of the hypotheses is at most n3α/4 . Hence, by a simple counting argument, at
+
+                                                    11
+each recursive call, the fraction of undistinguished hypotheses shrinks by a factor of nα/4 , so the
+maximum depth of recursive calls is O(1/α) (Lemma 7.6). Careful bookkeeping shows that, for any
+i = 1, . . . , O(1/α), the outputs to PartialTree(H, b) called from the ith level of recursion collectively
+contribute at most COPT to the cost of the output tree (Lemma 7.5). Hence, the trees computed
+by exhaustive search across all levels of recursion contribute a cost of O(COPT /α). Hence, the cost
+of our output tree is (O(1/α) + log R)COP T .
+
+
+6     Proof of Theorem 3.1 for uniform weights and K = 2
+We prove a special case of Theorem 3.1 when K = 2 and the weights p1 = · · · = pn = n1 are
+uniform, that is, we show that the Uniform Decision Tree with binary tests gives an O( loglog n
+                                                                                           COPT )
+approximation. Throughout this section, we have a Uniform Decision Tree instance with
+hypotheses [n] and tests τ1 , . . . , τm : [n] → [2].
+
+Theorem 6.1. For any instance of the Uniform Decision Tree problem on n hypotheses with
+branching factor 2, and any greedy tree TG with average cost CG , we have
+                                                      6 log n
+                                         CG ≤                 · COPT .
+                                                    log COPT
+
+6.1    Notation
+We use the following notation for our proof. These notations help us reason about the greedy tree.
+We write v ∈ TG to mean that v is a vertex of tree TG , and we write v ∈ TGo to mean that v is
+a interior vertex. We say the length of a path in the tree is the number of edges along the path.
+For v, u ∈ TG , we say v is an ancestor of u if there is a (possibly degenerate) path from v to u
+going down the tree. In particular, v is an ancestor of v. We write this as u v v. We call u a
+descendant of v if and only if v is an ancestor of u. For v ∈ TG , let L(v) ⊆ [n] denote the set
+of hypotheses consistent with v. For a subset S ⊆ [n] of hypotheses, denote its weight or cost by
+     def P           |S|                       def
+p(S) =      h∈S ph = n . For brevity, let p(v) = p(L(v)), denoting the weight of vertex v, and we
+say the weight of a set of vertices is the sum of the weights of the individual vertices in the set.
+
+6.2    The basic argument
+The following lemma shows that, rather than accounting the cost of the greedy tree by summing the
+depths of the leaves associated with the hypotheses, we can instead account the cost by summing
+the weights of vertices of the tree.
+                                P
+Lemma 6.2. We have CG = v∈T o p(v).
+                                        G
+
+Proof. We have,
+                        X                      X X                  X X                   X
+               CG =             ph dTG (h) =                 ph =                  ph =           p(v),
+                        h∈[n]                  h∈[n] v∈TGo          v∈TGo h∈L(v)          v∈TGo
+                                                      hvv
+
+where, in the third equality, we switched the order of summation.
+
+   At a high level, our proof defines balanced and imbalanced vertices (next subsection) using a
+parameter δ and bound the weight of the balanced and imbalanced vertices separately. We bound
+
+
+                                                        12
+                      Figure 4: An illustration of the definitions of v − , v + and L(v).
+
+
+
+the weight of the balanced vertices by an entropy argument, and the weight of the imbalanced
+vertices by partitioning the imbalanced vertices into paths, called chains, and bounding the weights
+of each chain separately. Overall, we get the following bound.
+                    X                  X                      X                   log n 2 4 log n
+         CG =              p(v) =                p(v) +                  p(v) ≤         · +        · COPT .
+                   v∈TGo            v balanced            v imbalanced
+                                                                                  log 2δ δ  log 1δ
+
+Choosing δ = COPT1
+                      gives CG ≤ log6 log n
+                                      COPT · COPT .
+                                             1
+   For the rest of the proof, fix δ = COPT      . Additionally, for convenience and without loss of
+generality, assume that our instance is nontrivial, i.e. there is some test j such that both of τj−1 (1)
+and τj−1 (2) have at least 2 hypotheses, as otherwise the greedy tree is optimal and CG = COPT and
+the theorem is true.
+
+6.3    More notation: Majority and minority answers
+We define majority (minority) answers, edges, children. These definitions are useful for defining
+balanced and imbalanced vertices. We later show that imbalanced vertices form paths whose edges
+are majority edges. We call these paths chains. We then analyze the balanced and imbalanced
+vertices separately, and in particular analyze each path of majority edges separately.
+    For each vertex v in the greedy tree, let jv denote the test used at v. For each vertex v, label
+its children by v + and v − so that p(v + ) ≥ p(v − ), with ties broken6 by labeling v + by the vertex
+corresponding to a test outputting 1.7 Accordingly, we have p(v) = p(v + ) + p(v − ) for all v ∈ TGo .
+Call the edge from v to v + a majority edge, and the edge from v to v − a minority edge. This is
+illustrated in Figure 4.
+    In order to reason about the greedy tree precisely, we use the following notation which is more
+                                                               +
+technical. For test j ∈ [m] and hypotheses S ⊆ [n], let kj,S       ∈ [2] be the answer to test τj that
+                                                                      −
+accounts for the maximum weight of hypotheses in S, and let kj,S         be the other index, with ties
+   6                                                                                          +        −
+     any tiebreaking procedure suffices, as long as the tiebreaking is consistent with the kj,S   and kj,S notation in the
+next paragraph.
+   7
+     it is possible to have a vertex that has one child, namely a test that doesn’t distinguish any pairs of hypotheses at
+a vertex, but such a test is useless and never appears in either the greedy or optimal tree, so we assume such vertices
+don’t exist.
+
+
+                                                             13
+                                              −
+            +
+broken by kj,S                       +
+               = 1. In other words, kj,S and kj,S are chosen so that |τj−1 (kj,S
+                                                                             +
+                                                                                 )∩S| ≥ |τj−1 (kj,S
+                                                                                                −
+                                                                                                    )∩S|.
+          +
+We call kj,S the majority answer of test j with respect to hypothesis set S. Call the other answer
+ −
+kj,S the minority answer of test j with respect to hypothesis set S. For all j ∈ [m] and S ⊆ [n], let
+
+                                     def                           def
+                                +
+                               Ij,S = τj−1 (kj,S
+                                             +
+                                                 ),         −
+                                                           Ij,S = τj−1 (kj,S
+                                                                         −
+                                                                             ).
+                 +    −
+We think of Ij,S    (Ij,S ) as the set of hypotheses that, under test j, output the majority (minority)
+answer to test j with respect to set S. Note that, with the above notation, we have L(v + ) =
+Ij+v ,L(v) ∩ L(v) and L(v − ) = Ij−v ,L(v) ∩ L(v).
+      The following is a key property of the greedy tree TG : the weight of hypotheses consistent with
+the minority child v − decreases as we descend the tree.
+
+Lemma 6.3. For any vertices u of v with u a descendant of v, we have p(v − ) ≥ p(u− ).
+
+Proof. Because TG was constructed greedily, for all v ∈ TGo , the test jv was chosen to maximize
+the weight of Ij−v ,L(v) ∩ L(v), the hypotheses in L(v) giving the minority answer kj−v ,L(v) . Hence,
+any other test, in particular, the test ju chosen at vertex u, has a smaller weight of hypotheses
+of L(v) that give the minority answer of ju with respect to hypotheses L(v). Hence, we have
+p(v − ) ≥ p(Ij−u ,L(v) ∩ L(v)). Hence,
+                                                                    
+                    p(v − ) ≥ p Ij−u ,L(v) ∩ L(v) ≥ p Ij−u ,L(v) ∩ L(u) ≥ p(u− ).
+
+The second inequality holds because L(u) ⊆ L(v). The third inequality holds because test ju
+defines a partition of [n] into two parts, and Ij−u ,L(v) is one of the two parts, so Ij−u ,L(v) ∩ L(u) is one
+of L(u− ) or L(u+ ).
+
+6.4    Defining balanced and imbalanced vertices
+In the following definition, we identify balanced vertices and imbalanced vertices. By Lemma 6.2,
+we can separately bound the weights of the balanced and imbalanced vertices.
+
+Definition 6.4. Let s be a positive integer.
+
+   1. We say a vertex v ∈ TGo is level-s imbalanced if p(v − ) ≤ δ s and p(v) > 2δ s .
+
+   2. We say a vertex v is imbalanced if it is level-s imbalanced for some s, and balanced otherwise.
+
+   3. We say a level-s imbalanced vertex v is minimal if no descendant of v is also level-s imbalanced
+      vertex, and a level-s imbalanced vertex v is maximal if no ancestor of v is level-s imbalanced.
+
+   Let
+                                                      def log n
+                                               smax =
+                                                          log 1δ
+
+and note that level-s imbalanced vertices exist only for s ≤ smax . The following lemma proves
+a structural result about balanced vertices, with the punchline being item (iii), which permits
+Definition 6.6. For an illustration, see Figure 5.
+
+Lemma 6.5. Let s be a positive integer.
+
+
+                                                      14
+Figure 5: Illustration of chains. The red vertices denote level-1 imbalanced vertices. The red
+segments denote level-1 chains. The blue vertices denote level-2 imbalanced vertices. The blue
+segments denote level-2 chains. The enlarged circular vertices denote maximal and minimal imbal-
+anced vertices.
+
+
+
+  (i) If v is a level-s imbalanced vertex, then, among the children of v, only v + can be a level-s
+      imbalanced vertex.
+ (ii) Additionally, if v and u are level-s imbalanced vertices and v is an ancestor of u, then every
+      vertex on the path from v to u is a level-s imbalanced vertex.
+(iii) Finally, the set of level-s imbalanced vertices can be partitioned into vertex disjoint paths,
+      each of which connects a maximal level-s imbalanced vertex to a minimal level-s imbalanced
+      vertex and contains only majority edges.
+Proof. For (i), note that if v is level-s imbalanced, then p(v − ) ≤ δ s < 2δ s , so v − cannot be level-s
+imbalanced. Hence, among the children of v, only v + can be level-s imbalanced.
+    For (ii), let v w w w u be three vertices in the tree. Suppose that v and u are level-s imbalanced.
+We know that p(v) ≥ p(w) ≥ p(u) > 2δ s , and Lemma 6.3 gives δ s ≥ p(v − ) ≥ p(w− ) ≥ p(u− ).
+Hence w is level-s imbalanced.
+    For (iii), note that each level-s imbalanced vertex has a maximal level-s imbalanced ancestor
+(possibly itself), so we may partition the level-s imbalanced vertices into sets based on their maximal
+level-s imbalanced ancestor. We claim each set in the partition is a connected path. Let v1 be
+the (unique) maximal level-s imbalanced vertex in a set P . For ` = 1, 2, . . . , if v` has a level-s
+imbalanced child, let v`+1 be that child, which is unique by the first item and in P by definition.
+Let `P be the largest index such that v`P is defined. Then v`P has no level-s imbalanced children.
+We claim v1 , . . . , v`P are the only vertices in the set P . Suppose not. Let ` be the largest index
+such that v` has a level-s imbalanced descendant u not among v1 , . . . , v`P . Then, by the second
+item, every vertex on the path from v` to u is level-s imbalanced. If ` = `P , this means v`P has a
+level-s imbalanced child, a contradiction of the maximality of `P . Otherwise, as ` is maximal, v`+1
+is not on the path from v` to u, in which case, by (ii), v`− is level-s imbalanced, which contradicts
+(i). Thus, we always have a contradiction, so P is the path v1 , . . . , v`P . By (i), every edge along P
+is a majority edge. This completes the proof.
+
+   Lemma 6.5 motivates the following definition.
+Definition 6.6. Let s be a positive integer. A level-s chain, P = (P1 , . . . , P|P | ), is a path of level-s
+imbalanced vertices starting at a maximal level-s imbalanced vertex and ending at a minimal level-s
+imbalanced vertex. By Lemma 6.5, the level-s chains partition the level-s imbalanced vertices. We
+therefore let Ps denote the set of level-s chains.
+
+                                                     15
+   In general, for s 6= s0 , a level-s chain might overlap with a level-s0 chain.
+
+6.5   Bounding the weight of balanced vertices
+We first prove a lemma that justifies the choice of the word “balanced”.
+
+Lemma 6.7. For every balanced vertex v, we have p(v − ) ≥ 2δ p(v).
+
+Proof. Assume for contradiction that p(v − ) < 2δ p(v). Let s0 > 1 be the real number such that
+             0                              0
+p(v − ) = δ s n. In this way, p(v − ) ≤ δ bs c n. Then
+                                    2         2 0          0            0
+                              p(v) > p(v − ) = δ s n = 2δ s −1 n > 2δ bs c n.
+                                    δ         δ
+This implies that v is level-bs0 c imbalanced, so v is imbalanced, a contradiction.
+
+   We now bound the contribution of the balanced vertices to the weight using an entropy argu-
+ment.
+
+Lemma 6.8. We have
+                                          X                   log n 2
+                                                     p(v) ≤         · .
+                                        v balanced
+                                                              log 2δ δ
+
+Proof. For a vertex v with a test of index j, let Xv denote the binary random variable equal to τj (h)
+for an hypothesis h chosen uniformly at random from the hypotheses of L(v). Let H(·) denote the
+entropy of a random variable. The entropy of a uniformly random hypothesis in [n] equals log n.
+On the other hand, we can pick a uniformly random hypothesis in [n] by starting at the root vertex
+v, sampling an answer Xv ∈ [2] for the test at v, stepping to u, the child of v corresponding to the
+chosen answer, and repeating with v = u, until we reach a leaf. In this process, at any vertex v, the
+probability of stepping to a child u is exactly p(u)
+                                                  p(v) . Hence, by a simple induction, the probability
+of reaching anyP vertex v in the tree during this process is exactly p(v). The total entropy of this
+process is thus v∈TG p(v) · H(Xv ), as p(v) is the probability of reaching vertex v. For a balanced
+vertex v, Lemma 6.7 implies 2δ ≤ p(v − ) ≤ 12 . Hence,
+
+                                    1                   1                   1    δ   2
+           H(Xv ) = p(v + ) log      +
+                                        + p(v − ) log    −
+                                                            ≥ p(v − ) log    −
+                                                                                ≥ log .
+                                  p(v )               p(v )               p(v )  2   δ
+
+We conclude
+                    X                           X                              X                  δ    2
+          log n =          p(v) · H(Xv ) ≥                p(v) · H(Xv ) ≥                p(v) ·     log ,
+                                                                                                  2    δ
+                    v∈TG                     v balanced                     v balanced
+
+and rearranging gives the desired result.
+
+6.6   Bounding the weight of imbalanced vertices
+We now bound the weight of imbalanced vertices using a connection to MSSC.
+
+
+
+
+                                                       16
+6.6.1      Defining Min Sum Set Cover
+             +
+Recall that Ij,S = τj−1 (kj,S
+                          +          −
+                              ) and Ij,S = τj−1 (kj,S
+                                                  −
+                                                      ) for all j ∈ [m] and S ⊆ [n].
+
+Definition 6.9. Let MSSC(P ) denote the instance of Min Sum Set Cover that is induced by
+the chain P = (P1 , . . . , P|P | ). This instance is given by
+                     def
+      • universe S = L(P1 ),
+                                      def−
+      • for j = 1, . . . , m, sets Aj = Ij,S ∩ S, and
+                                                           def
+      • for each h = 1, . . . , n, a singleton set Am+h = {h} ∩ S.8
+
+Note we have a total of m + n sets. A solution to the instance MSSC(P ) is a permutation σ :
+[m + n] → [m + n] corresponding to an ordering of the sets, and the cost MSSC(P ) (σ) of a solution
+is the average of the cover times of the elements in the universe S. Formally,
+                                                         m+n
+                   (P )         1X
+                              def
+                                                         X                                   
+           MSSC           (σ) =    min{` : h ∈ Aσ(`) } =     p S \ (Aσ(1) ∪ · · · ∪ Aσ(`−1) ) .          (2)
+                                n
+                                    h∈S                           `=1
+
+Note that the cost of any solution is finite, as each hypothesis h ∈ L(v) is in some set Aj . We
+sometimes refer to a solution σ by the sets Aσ(1) , . . . , Aσ(m+n) .
+
+Remark 6.10. Since the initial Uniform Decision Tree instance always has a solution, any
+two hypotheses can be distinguished by one of the m tests. Hence, there is at most one hypothesis
+h ∈ S such that, for all j = 1, . . . , m, we have h ∈
+                                                     / Aj . In other words, all but one of the sets Am+h
+for h ∈ [n] is not used.
+
+Definition 6.11. We say a solution σ : [m + n] → [m + n] to MSSC(P ) is greedy at index ` if the
+set Aσ(`) covers the maximum number of elements not covered by sets Aσ(1) , . . . , Aσ(`−1) . We say
+a solution σ : [m + n] → [m + n] is greedy if it is greedy at index ` for all ` ∈ [m + n],
+
+   Note that, in the case of ties, there may be multiple greedy solutions to MSSC(P ) . Note also
+that, for any partial assignment σ(1), . . . , σ(`), one can always complete the solution greedily, so
+that σ : [m + n] → [m + n] is greedy at indices ` + 1, ` + 2, . . . , m + n. Definition 6.11 lets us leverage
+the following theorem, due to Feige, Lovász, and Tetali.
+
+Theorem 6.12 (Theorem 1 of [FLT04]). The greedy algorithm gives a 4-approximation to the
+MSSC problem. Formally, let σG be any greedy solution to the instance MSSC(P ) , and let σOPT
+denote an optimal solution to MSSC(P ) . We have
+
+                                      MSSC(P ) (σG ) ≤ 4 · MSSC(P ) (σOPT ).
+
+6.6.2      Bounding chain weight above by MSSC cost
+The section shows that the weight of a chain P is bounded by the cost of its corresponding MSSC
+instance. To do this, we need the following technical lemma which shows that following the choices
+of the greedy tree yields a greedy solution to the MSSC, and hence the two weights are comparable.
+  8
+      Some of these sets are empty, but we include them for notational convenience.
+
+
+
+
+                                                         17
+Lemma 6.13. Let s be a positive integer and let P be a level-s chain. Then there exists a greedy
+solution σ : [m + n] → [m + n] to MSSC(P ) , such that
+                                    X
+                                       p(v) ≤ MSSC(P ) (σ).
+                                             v∈P
+
+Proof. Let P = (P1 , . . . , P|P | ). Let S = S (P ) be the universe and A1 , . . . , Am+n be the sets of
+the instance MSSC(P ) . For ` = 1, . . . , |P |, let j` be the test used at vertex P` . Define a solution
+σ : [m + n] → [m + n] to MSSC(P ) by setting σ(`) = j` for ` = 1, . . . , |P |, and completing the
+solution greedily. We claim σ is a greedy solution. To prove this, we show the following.
+  (i) For all j ∈ [m] and 1 ≤ ` ≤ |P |, the majority answer for test j with respect to S = L(P1 ) is
+      the same as the majority answer for test j with respect to L(P` ). Equivalently, for all j ∈ [m]
+                                          −          −
+      and 1 ≤ ` ≤ |P |, we have Aj = Ij,S   ∩ S = Ij,L(P `)
+                                                            ∩ S. As an immediate consequence, we
+                                   −                    +
+      know Aj` contains all of L(P` ) and none of L(P` ).
+ (ii) The set of hypotheses of S not covered by Aj1 , . . . , Aj`−1 is exactly L(P` ).
+ (iii) For each 1 ≤ ` ≤ |P |, among sets A1 , . . . , Am+n , the set Aj` covers the maximum number of
+       hypotheses in L(P` ). i.e. we have
+                                      p(Aj` ∩ L(P` )) = max p(Aj ∩ L(P` )).
+                                                             j∈[m+n]
+
+These points suffice, as (ii) and (iii) tell us that σ is greedy at indices 1, . . . , |P |, so by construction
+σ is greedy.
+    To show (i), fix j ∈ [m] and ` ∈ {1, . . . , |P |}. As P` is level-s imbalanced, we also have
+p(P` ) > 2δ s and p(P`− ) ≤ δ s and p(P`+ ) > δ s , so kj,L(P  +
+                                                                   `)
+                                                                       accounts for more than half of the
+                                                                                                 −
+hypotheses in L(P` ). On the other hand, as P1 is level-s imbalanced, we have p(Ij,S                 ∩ L(P` )) ≤
+   −                −     s
+p(Ij,S ∩ S) ≤ p(P1 ) ≤ δ , so the majority answer for test j with respect to hypothesis set S also
+                                                                           +       +
+accounts for more than half of the hypotheses in L(P` ). Hence kj,S            = kj,L(P `)
+                                                                                            for all j ∈ [m] and
+1 ≤ ` ≤ |P |.
+    Item (ii) follows because L(P` ) is the set of hypotheses consistent with P` , which was obtained
+by following the majority edges from P1 . This means L(P` ) contains all the hypotheses of S not
+consistent with a minority child of one of P1 , . . . , P`−1 . By (i), this is exactly S \ (Aj1 ∪ · · · ∪ Aj`−1 ).
+    For (iii), at vertex P` in the greedy decision tree, the test index j = j` maximizes the weight
+   −
+p(Ij,L(P `)
+            ∩ L(P` )). By (i), this index j equivalently maximizes p(Aj ∩ L(P` )), as desired. This
+completes the proof that σ is greedy.
+    We now return to the proof of Lemma 6.13. Take the greedy solution σ given above. For
+1 ≤ ` ≤ |P |, the set of vertices of S not covered by Aσ(1) , . . . , Aσ(`−1) is exactly L(P` ), which has
+weight p(P` ). Hence, by (2),
+                                          |P |                                     |P |
+                                          X                                         X
+                           (P )
+                                                                                 
+                   MSSC           (σ) ≥          p S \ (Aσ(1) ∪ · · · ∪ Aσ(`−1) ) =   p(P` ),
+                                          `=1                                      `=1
+as desired.
+    By Theorem 6.12, we have the following immediate corollary.
+Corollary 6.14. Let P be any chain, and σOPT be the optimal solution to MSSC(P ) . Then
+                               X
+                                   p(v) ≤ 4MSSC(P ) (σOPT ).
+                                          v∈P
+
+
+                                                           18
+6.6.3   Bounding MSSC cost above by COPT
+We now show that the optimal MSSC solution can be compared to the optimal decision tree cost,
+                               (P )
+COPT . For all chains P , let σG : [m + n] → [m + n] be a greedy solution to MSSC(P ) given by
+                      (P )
+Lemma 6.13, and let σOPT be an optimal solution to MSSC(P ) .
+
+Lemma 6.15. Let s be a positive integer. We have
+
+                                                                 (P )
+                                      X
+                                              MSSC(P ) (σOPT ) ≤ COPT .
+                                      P ∈Ps
+
+
+Proof. Let S (P ) be the universe of the instance MSSC(P ) , and let A1 , . . . , Am+n be the sets. Con-
+struct a path w1 , . . . , w`∗ in TOPT such that w1 is the root and w`∗ is a leaf, which is identified
+with some hypothesis h∗ , and, for ` = 1, . . . , `∗ − 1, if the test at vertex w` has index j` , the edge
+to its child w`+1 corresponds to the answer kj+,S (P ) , the majority answer of test j` with respect to
+                                                      `
+set S (P ) . Since we follow the edges with label kj+,S (P ) , this corresponds to following the path for
+                                                             `
+an hypothesis contained in Ij+,S (P ) . In other words, we have, for ` = 1, . . . , `∗ − 1,
+                                `
+
+
+                L(w`+1 ) ∩ S (P ) = (L(w` ) ∩ S (P ) ) \ Ij−,S (P ) = (L(w` ) ∩ S (P ) ) \ Aj` .
+                                                                    `
+
+
+Thus the sequence Aj1 , . . . , Aj`∗ , Am+h∗ covers S (P ) , and thus gives a valid solution σTREE to the
+instance MSSC(P ) , where σTREE (1) = j1 , σTREE (2) = j2 , . . . , σTREE (`∗ ) = j`∗ , σTREE (`∗ + 1) =
+m + h∗ , and σTREE on larger indices is arbitrarily chosen. Note that the depth of the leaf for
+hypothesis h is at least the number of vertices of w1 , . . . , w`∗ that are on the root-to-leaf path of
+h, and this number is min{` : h ∈ Aj` }, except for h∗ , in which case it is 1 smaller. Furthermore,
+for some h ∈ S (P ) , the depth of leaf h is at least min{` : h ∈ Aj` } + 1, because otherwise all the
+branches leaving the path have one leaf, which can only happen if our Uniform Decision Tree
+instance is trivial, and it is not trivial by assumption. Thus,
+                     1 X                 −1 1  1 X
+                             dTOPT (h) ≥   + +         min{` : h ∈ Aj` }
+                     n  (P )
+                                         n  n n   (P )
+                       h∈S                                              h∈S
+                                                          (P )
+                                          ≥ MSSC                 (σTREE ) ≥ MSSC(P ) (σOPT ).                     (3)
+
+The −1    1
+    n and n account for the lower order terms described above. Summing (3) over P ∈ Ps gives
+
+                      1 X             1 X                   X                         X
+          COPT =          dTOPT (h) ≥                                   dTOPT (h) ≥           MSSC(P ) (σOPT ),
+                      n               n
+                        h∈[n]                    P ∈Ps h∈S (P )                       P ∈Ps
+
+where in the first inequality, we used that every leaf has at most one maximal level-s imbalanced
+ancestor, and hence it is in at most one MSSC universe S (P ) .
+
+6.6.4   Bounding imbalanced vertex weight above by COPT
+We now finish our bound of the weight of imbalanced vertices.
+
+Lemma 6.16. We have
+                                         X                          4 log n
+                                                    p(v) ≤                  COPT .
+                                     v imbalanced
+                                                                     log 1δ
+
+                                                           19
+Proof. Each imbalanced vertex v is level-s imbalanced for some positive integer s, so it is part of
+some level-s chain, P . Hence,
+                                       sX
+                                        max X X                    sX
+                                                                    max X
+                                                                                            (P )
+                   X
+                              p(v) ≤                     p(v) ≤                 4MSSC(P ) (σOPT )
+               v imbalanced            s=1 P ∈Ps v∈P                s=1 P ∈Ps
+                                                                   sXmax
+                                                                                      4 log n
+                                                               ≤         4COPT =              COPT
+                                                                   s=1
+                                                                                       log 1δ
+
+The first inequality is not equality because some vertices may be level-s imbalanced for more than
+one integer s. The second inequality is by Corollary 6.14. The third inequality is by Lemma 6.15.
+
+
+6.7   Finishing the proof
+Proof of Theorem 3.1. We have
+                  X                    X                    X                   log n 2 4 log n
+         CG =            p(v) =                p(v) +                  p(v) ≤         · +        COPT
+                 v∈TGo            v balanced            v imbalanced
+                                                                                log 2δ δ  log 1δ
+                                   2 log n            4 log n          6 log n
+                               =           · COPT +           COPT <           · COPT ,
+                                 log 2COPT          log COPT         log COPT
+as desired. In the first inequality, we used Lemma 6.8 and Lemma 6.16.
+
+
+7     Proof of Theorem 3.2
+For the entirety of this section, fix α < 1, R ≥ 1, and an instance of DT(R). We first analyze Al-
+gorithm 1, showing that running FullTreeα ([n]) gives a ( 25
+                                                          α + log R) approximation for DT(R), and
+then describe how the algorithm can be modified to give a 9.01
+                                                             α approximation for Uniform Deci-
+sion Tree in subexponential time.
+
+7.1   Runtime
+Lemma 7.1. Algorithm 2 runs in time O(n(Km)b+1 ).
+Proof. Each call to Algorithm 2 calls at most mK recursive calls with one less depth. This means
+the total number of recursive calls is O((Km)b ). Since the local runtime of each call is O(nmK),
+the total runtime is O(n(Km)b+1 ).
+                                                                            α
+Lemma 7.2. Algorithm 1 runs in time O(n3 (Km)b+1 ) = 2O(n log(Rn) log m) .
+Proof. The cost is dominated by the cost of Algorithm 2. The depth of recursive calls is at most
+n and the width of the recursive call tree is at most n, thus the total runtime is at most n2 times
+the runtime of Algorithm 2. Thus the runtime is O(n3 (Km)b+1 )
+
+7.2   Notation
+To formally analyze the approximation guarantees of Algorithm 1, we need to generalize some
+earlier definitions. We say a decision tree T is complete with respect to hypothesis set H up to depth
+b if, for all hypotheses h ∈ H, either there exists a leaf v of T with L(v) ∩ H = {h}, or dT (h) ≥ b.
+Note that T is complete with respect to hypothesis set H if it is complete up to depth b for all b.
+
+                                                          20
+    Given the tests τ1 , . . . , τm : [n] → [2] and a subset H of hypotheses, let ΦH be the DT(R)
+instance induced by H. It is given by hypotheses H and the tests τ1 , . . . , τm : H → [2] restricted
+                                                                             0
+to domain H. It is easy to check that, for this instance, we indeed have ppmax0   ≤ R. We let TG (H)
+                                                                              min
+denote a greedy tree for the instance ΦH . We let TOPT (H) denote an optimal tree for instance ΦH .
+We also define the optimal tree for ΦH up to depth b by
+                                                       def
+                                 TOPT (H, b) =                     arg min         C(T ; H).
+                                                             T complete w.r.t. H
+                                                                up to depth b
+
+Importantly, TOPT (H, b) is computable by a straightforward recursive algorithm in time O(n(mK)b )
+by Algorithm 2. For convenience, let
+                                                             def
+                                                CG (H) = C(TG (H); H)
+                                                             def
+                                            COPT (H) = C(TOPT (H); H)
+                                                             def
+                                       COPT (H, b) = C(TOPT (H, b); H).
+In this way, we have
+                                  COPT (H, b) ≤ COPT (H) ≤ CG (H).
+
+7.3   Approximation guarantee
+It is easy to see that PartialTree(H, b) computes TOPT (H, b) (or one such tree, if there are several).
+Let Fi be the family of hypothesis sets H such that FullTreeα (H) is called at the ith level of
+recursion and the greedy tree TG (H) is not returned. We consider FullTreeα ([n]) to be the 0th
+level of recursion so that F0 = {[n]}. Let Fgreedy denote the family of hypothesis sets H such
+                                                                                    (1)       (2)
+that FullTreeα (H) is called and TG (H) is returned in that call. Let Fgreedy = Fgreedy ∪ Fgreedy be
+                                 (2)
+a partition such that H ∈ Fgreedy if and only if p(H) < n12 We know that, for any H and H 0 , if
+FullTreeα (H 0 ) is called recursively from FullTreeα (H), then H 0 ⊆ H. Thus, under these definitions,
+we know that, for all i, the hypothesis sets of Fi are pairwise disjoint, and the hypothesis sets of
+Fgreedy are pairwise disjoint.
+    By a double-counting argument, the cost of the output tree is the weighted sum of the partial
+trees and greedy trees computed in the recursion. Formally, if Tout is the output tree,
+                                    X X                            X
+                    C(Tout , [n]) =         p(H)COPT (H, b) +           p(H)CG (H).                 (4)
+                                        i    H∈Fi                              H∈Fgreedy
+
+Our proof bounds the depth of the recursion, as well as the summand components.
+                                                                     P
+Lemma 7.3. Let {Hi } be a collection of disjoint subsets of [n]. Then i p(Hi )COPT (Hi ) ≤ COPT
+                           def
+Proof. Recall that TOPT = TOPT ([n]) is the optimal tree of the DT(R) instance. By optimality
+of TOPT (Hi ) for the instance instance induced by Hi , we have COPT (Hi ) = C(TOPT (Hi ); Hi ) ≤
+C(TOPT ; Hi ). Hence,
+              `
+              X                                  `
+                                                 X                                    XX
+                    p(Hi )COPT (Hi ) ≤                 p(Hi )C(TOPT ; Hi ) =                      ph · dTOPT (h)
+              i=1                                i=1                                   i   h∈Hi
+                                                 X
+                                            ≤            ph · dTOPT (h) = COPT .
+                                                 h∈[n]
+
+
+                                                                   21
+Lemma 7.4. We have
+                                                                          
+                                X                                17
+                                       p(H)CG (H) ≤                 + log R · COPT
+                                                                 α
+                           H∈Fgreedy
+
+                                             (1)
+Proof. For all hypothesis sets H ∈ Fgreedy , Algorithm 1 guarantees that CG (H) ≥ (12 log n +
+log R)n3α/4 . By Theorem 3.1, the greedy algorithm gives a (12 log n + log R) approximation on the
+DT(R) instance induced by H. Hence, COPT (H) ≥ n3α/4 for all H ∈ Fgreedy(1) . By Theorem 3.1
+again, for all H ∈ Fgreedy(1) , we have
+                                                                      
+                           12 log(|H|)    c                   16
+              CG (H) ≤                  +     COPT (H) ≤         + log R · COPT (H).
+                          log COPT (H) α                      α
+
+Hence,
+                                                                                                    
+     X                              16                     X                                 16
+                 p(H)CG (H) ≤          + log R                          p(H)COPT (H) ≤          + log R · COPT
+                                                                                                             (5)
+           (1)
+                                    α                             (1)
+                                                                                             α
+ H∈F greedy                                            H∈F greedy
+     X                                X          1            1
+                 p(H)CG (H) <                      2
+                                                     · n < 1 < · COPT .                                      (6)
+           (2)                               (2)
+                                                 n            α
+ H∈F greedy                     H∈F greedy
+
+The last inequality is by Lemma 7.3 and the fact that the H ∈ Fgreedy are disjoint. Adding (5) and
+(6) gives the desired result
+
+Lemma 7.5. For all i = 0, 1, . . . , we have
+                                     X
+                                         p(H)COPT (H, b) ≤ COPT
+                                      H∈Fi
+
+Proof. For any H ∈ Fi , we have COPT (H, b) ≤ COPT (H). Summing over all H ∈ Fi , we have
+                       X                      X
+                           p(H)COPT (H, b) ≤      p(H)COPT (H) ≤ COPT
+                        H∈Fi                              H∈Fi
+
+where the last inequality follows from Lemma 7.3 and that H ∈ Fi are disjoint.
+
+Lemma 7.6. The maximum recursion depth in Algorithm 1 is at most 8/α
+
+Proof. We show by induction that, for all i,
+                                             X
+                                                       p(H) ≤ n−iα/4 .                                       (7)
+                                             H∈Fi
+
+This suffices, as then, for i = b8/αc + 1, we have H∈Fi p(H) < n12 . By Algorithm 1, we have
+                                                    P
+
+p(H) ≥ n12 for all H ∈ Fi (otherwise we take the greedy tree). Thus, the maximum depth of the
+recursion in Algorithm 1 is less than b8/αc.
+    Note that equality holds in (7) for i = 0, so the base case is true. For the inductive step, fix
+i ≥ 1, and let H ∈ Fi . Note that
+
+                           n−α/4 b ≥ CG (H) ≥ COPT (H) ≥ COPT (H, b)
+
+
+                                                          22
+Consider a random variable X equal to the depth in tree TOPT (H, b) of a random hypothesis in H
+where h ∈ H is chosen with probability proportional to ph . By above, E[X] ≤ n−α/4 b. Hence, by
+Markov’s inequality, Pr[X ≥ b] ≤ E[X]   b   ≤ n−α/4 . Thus, the total weight of hypotheses in H that
+are in the next recursive call, i.e. in H 0 for some H 0 ∈ Fi+1 , is at most n−α/4 p(H). This holds for
+any H, so we conclude
+                                     X                   X
+                                          p(H) ≥ nα/4         p(H 0 ).
+                                           H∈Fi                  H 0 ∈Fi+1
+
+This completes the induction, proving the lemma.
+
+Lemma 7.7. Let Tout be the tree returned by FullTreeα ([n]). Then C(Tout , [n]) ≤ ( 25
+                                                                                    α + log R)COPT .
+
+Proof. By (4) and Lemmas 7.4, 7.5, and 7.6, we have
+                              b8/αc
+                              X X                                       X
+            C(Tout , [n]) =                  p(H)COPT (H, b) +                   p(H)CG (H)
+                              i=1 H∈Fi                               H∈Fgreedy
+                                                 
+                                   b8/αc                                             
+                                   X                      17                  25
+                          ≤               COPT  +          + log R COPT ≤      + log R COPT .
+                                                          α                   α
+                                   i=1
+
+
+7.4   Uniform Decision Tree
+We now describe how to modify Algorithm 1 to give a 9+εα approximation for Uniform Deci-
+sion Tree in subexponential time. By the remark at the end of Theorem 3.1, for all ε > 0 there
+                                                                                        (4+ 2 ε) log n
+exists an n0 = n0 (ε) such that for all n ≥ n0 , the greedy algorithm gives a log3COPT approximation
+on Uniform Decision Tree. Hence, the following modified greedy algorithm runs in polynomial
+                  (4+ 2 ε) log n
+time and gives a log3COPT approximation: for n ≥ n0 , run the greedy algorithm, and for n < n0 ,
+compute the optimal tree by brute force in constant time. For Uniform Decision Tree, set
+b = d(4 + 23 ε) log(n)nα e, use the modified greedy algorithm instead of the greedy algorithm, and
+return the output of the modified greedy algorithm if C(TG (H); H) ≥ n−α/3 b (rather than n−α/4 b)
+and keep the rest of Algorithm 1 the same. Lemma 7.3 still holds. For uniform weights, we have
+  (2)              (1)
+Fgreedy = ∅, so Fgreedy = Fgreedy . Similar to Lemma 7.4, we are guaranteed that COPT (H) ≥ n2α/3
+for all H ∈ Fgreedy , and thus
+              X                                X        (4 + ε) log(|H|)              6+ε
+                       p(H)CG (H) ≤                                      · COPT (H) ≤     · COPT .
+                                                         log(COPT (H))                 α
+           H∈Fgreedy                        H∈Fgreedy
+
+Lemma 7.5 still holds. In Lemma 7.6 the maximum depth of recursion is now 3/α as the weight
+of hypotheses at each recursive call shrinks by a factor of nα/3 and the weight of hypotheses at
+each nonempty level is at most n1 . Hence, the cost of the output tree has a contribution of at most
+6+ε                                          3
+ α COPT from the greedy trees and at most α COPT from the outputs of the PartialTree, for a total
+                9+ε
+cost of at most α COPT .
+
+
+8     Related Work
+There have been several other works analyzing Decision Tree and they analyze it in a variety
+of cases to achieve the gold standard O(log n). While we examined the case with K-ary tests and
+
+                                                            23
+non-uniform weights, we assumed that the tests had equal costs. Other works [GB09, GNR10]
+analyze the case where the test costs are non-uniform. [GB09] shows that the greedy algorithm
+yields O(log n) when either the costs are non-uniform or the weights are non-uniform (with the
+rounding trick) but not both. [GNR10] introduces a new algorithm that achieves O(log n) with
+both non-uniform weights and costs.
+    In this work we studied the average depth of decision trees. We remark that, in the worst-case
+decision tree problem, where the cost of a tree is defined to be the maximum depth of a leaf in
+the tree, the approximability is known. The greedy algorithm gives an O(log n) approximation
+[AMM+ 98], and obtaining a o(log n) approximation is NP-hard [LN04].
+    For the worst-case decision tree problem, there is a line of work that examines the absolute
+query rate rather than the query rate relative to the optimal. In this line of work, the chief
+goal is to identify conditions where the greedy algorithm achieves the information-theoretically
+optimal rate O(log n). One such condition that ensures the O(log n) rate is “sample-rich” [NJC12],
+which states that every binary partition of the hypotheses has a test with matching pre-images.
+[Now09, Now11] introduced the more lenient k-neighborly condition, which requires that every two
+tests be connected by a sequence of tests where neighboring tests disagree on at most k hypotheses.
+An even more general condition is the split-neighborly condition [ML18], which is satisfied if every
+two tests are connected by a sequence of tests where neighboring tests must have every subset of
+the disagreeing hypotheses be evenly split by some other test.
+
+
+9     Conclusion
+There are several open questions left by our work.
+
+    1. Could one prove hardness of approximation results for Uniform Decision Tree for ratios
+       larger than 4 − ε? It would be interesting to prove either NP-hardness results for larger
+       constant factor approximations, or fine-grained complexity results for larger approximation
+       ratios such as in [MR17].
+
+    2. On the flip side, could one find faster, perhaps polynomial time algorithms for approximating
+       Uniform Decision Tree for ratios where we now have subexponential time algorithms?
+
+    3. On can also consider a generalization of Decision Tree when the test costs are non-uniform.
+       [GB09, GNR10] Could one obtain similar results in this setting?
+
+
+10      Acknowledgements
+The authors thank Joshua Brakensiek for helpful discussions and feedback on an earlier draft of
+this paper. The authors thank Mary Wootters for helpful feedback on an earlier draft of this paper.
+The authors thank anonymous reviews for helpful feedback on an earlier draft of this paper.
+
+
+References
+[ABS15]      Sanjeev Arora, Boaz Barak, and David Steurer. Subexponential algorithms for unique
+             games and related problems. J. ACM, 62(5):42:1–42:25, 2015.
+
+[AH12]       Micah Adler and Brent Heeringa. Approximating optimal binary decision trees. Algo-
+             rithmica, 62(3-4):1112–1121, 2012.
+
+
+                                                 24
+[AMM+ 98] Esther M Arkin, Henk Meijer, Joseph SB Mitchell, David Rappaport, and Steven S
+          Skiena. Decision trees for geometric models. International Journal of Computational
+          Geometry & Applications, 8(03):343–363, 1998.
+
+[Bab16]    László Babai. Graph isomorphism in quasipolynomial time [extended abstract]. In
+           Proceedings of the 48th Annual ACM SIGACT Symposium on Theory of Computing,
+           STOC 2016, Cambridge, MA, USA, June 18-21, 2016, pages 684–697, 2016.
+
+[Chv79]    Vasek Chvatal. A greedy heuristic for the set-covering problem. Mathematics of oper-
+           ations research, 4(3):233–235, 1979.
+
+[CJLM10] Ferdinando Cicalese, Tobias Jacobs, Eduardo Laber, and Marco Molinaro. On greedy
+         algorithms for decision trees. In International Symposium on Algorithms and Compu-
+         tation, pages 206–217. Springer, 2010.
+
+[CPR+ 11] Venkatesan T. Chakaravarthy, Vinayaka Pandit, Sambuddha Roy, Pranjal Awasthi, and
+          Mukesh K. Mohania. Decision trees for entity identification: Approximation algorithms
+          and hardness results. ACM Trans. Algorithms, 7(2):15:1–15:22, 2011.
+
+[CPRS09]   Venkatesan T. Chakaravarthy, Vinayaka Pandit, Sambuddha Roy, and Yogish Sabhar-
+           wal. Approximating decision trees with multiway branches. In Automata, Languages
+           and Programming, 36th International Colloquium, ICALP 2009, Rhodes, Greece, July
+           5-12, 2009, Proceedings, Part I, pages 210–221, 2009.
+
+[Das04]    Sanjoy Dasgupta. Analysis of a greedy active learning strategy. In Advances in neural
+           information processing systems, pages 337–344, 2004.
+
+[FLT04]    Uriel Feige, László Lovász, and Prasad Tetali. Approximating min sum set cover.
+           Algorithmica, 40(4):219–234, 2004.
+
+[GB09]     Andrew Guillory and Jeff Bilmes. Average-case active learning with costs. In Interna-
+           tional Conference on Algorithmic Learning Theory, pages 141–155. Springer, 2009.
+
+[GG74]     M. R. Garey and Ronald L. Graham. Performance bounds on the splitting algorithm
+           for binary testing. Acta Inf., 3:347–355, 1974.
+
+[GK11]     Daniel Golovin and Andreas Krause. Adaptive submodularity: Theory and applica-
+           tions in active learning and stochastic optimization. Journal of Artificial Intelligence
+           Research, 42:427–486, 2011.
+
+[GNR10]    Anupam Gupta, Viswanath Nagarajan, and R Ravi. Approximation algorithms for
+           optimal decision trees and adaptive tsp problems. In International Colloquium on
+           Automata, Languages, and Programming, pages 690–701. Springer, 2010.
+
+[HR76]     Laurent Hyafil and Ronald L. Rivest. Constructing optimal binary decision trees is
+           np-complete. Inf. Process. Lett., 5(1):15–17, 1976.
+
+[IP01]     Russell Impagliazzo and Ramamohan Paturi. On the complexity of k-sat. J. Comput.
+           Syst. Sci., 62(2):367–375, 2001.
+
+[IPZ01]    Russell Impagliazzo, Ramamohan Paturi, and Francis Zane. Which problems have
+           strongly exponential complexity? J. Comput. Syst. Sci., 63(4):512–530, 2001.
+
+
+                                               25
+[Joh74]     David S Johnson. Approximation algorithms for combinatorial problems. Journal of
+            computer and system sciences, 9(3):256–278, 1974.
+[Kää06]   Matti Kääriäinen. Active learning in the non-realizable case. In International Confer-
+            ence on Algorithmic Learning Theory, pages 63–77. Springer, 2006.
+[Kho02]     Subhash Khot. On the power of unique 2-prover 1-round games. In Proceedings on
+            34th Annual ACM Symposium on Theory of Computing, May 19-21, 2002, Montréal,
+            Québec, Canada, pages 767–775, 2002.
+[KPB99]     S Rao Kosaraju, Teresa M Przytycka, and Ryan Borgstrom. On an optimal split tree
+            problem. In Workshop on Algorithms and Data Structures, pages 157–168. Springer,
+            1999.
+[LLMP93] Arjen K Lenstra, Hendrik W Lenstra, Mark S Manasse, and John M Pollard. The
+         number field sieve. In The development of the number field sieve, pages 11–42. Springer,
+         1993.
+[LMM03]     Richard J. Lipton, Evangelos Markakis, and Aranyak Mehta. Playing large games
+            using simple strategies. In Proceedings 4th ACM Conference on Electronic Commerce
+            (EC-2003), San Diego, California, USA, June 9-12, 2003, pages 36–41, 2003.
+[LN04]      Eduardo S Laber and Loana Tito Nogueira. On the hardness of the minimum height
+            decision tree problem. Discrete Applied Mathematics, 144(1-2):209–212, 2004.
+[Lov75]     László Lovász. On the ratio of optimal integral and fractional covers. Discrete mathe-
+            matics, 13(4):383–390, 1975.
+[Lov85]     Donald W. Loveland. Performance bounds for binary testing with arbitrary weights.
+            Acta Inf., 22(1):101–114, 1985.
+[ML18]      Stephen Mussmann and Percy Liang. Generalized binary search for split-neighborly
+            problems. arXiv preprint arXiv:1802.09751, 2018.
+[Mor82]     Bernard ME Moret. Decision trees and diagrams. ACM Computing Surveys (CSUR),
+            14(4):593–623, 1982.
+[Mos12]     Dana Moshkovitz. The projection games conjecture and the np-hardness of ln n-
+            approximating set-cover. In Approximation, Randomization, and Combinatorial Opti-
+            mization. Algorithms and Techniques, pages 276–287. Springer, 2012.
+[MR17]      Pasin Manurangsi and Aviad Rubinstein. Inapproximability of VC dimension and
+            littlestone’s dimension. In Proceedings of the 30th Conference on Learning Theory,
+            COLT 2017, Amsterdam, The Netherlands, 7-10 July 2017, pages 1432–1460, 2017.
+[NJC12]     Mohammad Naghshvar, Tara Javidi, and Kamalika Chaudhuri. Noisy bayesian active
+            learning. In Communication, Control, and Computing (Allerton), 2012 50th Annual
+            Allerton Conference on, pages 1626–1633. IEEE, 2012.
+[Now09]     Robert Nowak. Noisy generalized binary search. In Advances in neural information
+            processing systems, pages 1366–1374, 2009.
+[Now11]     Robert D Nowak. The geometry of generalized binary search. IEEE Transactions on
+            Information Theory, 57(12):7893–7906, 2011.
+
+                                                 26
+[Rub18]      Aviad Rubinstein. Inapproximability of nash equilibrium.          SIAM J. Comput.,
+             47(3):917–959, 2018.
+
+[Ste74]      Sherman K Stein. Two combinatorial covering theorems. Journal of Combinatorial
+             Theory, Series A, 16(3):391–397, 1974.
+
+[ZRB05]      Alice X Zheng, Irina Rish, and Alina Beygelzimer. Efficient test selection in active
+             diagnosis via entropy approximation. In Proceedings of the Twenty-First Conference
+             on Uncertainty in Artificial Intelligence, pages 675–682. AUAI Press, 2005.
+
+
+A     Proof of Theorem 3.1
+We now give a proof of Theorem 3.1, highlighting the differences with the proof of the special case
+in Section 6, and suppressing parts of the proof that are identical.
+
+A.1       Notation
+                                                                                                 def
+We reuse all of the notation in Section 6.1. The only difference is that, in this section, p(S) =
+P                                   |S|                                 1
+ h∈S ph is not necessarily equal to n . Just as in Section 6, fix δ = COPT .
+
+
+A.2       The basic argument
+Lemma 6.2 is still true, and we restate it for completeness.
+                                                       P
+Lemma A.1 (Lemma 6.2, restated). We have CG = v∈T o p(v).
+                                                                G
+
+
+    At a high level, our proof defines balanced and imbalanced vertices (next subsection) using the
+parameter δ and bound the weight of the balanced and imbalanced vertices separately. We bound
+the weight of the balanced vertices by an entropy argument, and the weight of the imbalanced
+vertices by partitioning the imbalanced vertices into paths, called chains, and bounding the weights
+of each chain separately. If a vertex v has a heavy hypothesis h (defined in Section A.6.1), we set
+q(v) = ph , and otherwise we set q(v) = 0. To bound the cost of imbalanced vertices, we also need
+to bound the costs of heavy hypotheses q(v). Overall, we make get the following bounds.
+                     X
+            CG =           p(v)
+                   v∈TGo
+                      X                      X
+               =                p(v) +                  p(v)
+                   v balanced            v imbalanced
+                                                               
+                    log n                                X
+               ≤           · 2COPT + 4smax (COPT + 1) +    q(v)
+                 log 2COPT                                o         v∈TG
+                                                  1
+                                            log pmin
+                                                                               
+                     log n                                                 pmax
+               ≤             · 2COPT + 4 ·           · (COPT + 1) + 1 + ln        · COPT
+                 log 2COPT                    log 1δ                       pmin
+                           1
+                                          !
+                   12 log pmin       pmax
+               <                + ln        · COPT .
+                    log COPT         pmin
+
+
+
+
+                                                           27
+A.3          More notation: Majority and minority answers
+Again, we define majority (minority) answers, edges, children, which are useful for defining balanced
+and imbalanced vertices.
+    For each vertex v in the greedy tree, let jv denote the test used at v. For each vertex v, label its
+children by v + and v 1,− , v 2,− , . . . , so that p(v + ) ≥ p(v `,− ) for all `, with ties broken9 by labeling v +
+by the vertex corresponding to the largest answer.10 Call the edge from v to v + a majority edge 11 ,
+and the edges from v to v `,− minority edges. Call v + the minority child of v and call v 1,− , v 2,− , . . . ,
+                                                def
+the minority children of v. Let L− (v) = ∪` L(v `,− ) be the hypotheses consistent with the minority
+children of v, and let their weight be p− (v) = p(L− (v)). Accordingly, we have p(v) = p(v + ) + p− (v)
+for all v ∈ TGo . This is illustrated in Figure 4.
+    In order to reason about the greedy tree precisely, we use the following notation which is more
+                                                                         +
+technical. For test j ∈ [m] and hypotheses S ⊆ [n], let kj,S                 ∈ [K] be the answer to test τj that
+accounts for the maximum weight of hypotheses in S, with ties broken by choosing the largest
+                    +                   +
+indexed answer kj,S    . We call kj,S        the majority answer of test j with respect to hypothesis set S.
+Call the other answers the minority answers of test j with respect to hypothesis set S. For all
+j ∈ [m] and S ⊂ [n], let
+                                        def                           def
+                                   +
+                                  Ij,S = τj−1 (kj,S
+                                                +
+                                                    ),          −
+                                                               Ij,S          +
+                                                                    = [n] \ Ij,S .
+                 +    −
+We think of Ij,S    (Ij,S ) as the set of hypotheses that, under test j, output the majority (minority)
+answer to test j with respect to set S. Note that, with the above notation, we have L(v + ) =
+Ij+v ,L(v) ∩ L(v) and L− (v) = Ij−v ,L(v) ∩ L(v). Under these more general definitions, a generalization
+of Lemma 6.3 holds. The proof is identical to that of Lemma 6.3, so we omit it.
+Lemma A.2. For any vertices u of v with u a descendant of v, we have p− (v) ≥ p− (u).
+
+A.4          Defining balanced and imbalanced vertices
+In the following definition, we identify balanced vertices and imbalanced vertices. By Lemma A.1,
+we can separately bound the weights of the balanced and imbalanced vertices.
+Definition A.3. Let s be a positive integer.
+   1. We say a vertex v ∈ TGo is level-s imbalanced if p− (v) ≤ δ s and p(v) > 2δ s .
+   2. We say a vertex v is imbalanced if it is level-s imbalanced for some s, and balanced otherwise.
+   3. We say a level-s imbalanced vertex v is minimal if no descendant of v is also level-s imbalanced
+      vertex, and a level-s imbalanced vertex v is maximal if no ancestor of v is level-s imbalanced.
+       Let
+                                                                 1
+                                                       def log pmin
+                                                  smax =
+                                                             log 1δ
+   9                                                                                        +        −
+     any tiebreaking procedure suffices, as long as the tiebreaking is consistent with the kj,S and kj,S notation in the
+next paragraph.
+  10
+     it is possible to have a vertex that has one child, namely a test that doesn’t distinguish any pairs of hypotheses
+at a vertex, but such a test is useless and never appears in either the greedy or optimal tree, so we assume it doesn’t
+exist.
+  11
+     Here, we may have p(v + ) < 21 p(v), so the weight of hypotheses consistent with v + do not necessarily constitute
+a majority. However, this does difference does not affect the proof, and we keep the wording to stay consistent with
+Section 6.
+
+
+                                                          28
+and note that interior level-s imbalanced vertices exist only for s ≤ smax . The following lemma
+proves a structural result about balanced vertices, with the punchline being item (iii), which permits
+Definition A.5. The proof of Lemma A.4 is nearly identical to that of Lemma 6.5. We include a
+proof of item (i) because of a subtle difference to the proof of item (i) of Lemma 6.5. However, the
+proofs of the other two parts are identical, so we omit them.
+Lemma A.4. Let s be a positive integer.
+  (i) If v is a level-s imbalanced vertex, then, among the children of v, only v + can be a level-s
+      imbalanced vertex.
+
+ (ii) Additionally, if v and u are level-s imbalanced vertices and v is an ancestor of u, then every
+      vertex on the path from v to u is a level-s imbalanced vertex.
+
+(iii) Finally, the set of level-s imbalanced vertices can be partitioned into vertex disjoint paths,
+      each of which connects a maximal level-s imbalanced vertex to a minimal level-s imbalanced
+      vertex and contains only majority edges.
+Proof of (i). Note that if v is level-s imbalanced, then p− (v) ≤ δ s , which means every u different
+from v + satisfies p(u) ≤ p− (v) ≤ δ s < 2δ s , so such u cannot be level-s imbalanced. Hence, among
+the children of v, only v + can be level-s imbalanced.
+
+   Lemma A.4 motivates the following definition.
+Definition A.5. Let s be a positive integer. A level-s chain, P = (P1 , . . . , P|P | ), is a sequence of
+level-s imbalanced vertices starting at a maximal level-s imbalanced vertex and ending at a minimal
+level-s imbalanced vertex. By Lemma A.4, the level-s chains partition the level-s imbalanced
+vertices. We therefore let Ps denote the level-s chains.
+   In general, for s 6= s0 , a level-s chain might overlap with a level-s0 chain.
+
+A.5    Bounding the weight of balanced vertices
+Under these definitions, a generalization of Lemma 6.7 is still true. The proof is identical to that
+of Lemma 6.7, so we omit it.
+Lemma A.6. For every balanced vertex v, we have p− (v) ≥ 2δ p(v).
+   We now bound the contribution of the balanced vertices to the weight using an entropy argu-
+ment. Now, in the general case, the entropy argument requires a little more care when bounding
+the entropy of a single K-ary test.
+Lemma A.7. We have
+                                            X                log n 2
+                                                    p(v) ≤         · .
+                                       v balanced
+                                                             log 2δ δ
+
+Proof. For a vertex v with a test of index j, let Xv denote the random variable supported on [K]
+that is equal to τj (h) for an hypothesis h chosen randomly from the elements of L(v), where the
+probability of choosing h is proportional to ph . Let H(·) denote the entropy of a random variable,
+                                      def
+and by abuse of notation, let H(v) P    = H(Xv ). By abuse of notation, for nonnegative α1 , . . . , αK
+summing to 1, let H(α1 , . . . , αK ) = Ki=1 −αi log αi where 0 log 0 is taken to be 0. The entropy of a
+random element [n] chosen according to the prior distribution p = (p1 , . . . , pn ) is at most log n. On
+
+                                                      29
+the other hand, we can pick a random hypothesis in [n] according to the distribution p by setting
+v to the root of TG , sampling an answer Xv ∈ [K] for the test at v, setting v to the child of v
+corresponding to the chosen answer Xv , and repeating, until we reach a leaf. In this process, at
+any vertex v, the probability of stepping to a child u is exactly p(u)     p(v) . Hence, by a simple induction,
+the probability of reaching anyPvertex v in the tree during this process is exactly p(v). The total
+entropy of this process is thus v∈TG p(v) · H(v), as p(v) is the probability of reaching vertex v and
+H(v) is the entropy of the random variable Xv chosen at vertex v.
+    Fix a balanced vertex v. We claim that H(v) ≥ 2δ log 2δ . Let R ⊂ RK denote the region given by
+the constraints 0 ≤ αk ≤ α1 ≤ 1 for all k = 2, . . . , K, and α1 +· · ·+αK = 1, and α2 +· · ·+αK ≥ δ/2.
+We claim that the minimum of H(α1 , . . . , αK ) for (α1 , . . . , αK ) ∈ R is H(1 − δ/2, δ/2). To see
+this, note first that this region R is closed and bounded, so the function H(α1 , . . . , αk ) obtains
+a minimum. Furthermore, note that, for (α1 , . . . , αK ) ∈ R, by concavity of −x log x, for any
+k = 2, . . . , K and any ε ≤ αK , setting (α10 , . . . , αK0 ) = (α + ε, α , . . . , α
+                                                                   1         2         k−1 , αk − ε, αk+1 , . . . , αK )
+                                0           0
+gives H(α1 , . . . , αK ) > H(α1 , . . . , αK ). Similarly pushing αk and αk0 apart by the same positive ε
+also decreases the value of H. Hence, the maximum cannot be obtained when two of α2 , . . . , αK
+are positive, nor can it be obtained when α2 + · · · + αK > δ/2. It follows that the only local minima
+in the region occur when some αk is 2δ and α1 = 1 − 2δ .
+    For k = 1, . . . , K, let αk denote the probability that Xv = k. By Lemma A.6, when v is
+balanced, (α1 , . . . , αK ) must, up to a permutation in coordinates, be in region R. Hence, by the
+above we have
+                                                                                 
+                                                                       δ        δ       δ      2
+                      H(v) = H(Xv ) = H(α1 , . . . , αk ) ≥ H            ,1 −        > log .
+                                                                       2        2       2      δ
+    Putting the above two paragraphs together, we conclude
+                          X                         X                            X                  δ    2
+              log n ≥           p(v) · H(v) ≥                 p(v) · H(v) ≥                p(v) ·     log ,
+                                                                                                    2    δ
+                         v∈TG                    v balanced                   v balanced
+
+and rearranging gives the desired result.
+
+A.6     Bounding the weight of imbalanced vertices
+We now bound the weight of imbalanced vertices using a connection to Weighted Min Sum Set
+Cover. For each hypothesis h, let u⊥h denote the leaf in the greedy tree TG for which hypothesis h
+is consistent. Since TG is complete, this leaf exists and is unique.
+
+A.6.1     Technical definition: heavy vertices
+We need the following technical definition to make the connection between the greedy decision tree
+and a greedy WMSSC solution.
+Definition A.8. For a vertex v and an hypothesis h ∈ [n], we say v is h-heavy if h is consistent
+with v and ph > p− (v).
+Lemma A.9. Let h ∈ [n] be a hypothesis.
+  (i) If v is h-heavy, then every vertex on the path from v to leaf u⊥
+                                                                     h is h-heavy.
+
+ (ii) Additionally, if v is h-heavy, then every edge on the path from v to leaf u⊥
+                                                                                 h is a majority edge.
+
+(iii) Lastly, for any vertex v, there exists at most one hypothesis h such that v is h-heavy.
+
+                                                          30
+Proof. Item (i) is true by Lemma A.2, which says that p− (v) decreases as one descends the tree.
+    For (ii), it suffices to prove, by the first part, that for every h-heavy vertex v, the first edge
+on the path from v to h is a majority edge. Suppose for contradiction that there exists h and an
+h-heavy vertex v with a minority child u such that h is a descendant of u. Then p− (v) ≥ p(u) ≥ ph ,
+which contradicts the definition of v being h heavy.
+    For (iii), suppose for contradiction there exists two hypotheses h and h0 such that v is both
+h-heavy and h0 -heavy. Since our Decision Tree instance is well defined, there exists some test j
+that distinguishes h and h0 , i.e. τj (h) 6= τj (h0 ). As v is h-heavy, we have ph > p− (v). Hence the
+                                            +
+answer for hypothesis h under test j is kj,L(v)   , the answer to τj accounting for the maximum weight
+of hypotheses in L(v): if not choosing test j at vertex v would make the weight of hypotheses
+consistent with a minority child v to be ≥ ph . This is a contradiction as ph > p− (v) and the tree
+                                                                                                 +
+TG is greedy. However, as v is also h0 -heavy, we have, by the same reasoning, that τj (h0 ) = kj,L(v) .
+This is a contradiction, as test j was chosen to distinguish h and h .   0
+
+
+   We now define some notation for dealing with non-uniform weights ph , which are well-defined
+by Lemma A.9.
+
+Definition A.10. For hypothesis h ∈ [n], let u>    h be the maximal ancestor of h that is h-heavy.
+For vertex v, if there exists an h such that v is h-heavy, let q(v) = ph , and otherwise let q(v) = 0.
+
+A.6.2        Defining Weighted Min Sum Set Cover
+        +
+Recall Ij,S = τj−1 (kj,S
+                     +          −
+                         ) and Ij,S          +
+                                    = [n] \ Ij,S .
+
+Definition A.11. Let WMSSC(P ) denote the instance of weighted min sum set cover that is
+induced by the chain P = (P1 , . . . , P|P | ). This instance is given by
+                      def
+       • universe S = L(v1 ) with weights (ph )h∈S ,
+                                         def
+                                          −
+       • for j = 1, . . . , m, sets Aj = Ij,S ∩ S, and
+                                                  def
+       • for each h = 1, . . . , n, a set Am+h = {h} ∩ S consisting of one element.12
+
+Note we have a total of m + n sets. A solution to the WMSSC problem is a permutation σ :
+[m + n] → [m + n] corresponding to an ordering of the sets, and the cost WMSSC(P ) (σ) of a
+solution is the weighted sum of the cover times of the elements in the universe S. Formally,
+                                                                      m+n
+                             def
+                                   X                                  X
+          WMSSC(P ) (σ) =
+                                                                                                            
+                                         ph · min{` : h ∈ Aσ(`) } =         p S \ (Aσ(1) ∪ · · · ∪ Aσ(`−1) ) .
+                                   h∈S                                `=1
+
+Note that this instance is well defined, as each hypothesis h ∈ L(v) is in some set Aj . We sometimes
+refer to a solution σ by the sets Aσ(1) , . . . , Aσ(m+n) .
+
+Remark A.12. Since the initial Decision Tree instance is well defined, any two elements can
+be distinguished by one of the m tests. Hence, there is at most one element h ∈ L(v) such that,
+                                    / Aj . In other words, all but one of the sets Am+h for h ∈ [n] are
+for all j = 1, . . . , m, we have h ∈
+unnecessary.
+  12
+       Some of these sets are empty, but we include them for notational convenience.
+
+
+
+
+                                                           31
+Definition A.13. We say a solution σ : [m + n] → [m + n] to WMSSC(P ) is greedy at index ` if
+the set Aσ(`) covers the maximum number of elements not covered by sets Aσ(1) , . . . , Aσ(`−1) . We
+say a solution σ : [m + n] → [m + n] is greedy if it is greedy at index ` for all ` ∈ [m + n],
+
+    Note that, in the case of ties, there may be multiple greedy solutions to WMSSC(P ) . Note also
+that, for any partial assignment σ(1), . . . , σ(`), one can always complete the solution greedily, so
+that σ : [m + n] → [m + n] is greedy at indices ` + 1, ` + 2, . . . , m + n. Definition A.13 lets us
+leverage the following theorem, due to Golovin and Krause, which generalizes Theorem 6.12.13
+
+Theorem A.14 (Theorem 5.10 of [GK11]). The greedy algorithm gives a 4-approximation to the
+WMSSC problem. Formally, let σ be any greedy solution to WMSSC(P ) , and let σOPT denote an
+optimal solution. We have
+
+                                    WMSSC(P ) (σ) ≤ 4 · WMSSC(P ) (σOPT ).
+
+A.6.3       Bounding chain weight above by WMSSC cost
+Lemma A.15. Let s be a positive integer and let P = (P1 , . . . , P|P | ) be a level-s chain. Then there
+exists a greedy solution σ : [m + n] → [m + n] to WMSSC(P ) , such that
+                                                         |P |
+                                                         X
+                                     WMSSC(P ) (σ) ≥            (p(P` ) − q(P` )) .
+                                                          `=1
+
+Proof. Let S be the universe of the instance WMSSC(P ) , and let A1 , . . . , Am+n be the sets. For
+` = 1, . . . , |P |, let j` be the test used at vertex P` . Let `0 ≤ |P | be the largest index such that P`0
+is not h-heavy for any h, or 0 if no such index exists. If `0 < |P |, let h0 be the hypothesis such
+that P`0 +1 is h0 -heavy. By Lemma A.4, all the edges along the path P are majority edges. By
+Lemma A.9, for all `0 < ` ≤ |P |, vertex P` is h0 -heavy. Define a solution σ : [m + n] → [m + n] to
+WMSSC(P ) as follows.
+
+       • If `0 = |P |, for ` = 1, . . . , |P |, let σ(`) = j` and complete the solution σ greedily.
+
+       • Otherwise, for 1 ≤ ` ≤ `0 , let σ(`) = j` , let σ(`0 + 1) = m + h0 , let σ(` + 1) = j` for
+         `0 < ` ≤ |P |, and complete the solution σ greedily.
+
+We claim σ is a greedy solution. To prove this, we show the following.
+
+  (i) For all j ∈ [m] and ` = 1, . . . , |P |, the majority answer for test j with respect to vertex P1
+      is the same as the majority answer for test j with respect to vertex P` . Equivalently, for all
+                                                     −         −
+      j ∈ [m] and ` = 1, . . . , |P |, we have Aj = Ij,S ∩S = Ij,L(P `)
+                                                                        ∩S. As an immediate consequence,
+      we know Aj` contains all the hypotheses in L (P` ) and none of the hypotheses in L(P`+ ).
+                                                          −
+
+
+ (ii) The set of hypotheses of S not covered by Aj1 , . . . , Aj`−1 is exactly L(P` ).
+
+(iii) For each 1 ≤ ` ≤ |P |, among sets A1 , . . . , Am , set Aj` covers the maximum weight of hypothe-
+      ses in L(P` ), i.e. we have
+
+                                         p(Aj` ∩ L(P` )) = max p(Aj ∩ L(P` )).
+                                                              j∈[m]
+  13
+       In fact, [GK11] considers an even more general problems called Adaptive Stochastic Min-Sum Cover.
+
+
+
+                                                         32
+ (iv) For each 1 ≤ ` ≤ `0 , among sets A1 , . . . , Am+n , set Aj` covers the maximum weight of
+      hypotheses in L(P` ).
+
+ (v) If `0 < |P |, then, among sets A1 , . . . , Am+n , set Am+h0 = {h0 } covers the maximum weight
+     of hypotheses in L(P`0 +1 ).
+
+ (vi) If `0 < |P |, then, for `0 < ` ≤ |P |, among sets A1 , . . . , Am+n , set Aj` covers the maximum
+      weight of hypotheses in L(P` ) \ {h0 }.
+
+These points suffices for proving that σ is greedy. If `0 = |P |, items (ii) and (iv) tell us that σ is
+greedy at indices 1, . . . , |P |, so by construction σ is greedy. If `0 < |P |, then (iv), (v), and (vi) tell
+us that σ is greedy at indices 1, . . . , |P | + 1, so σ is greedy.
+     To show (i), fix j ∈ [m] and ` ∈ {1, . . . , |P |}. As P` is level-s imbalanced, we also have
+                                                            +
+p(P` ) > 2δ s and p− (P` ) ≤ δ s and p(P`+ ) > δ s , so kj,L(P  `)
+                                                                   is the unique answer in [K] accounting
+for more than half of the weight of hypotheses in L(P` ). On the other hand, as vertex P1 is level-s
+                               −                  −                                                    +
+imbalanced, we have p(Ij,S         ∩ L(P` )) ≤ p(Ij,S ∩ S) ≤ p− (P1 ) ≤ δ s , so the majority answer kj,S for
+test j with respect to hypothesis set S is exactly the answer described in the previous sentence.
+             +      +
+Hence kj,S      = kj,L(P `)
+                            .
+     Item (ii) follows because L(P` ) is the set of hypotheses consistent with P` , which was obtained
+by following the majority edges from P1 . This means L(P` ) contains all the hypotheses of S not
+a consistent with a minority child of one of P1 , . . . , P`−1 . By the last paragraph, this is exactly
+S \ (Aj1 ∪ · · · ∪ Aj`−1 ).
+     For (iii), at vertex P` in the greedy decision tree, the test index j = j` maximizes the weight
+    −
+p(Ij,L(P    `)
+               ∩ L(P` )). By (i), this index j equivalently maximizes p(Aj ∩ L(P` )), as desired.
+     For (iv), at step ` for ` ≤ `0 , by (i), the set Aj` covers a p− (P` ) weight of hypotheses in L(P` ),
+which is more than ph0 by definition of `0 . By (iii), Aj` covers at least as much weight of hypotheses
+in L(P` ) as any of A1 , . . . , Am , and, by Remark A.12 and the previous sentence, at least as much
+as any of A1 , . . . , Am+n .
+     For (v), by maximality of `0 , we have ph0 > p− (P`0 +1 ). Hence, the singleton {h0 } covers more
+weight of hypotheses in L(P`0 +1 ) than any of A1 , . . . , Am , and thus, by Remark A.12, than any of
+A1 , . . . , Am+n .
+     For (vi), if there exists h0 such that some P` is h0 -heavy, then, for any j = 1, . . . , m, we have
+h0 ∈/ Aj and Aj ∩ L(P` ) = Aj ∩ (L(P` ) \ {h0 }). Hence the Aj among A1 , . . . , Am that covers the
+most weight of L(P` ) \ {h0 } is Aj` by (iv). By Remark A.12, the only set among Am+1 , . . . , Am+n
+that could cover a larger weight of L(P` )\{h0 } is {h0 }, but it in fact covers 0 weight of L(P` )\{h0 },
+so among sets A1 , . . . , Am+n , set Aj` covers the maximum weight of hypotheses in L(P` ) \ {h0 }.
+This completes the proof that σ is greedy.
+     We now return to the proof of Lemma A.15. Take the greedy solution σ given above. If `0 = |P |,
+then the set of vertices of S not covered by Aσ(1) , . . . , Aσ(`−1) is exactly L(P` ), which has weight
+p(P` ). Hence, by (2),
+                                                    |P |              |P |
+                                                    X                 X
+                                     (P )
+                           WMSSC            (σ) ≥          p(P` ) =          (p(P` ) − q(v)).
+                                                    `=1               `=1
+
+Now suppose `0 < |P |. Recall that the definition of `0 implies P`0 +1 , P`+2 , . . . , P|P | are all h0 -heavy.
+
+
+
+
+                                                            33
+Hence, we have q(P` ) = 0 for 1 ≤ ` ≤ `0 , and q(P` ) = ph0 for `0 < ` ≤ |P |. Thus,
+
+                                                |P |+1
+                                                X
+                         WMSSC(P ) (σ) ≥
+                                                                                         
+                                                         p S \ (Aσ(1) ∪ · · · ∪ Aσ(`−1) )
+                                                 `=1
+                                                `X
+                                                 0 +1               |P |
+                                                                    X
+                                           =            p(P` ) +             p(L(P` ) \ {h0 })
+                                                `=1                `=`0 +1
+                                                `0                 |P |
+                                                X                  X
+                                           >           p(P` ) +             p(L(P` ) \ {h0 })
+                                                `=1               `=`0 +1
+                                                |P |
+                                                X
+                                           =           (p(P` ) − q(P` ))
+                                                `=1
+
+as desired. In the last equality, we used that h0 ∈ L(P` ) for ` = 1, . . . , |P |.
+              (P )
+    Let σG : [m + n] → [m + n] be the greedy solution to WMSSC(P ) given by Lemma A.15, and
+     (P )
+let σOPT be an optimal solution to WMSSC(P ) .
+
+A.6.4         Bounding WMSSC cost above by COPT
+Lemma A.16. Let s be a positive integer. We have
+
+                                                                                (P )
+                                                      X
+                                 COPT ≥ −1 +               WMSSC(P ) (σOPT ).
+                                                   P ∈Ps
+
+
+Proof. Let S (P ) be the universe of the instance WMSSC(P ) , and let A1 , . . . , Am+n be the sets.
+Construct a path w1 , . . . , w`∗ in TOPT such that w1 is the root, w`∗ is a leaf for hypothesis h∗ , and,
+for ` = 1, . . . , `∗ − 1, if the test at vertex w` has index j` , the edge to its child w`+1 corresponds
+to the answer kj+,S (P ) , the majority answer of test j` with respect to set S (P ) . Suppose the test
+                     `
+                                                                                      +
+at vertex w` in the optimal tree has index j` . Since we follow the edges with label kj,S (P ) , this
+
+corresponds to following the path for an hypothesis contained in Ij+,S (P ) . In other words, we have,
+                                                                   `
+for ` = 1, . . . , `∗ − 1,
+
+                              L(w`+1 ) = L(w` ) \ Ij−,S (P ) = L(w` ) \ Aj` .
+                                                            `
+
+
+Thus the sequence Aj1 , . . . , Aj`∗ , {h∗ } covers [n], and hence S (P ) , and thus gives a valid solu-
+tion σT REE to the instance WMSSC(P ) , where σT REE (1) = j1 , σT REE (2) = j2 , . . . , σT REE (`∗ ) =
+j`∗ , σT REE (`∗ + 1) = m + h∗ , and σT REE on larger indices is arbitrarily chosen. Note that the
+depth of a hypothesis h in the tree is at least the number of vertices of w1 , . . . , w`∗ that are on the
+root-to-leaf path of h, and this number is min{` : h ∈ Aj` }, except for h∗ , in which case it is 1
+smaller. Then we have
+      X                                 X
+           ph · dOPT (h) ≥ −ph∗ +            ph · min{` : h ∈ Aj` } ≥ WMSSC(P ) (σT REE ) − ph∗
+   h∈S (P )                          h∈S (P )
+                                                                                                 (P )
+                                                                              ≥ WMSSC(P ) (σOPT ) − max ph .
+                                                                                                        h∈S (P )
+
+
+
+                                                          34
+Summing over P ∈ Ps gives
+               X                                 X                   
+                          (P ) (P )                                (P )
+     COPT ≥          WMSSC (σOPT ) − max ph ≥ −1 +     WMSSC(P ) (σOPT ) .
+                                                 h∈S (P )
+                 P ∈Ps                                                            P ∈Ps
+
+
+
+
+Lemma A.17. We have
+                               X                                                   X
+                                         p(v) ≤ 4smax (COPT + 1) +                        q(v).
+                          v imbalanced                                            v∈TGo
+
+Proof. Each imbalanced vertex v is level-s imbalanced for some positive integer s, so it is part of
+some level-s chain, P . Note that p(v) − q(v) ≥ 0 for all vertices v. Hence,
+                    X              X               X
+                           p(v) −      q(v) ≤              (p(v) − q(v))
+                v imbalanced        v∈TGo           v imbalanced
+                                                    sX
+                                                     max                          |P |
+                                                                  X               X
+                                                ≤                                        (p(P` ) − q(P` ))
+                                                    s=1         P ∈Ps           `=1
+                                                            P =(P1 ,...,P|P | )
+                                                    sX
+                                                     max
+                                                                                                    (P )
+                                                                  X
+                                                ≤                                 WMSSC(P ) (σG )
+                                                    s=1         P ∈Ps
+                                                            P =(P1 ,...,P|P | )
+                                                    sX
+                                                     max X
+                                                                                             (P )
+                                                ≤                  4WMSSC(P ) (σOPT )
+                                                    s=1 P ∈Ps
+                                                ≤ 4smax (COPT + 1)
+The first inequality is because q(v) ≥ 0 for all v. The second inequality is because p(v) − q(v) ≥ 0
+for all v, and that every imbalanced v is in some chain. The third inequality is by Lemma A.15.
+The fourth inequality is by Theorem A.14. The fifth inequality is by Lemma A.16. Rearranging
+gives the desired result.
+
+A.7    Bounding the cost contribution of heavy vertices
+We bound the cost contribution of the heavy vertices via a connection to SET-COVER. A theorem
+due to Lovasz [Lov75], Johnson [Joh74], Chvatal [Chv79], and Stein [Ste74] states that, in any
+instance of SET-COVER where no set covers more than h elements, the greedy algorithm gives
+a 1 + ln h approximation. We show a generalization of this result, based on the following the
+definition.
+Definition A.18. Let Φ be an instance of SET-COVER with a universe S and sets A1 , . . . , Am .
+Let p = (ph )h∈S be a sequence of weights assigned to the elements of S.PA p-weighted greedy
+algorithm for SET-COVER is repeatedly chooses the set Aj that minimizes h∈Aj ∩S 0 ph , where S 0
+is the set of uncovered elements.
+Theorem A.19. Let Φ be an instance of SET-COVER with a universe S and sets A1 , . . . , Am . Let
+p = (ph )h∈S be a sequence of weights assigned to the elements of S. Then, if the optimal solution to
+                                                                                           ∗
+Φ has uses at most `OPT sets, then the p-weighted greedy algorithm uses at most (1+ln minph ph )`OPT
+               def
+sets, where p∗ = maxj∈[m] h∈Aj ph .
+                           P
+
+
+                                                     35
+   While this argument may be known, we are not aware of a known reference, so we provide a
+                   P in Appendix B.
+proof for completeness
+   We now bound v∈T o q(v).
+                             G
+
+
+Lemma A.20. For all h ∈ [n], we have
+                                                                            
+                                                                       pmax
+                            dTG (u⊥           >
+                                  h ) − dTG (uh ) ≤       1 + ln                   · dOPT (h).
+                                                                       pmin
+
+Proof. Fix h. Let v1 = u>                   ⊥                              >          ⊥
+                         h , . . . , v`G = uh denote the path from vertex uh to leaf uh in the greedy
+tree. Let SC(h) denote the SET-COVER instance with the following parameters:
+
+    • Universe S = L(u>
+                      h ) \ {h}
+                                       −
+    • For j = 1, . . . , m, sets Aj = Ij,S ∩ S.
+
+Let `OPT denote the cost of the optimal solution to SC(h) , and for ` = 1, . . . , `G , let j` denote the
+test at vertex v` .
+                                                                                                           −
+    We make the following observations. First, by definition of u>           h , for all j ∈ [m], the set Ij,S
+                                                                                           +
+does not contain hypothesis h: vertex u>                     − >
+                                                h satisfies p (uh ) < ph so the answer kj,S of a test j that
+accounts for the largest weight of hypotheses in S always contains the hypothesis h, as any other
+answer, by the definition of the greedy algorithm, has weight at most p− (u>          h ).
+    Second, the sets Aj1 , Aj2 , . . . , Aj`G form a p-weighted greedy solution for this SET-COVER
+instance SC(h) , where p = (ph )h∈S . For ` ≤ `G , the first ` − 1 sets in the above sequence cover all
+of S except the elements of L(v` ). In the greedy decision tree, the index j = j` that maximizes
+   −                                                    −
+p(Ij,L(v`)
+           ∩L(v` )). Note that, for any j, the set Ij,L(v   `)
+                                                               are the hypotheses for the K −1 answers of τj
+                                                      −
+that exclude hypothesis h. However, the set Ij,S also contains exactly the hypotheses for the K − 1
+                                                           −              −
+answers of τj that exclude hypothesis h. Hence Ij,L(v          `)
+                                                                  ∩ S = Ij,S ∩ S = Aj , so j = j` maximizes
+p(Aj ∩L(v` )). Thus, sets Aj1 , Aj2 , . . . , Aj`G form a p-weighted greedy solution for this SET-COVER
+instance SC(h) . Hence, we may apply Theorem A.19. Since maxj∈[m] p(Aj ) = p− (u>             h ) < ph ≤ pmax
+and minh∈S ph ≥ pmin , we have, by Theorem A.19,
+                                                                               
+                             ⊥                >                           pmax
+                       dTG (uh ) − dTG (uh ) = `G − 1 ≤ 1 + ln                    `OPT .
+                                                                          pmin
+
+    It remains to prove `OPT ≤ dOPT (h). Let w1 , . . . , w`T = h be the root-to-leaf path for hypothesis
+h in the optimal tree TOPT . For ` = 1, . . . , `T − 1, set j`0 to be the test chosen at vertex w` in the
+                                                     −
+optimal tree. By the first point, the set Ij,S            contains the hypotheses for the K − 1 answers of
+test τj that exclude hypothesis h. As the optimal tree is a decision tree, any test is distinguished
+from h by one of tests j1 , . . . , j`T −1 , so Aj10 , Aj20 , . . . , Aj`0 −1 cover all of [n] \ {h}, and thus covers
+                                                                       T
+S. Furthermore, `T − 1 = dOPT (h), so there is a solution to SC(h) of size dOPT (h). Hence,
+dOPT (h) ≥ `OPT , as desired.
+
+    As a corollary, we have
+
+Lemma A.21.
+                                                                  
+                                      X                       pmax
+                                             q(v) ≤    1 + ln        COPT .
+                                                              pmin
+                                     v∈TGo
+
+
+
+                                                          36
+Proof. We have
+                                       X                   X
+                                               q(v) =              ph · (dTG (u⊥           >
+                                                                               h ) − dTG (uh ))
+                                      v∈TGo                h∈[n]
+                                                        X          pmax
+                                                                         
+                                                      ≤      1 + ln        · dOPT (h)
+                                                                    pmin
+                                                       h∈[n]
+                                                                   
+                                                               pmax
+                                                      = 1 + ln        · COPT .
+                                                               pmin
+
+The first equality uses Lemma A.9, which tells us that every vertex between u>  h and h is h-heavy,
+and no such vertex is h0 -heavy for h0 6= h. Furthermore, these are the only h-heavy vertices as u>
+                                                                                                  h
+is the maximal h-heavy vertex. The inequality is by Lemma A.20.
+
+A.8     Finishing the proof
+Proof of Theorem 3.1. We have
+            X
+  CG =             p(v)
+           v∈TGo
+              X                         X
+       =                p(v) +                      p(v)
+           v balanced               v imbalanced
+           log n 2         X
+       ≤       2 · δ +              p(v)                                                          (Lemma A.7)
+           log δ       v imbalanced
+              log n                               X
+       ≤             · 2COPT + 4smax (COPT + 1) +    q(v)                                         (Lemma A.17)
+           log 2COPT                               o                      v∈TG
+                                          1
+                                    log pmin
+                                                                       
+             log n                                                 pmax
+       ≤             · 2COPT + 4 ·           · (COPT + 1) + 1 + ln        · COPT (Lemma A.21)
+         log 2COPT                    log 1δ                       pmin
+                   1
+                                  !
+           12 log pmin       pmax
+       <                + ln        · COPT ,
+            log COPT         pmin
+
+                                                                                              1
+as desired. In the last inequality, we used that (i) log 2COPT > log COPT , (ii) log n ≤ log pmin , (iii)
+                                                1
+                                         log
+1 + COPT < 2COPT , and 1 ≤ log CpOPT
+                                 min
+                                     .
+
+
+B      Proof of Theorem A.19
+We closely follow the argument of Chvatal [Chv79]. Suppose the p~-weighted greedy algorithm uses
+`G sets. By re-indexing the sets, we may assume without loss of generality that the p-weighted
+greedy algorithm chooses sets A1 , . . . , A`G in that order. For r = 1, . . . , `G and j = 1, . . . , m, let
+  (r)
+Aj denote the elements of set Aj not covered by the first r − 1 chosen sets. For r = 1, . . . , `G
+                           (r) P                                                                    (r)
+and j = 1, . . . , m, let ρj = h∈A(r) ph denote the sum of the weights of the elements of Aj . For
+                                                j
+                              1
+h = 1, . . . , n, let yh =    (r)   , where r is the index at which element h is first covered. Equivalently, r
+                             ρr
+
+
+
+
+                                                                     37
+                                                (r)
+is the unique index such that h ∈ Ar . In this way, we have
+                                                                `G
+                                            X                   X                1
+                                                      ph yh =         ρr(r) ·    (r)
+                                                                                        = `G ,
+                                            h∈[n]               r=1             ρr
+
+and, for all j = 1, . . . , m,
+                                                                 `j  (r)  (r+1)
+                                              X                  X  ρj − ρj
+                                                      ph yh =                     (r)
+                                                                                             ,                                (8)
+                                            h∈Aj                 r=1             ρr
+
+                                                         (` )                                        (1)   (2)   (` )
+where `j is the largest index such that ρj j > 0. Hence using that ρj , ρj , . . . , ρj j is a non-
+increasing sequence, we have
+                           `j  (r)  (r+1)                        `j −1
+           X               X  ρj − ρj                            X ρ(r)  (r+1)
+                                                                    j − ρj
+                 ph yh =                (r)
+                                                        = 1+                         (r)
+          h∈Aj             r=1         ρj                        r=1             ρj
+                                 `j −1 Z ρ(r)                      Z ρ(1)                        (1)
+                                 X          j  dx                        j    dx          ρj              pmax
+                          ≤ 1+                    = 1+                           = 1 + ln  (`  )
+                                                                                                 ≤ 1 + ln      .              (9)
+                                         (r+1) x                        (`j )
+                                                                              x              j            pmin
+                                 r=1    ρj                             ρj                 ρ      j
+
+Let J ⊂ [m] denote the indices of the optimal cover for Φ. Applying (8) and summing (9) for j ∈ J,
+we have
+                                                                                     
+              X             XX                             pmax                    pmax
+       `G =       ph yh ≤            ph yh ≤ |J| · 1 + ln         = `OPT · 1 + ln
+                                                           pmin                    pmin
+                  h∈[n]            j∈J h∈Aj
+
+as desired.
+
+
+C      Tightness of Theorem 3.1
+In this section, we prove Propositions 3.3 and 3.4, which show two ways that Theorem 3.1 is tight.
+
+C.1     Proof of Proposition 3.3
+Proof. We prove Proposition 3.3 with the stronger guarantee that COPT ≤ 4C ∗ when C ∗ is an
+integer. Then, taking (C ∗ )0 = dC ∗ e ≤ 2C ∗ gives the desired result.
+    When n is sufficiently large, for C ∗ ≥ n1/4 , the statement is trivial, as any instance for which
+COP T ∈ [ 41 C ∗ , 4C ∗ ], satisfies the requirements. Number the hypotheses 1, . . . , n∗ . Let n∗ ∈ (n −
+                                                                                                                        def    ∗
+C ∗ , n] be such that C ∗ |n∗ . Place the hypotheses 1, . . . , n∗ in a grid with C ∗ columns and r = Cn ∗
+rows, numbered 1, . . . , r, so that each grid square contains at most 1 hypothesis. Recursively
+identify a family of good sets of rows as follows: [r] is good, and for every good set A0 containing
+r0 > 1 rows, create a partition A0 = A01 ∪ A02 such that |A01 | = 1 + br0 /C ∗ c and |A02 | = r0 − |A01 |, and
+identify A01 and A02 as good. Define three types of tests:
+    1. For each of h = n∗ + 1, . . . , n, a test that outputs 1 if the hypothesis is h and 2 otherwise.
+
+    2. For each column c, a tests that outputs 1 if the hypothesis is in column c and 2 otherwise.
+
+    3. For each column c and t ∈ [0, log r], a test that outputs 1 if the hypothesis is in column c and
+       the tth digit of the row number’s binary expansion is a one, and 2 otherwise.
+
+                                                                  38
+   4. for each good set A0 , a test that outputs 1 if the row of h is in A0 and 2 otherwise.
+   Let h be the unknown hypothesis. There is a strategy that first checks whether h is one of
+n∗ + 1, . . . , n, for a total of at most n − n∗ < C ∗ queries. If not, the strategy identifies the column
+containing h in at most C ∗ queries using tests of type 2 and then identifies the corresponding row
+using tests of type 3, which takes log r < log n ≤ 2C ∗ queries. We thus need at most 4C ∗ queries
+for each hypothesis, so here
+
+                                             COP T ≤ 4C ∗ .
+
+    The greedy strategy uses tests of type 4, trying to first find the row containing h. This is
+because, for tests 1, 2, and 3, one answer accounts for at least 1 − C1∗ fraction of the remaining
+hypotheses (it accounts at least 1 − C1∗ fraction of the columns in the grid), and if the candidate set
+of rows containing h is a good set A0 , under the membership test for the good set A01 , all answers
+account for less than 1 − C1∗ fraction of the remaining hypotheses.
+    When h is chosen uniformly at random from 1, . . . , n∗ , the row containing h is a uniformly
+random row. While there are at least C ∗ candidate rows containing h, each test gives at most
+H(2/C ∗ ) bits of information about the row containing h in expectation (over the randomness of h).
+Since the row containing h has at least log r = log(n∗ /C ∗ ) > 21 log n bits of information, and the
+row has at most log C ∗ bits of information when there are at most C ∗ candidate rows remaining, we
+                                                                                     1
+                                                                                         log n−log C ∗
+have, by an analysis similar to Lemma 6.8, the greedy algorithm takes at least 2 H(2/C ∗ )               queries
+to identify the row containing h on average. Hence,
+
+                              n∗ 12 log n − log C ∗   1   1
+                                                          4 log n   C ∗ log n
+                       CG ≥     ·                   ≥   ·         ≥
+                              n       H(2/C ∗ )       2 H(2/C ∗ )   16 log C ∗
+as desired. In the last inequality, we used that H(2x) ≤ −4x log(x) for x ∈ [0, 1].
+
+C.2    Proof of Proposition 3.4
+In this appendix, we use that it is NP-hard to approximate Set Cover to within a factor of 12 log n0
+[Mos12].
+Theorem C.1. Let r ∈ (0, 1). Then, for n sufficiently large, approximating DT(2nr log n) to a
+          1
+factor of 12 log(nr ) is NP-hard.
+Proof. We design a reduction from Set Cover to DT(2nr log n). Suppose we are given a Set Cover
+instance with n0 elements, M sets {Si } where Si ⊆ [n0 ], and an optimal cover of size BOP T . In
+                                                               1/r
+polynomial time, we construct a DT(2nr log n) instance on n ≤ n0 hypotheses such that, if COP T
+is the optimal decision tree cost, then, for some q,
+                                     1
+                                       qBOP T < COP T < 3qBOP T .
+                                     2
+The theorem follows as a 12 log n0 approximation to Set Cover is NP-hard, and here nr ≤ n0 .
+                                    1/r
+   Let q = b 1r log n0 c. Let ` = bn0 /(n0 q + 1)c. Identify the hypotheses by elements of [`] × ([q] ×
+                                           1/r
+[n0 ] ∪ {⊥}). In this way, there are n ∼ n0 hypotheses. Let the elements of [`] × {⊥} have weight
+ 1     1                1
+2n + 2` , and let ph = 2n for all other hypotheses h ∈ [`] × [q] × [n0 ]. In this way, for n sufficiently
+large, we have pmax /pmin = 1 + n` ≤ 2nr log n. Create tests of the following forms:
+   1. For each i1 ∈ [`], i2 ∈ [q], j ∈ [M ], define a test that outputs 1 on hypotheses (h1 , h2 , h3 ) if
+      and only if i1 = h1 , i2 = h2 , h3 ∈ Sj .
+
+                                                   39
+    2. For each i1 ∈ [`], i2 ∈ [q], j ∈ [M ], and t ∈ [0, log n0 ], define a binary test that outputs 1 if
+       and only if i1 = h1 , i2 = h2 , h3 ∈ Sj , and the tth bit of h3 ’s binary representation is 1.
+
+    3. For each t ∈ [0, log `], define a binary test on (h1 , ∗) that outputs 1 if and only if the tth bit
+       of h1 ’s binary representation is 1.
+
+    Consider a cover of [n0 ] using BOPT of the M sets. We can define a tree that, given a hypothesis
+h = (h1 , ∗), first determines h1 using tests of type 3. Then, in each subtree, the set of consistent
+hypotheses is exactly {h3 } × ([q] × [n0 ] ∪ {⊥}). In each subtree, one can isolate the ⊥ hypothesis in
+qBOP T queries, using tests of type 1, and use tests of type 2 to identify the remaining hypotheses
+in 1 + log n0 tests each. In each subtree, all of the hypotheses of the form (h1 , ⊥) have weight at
+most 1` and depth at most qBOP T , and all other hypotheses have weight 2n        1
+                                                                                     and depth at most
+qBOP T + 1 + log n0 , so their total contribution to the cost of the tree is at most qBOP T + 1 + log n0 .
+Assuming n0 is sufficiently large,
+
+                          COP T ≤ 1 + log ` + 2qBOP T + log n0 < 3qBOP T .
+
+    Now suppose we are given a solution to the DT(2nr log n) with cost COP T . In the optimal tree,
+for all hypotheses (h1 , ⊥), at least qBOP T tests of type-1 or type-2 must appear on the root-to-leaf
+path of (h1 , ⊥): if not, there exists h2 ∈ [q], such that at most BOP T − 1 tests of type-1 with
+parameters (h1 , h2 , j) or type-2 with parameters (h1 , h2 , j, t) were used. By taking the indices j
+used in these tests, there are at most BOP T − 1 sets covering [n0 ], which is a contradiction. Thus,
+each hypothesis (h1 , ⊥) has depth at least qBOP T . Since the hypotheses (h1 , ⊥) account for at least
+half of the weight of the hypotheses, we have
+                                                      1
+                                               COP T ≥ qBOP T .
+                                                      2
+This completes the proof.
+
+
+D      Rounding weights
+Proposition D.1. Suppose a Decision Tree instance has weights p1 , . . . , pn and a cost function
+C(·). Then, there exist weights p01 , . . . , p0n such that mini p0i ≥ n(n−1)
+                                                                          1
+                                                                              and the cost function C 0 (·) of
+the associated instance satisfies |C 0 (T ) − C(T )| ≤ 1 for all decision trees T .
+
+Proof. Let wi0 = max(pi , (n−1)                       0
+                            1                             P 0                 0            0        n−1
+                                2 ) and define W =          i wi . We have W ≥ 1 and W ≤ 1 + (n−1)2 =
+ n         0   wi0            0      1
+n−1 . Let pi = W 0 , so that pi ≥ n(n−1) for all i. Hence, for all decision trees T ,
+
+                   1 X 0              1 X               n−1
+          C 0 (T ) =     w i dT (i) ≥       pi dT (i) ≥     C(T ) ≥ C(T ) − 1
+                   W0                 W0                 n
+                       i                 i
+                   1 X 0              X        1
+                                                                  X 1
+           0
+          C (T ) =   0
+                         wi dT (i) ≤     pi + 2 dT (i) ≤ C(T ) +          n ≤ C(T ) + 1.
+                   W                            n                      n2
+                           i               i                                  i
+
+
+
+
+                                                     40
+

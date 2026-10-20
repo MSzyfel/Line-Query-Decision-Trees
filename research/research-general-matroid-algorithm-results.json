@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "exact_class_DP_cases": 56,
+  "supplied_description_execution_cases": 168,
+  "actual_hypothesis_executions": 1008,
+  "subset_solver_is_validation_only": true,
+  "uniform_rank_obstruction": [
+    {
+      "n": 16,
+      "discovered_uniform_rank": 3,
+      "exact_pair_query_OPT": 86,
+      "old_rank_coding_lower": 70,
+      "certificate_gap": "43/35",
+      "cap_pair_raw_lower": "60"
+    },
+    {
+      "n": 64,
+      "discovered_uniform_rank": 3,
+      "exact_pair_query_OPT": 1118,
+      "old_rank_coding_lower": 536,
+      "certificate_gap": "559/268",
+      "cap_pair_raw_lower": "1008"
+    },
+    {
+      "n": 256,
+      "discovered_uniform_rank": 3,
+      "exact_pair_query_OPT": 16766,
+      "old_rank_coding_lower": 4096,
+      "certificate_gap": "8383/2048",
+      "cap_pair_raw_lower": "16320"
+    },
+    {
+      "n": 1024,
+      "discovered_uniform_rank": 3,
+      "exact_pair_query_OPT": 263678,
+      "old_rank_coding_lower": 31878,
+      "certificate_gap": "131839/15939",
+      "cap_pair_raw_lower": "261888"
+    }
+  ]
+}

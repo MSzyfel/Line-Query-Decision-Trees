@@ -1,0 +1,210 @@
+\section{Fixed certificate for the two initial batches}
+\label{sec:two-phase-certificate}
+
+The local proof uses a comparison distribution to show that some
+candidate schedule has enough combined first-hit and mode-saving
+credit while preserving the all-negative waiting bound. This
+distribution certifies existence; the algorithm searches candidate
+schedules and minimizes their rational score. We list the complete
+fixed distribution here, making the calibration reproducible directly
+from the stated data.
+
+This table specifies the proof distribution in
+Theorem~\ref{thm:two-phase-expected}. The distribution is independent
+of the input. The shift has density $1/(u\ln\beta)$ on $[1,\beta)$.
+An entry $(q,r;\mathsf L)$ selects that initial-budget variant and
+one first-batch saving minorant. Here $r=0$ means budgets
+$q,k_2,k_3,\ldots$, and $r>0$ means
+$q,r,k_2,k_3,\ldots$. All entries use
+\[
+ \mathsf A_q=M_q-\delta wq,\qquad
+ \mathsf C_q=c_*M_q-d_*\delta wq.
+\]
+A mixture $\theta(q,r;\mathsf L)+(1-\theta)(q',r';\mathsf L')$
+is conditional on that row's shift range. It compares two actual
+variants; it never adds two savings from the same schedule.
+
+Read the certificate in two stages: the small table supplies the
+conditional mixing weights, and the row tables select which variants
+to compare on each shift range. A row with one option assigns it
+all conditional mass.
+The twelve rational mixing weights are listed as integer numerators
+with common denominator $10^9$:
+\begin{center}
+\small
+\begin{tabular}{r|rrrrrr}
+$i$ &1&2&3&4&5&6\\\hline
+$10^9\theta_i$ &
+363738471&165441165&467444028&619060535&88721951&689586436\\
+$i$ &7&8&9&10&11&12\\\hline
+$10^9\theta_i$ &751593847&874972087&599476351&160123414&234739978&835733626\\
+\end{tabular}
+\end{center}
+The shift ranges also split at the integer breakpoints of $k_2$.
+Thus each $k_j=\lfloor\beta^j u\rfloor$, $j=0,1,2$, is constant
+inside each listed range, and the signed correction of
+\eqref{eq:two-phase-correction} is constant there.
+
+\begin{center}\small
+\begin{tabular}{rll}
+\hline Row&Shift range&Variant and saving minorant\\\hline
+1&$[1,13/\beta^2)$&$(3,0;\mathsf C_{3})$\\
+2&$[13/\beta^2,14/\beta^2)$&$\theta_{1}(3,0;\mathsf C_{3})+(1-\theta_{1})(4,0;\mathsf A_{4})$\\
+3&$[14/\beta^2,4/\beta)$&$(4,0;\mathsf A_{4})$\\
+4&$[4/\beta,15/\beta^2)$&$(4,0;\mathsf A_{4})$\\
+5&$[15/\beta^2,16/\beta^2)$&$(4,0;\mathsf A_{4})$\\
+6&$[16/\beta^2,17/\beta^2)$&$\theta_{2}(1,5;\mathsf C_{1})+(1-\theta_{2})(4,0;\mathsf A_{4})$\\
+7&$[17/\beta^2,5/\beta)$&$(1,5;\mathsf C_{1})$\\
+8&$[5/\beta,18/\beta^2)$&$(1,5;\mathsf C_{1})$\\
+9&$[18/\beta^2,19/\beta^2)$&$(1,5;\mathsf C_{1})$\\
+10&$[19/\beta^2,20/\beta^2)$&$(1,5;\mathsf C_{1})$\\
+11&$[20/\beta^2,21/\beta^2)$&$\theta_{3}(1,5;\mathsf C_{1})+(1-\theta_{3})(1,6;\mathsf C_{1})$\\
+12&$[21/\beta^2,6/\beta)$&$(1,6;\mathsf C_{1})$\\
+13&$[6/\beta,22/\beta^2)$&$(1,6;\mathsf C_{1})$\\
+14&$[22/\beta^2,23/\beta^2)$&$(1,6;\mathsf C_{1})$\\
+15&$[23/\beta^2,24/\beta^2)$&$(1,6;\mathsf C_{1})$\\
+16&$[24/\beta^2,7/\beta)$&$(1,7;\mathsf C_{1})$\\
+17&$[7/\beta,2)$&$\theta_{4}(1,6;\mathsf C_{1})+(1-\theta_{4})(1,7;\mathsf C_{1})$\\
+18&$[2,25/\beta^2)$&$\theta_{5}(1,6;\mathsf C_{1})+(1-\theta_{5})(2,7;\mathsf C_{2})$\\
+19&$[25/\beta^2,26/\beta^2)$&$(2,7;\mathsf C_{2})$\\
+20&$[26/\beta^2,27/\beta^2)$&$(2,7;\mathsf C_{2})$\\
+21&$[27/\beta^2,28/\beta^2)$&$\theta_{6}(2,7;\mathsf C_{2})+(1-\theta_{6})(2,8;\mathsf C_{2})$\\
+\hline\end{tabular}\end{center}
+\begin{center}\small
+\begin{tabular}{rll}
+\hline Row&Shift range&Variant and saving minorant\\\hline
+22&$[28/\beta^2,8/\beta)$&$(2,8;\mathsf C_{2})$\\
+23&$[8/\beta,29/\beta^2)$&$(2,8;\mathsf C_{2})$\\
+24&$[29/\beta^2,30/\beta^2)$&$(2,8;\mathsf C_{2})$\\
+25&$[30/\beta^2,31/\beta^2)$&$(2,8;\mathsf C_{2})$\\
+26&$[31/\beta^2,9/\beta)$&$(2,9;\mathsf C_{2})$\\
+27&$[9/\beta,32/\beta^2)$&$\theta_{7}(2,8;\mathsf C_{2})+(1-\theta_{7})(2,9;\mathsf C_{2})$\\
+28&$[32/\beta^2,33/\beta^2)$&$(2,9;\mathsf C_{2})$\\
+29&$[33/\beta^2,34/\beta^2)$&$(2,9;\mathsf C_{2})$\\
+30&$[34/\beta^2,35/\beta^2)$&$\theta_{8}(2,9;\mathsf C_{2})+(1-\theta_{8})(2,10;\mathsf C_{2})$\\
+31&$[35/\beta^2,10/\beta)$&$(2,10;\mathsf C_{2})$\\
+32&$[10/\beta,36/\beta^2)$&$\theta_{9}(2,10;\mathsf C_{2})+(1-\theta_{9})(3,10;\mathsf C_{3})$\\
+33&$[36/\beta^2,37/\beta^2)$&$(3,10;\mathsf C_{3})$\\
+34&$[37/\beta^2,3)$&$(3,10;\mathsf C_{3})$\\
+35&$[3,38/\beta^2)$&$(3,10;\mathsf C_{3})$\\
+36&$[38/\beta^2,11/\beta)$&$\theta_{10}(3,10;\mathsf C_{3})+(1-\theta_{10})(3,11;\mathsf C_{3})$\\
+37&$[11/\beta,39/\beta^2)$&$(3,10;\mathsf C_{3})$\\
+38&$[39/\beta^2,40/\beta^2)$&$(3,11;\mathsf C_{3})$\\
+39&$[40/\beta^2,41/\beta^2)$&$(3,11;\mathsf C_{3})$\\
+40&$[41/\beta^2,42/\beta^2)$&$(3,11;\mathsf C_{3})$\\
+41&$[42/\beta^2,12/\beta)$&$\theta_{11}(3,11;\mathsf C_{3})+(1-\theta_{11})(3,12;\mathsf C_{3})$\\
+42&$[12/\beta,43/\beta^2)$&$(3,12;\mathsf C_{3})$\\
+43&$[43/\beta^2,\beta)$&$\theta_{12}(3,12;\mathsf C_{3})+(1-\theta_{12})(3,13;\mathsf C_{3})$\\
+\hline\end{tabular}\end{center}
+
+To use the table, first integrate the log-uniform shift density over
+each row, then multiply by that row's conditional option weights.
+The budgets are constant within a row, so its signed correction
+and first-batch minorant contribute fixed coefficients. Summing
+these contributions gives exactly the rank credits used in the
+main proof, through the coefficient definitions in
+\eqref{eq:two-phase-coefficients}.
+For each row $[l,h)$ and option of conditional weight $v$, compute
+$P=\ln(h/l)/\ln\beta$. Starting with $a_t=e_\beta(t)$ and $\mu=0$,
+add $Pv[d(u,t)+s\mathbf1_{\{t\le q\}}]$ to $a_t$ and
+$Pv\rho$ to $\mu$, where the saving minorant is
+$sM_q-\rho\delta w$. The main text gives the complete finite-rank,
+zero-length, and tail checks. The file
+\texttt{expected-two-phase-}\allowbreak\texttt{check.py}, using the same rational data in
+\texttt{expected-two-phase-}\allowbreak\texttt{certificate.json}, verifies the row
+coefficients and certificate inequalities from the displayed data.
+
+\paragraph{Complete coefficient accumulation.}
+Index the rows by $i$ and the options in a row by $j$. Let the
+row be $[l_i,h_i)$ and its conditional option weights be $v_{ij}$.
+Put
+\[
+ P_i=\int_{l_i}^{h_i}\frac{du}{u\ln\beta}
+     =\frac{\ln(h_i/l_i)}{\ln\beta},\qquad
+ \sum_iP_i=1,\quad \sum_jv_{ij}=1.
+\]
+For the first identity, the antiderivative is $\ln u/\ln\beta$.
+Summing the consecutive row integrals then gives
+$\ln(\beta/1)/\ln\beta=1$; each conditional option sum is one by
+the listed complementary mixing weights. For an option with
+budgets $(q_{ij},r_{ij})$, the minorant coefficients are
+\[
+ (s_{ij},\rho_{ij})=
+ \begin{cases}
+ (1,q_{ij}),&\mathsf A_{q_{ij}},\\
+ (c_*,d_*q_{ij}),&\mathsf C_{q_{ij}},
+ \end{cases}
+ \qquad c_*=\frac{228683}{103683},\quad d_*=\frac{250000}{103683}.
+\]
+These rational values are obtained by substituting $p_*$ in
+$c_*=(2-p_*)/(1-p_*)$ and $d_*=2/(1-p_*)$.
+Write $k_{0i},k_{1i},k_{2i}$ for that row's constant geometric
+budgets and choose any $u_i\in[l_i,h_i)$. The full sums are
+\[
+ \begin{aligned}
+ a_t&=e_\beta(t)+\sum_iP_i\sum_jv_{ij}
+       \left[d_{q_{ij},r_{ij}}(u_i,t)
+                       +s_{ij}\mathbf1_{\{t\le q_{ij}\}}\right],\\
+ \mu&=\sum_iP_i\sum_jv_{ij}\rho_{ij},\\
+ D_0(k)&=\sum_iP_i\sum_jv_{ij}
+       \left[q_{ij}\mathbf1_{\{q_{ij}<k\}}
+             +r_{ij}\mathbf1_{\{r_{ij}<k\}}
+             -k_{0i}\mathbf1_{\{k_{0i}<k\}}
+             -k_{1i}\mathbf1_{\{k_{1i}<k\}}\right].
+ \end{aligned}
+\]
+To verify that these budgets are constant throughout each half-open
+row, fix $j\in\{0,1,2\}$. Since the floor is nondecreasing, its minimum
+on $[l_i,h_i)$ occurs at $l_i$. Its largest value before the excluded
+right endpoint is $\lceil\beta^j h_i\rceil-1$. Therefore the endpoint
+identity below certifies every shift in the row:
+\[
+ \lfloor\beta^j l_i\rfloor
+   =\lceil\beta^j h_i\rceil-1=k_{ji}.
+\]
+
+\paragraph{A worked row.}
+In row 1, $1\le u<13/\beta^2$ gives
+$(k_0,k_1,k_2)=(1,3,12)$, and the sole option is
+$(q,r)=(3,0)$ with minorant $\mathsf C_3$.
+Its probability is
+\[
+ P_1=\frac{\ln(13/\beta^2)}{\ln\beta}
+       =\frac{\ln13}{\ln\beta}-2,
+ \qquad 0.041455991537<P_1<0.041455991538.
+\]
+Substitution in \eqref{eq:two-phase-correction}, with these constant
+budgets, cancels both terms at rank
+three:
+\[
+ \begin{aligned}
+ d_{3,0}(u,t)
+ &=1-3+4\mathbf1_{\{t>1\}}
+       +15\mathbf1_{\{t>3\}}-15\mathbf1_{\{t>3\}}\\
+ &=-2+4\mathbf1_{\{t>1\}}.
+ \end{aligned}
+\]
+Consequently \eqref{eq:two-phase-coefficients} and the zero-route
+correction \eqref{eq:two-phase-zero-correction} give this row's
+contributions as
+\[
+ \begin{aligned}
+ \Delta a_t&=P_1\left[-2+4\mathbf1_{\{t>1\}}
+                         +c_*\mathbf1_{\{t\le3\}}\right],\\
+ \Delta\mu&=3d_*P_1,\\
+ \Delta D_0(k)&=P_1\left[3\mathbf1_{\{3<k\}}
+                 -\mathbf1_{\{1<k\}}-3\mathbf1_{\{3<k\}}\right]
+                 =-P_1\mathbf1_{\{k>1\}}.
+ \end{aligned}
+\]
+In particular, its rank-one contribution is
+$P_1(c_*-2)$, its contributions at ranks two and three are
+$P_1(c_*+2)$, and every later contribution is $2P_1$.
+Rows with two options use the same calculation for each option
+and multiply the results by its conditional weight before adding.
+For example, row 2 contributes
+$P_2[\theta_1(c_*-2)+(1-\theta_1)(1-3)]$ to $a_1$ and
+$P_2[3d_*\theta_1+4(1-\theta_1)]$ to $\mu$.
+Each execution chooses one valid alternative. Consequently, the
+expected row contribution is the weighted average of the credit from
+each alternative.

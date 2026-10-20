@@ -1,0 +1,584 @@
+\section{Uniform expected-depth hardness}
+\label{sec:uniform-hardness}
+
+We transfer the weighted singleton/pair hardness instance to a uniform
+prior by replacing each vertex of weight $w$ with a cloud of $w$
+hypotheses. Private queries can occur anywhere in an adaptive tree,
+so the key step is to move them off the distinguished spine while
+preserving or reducing cost. This normalization exposes whole clouds
+as matching groups and yields an exact identity: the cloud optimum is
+the weighted optimum plus a computable internal-cloud cost. Here raw
+uniform cost denotes the sum of leaf depths, before division by the
+number of hypotheses.
+
+\subsection{Exact cloud replacement: normalization before accounting}
+
+\subsubsection{The construction}
+
+Consider the weighted singleton/pair linear forest instance of
+Lemma~\ref{lem:pair-invoice}, with vertices $0,1,\ldots,N$ and
+positive integer weights $w_0,\ldots,w_N$. Vertex $0$ is
+distinguished. Order the nonzero vertices along each path and
+component by component, so every edge joins consecutive indices.
+Here a cloud $C_i$ is the block of $w_i$ hypotheses representing
+vertex $i$, its anchor is the point with offset $j=0$, and a private
+query is one of the supplied lines that isolates a single nonanchor
+point. The singleton and pair queries represent, respectively, a
+vertex and an edge of the weighted forest. The invoice notation
+$J(\mathcal M)$ and $\mathcal C(J(\mathcal M))$ is as in
+Lemma~\ref{lem:pair-invoice}; it records the weighted instance left
+after choosing the matching $\mathcal M$ of pair queries.
+Choose the cloud spacing $Q$ by the final calibration below and define
+\[
+ n=\sum_{i=0}^N w_i,\qquad
+ C_i=\{(Qi+j,(Qi+j)^2):0\le j<w_i\}.
+\]
+The point with $j=0$ is the anchor of cloud $C_i$.
+For every nonzero vertex supply its whole-cloud singleton query;
+for every linear forest edge supply its whole-cloud pair query.
+For consecutive cloud indices $a,\ldots,b$, these are the negative
+answers of
+\begin{equation}\label{eq:uniform-cloud-membership}
+ 4y-4Q(a+b)x+Q^2(2a-1)(2b+1)=0.
+\end{equation}
+The value on the parabola factors as
+$4(x-Q(a-\tfrac12))(x-Q(b+\tfrac12))$.
+The product is negative exactly between its two roots. Cloud $c$ has
+abscissae in $[Qc,Qc+w_c-1]$, with $w_c-1<Q/4$; hence every point
+in clouds $a$ through $b$ lies strictly between the roots, while each
+other cloud lies strictly outside. Since $a>0$, cloud $0$ is
+excluded. Thus the negative answer selects exactly the designated
+cloud or adjacent pair, and no point lies on the query line.
+
+For every nonanchor point of abscissa $t$, including those of
+cloud $0$, supply the private line
+\[
+ 2y-4tx+2t^2-1=0.
+\]
+Its value on $(x,x^2)$ is $2(x-t)^2-1$; it is negative at $x=t$
+and positive at every other integer abscissa, since then $|x-t|\ge1$.
+It therefore isolates precisely that point, with no point on the line.
+No private line is supplied for an anchor. All answers are strict
+and binary. The whole-cloud singleton queries distinguish each
+nonzero anchor from all other anchors and cloud $0$; the private
+queries then separate every nonanchor from the anchor in its cloud.
+Consequently the query family identifies every hypothesis. There are
+$n=\sum_iw_i$ hypotheses, so the uniform prior gives each weight $1/n$.
+
+Put
+\begin{equation}\label{eq:uniform-cloud-offset}
+ D(w)=\frac{(w-1)(w+2)}2,\qquad
+ \Delta=\sum_{i=0}^N D(w_i).
+\end{equation}
+Algorithm~\ref{alg:uniform-cloud-lift} gives the construction and
+the threshold conversion.
+
+\begin{algorithm}[H]
+\caption{Uniform cloud replacement of a weighted linear forest instance}
+\label{alg:uniform-cloud-lift}
+\KwIn{Vertices $0,\ldots,N$ with each path in order, component by component,
+positive integer weights $w_i$, and a raw weighted threshold $k$}
+\KwOut{Supplied-line instance with uniform prior and threshold
+$(k+\Delta)/n$}
+$Q\gets4\max_i w_i$; $n\gets\sum_iw_i$;
+$\HH\gets\varnothing$; $\LL\gets\varnothing$\;
+\For{$i=0,\ldots,N$}{
+  \For{$j=0,\ldots,w_i-1$}{
+    $t\gets Qi+j$; add $(t,t^2)$ to $\HH$\;
+    \If{$j>0$}{
+      Add $2y-4tx+2t^2-1=0$ to $\LL$\;
+    }
+  }
+}
+For each $i>0$, add \eqref{eq:uniform-cloud-membership}
+with $(a,b)=(i,i)$ to $\LL$\;
+For each linear forest edge $\{i,i+1\}$, add
+\eqref{eq:uniform-cloud-membership} with $(a,b)=(i,i+1)$ to $\LL$\;
+$\Delta\gets\sum_{i=0}^N(w_i-1)(w_i+2)/2$\;
+\KwRet $(\HH,\LL)$, prior $1/n$, and threshold $(k+\Delta)/n$\;
+\end{algorithm}
+
+\begin{theorem}[Exact uniform cloud transfer]\label{thm:uniform-cloud-transfer}
+Let $\OPT_{\mathrm{raw}}^{\mathrm{weighted}}$ be the minimum
+raw weighted cost of the singleton/pair linear forest instance.
+For its uniform cloud replacement,
+\begin{equation}\label{eq:uniform-cloud-transfer}
+ n\OPT_{\mathrm E}^{\mathrm{cloud}}
+   =\OPT_{\mathrm{raw}}^{\mathrm{weighted}}+\Delta.
+\end{equation}
+Equivalently, if $J(\mathcal M)$ has the pair and singleton masses
+from Lemma~\ref{lem:pair-invoice}, the raw uniform optimum is
+\[
+ \Delta+\min_{\mathcal M}
+ \left\{w_0(N-|\mathcal M|)
+   +\mathcal C(J(\mathcal M))
+   +\sum_{\{u,v\}\in\mathcal M}(w_u+w_v)\right\}.
+\]
+\end{theorem}
+
+\begin{proofstrategy}
+\begin{enumerate}
+\item Rotate a private singleton past the next query. Equal point
+weights make its one-unit depth increase no larger than the savings
+on the opposite, nonempty answer branch.
+\item Push all external private queries off the distinguished anchor's
+spine and move its own private chain to the end. Every first-hit cloud
+is then intact, so the first-hit pairs form a matching.
+\item Sum exact one- and two-cloud local costs, then sort group sizes.
+The result is the weighted matching cost plus the fixed offset
+$\Delta$; the same construction attains it.
+\end{enumerate}
+\end{proofstrategy}
+
+\subsubsection{Three supporting statements}
+
+Uniform weights make one local exchange cost nonincreasing: delaying
+an isolated point by one query saves a query for a nonempty opposite
+branch. Since every point has the same weight, the exchange changes
+the raw cost only through the depths immediately above the attached
+subtrees; their internal costs cancel. This is the tool for
+normalizing arbitrary trees.
+
+\begin{lemma}[Uniform singleton rotation]\label{lem:uniform-singleton-rotation}
+Suppose a proper identifying tree on a uniformly weighted state $S$
+first asks a supplied query isolating $x\in S$, and the other child
+first asks a query $r$ that is proper on $S\setminus\{x\}$.
+These two queries can be exchanged, placing the singleton query
+in the answer branch of $r$ containing $x$, without increasing
+the raw cost.
+\end{lemma}
+Once clouds reach their first hit intact, their internal cost can
+be accounted for exactly. We need both the single-cloud value and
+a check that early private queries cannot improve a two-cloud exit.
+
+\begin{lemma}[Local uniform cloud costs]\label{lem:uniform-cloud-local}
+The optimal raw local cost on one intact cloud of size $w$ is
+$D(w)$. On two intact clouds of sizes $u,v$, it is
+\[
+ D(u)+D(v)+u+v.
+\]
+\end{lemma}
+
+The rotations must establish a global normal form before costs
+are summed. External private queries leave the distinguished spine,
+while its own private chain moves to the end, exposing whole-cloud
+matching groups.
+
+\begin{proposition}[A normalized matching spine]
+\label{prop:uniform-cloud-spine}
+An optimal uniform cloud tree can be chosen so that its distinguished
+anchor's path first asks only whole-cloud queries, with every newly
+hit cloud intact, and then asks only cloud-$0$ private queries.
+The first-hit pairs form a matching $\mathcal M$. For this matching,
+the best raw cost is
+\[
+ \Delta+w_0(N-|\mathcal M|)+\mathcal C(J(\mathcal M))
+          +\sum_{\{u,v\}\in\mathcal M}(w_u+w_v).
+\]
+Every matching has a tree attaining this invoice.
+\end{proposition}
+
+\begin{proof}[Proof of Theorem~\ref{thm:uniform-cloud-transfer}]
+Lemma~\ref{lem:uniform-singleton-rotation} permits the normalization
+in Proposition~\ref{prop:uniform-cloud-spine} without increasing cost.
+Lemma~\ref{lem:uniform-cloud-local} supplies its exact local offset.
+Minimize the resulting invoice over matchings and apply
+Lemma~\ref{lem:pair-invoice}. This gives
+$\OPT_{\mathrm{raw}}^{\mathrm{cloud}}
+=\OPT_{\mathrm{raw}}^{\mathrm{weighted}}+\Delta$.
+Dividing by $n$ proves the displayed expected-depth identity.
+\end{proof}
+
+\subsubsection{Technical proofs of the supporting statements}
+
+\begin{proofstrategy}
+First, compare the two possible query orders by their per-state depth
+changes; uniform weights make the singleton rotation nonincreasing.
+Next, compute the forced private-chain cost for one cloud and use
+induction to show that a whole-cloud separator is optimal for two.
+Finally, apply those rotations to normalize the distinguished path,
+then sum each first-hit group's local cost and order the groups by
+decreasing mass. This yields the matching cost formula and its attaining
+construction.
+\end{proofstrategy}
+
+\begin{proof}[Proof of Lemma~\ref{lem:uniform-singleton-rotation}]
+Let $A,B$ be the two nonempty answer classes of $r$ on
+$S\setminus\{x\}$, and choose their names so that $x$ has the
+answer of $A$. In the original tree, $x$ has relative depth one
+and every hypothesis in $A\cup B$ passes through both queries.
+Ask $r$ first, put the private singleton query in its
+$A\cup\{x\}$ branch, and attach the original subtrees on $A$ and
+$B$. Originally $x$ has relative depth one and points of $A$ and $B$
+have relative depth two before their attached subtrees. Afterwards
+$x$ has relative depth two, the points of $A$ still have depth two,
+and the points of $B$ have depth one before their unchanged subtrees.
+Thus the raw cost change is
+\[
+ (2-1)+|A|(2-2)+|B|(1-2)=1-|B|\le0,
+\]
+because $B$ is nonempty. The resulting queries are
+proper and are members of the original supplied family.
+\end{proof}
+
+If the opposite class $B$ has one point, the rotation has zero cost;
+if it has more than one, the cost decreases. The lemma concerns
+equal weights, so we use the rotation only when every point contributes
+the same unit cost at each level.
+
+\begin{proof}[Proof of Lemma~\ref{lem:uniform-cloud-local}]
+We first compute the forced private-chain cost within one cloud.
+For two clouds, we then compare separating them immediately with
+every possible private-first choice; this verifies the offset without
+assuming a local normal form.
+
+\begin{claim}[A single cloud forces a private chain]
+\label{clm:uniform-cloud-chain}
+Its raw local cost is $D(w)$, including zero cost when $w=1$.
+\end{claim}
+\begin{proof}
+Within one cloud, every whole-cloud query is constant, and every
+nonconstant query isolates one of its nonanchors. The only possible
+proper code is a chain: every private query has a singleton outcome,
+and the other outcome retains the anchor and all points not yet
+isolated. Thus the nonanchors exit at depths $1,\ldots,w-1$, and
+the anchor exits at depth $w-1$. The sum of depths is
+$1+2+\cdots+(w-1)+(w-1)$. For $w\ge2$,
+\[
+ \sum_{j=1}^{w-1}j+(w-1)
+ =\frac{w(w-1)}2+(w-1)
+ =\frac{(w-1)(w+2)}2=D(w).
+\]
+For $w=1$ there is no query and both the sum and $D(1)$ are zero.
+
+\end{proof}
+Separating the clouds gives the proposed cost directly. The remaining
+question is whether isolating a private point first could save more;
+induction accounts for the delay imposed on the other cloud.
+
+\begin{claim}[A whole-cloud separator is optimal on two clouds]
+\label{clm:uniform-cloud-separator}
+Private-first choices cannot beat $D(u)+D(v)+u+v$.
+\end{claim}
+\begin{proof}
+On two clouds a nonconstant whole-cloud query separates the
+clouds. Its root query is traversed by all $u+v$ points, after which
+the clouds cost $D(u)+D(v)$; this attains the displayed formula.
+Every other nonconstant query isolates one nonanchor. Induct on
+$u+v$, with the whole-cloud separator available at every induction
+state.
+If a private point of the $u$ cloud is queried first, the
+remaining two-cloud state has sizes $u-1,v$ and still has its
+anchors and whole-cloud separator. Using induction, this choice
+costs
+\[
+ u+v+D(u-1)+D(v)+(u-1)+v.
+\]
+A private point exists in this cloud only if $u\ge2$. The
+single-cloud formula of Claim~\ref{clm:uniform-cloud-chain} gives
+\[
+ D(u)-D(u-1)
+ =\frac{(u-1)(u+2)-(u-2)(u+1)}2=u.
+\]
+Subtracting the proposed separator cost from the private-first cost
+therefore gives
+\begin{align*}
+ &[u+v+D(u-1)+D(v)+(u-1)+v]
+       -[D(u)+D(v)+u+v]\\
+ &\qquad=D(u-1)-D(u)+(u-1)+v
+          =-u+(u-1)+v=v-1\ge0.
+\end{align*}
+The second equality substitutes $D(u)-D(u-1)=u$, and the final
+inequality uses the presence of the other cloud, namely $v\ge1$.
+Thus any saving on the queried cloud is paid for by delaying the
+other cloud's points.
+For a private point in the other cloud, the identical calculation
+with $u,v$ interchanged gives $u-1\ge0$. The base case $u=v=1$ has raw cost two.
+When one size is one it has no private point, and the same
+induction applies to the other cloud. Queries selecting other
+clouds are constant or separate these two whole clouds, so the
+argument covers the entire supplied family.
+\end{proof}
+\end{proof}
+
+
+\begin{proof}[Proof of Proposition~\ref{prop:uniform-cloud-spine}]
+The two normalization steps have different destinations. A nonzero
+cloud's private query should leave the distinguished path at its
+whole-cloud hit; a cloud-$0$ private query stays on that path but
+moves behind its whole-cloud queries.
+
+\begin{claim}[External private queries can be pushed off the spine]
+\label{clm:uniform-cloud-external-private}
+No nonzero cloud needs to lose a private point before its first whole-cloud hit.
+\end{claim}
+\begin{proof}
+Start with a proper optimal uniform tree and follow the anchor
+of cloud $0$. Suppose a private query for a nonanchor $x$ of a
+nonzero cloud occurs on this path. Its own cloud anchor is still
+on the path: $x$ agrees with its anchor on every whole-cloud query,
+and private queries never remove an anchor.
+At each step, let $r$ be the next query on the anchor-$0$ path.
+The private query isolates $x$, so the anchor-$0$ path continues in
+the other child; the state reaching $r$ is precisely that non-$x$
+answer class. Since $r$ is proper on $S\setminus\{x\}$, it remains
+proper on this state. Apply
+Lemma~\ref{lem:uniform-singleton-rotation} to move the private query
+for $x$ past $r$. This also applies when $r$ is private: it isolates
+a different point, and the same depth comparison is nonincreasing.
+Eventually a whole-cloud query separates $x$'s
+anchor from the anchor of cloud $0$: otherwise the tree would
+not identify both anchors. The point $x$ has the answer of its
+own anchor to that query. After the rotation its private query
+is in the hit branch, off the anchor-$0$ path.
+
+Each completed operation removes one external private query from
+the path and introduces none. Repeating over the finite set of such
+queries terminates; each individual push crosses only the finite
+path prefix up to the separating whole-cloud query.
+\end{proof}
+External private queries have now been removed from the spine.
+The remaining private points agree with the distinguished anchor on
+every whole-cloud query, so the same rotation postpones their chain
+without moving it to an exit.
+
+\begin{claim}[The distinguished private chain can be moved to the end]
+\label{clm:uniform-cloud-distinguished-private}
+All whole-cloud queries can precede cloud $0$'s private queries.
+\end{claim}
+\begin{proof}
+Next move each cloud-$0$ private query past the next whole-cloud
+query on the anchor path by the rotation lemma. Its point always has
+the answer of the anchor of cloud $0$ to that query, so the path
+continues through the whole-cloud query and the private query remains
+on the path behind it. This second process terminates because each
+rotation decreases by one the finite number of private/whole-cloud
+inversions (pairs in which a private query precedes a whole-cloud
+query on this path).
+Every rotation is cost nonincreasing by
+Lemma~\ref{lem:uniform-singleton-rotation}; together with
+Claim~\ref{clm:uniform-cloud-external-private}, this establishes the
+required whole-cloud-first spine.
+
+\end{proof}
+With private queries in these positions, each first-hit cloud is
+intact. We can therefore use the exact local costs and sort group
+masses; constructing the same arrangement proves that the resulting
+invoice is attainable.
+
+\begin{claim}[The normalized groups attain the matching cost]
+\label{clm:uniform-cloud-invoice}
+The minimum normalized raw cost is the expression in Theorem~\ref{thm:uniform-cloud-transfer}.
+\end{claim}
+\begin{proof}
+Claims~\ref{clm:uniform-cloud-external-private} and
+\ref{clm:uniform-cloud-distinguished-private} imply that all newly
+hit clouds are intact at their first
+whole-cloud query: no private query for any of their points
+has occurred on the path earlier. First-hit groups are whole
+singleton clouds or whole adjacent pairs, and the pairs form
+a matching $\mathcal M$: the only supplied whole-cloud queries are
+singleton queries and pair queries on forest edges, and a cloud can
+belong to only one first-hit group. A query first hitting just one
+cloud (for example, a pair query whose other endpoint has already
+left the path) can be replaced by its supplied whole-cloud singleton query,
+which has the same split on the current state. There are $|\mathcal M|$ pair groups and
+$N-2|\mathcal M|$ singleton groups, hence
+$k=N-|\mathcal M|$ whole-cloud spine queries. Every point of cloud
+$0$ traverses all of them, contributing $w_0k$, followed by its
+private-chain cost $D(w_0)$. A singleton cloud contributes $D(w_i)$
+after its first hit. By Lemma~\ref{lem:uniform-cloud-local}, a pair
+contributes $D(w_u)+D(w_v)+w_u+w_v$ after its first hit. Summing
+these local costs over disjoint groups therefore gives
+$\Delta+\sum_{\{u,v\}\in\mathcal M}(w_u+w_v)$.
+
+If the group's total masses in spine order are $a_1,\ldots,a_k$,
+their first-hit depths contribute $\sum_j j a_j$: every point in
+group $j$ passes through exactly the first $j$ whole-cloud queries
+before it exits the distinguished path. For consecutive
+$a<b$, exchanging their positions changes their contribution from
+$ja+(j+1)b$ to $jb+(j+1)a$, a decrease of $b-a>0$.
+Thus their minimum is $\mathcal C(J(\mathcal M))$ in nonincreasing
+mass order. Adding the witness, first-hit, and local contributions
+gives the stated matching cost as a lower bound. Every
+$D(w_i)$ occurs once because the first-hit groups partition the
+nonzero clouds and the final private chain accounts for cloud $0$;
+this is precisely why their sum is the matching-independent offset
+$\Delta$ of \eqref{eq:uniform-cloud-offset}.
+
+Conversely, for any matching, query its disjoint pairs and
+unmatched singleton clouds in decreasing total cloud size.
+Each selected pair query or singleton query peels exactly its group
+from the still-unhit clouds on the distinguished path; the branch
+that exits the path contains exactly that group's cloud or clouds.
+Attach the
+optimal local codes of Lemma~\ref{lem:uniform-cloud-local} in those
+branches and identify cloud $0$ by its private chain at the end. This
+realizes the decreasing-mass first-hit order and attains the matching
+invoice plus $\Delta$. Taking the minimum proves equality.
+\end{proof}
+\end{proof}
+
+\subsection{Uniform-prior strong NP-completeness}
+
+\begin{theorem}[Strong NP-completeness under a uniform prior]
+\label{thm:strong-uniform-average}
+Deciding whether the optimal expected depth is at most a rational
+threshold is strongly NP-complete under a uniform prior, even for
+integer-coordinate points on a parabola, polynomially bounded
+integer line coefficients, and $O(n)$ supplied strict binary lines.
+\end{theorem}
+
+\begin{proofstrategy}
+\begin{enumerate}
+\item Apply the exact cloud replacement to the hard weighted forest
+instances of Theorem~\ref{thm:strong-average}.
+\item Their polynomial integer weights allow explicit replication in
+polynomial time. Separated parabola clouds give strict binary queries
+with polynomial coordinates and coefficients.
+\item Convert the raw threshold to $(k+\Delta)/n$ by the transfer
+identity. A proper tree provides a polynomial certificate.
+\end{enumerate}
+\end{proofstrategy}
+
+\subsubsection{Supporting size and encoding propositions}
+
+Replacing a weight by that many points is polynomial only when
+the weights themselves are polynomially bounded. The hard weighted
+family satisfies this stronger requirement, so explicit clouds are feasible.
+
+\begin{proposition}[Polynomial replication]
+\label{prop:uniform-replication}
+For a hard weighted instance with $n_0=N+1$ hypotheses, the explicit
+cloud replacement has $n=O(n_0^5)$ points and is constructible in
+polynomial time on the restricted 3-Partition source instances.
+\end{proposition}
+
+Replication increases the number of points, and spacing the clouds
+increases their coordinates. We must bound both effects while retaining
+strict binary answers and the supplied-query geometry.
+
+\begin{proposition}[Strong geometric encoding]
+\label{prop:uniform-geometric-encoding}
+The replacement has $O(n)$ supplied strict binary lines. Its integer
+abscissae are $O(n^2)$; its ordinates and line coefficients are $O(n^4)$.
+The points remain in strictly convex position on a parabola.
+\end{proposition}
+
+The transfer identity adds a fixed cost to every matching. Adding
+the same offset to the threshold preserves the decision answer;
+polynomial threshold data and tree certificates complete the hardness
+argument.
+
+\begin{proposition}[Threshold conversion and NP certificates]
+\label{prop:uniform-threshold-certificate}
+For the hard weighted instances and thresholds of
+Theorem~\ref{thm:strong-average}, the rational threshold
+$(k+\Delta)/n$ has polynomially bounded
+numerator and denominator. Its yes/no answer agrees with that of the
+weighted raw threshold $k$ for arbitrary adaptive trees, and the
+uniform decision problem belongs to NP.
+\end{proposition}
+
+\begin{proof}[Proof of Theorem~\ref{thm:strong-uniform-average}]
+Apply Algorithm~\ref{alg:uniform-cloud-lift} to the weighted hard
+instances. Proposition~\ref{prop:uniform-threshold-certificate} and
+Theorem~\ref{thm:uniform-cloud-transfer} preserve the yes/no answer.
+Propositions~\ref{prop:uniform-replication}
+and~\ref{prop:uniform-geometric-encoding} give a polynomial reduction
+with polynomial numerical data. The certificate proposition supplies
+NP membership, proving strong NP-completeness.
+\end{proof}
+
+\subsubsection{Technical proofs of the encoding propositions}
+
+\begin{proofstrategy}
+The replication bound follows by summing the calibrated weights.
+For the geometric bound, count the queries and substitute the spacing
+bound into the point and line formulas. For threshold size and NP
+membership, use the transfer identity, bound $\Delta$ by $n^2$, and
+encode a proper identifying tree by its $n-1$ internal nodes.
+\end{proofstrategy}
+
+\begin{proof}[Proof of Proposition~\ref{prop:uniform-replication}]
+Proposition~\ref{prop:average-internal-encoding} and its calibration
+give nonzero weights $O(n_0^3)$ and
+distinguished weight $O(n_0^5)$. There are $N=n_0-1$ nonzero
+weights, so their sum is $O(n_0\cdot n_0^3)=O(n_0^4)$.
+Consequently
+$n=w_0+\sum_{i>0}w_i=O(n_0^5)+O(n_0^4)=O(n_0^5)$. The restricted source makes $n_0$ polynomial
+in its combinatorial size, so all points and queries can be listed
+explicitly in polynomial time.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:uniform-geometric-encoding}]
+There are $n-(N+1)$ private lines and at most $2N$ whole-cloud
+lines, hence $O(n)$ supplied queries. The calibrated spacing bounds
+all coordinates and coefficients as verified in the calibration
+below. On every private line the value is $2(x-t)^2-1$, which is
+$-1$ at its target and at least $1$ at every other integer
+abscissa. The whole-cloud lines have the factored values in
+the construction, with roots strictly between clouds, so their
+answers are also strict. Each nonzero cloud is separated from the
+rest by its singleton query, and each nonanchor is separated from
+every other point by its private query; hence all hypotheses are
+distinguishable. Finally, for any point $(t,t^2)$, the tangent
+$y=2tx-t^2$ satisfies $s^2-(2ts-t^2)=(s-t)^2>0$ at every other
+abscissa $s$. Thus each sampled point is an exposed vertex of the
+convex hull, proving strict convex position.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:uniform-threshold-certificate}]
+Theorem~\ref{thm:uniform-cloud-transfer} gives
+$\OPT_{\mathrm{raw}}^{\mathrm{weighted}}\le k$
+if and only if
+$\OPT_{\mathrm E}^{\mathrm{cloud}}\le(k+\Delta)/n$.
+For the weighted instance, Proposition~\ref{prop:average-internal-encoding}
+gives $k=O(n_0^6)$ and total weight $\Omega=O(n_0^5)$, where
+$n_0=N+1$. The cloud construction has $n\ge n_0$, since every weight
+is a positive integer, so $k=O(n^6)$. For $w\ge1$,
+\[
+ w^2-D(w)=\frac{w^2-w+2}{2}\ge0.
+\]
+Indeed $w^2-w=w(w-1)\ge0$, so each cloud's offset is at most
+the square of its size.
+Thus
+\[
+ \Delta\le\sum_iw_i^2
+ \le\left(\sum_iw_i\right)^2=n^2,
+\]
+where the second inequality adds the nonnegative cross products.
+Hence the unreduced numerator satisfies $k+\Delta=O(n^6)$, while
+the denominator is $n$. Both integers have $O(\log n)$ binary digits,
+and reducing the fraction can only decrease their magnitudes.
+A proper identifying tree has $n-1$ internal nodes and is a polynomial
+certificate. Evaluate each supplied answer and sum the leaf depths
+to verify its rational expected cost in polynomial time.
+\end{proof}
+
+\subsubsection{Calibration of the cloud spacing}
+
+\begin{parameterchoice}
+Choose $Q=4\max_iw_i$. Every cloud has width less than $Q/4$;
+the half-anchor boundaries of \eqref{eq:uniform-cloud-membership}
+therefore miss all points and select exactly the stated clouds.
+Since $Q\le4n$ and $N\le n$, every abscissa is $O(n^2)$.
+Squaring it bounds the ordinates by $O(n^4)$, and the formulas for
+both query types bound all integer coefficients by $O(n^4)$.
+\end{parameterchoice}
+
+\begin{remark}[Limits of the reduction]
+The cloud identity adds the same nonnegative internal cost $\Delta$
+to every matching. Let $T_w$ be the matching returned by the weighted
+EPTAS and let $T_u$ be its lifted tree on the uniform cloud instance.
+The exact cost identity gives
+\[
+ c(T_u)=c(T_w)+\Delta
+ \le(1+\varepsilon)\OPT_{\rm weighted}+\Delta
+ \le(1+\varepsilon)(\OPT_{\rm weighted}+\Delta)
+ =(1+\varepsilon)\OPT_{\rm uniform}.
+\]
+Thus the lift preserves the EPTAS as well as exact hardness. A
+constant-factor inapproximability result would need a different
+construction.
+\end{remark}

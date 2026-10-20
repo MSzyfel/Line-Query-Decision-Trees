@@ -1,0 +1,32 @@
+\begin{algorithm}[H]
+\caption{Expected-depth EPTAS for weighted singleton/pair paths and cycles}
+\label{alg:pair-eptas}
+\KwIn{Distinguished miss hypothesis, supplied singleton tests and pair graph $G$;
+positive raw weights; $0<\varepsilon\le1$.}
+\KwOut{A deterministic $(1+\varepsilon)$ approximation.}
+Set $K=\lceil3/\varepsilon\rceil$, $B=2K$,
+$H=\lceil3B/\varepsilon\rceil$, and $\eta=\varepsilon/3$\;
+Find the $H$ heaviest nonwitness vertices (or all of them if fewer exist)\;
+\For{$r=0,\ldots,K-1$}{
+  Delete edges numbered $r$ modulo $K$ on each path or cycle\;
+  Enumerate each remaining component's matching configurations\;
+  \ForEach{joint configuration on components meeting the heavy vertices}{
+    Fix these heavy configurations\;
+    Solve the light-component convex program \eqref{eq:pair-convex-relaxation}
+    to raw additive accuracy $\eta\Omega$\;
+    \ForEach{unfixed light component}{
+      Fix a configuration minimizing the conditional expected invoice,
+      using rational first and second count moments\;
+    }
+    Form the matched-pair and singleton groups; sort them by decreasing mass\;
+    Query the supplied group tests on the miss spine,
+    using one supplied singleton test to identify each pair hit\;
+    Retain the resulting tree and its exact expected cost\;
+  }
+}
+\KwRet the cheapest retained tree\;
+\end{algorithm}
+
+The component bound, heavy enumeration, convex relaxation, and
+conditional-expectation guarantee are proved in
+Theorem~\ref{thm:pair-eptas}. No fractional tree is output.

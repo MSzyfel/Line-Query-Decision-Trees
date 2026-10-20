@@ -1,0 +1,392 @@
+\section{Approximating maximum depth}
+\label{sec:worst}
+
+At a balanced state, one query immediately shrinks both child states.
+At a flat state, there may be no such query, so the algorithm first
+groups hypotheses by their answers to the hull-vertex tests and
+then discovers which group contains the target. The two parts of
+this work have different roles: the discovery schedule must finish
+soon enough for each recursively constructed child code, while the
+pattern class must be smaller than the parent. The analysis therefore
+uses an optimal path only as a comparison schedule; the algorithm
+uses the actual child-code heights when setting its deadlines.
+
+Use the fixed rational count-balance threshold and coefficients
+\[
+ \delta=\frac{245122334}{10^9},\qquad
+ \gamma=\frac{246496526}{10^8},\qquad
+ \kappa=3+\gamma=5.46496526.
+\]
+They satisfy
+\begin{equation}\label{eq:worst-parameter-conditions}
+ \gamma\log_2\frac1{1-\delta}>1,\qquad
+ \gamma\log_2\frac1\delta>5.
+\end{equation}
+These inequalities pay for balanced queries and flat-state decoding,
+respectively. They can be checked with the rational logarithm bounds
+in \eqref{eq:rational-log-bounds}.
+The probabilities in the expected-depth model are not used by this
+algorithm. Write $T_{\mathrm W}(S)$ for the code it constructs on
+$S$; its actual height is $c_{\mathrm W}(T_{\mathrm W}(S))$.
+In particular, $c_{\mathrm W}(T_{\mathrm W}(\{h\}))=0$.
+
+\begin{symboltable}
+$\delta,\ \gamma,\ \kappa$ & Count-balance threshold, coefficient of the logarithmic height credit, and approximation factor.\\
+$s,\ D,\ H^*$ & Current state size, its optimum maximum depth, and target height $3D+\lfloor\gamma\log_2s\rfloor$.\\
+$t_A,\ g_A$ & First supporting-block index on the comparison path, and actual first-positive position in the constructed schedule.\\
+$e_A^{(4)},\ e_A^{(2)}$ & Endpoint-query allowances after a general or second-query positive exit.\\
+$u_A,\ B_A,\ d_A$ & Child height plus endpoint allowance, remaining discovery budget under trial height $H$, and support-block deadline.\\
+$\mathcal F,\ \mathcal S,\ \mathcal N$ & Classes positive on the first support, first positive on the second support, and negative on both.\\
+\end{symboltable}
+
+\subsection{Pattern classes and a height credit}
+
+In a count-flat state $S$, let $s=|S|$ and choose the common witness
+$p$ of Lemma~\ref{lem:helly}. Use the normalized hull, patterns,
+and support blocks of Definitions~\ref{def:normalized-queries}
+and~\ref{def:hull-pattern}.
+Lemma~\ref{lem:hull-structure} makes $A_0$ a singleton when present.
+Every nonzero class $A$ lies in a supplied minority hull cap, so
+\[
+ |A|<\delta s.
+\]
+Write $\Phi(s)=\lfloor\gamma\log_2s\rfloor$. The same integer
+credit will pay for the maximum-depth constructions' endpoint exits.
+\begin{lemma}[Count-potential credit]\label{lem:worst-floor-credit}
+For a balanced child of size $a\le(1-\delta)s$,
+$\Phi(s)-\Phi(a)\ge1$. For a flat-state nonzero class of size
+$a<\delta s$, put $x=\log_2(s/a)$ and
+$\ell=\log_2(1/\delta)$. Then
+\begin{equation}\label{eq:worst-floor-credit}
+ \Phi(s)-\Phi(a)\ge\lfloor\gamma x\rfloor
+ \ge5+\lfloor x-\ell\rfloor.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Use $\lfloor u\rfloor-\lfloor v\rfloor\ge\lfloor u-v\rfloor$.
+The balanced claim follows from the first inequality in
+\eqref{eq:worst-parameter-conditions}. In the flat case $x>\ell$,
+and $\gamma\ge1$ and $\gamma\ell>5$ give
+$\gamma x>5+(x-\ell)$. Taking floors proves the second claim.
+\end{proof}
+
+\begin{lemma}[Pathwise supporting-prefix credit]\label{lem:height-prefix}
+Fix a proper maximum-depth-optimal tree for $S$, of height
+$D=\OPT_{\mathrm W}(S)$, and follow $p$ along its path
+$Q=(i_1,\ldots,i_q)$ to leaf $z$.
+For a pattern class $A$, let $t_A$ be the first index whose
+supporting hull vertices include a positive vertex of $A$;
+put $t_A=q+1$ if there is no such index. Then
+\[
+ \OPT_{\mathrm W}(A)\le \OPT_{\mathrm W}(S)-(t_A-1).
+\]
+There is a comparison sequence of support blocks, each a singleton
+or an adjacent pair of real hull vertices, covering every nonzero
+pattern in its first $t_A$ blocks.
+\end{lemma}
+\begin{proof}
+Before $t_A$, all supporting hull bits of each path query are zero
+on the whole class. Convexity forces the original query's frozen
+answer throughout $A$. Thus every member follows the same first
+$t_A-1$ queries, and restriction to $A$ contracts all of them.
+Every original path has length at most $D$, proving the height bound.
+This is the height credit: the class can afford a longer search for
+its pattern only to the extent that its common prefix has already
+disappeared from the restricted optimal tree.
+
+Replace each query of $Q$ by its block of real supporting
+hull vertices. A class with $t_A\le q$ is covered in block $t_A$.
+A class with no supporting hit follows the entire original path
+and must be the singleton $\{z\}$. If that pattern is nonzero,
+append one of its positive hull vertices as block $q+1$.
+Repeated supports are harmless. If the pattern is zero, it is the
+terminal core and needs no positive hit.
+\end{proof}
+
+\subsection{A pointwise pattern-decoding allowance}
+
+Once a positive hull answer is known, the pattern can be recovered
+by the endpoint method of Section~\ref{sec:endpoint-geometry}.
+For the worst-case algorithm use the explicit midpoint-dyadic
+alphabetic code in Lemma~\ref{lem:alphabetic-endpoints}, not a tree
+chosen merely for minimum expected depth.
+The code-design probabilities are uniform counts on $S$, conditioned
+on the observed transcript; they do not represent randomization of
+the algorithm.
+
+\begin{lemma}[Per-class endpoint allowance]\label{lem:endpoint-height}
+After the first positive answer, every hypothesis in a nonzero
+class $A$, of size $a$, needs at most
+\[
+ e_A^{(4)}=\left\lfloor\log_2\frac{\delta s}{a}\right\rfloor+4
+\]
+additional queries to recover the full pattern.
+If an adjacent hull vertex is already known to be negative, the
+allowance improves to
+\[
+ e_A^{(2)}=\left\lfloor\log_2\frac{\delta s}{a}\right\rfloor+2.
+\]
+There is no additional query on the zero-pattern route once the
+other patterns have been covered.
+\end{lemma}
+\begin{proof}
+The opposite-edge cut in Section~\ref{sec:endpoint-geometry} makes
+the positive pattern an ordinary interval without querying a
+negative anchor. Its two endpoints are learned by supplied hull
+thresholds.
+
+Let $R$ be the compatible set after the first positive answer.
+It lies in the positive hull cap, so $|R|<\delta s$.
+The auxiliary uniform distribution on $S$ is uniform on $R$,
+and all of $A$ remains compatible.
+If $a_L$ members of $R$ have the target's left endpoint, the two
+explicit alphabetic codes use at most
+\[
+ \log_2\frac{|R|}{a_L}+2
+ +\log_2\frac{a_L}{|A|}+2
+ =\log_2\frac{|R|}{a}+4
+ <\log_2\frac{\delta s}{a}+4
+\]
+queries on that target. The second probability is conditioned on
+the first endpoint. Their pair uniquely specifies its pattern.
+Each of the two alphabetic searches contributes the additive $2$
+in its pointwise code bound; multiplying the two conditional
+probabilities makes their logarithmic terms telescope to
+$\log_2(|R|/a)$.
+The number of queries is an integer, so the displayed upper bound
+implies the stated floor-based allowance.
+If a negative vertex is adjacent to the positive one, cut at that
+negative vertex and choose the orientation in which the positive
+one is first. The positive interval must start there, so one
+endpoint is fixed. A single alphabetic code learns the other
+endpoint and uses at most
+$\log_2(|R|/a)+2<\log_2(\delta s/a)+2$ queries.
+This gives the second allowance. The actual negative answer is
+the cut marker; no opposite-edge query or assumption about the
+origin's location is required on this route.
+In a hull of dimension at most one, the positive pattern is already
+determined after discovery.
+Singleton inference and cached answers only reduce the allowance.
+\end{proof}
+
+The next observation separates the local height test, which the
+algorithm can check, from the optimal-path comparison used later.
+\begin{lemma}[Local route-height test]\label{lem:worst-local-height}
+Suppose each full pattern class $A$ has a stored identifying code
+of actual height $h_A$. Discover a positive vertex using a fixed
+ordering, truncated when every nonzero pattern is covered, and then
+recover its full pattern. If $g_A$ is the first positive position,
+the complete route through $A$ has height at most
+\[
+ g_A+h_A+e_A^{(4)},
+\]
+or $g_A+h_A+e_A^{(2)}$ when a negative neighbor is already cached.
+If all these bounds are at most $H$, the entire tree has height at
+most $H$, including the zero-pattern route when present.
+\end{lemma}
+\begin{proof}
+The route consists of discovery, endpoint recovery, and the stored
+child code; Lemma~\ref{lem:endpoint-height} bounds its middle part.
+The all-negative route has length $\max_{A\ne A_0}g_A\le H$ and
+ends at the zero singleton. An absent zero class creates no leaf.
+For a nonsingleton state there is at least one nonzero pattern,
+since $|A_0|\le1$.
+\end{proof}
+
+\subsection{Priority greedy with an enumerated adjacent pair}
+
+The comparison path gives a deadline for every pattern class, but
+the algorithm does not know that path. It must produce one ordering
+that meets all deadlines at once. Enumerating the first adjacent
+pair fixes the circular cut; priority weights then make ordinary
+maximum-remaining-weight greedy behave like greedy for every
+deadline prefix, without requiring the comparison blocks as input.
+
+The indices $t_A,d_A$ count support blocks; $g_A$ counts actual
+vertex queries. The scheduler translates a feasible block deadline
+into a bound on that actual first-positive position.
+
+\begin{lemma}[Adjacent-block schedule]\label{lem:deadline-cover}
+Fix two distinct adjacent hull vertices $v,w$ and consider the
+pattern classes negative on both. Assign each such class an integer
+block budget $d_A\ge2$. Suppose a comparison sequence of support
+blocks starts with $\{v,w\}$, every other block is empty, a singleton,
+or an adjacent pair, and it hits $A$ in its first $d_A$ blocks.
+
+Force $v,w$ along the negative discovery route. Give a class of
+budget $d^{(j)}$ the auxiliary integer weight $M^{r-j}$, where
+$d^{(1)}<\cdots<d^{(r)}$ are the distinct budgets and $M=s+1$.
+Then complete discovery by maximum-remaining-weight greedy.
+In this one ordering every surviving class satisfies
+\[
+ g_A\le3d_A-2.
+\]
+The schedule and its first-hit times are computable in polynomial
+time without knowing the comparison blocks.
+\end{lemma}
+\begin{proof}
+Fix a budget $d=d^{(j)}$ and restrict demands to the prefix
+$\mathcal P_j=\{A:d_A\le d\}$. Every score from these demands
+is an integer multiple of $M^{r-j}$. The total weight of all later
+demands is less than $M^{r-j}$: there are at most $s$ classes and
+each later weight is at most $M^{r-j-1}$, with $s<M$.
+When there are no later demands this weight is zero.
+
+The weight of one prefix hit therefore outweighs every possible
+contribution from later-deadline classes. Thus later demands cannot
+reverse a strict comparison of prefix scores. After the forced pair,
+until the prefix is covered,
+each global greedy choice
+is a weighted greedy choice for its remaining prefix demands.
+It hits at least one of them; a zero prefix score cannot beat a
+positive prefix score. Ties may use later weights but are legitimate
+greedy ties for the prefix.
+
+Cut at $v$ and delete $w$. The remaining demands are ordinary
+intervals. Because the removed vertices were adjacent, every
+comparison pair avoiding them is still consecutive in this linear
+candidate order; a block meeting them becomes at most a singleton.
+Let $P$ be the union of the first $d$ comparison blocks with $v,w$
+removed, and let $c(P)$ count its runs of consecutive candidates.
+The first block contributes nothing. Each later block contributes
+at most three to size plus run count: an adjacent pair has size two
+and one run, while a singleton has size one and one run. Both
+quantities are subadditive under union, so
+\[
+ |P|+c(P)\le3(d-1).
+\]
+This set covers the surviving prefix. For any nonempty surviving
+prefix, its classes are negative on $v,w$ and therefore must be hit
+in a later comparison block, so $P$ is nonempty.
+If it is nonempty,
+Lemma~\ref{lem:greedy-cover-length} bounds the number of additional
+greedy choices by $|P|+c(P)-1\le3d-4$.
+Including the forced pair gives $3d-2$.
+The priority argument applies to every prefix in the same ordering.
+
+The auxiliary weights have $O(s\log s)$ bits, and greedy only sums
+and compares them using the explicit class-to-vertex incidence
+table. The block budgets are internal scheduling quantities, not
+additional constraints in the identification problem.
+\end{proof}
+
+\input{procedures/priority-trial}
+
+\subsection{The recursive maximum-depth algorithm}
+
+Algorithms~\ref{alg:priority-trial} and~\ref{alg:worst-tree} give the
+explicit construction. At a balanced state query a balanced line and
+recurse. At a flat state build every pattern child \emph{before}
+scheduling; the trial uses its actual height, not its optimum. For an
+oriented initial pair $(v,w)$, the first-positive classes satisfy the
+direct one-query and two-query height checks. For classes negative on
+both, put
+\[
+ u_A=c_{\mathrm W}(T_{\mathrm W}(A))+e_A^{(4)},\qquad
+ B_A=H-u_A,\qquad d_A=\lfloor(B_A+2)/3\rfloor.
+\]
+Reject if $B_A<4$, then use the priority weights of
+Lemma~\ref{lem:deadline-cover} and accept only if each actual first hit
+satisfies $g_A+u_A\le H$. Trial heights range from one through
+$\lfloor\kappa(s-1)\rfloor$.
+
+After a positive answer, Algorithm~\ref{alg:endpoint-code} learns the
+full pattern and the stored child identifies its hypothesis. The
+second-query exit has a cached negative neighbor and uses only one
+endpoint code. Stop discovery as soon as all nonzero patterns are
+covered; its all-negative route identifies $A_0$ when present and is
+omitted otherwise. Low-dimensional hulls use their extreme tests
+directly. Every nonsingleton pattern child is smaller, so the recursion
+is well founded.
+
+Lemma~\ref{lem:worst-local-height} makes a passing trial a complete
+height certificate. Its first two exits have discovery costs one
+and two, respectively; the latter has a cached negative neighbor.
+Every remaining class uses the general allowance. The checks use
+the explicit schedule's actual first-hit times.
+
+\input{procedures/worst-tree}
+
+\begin{theorem}[Constant deterministic maximum-depth approximation]
+\label{thm:worst}
+The preceding polynomial-time deterministic algorithm satisfies
+\[
+ c_{\mathrm W}(T_{\mathrm W}(S))\le
+ 3\OPT_{\mathrm W}(S)+\left\lfloor\gamma\log_2|S|\right\rfloor
+ \le\kappa\OPT_{\mathrm W}(S),\qquad \kappa=5.46496526<5.464966.
+\]
+It uses only supplied line queries.
+\end{theorem}
+\begin{proof}
+Induct on $s=|S|$, with a zero-cost singleton, and write
+$D=\OPT_{\mathrm W}(S)$ and $H^*=3D+\lfloor\gamma\log_2s\rfloor$.
+A balanced child has size $a\le(1-\delta)s$ and optimum at most $D$,
+so Lemma~\ref{lem:worst-floor-credit} pays for its root query.
+
+In a flat state put $L_A=\log_2(s/|A|)$ and
+$\ell=\log_2(1/\delta)$.
+
+Choose an enumerated initial pair containing the first optimal-witness
+query's supports; pad a singleton support with an adjacent real
+neighbor. This only adds coverage. The inductive bound and
+\eqref{eq:worst-floor-credit} leave at least one query after the
+general endpoint allowance, and at least three after the singly pinned
+allowance. Thus the first and second positive exits pass their direct
+height checks, including classes hit by the padding.
+
+For a class $A$ negative on both first supports, its comparison index
+has $t_A\ge2$. Lemma~\ref{lem:height-prefix} and induction give
+\[
+\begin{aligned}
+ B_A=H^*-u_A
+ &\ge3(t_A-1)+\lfloor\gamma L_A\rfloor
+                    -\lfloor L_A-\ell\rfloor-4\\
+ &\ge3t_A-2\ge4.
+\end{aligned}
+\]
+Hence $d_A=\lfloor(B_A+2)/3\rfloor\ge t_A$. The padded first block,
+the original supporting blocks, and the terminal nonzero singleton
+block when needed satisfy Lemma~\ref{lem:deadline-cover}. Its single
+priority ordering therefore obeys
+\[
+ g_A\le3d_A-2
+ =3\lfloor(B_A+2)/3\rfloor-2\le B_A.
+\]
+The last inequality follows by writing $B_A+2=3d_A+r$ with
+$r\in\{0,1,2\}$. All actual-height checks pass. Truncating at the
+last positive first hit also puts the zero singleton within $H^*$.
+A one-dimensional hull needs at most two extreme tests; its count
+potential drop pays for these directly.
+
+Thus the least passing trial has height at most $H^*$. Since
+$\log_2s\le D\le s-1$, this integer trial lies in the prescribed
+range and $H^*\le(3+\gamma)D$. No optimum is queried by the algorithm.
+\end{proof}
+
+The bound controls the longest path of one deterministic output
+tree, not an expected query count over random trees.
+There are at most $n-1$ nonterminal stages. A flat stage tries
+$O(s)$ integer bounds, each trying at most $2|V|$ oriented adjacent
+pairs and a weighted greedy completion.
+The endpoint code-design probabilities are counts, so
+the explicit alphabetic codewords have $O(\log s)$ bits.
+Geometry, child-height evaluation, schedule checks, and decoding-code
+construction all have polynomial bit complexity.
+The proper complete output tree has $n-1$ internal nodes.
+
+The two parameter constraints explain the optimized threshold.
+For this induction, the least possible coefficient is
+\[
+ \gamma(\delta)=
+ \max\left\{\frac1{\log_2(1/(1-\delta))},
+             \frac5{\log_2(1/\delta)}\right\}.
+\]
+The first term decreases with $\delta$ and the second increases,
+so their maximum is minimized where they are equal. Solving this
+equation gives $\delta=(1-\delta)^5$, at approximately
+$0.2451223337533$.
+The chosen rational parameters give a factor within $5\cdot10^{-9}$
+of the resulting minimum $5.4649652555$.
+The first pair also serves two purposes: it removes one support
+block from the greedy coverage bound, and its second-query exit is
+singly pinned, so only one endpoint code is needed.

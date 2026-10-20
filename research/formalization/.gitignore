@@ -1,0 +1,7 @@
+.lake/
+toolchain/
+vendor/
+mathlib-git/
+cache/
+*.zip
+lake-manifest.json

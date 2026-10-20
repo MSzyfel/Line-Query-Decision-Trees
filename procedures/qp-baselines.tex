@@ -1,0 +1,31 @@
+\begin{algorithm}[H]
+\caption{Internal graded continuation for the quasipolynomial algorithm}
+\label{alg:qp-baselines}
+\KwIn{State $S$; objective $o$; rational $\lambda>1$; fixed balance threshold $1/4$.}
+\KwOut{The baseline tree of Section~\ref{sec:quasipolynomial}.}
+Stop at a singleton; at a balanced state query a balanced line and recurse\;
+At a flat state compute $\HullData(S)$ and use full-hull edges as blocks\;
+Handle a hull of dimension at most one by its direct extreme tests\;
+\eIf{$o=\mathrm W$}{
+  Build the pattern children once and record their heights $C_W(A)$\;
+  \For{trial heights $H$ in increasing order}{
+    Compute $B_A=\lfloor(H-C_W(A)-z_A-5)/2\rfloor$; reject negative budgets\;
+    Round each down to the last level in $\{0\}\cup\{\lfloor\lambda^j\rfloor\}$ not exceeding it\;
+    Use deadlines $\widehat B_A+1$ and total cap $\lfloor H/2\rfloor$
+    in circular $\GradeDP$; stop at the first feasible trial\;
+  }
+}{
+  Use distinct levels $d_0=0$, $d_j=\lfloor\lambda^j\rfloor$ through a level covering $n$\;
+  Minimize the circular weighted-delay surrogate with capacities $d_j+1$
+  by $\GradeDP$ and zero-pattern mass $w(A_0)$\;
+}
+Execute the selected blocks, use pointwise endpoint codes for $\mathrm W$
+or expected endpoint codes for $\mathrm E$, and attach recursive pattern children\;
+Identify the zero singleton after the negative cover if present; omit it otherwise\;
+\KwRet the contracted tree\;
+\end{algorithm}
+
+The maximum-depth trial range is
+$1\le H\le\lceil(2\lambda+3)(|S|-1)\rceil$.
+The baseline selects its trial from these explicit tests, while the
+optimum appears in the comparison argument.

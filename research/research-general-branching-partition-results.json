@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "mass_cut_comparisons": 24,
+  "exhaustively_enumerated_small_full_policies": 99,
+  "actual_collision_frontiers_checked": 69,
+  "long_macro_occurrence_levels": [
+    {
+      "level": 0,
+      "occurrences": 1,
+      "summed_population": 12,
+      "upper_bound": 12
+    },
+    {
+      "level": 1,
+      "occurrences": 14,
+      "summed_population": 24,
+      "upper_bound": 24
+    },
+    {
+      "level": 2,
+      "occurrences": 13,
+      "summed_population": 22,
+      "upper_bound": 48
+    },
+    {
+      "level": 3,
+      "occurrences": 12,
+      "summed_population": 20,
+      "upper_bound": 96
+    },
+    {
+      "level": 4,
+      "occurrences": 11,
+      "summed_population": 18,
+      "upper_bound": 192
+    }
+  ],
+  "long_macro_cut_cost": 72,
+  "long_macro_collision_cut_cost": 63,
+  "no_unrestricted_optimum_oracle": true,
+  "no_unrestricted_approximation_claim": true
+}

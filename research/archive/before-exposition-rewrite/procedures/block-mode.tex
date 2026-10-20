@@ -1,0 +1,21 @@
+\begin{algorithm}[H]
+\caption{Rational orientation and adaptive block mode}
+\label{alg:block-mode}
+\KwIn{Newly hit exclusive masses $x,y$ and shared mass $z$; $p_*,h_*$ from Section~\ref{sec:adaptive-blocks}.}
+\KwOut{Endpoint order, mode, and certified rational saving $D$.}
+Orient the block so $x\le y$\;
+$E_*\gets\min\{(h_*/p_*)x,\ h_*(x+z),\ (h_*/p_*)z\}$\;
+\eIf{$y\ge x+y-z+E_*$}{mode $\gets$ stop; $D\gets y$\;}{
+mode $\gets$ query-both; $D\gets x+y-z+E_*$\;
+}
+Optionally compare query-both in the reversed orientation using $E_*(y,z)$,
+and retain it if its saving is larger\;
+Record this mode for the first hitting block; in query-both mode its
+stored stage learns both endpoint bits before endpoint decoding\;
+\KwRet the chosen order, mode, and $D$\;
+\end{algorithm}
+
+The new masses are calculated on the all-negative prefix before this
+block. Mode choice leaves its union and first-cover rank unchanged.
+The coarsened-transcript proof in Section~\ref{sec:adaptive-blocks}
+accounts for the credited endpoint information exactly once.

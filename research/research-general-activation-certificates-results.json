@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "n": 64,
+  "queries": 45,
+  "local_context_codes": 75,
+  "target_witness_pairs": 12,
+  "actual_multiple_witnesses_for_target_two": [
+    [
+      1
+    ],
+    [
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "cover_width_one_rejected": true,
+  "cover_width_two_accepted": true,
+  "certified_non_equality_queries": 33,
+  "charged_mean_at_two_per_factor": "25/4",
+  "count_states": 55,
+  "actual_work_at_two_per_factor": 400,
+  "charge_vectors_tested": 27,
+  "successful_charge_vectors": 18,
+  "best_portfolio_work": 400,
+  "all_codes_executed_on_every_hypothesis": true,
+  "complemented_physical_questions_included": true,
+  "full_factorization_supplied_in_this_checker": true,
+  "no_unrestricted_OPT_oracle": true
+}

@@ -1,0 +1,30 @@
+\begin{algorithm}[H]
+\caption{\HybridTree: general polynomial maximum depth}
+\label{alg:hybrid-tree}
+\KwIn{State $S$, original size $n$, fixed global cap
+$L=R+1$, where $q=\lceil\log_2 n\rceil$ and $R=\lfloor\gamma q/(\gamma-1)\rfloor$,
+and the count parameters of Section~\ref{sec:worst}.}
+\KwOut{A tree satisfying Theorem~\ref{thm:poly-slot-worst}.}
+Stop at a singleton; at a count-balanced state query a balanced line and recurse\;
+Compute $\HullData(S)$ and build each child's hybrid code once\;
+Handle a low-dimensional hull directly; otherwise record child heights $h_A$\;
+\For{$H=1,\ldots,\lfloor(3+\gamma)(|S|-1)\rfloor$}{
+  Try $\PriorityTrial$ with these stored children\;
+  Set $z_A=\lfloor\log_2(\delta|S|/|A|)\rfloor$ and
+  $B_A=\lfloor(H-h_A-z_A-5)/2\rfloor$\;
+  \If{all $B_A\ge0$}{
+    Try circular $\SlotDP$ on full-hull-edge demands with deadlines $B_A+1$
+    and slot cap $\min\{L,\lfloor H/2\rfloor\}$\;
+    Optionally also try the complete-exit version of $\SlotDP$\;
+  }
+  \If{any alternative passes}{
+    Attach its endpoint decoders and the stored child trees\;
+    Terminate the negative cover at $A_0$ when present; omit that leaf otherwise\;
+    \KwRet a passing tree, contracting constant queries\;
+  }
+}
+\end{algorithm}
+
+The global cap is inherited unchanged by every child. The priority
+fallback proves that a trial always passes; the algorithm never tests
+the unknown condition $\OPT_W(S)\le R$.

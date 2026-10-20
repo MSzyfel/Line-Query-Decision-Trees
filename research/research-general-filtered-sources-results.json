@@ -1,0 +1,205 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "M": 4,
+      "selector_coordinates": 2,
+      "body_sizes": [
+        2
+      ],
+      "D": 2,
+      "P": 2,
+      "n": 32,
+      "m": 26,
+      "incumbent_raw": 172,
+      "filtered_lift_raw": 176,
+      "proved_upper_raw": "208",
+      "proved_approximation_ratio": "39/10",
+      "actual_ratio_to_joint_lower": "33/10",
+      "fiber_hypothesis_executions": 32,
+      "max_fiber_depth": 1,
+      "P_B": 2,
+      "unfiltered_slice_uses_nonprojection_gate": true,
+      "joint_resource": {
+        "pair_edges": 96,
+        "per_hypothesis_query_capacities": 832,
+        "maximum_exact_load": "2/3",
+        "joint_lower_raw": "160/3"
+      },
+      "whole_polynomial_menu": {
+        "frozen_source_states": 31,
+        "thresholds": 3,
+        "source_candidates": 93,
+        "incumbent_cost": 172,
+        "result_cost": 172
+      }
+    },
+    {
+      "M": 6,
+      "selector_coordinates": 2,
+      "body_sizes": [
+        4
+      ],
+      "D": 2,
+      "P": 2,
+      "n": 144,
+      "m": 88,
+      "incumbent_raw": 1236,
+      "filtered_lift_raw": 1248,
+      "proved_upper_raw": "1536",
+      "proved_approximation_ratio": "32/9",
+      "actual_ratio_to_joint_lower": "26/9",
+      "fiber_hypothesis_executions": 144,
+      "max_fiber_depth": 2,
+      "P_B": 4,
+      "unfiltered_slice_uses_nonprojection_gate": true,
+      "joint_resource": {
+        "pair_edges": 720,
+        "per_hypothesis_query_capacities": 12672,
+        "maximum_exact_load": "1",
+        "joint_lower_raw": "432"
+      },
+      "whole_polynomial_menu": null
+    },
+    {
+      "M": 8,
+      "selector_coordinates": 2,
+      "body_sizes": [
+        6
+      ],
+      "D": 2,
+      "P": 2,
+      "n": 384,
+      "m": 214,
+      "incumbent_raw": 4265,
+      "filtered_lift_raw": 4384,
+      "proved_upper_raw": "5664",
+      "proved_approximation_ratio": "531/148",
+      "actual_ratio_to_joint_lower": "411/148",
+      "fiber_hypothesis_executions": 384,
+      "max_fiber_depth": 3,
+      "P_B": 6,
+      "unfiltered_slice_uses_nonprojection_gate": true,
+      "joint_resource": {
+        "pair_edges": 2688,
+        "per_hypothesis_query_capacities": 82176,
+        "maximum_exact_load": "1",
+        "joint_lower_raw": "4736/3"
+      },
+      "whole_polynomial_menu": null
+    },
+    {
+      "M": 4,
+      "selector_coordinates": 3,
+      "body_sizes": [
+        2
+      ],
+      "D": 2,
+      "P": 2,
+      "n": 128,
+      "m": 78,
+      "incumbent_raw": 976,
+      "filtered_lift_raw": 992,
+      "proved_upper_raw": "1120",
+      "proved_approximation_ratio": "105/26",
+      "actual_ratio_to_joint_lower": "93/26",
+      "fiber_hypothesis_executions": 128,
+      "max_fiber_depth": 1,
+      "P_B": 2,
+      "unfiltered_slice_uses_nonprojection_gate": true,
+      "joint_resource": {
+        "pair_edges": 576,
+        "per_hypothesis_query_capacities": 9984,
+        "maximum_exact_load": "2/3",
+        "joint_lower_raw": "832/3"
+      },
+      "whole_polynomial_menu": null
+    },
+    {
+      "M": 6,
+      "selector_coordinates": 2,
+      "body_sizes": [
+        4,
+        4
+      ],
+      "D": 2,
+      "P": 2,
+      "n": 576,
+      "m": 164,
+      "incumbent_raw": 6144,
+      "filtered_lift_raw": 6144,
+      "proved_upper_raw": "8448",
+      "proved_approximation_ratio": "44/13",
+      "actual_ratio_to_joint_lower": "32/13",
+      "fiber_hypothesis_executions": 576,
+      "max_fiber_depth": 4,
+      "P_B": 8,
+      "unfiltered_slice_uses_nonprojection_gate": true,
+      "joint_resource": {
+        "pair_edges": 2880,
+        "per_hypothesis_query_capacities": 94464,
+        "maximum_exact_load": "1",
+        "joint_lower_raw": "2496"
+      },
+      "whole_polynomial_menu": null
+    },
+    {
+      "M": 10,
+      "selector_coordinates": 2,
+      "body_sizes": [
+        8
+      ],
+      "D": 2,
+      "P": 2,
+      "n": 800,
+      "m": 328,
+      "incumbent_raw": 10966,
+      "filtered_lift_raw": 11040,
+      "proved_upper_raw": "13440",
+      "proved_approximation_ratio": "84/25",
+      "actual_ratio_to_joint_lower": "69/25",
+      "fiber_hypothesis_executions": 800,
+      "max_fiber_depth": 3,
+      "P_B": 6,
+      "unfiltered_slice_uses_nonprojection_gate": true,
+      "joint_resource": {
+        "pair_edges": 7200,
+        "per_hypothesis_query_capacities": 262400,
+        "maximum_exact_load": "1",
+        "joint_lower_raw": "4000"
+      },
+      "whole_polynomial_menu": null
+    },
+    {
+      "M": 8,
+      "selector_coordinates": 2,
+      "body_sizes": [
+        6,
+        6
+      ],
+      "D": 2,
+      "P": 2,
+      "n": 2304,
+      "m": 412,
+      "incumbent_raw": 33029,
+      "filtered_lift_raw": 32448,
+      "proved_upper_raw": "47808",
+      "proved_approximation_ratio": "2241/628",
+      "actual_ratio_to_joint_lower": "1521/628",
+      "fiber_hypothesis_executions": 2304,
+      "max_fiber_depth": 6,
+      "P_B": 12,
+      "unfiltered_slice_uses_nonprojection_gate": true,
+      "joint_resource": {
+        "pair_edges": 16128,
+        "per_hypothesis_query_capacities": 949248,
+        "maximum_exact_load": "1",
+        "joint_lower_raw": "40192/3"
+      },
+      "whole_polynomial_menu": null
+    }
+  ],
+  "no_exact_OPT_or_subset_oracle": true,
+  "whole_menu_run_only_on_smallest_case": true,
+  "no_unrestricted_approximation_claim": true
+}

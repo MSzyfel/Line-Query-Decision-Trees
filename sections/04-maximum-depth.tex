@@ -1,0 +1,482 @@
+\section{Maximum-depth scheduling ingredients}
+\label{sec:worst}
+
+The maximum-depth algorithm of Section~\ref{sec:polynomial-slots}
+constructs its pattern children first and then schedules their discovery.
+This section isolates its local tools. The priority scheduler extends
+the construction beyond the exact scheduler's logarithmic rank cap by
+supplying a passing height trial. All branch decisions use hypothesis
+counts and supplied-line geometry.
+
+Let $\delta\in(0,1/3)$ be the count-balance threshold and let $\gamma>2$
+be the coefficient of the count potential
+$\Phi(s)=\lfloor\gamma\log_2s\rfloor$. Assume
+\begin{equation}\label{eq:worst-parameter-conditions}
+ \gamma\log_2\frac1{1-\delta}\ge1,\qquad
+ \gamma\log_2\frac1\delta\ge5.
+\end{equation}
+The first inequality pays for a balanced query; the second pays for
+endpoint recovery at a flat state. Section~\ref{sec:worst-calibration}
+chooses the constants at the point where these two credits balance.
+
+For a state $S$, write $C_W(S)$ for the height of the tree returned
+by the hybrid recursive algorithm. When a proof refers to a stored
+child code, its height is the actual height of that code.
+
+\subsection{Local credits and the priority fallback}
+
+\begin{proofstrategy}
+\begin{enumerate}
+\item Restrict an optimal tree to a pattern class: its common witness
+prefix disappears and gives that class a discovery deadline.
+\item Recover the pattern with supplied endpoint comparisons; the
+count-potential drop pays for this decoder.
+\item Use priorities to meet all deadline prefixes in one ordering.
+Every accepted ordering is checked against actual stored child heights.
+\end{enumerate}
+\end{proofstrategy}
+
+In a count-flat state $S$ of size $s$, use the common witness and hull
+patterns of Lemmas~\ref{lem:helly} and~\ref{lem:hull-structure}.
+Every nonzero class $A$ has $a=|A|<\delta s$; the zero class $A_0$
+is empty or a singleton. Write
+\[
+ z_A=\lfloor\log_2(\delta s/a)\rfloor.
+\]
+All child heights below come from already constructed codes; the
+optimal tree appears only in the comparison argument.
+
+The recursion needs integer query allowances, while its potential uses
+logarithms. The following credit converts size reduction into a whole
+query at a balanced split and enough whole queries for a flat decoder.
+
+\begin{proposition}[Integer count credit]\label{lem:worst-floor-credit}
+A balanced child of size $a\le(1-\delta)s$ satisfies
+$\Phi(s)-\Phi(a)\ge1$. A nonzero flat-state class satisfies
+\begin{equation}\label{eq:worst-floor-credit}
+ \Phi(s)-\Phi(a)\ge\lfloor\gamma\log_2(s/a)\rfloor\ge z_A+5.
+\end{equation}
+\end{proposition}
+
+For a flat state, the optimal tree supplies an analytical comparison
+schedule. Its initial witness answers are constant on a class until
+that class meets a support; restriction turns this delay into saved
+height inside the class.
+
+\begin{proposition}[Supporting-prefix credit]\label{lem:height-prefix}
+Follow a common witness in a proper optimal tree of height
+$D=\OPT_W(S)$ along a path of length $r$. Let $t_A$ be the first
+path query whose real hull supports meet the positive pattern of $A$;
+put $t_A=r+1$ if none does. Then
+\[
+ \OPT_W(A)\le D-(t_A-1).
+\]
+The supporting singleton or adjacent-pair blocks cover every nonzero
+class by its index $t_A$, after appending one positive support for an
+uncovered terminal nonzero singleton when necessary.
+\end{proposition}
+
+A first positive answer locates one vertex of the pattern. The endpoint
+decoder then recovers the full interval, with a pointwise cost bound so
+maximum depth controls each class separately.
+
+\begin{proposition}[Legal endpoint allowances]\label{lem:endpoint-height}
+After a first positive hull answer, the pointwise alphabetic endpoint
+codes recover class $A$ with at most
+\[
+ e_A^{(4)}=z_A+4
+\]
+additional supplied queries. If a neighboring hull vertex is already
+known negative, one endpoint is fixed and the allowance is
+$e_A^{(2)}=z_A+2$. A hull of dimension at most one needs no further
+query after discovery.
+\end{proposition}
+
+Scheduling can now use the codes already built for the children.
+Adding their actual heights to discovery and endpoint recovery gives
+a directly checkable route certificate, including the all-negative route.
+
+\begin{proposition}[Local route-height certificate]\label{lem:worst-local-height}
+Let $h_A$ be a stored class code's actual height. Discover a positive
+vertex in a fixed ordering truncated when all nonzero patterns are
+covered. If its first positive position for $A$ is $g_A$, the whole
+route through $A$ has height at most $g_A+h_A+e_A^{(4)}$, or
+$g_A+h_A+e_A^{(2)}$ on a pinned exit. If every such bound is at most
+$H$, the whole tree has height at most $H$, including its zero route
+when that class exists.
+\end{proposition}
+
+The classes have different deadlines, yet the algorithm must choose
+one query order. Integer priorities make later deadlines unable to
+interfere with greedy progress on any earlier deadline prefix.
+
+\begin{proposition}[One ordering for all block deadlines]
+\label{lem:deadline-cover}
+Force an oriented adjacent real pair $(v,w)$ first. Consider only
+classes negative on both, with integer block deadlines $d_A\ge2$.
+Suppose a comparison sequence begins with $\{v,w\}$ and hits $A$
+within $d_A$ singleton or adjacent-pair blocks. Sort the distinct
+budgets as $d^{(1)}<\cdots<d^{(r)}$, give a deadline-$d^{(j)}$ class
+weight $(s+1)^{r-j}$, and complete by maximum-remaining-weight greedy.
+This polynomial-time ordering satisfies $g_A\le3d_A-2$
+for every surviving class simultaneously.
+\end{proposition}
+
+The endpoint and prefix credits turn the optimal witness path into
+deadlines, and the priority ordering meets those deadlines. It therefore
+provides a passing trial even when the capped exact scheduler cannot
+certify the stronger bound.
+
+\begin{proposition}[Priority fallback height]
+\label{thm:worst}
+Suppose stored pattern children satisfy the fallback bound
+\[
+h_A\le3\OPT_W(A)+\Phi(|A|).
+\]
+At a flat state,
+Algorithm~\ref{alg:priority-trial} has a passing trial at
+\[
+ H^*=3\OPT_W(S)+\Phi(s).
+\]
+A balanced query also fits this height if its two stored children
+obey the same bound. Consequently the hybrid recursion can always
+retain $C_W(S)\le3\OPT_W(S)+\Phi(s)$ as its fallback invariant.
+\end{proposition}
+
+For a trial $H$ and a forced pair, first-positive exits must pass
+$1+h_A+e_A^{(4)}\le H$, and second-query exits must pass
+$2+h_A+e_A^{(2)}\le H$. Classes negative on both receive
+\[
+ u_A=h_A+e_A^{(4)},\qquad B_A=H-u_A,\qquad
+ d_A=\lfloor(B_A+2)/3\rfloor.
+\]
+Reject any $B_A<4$ and accept only after checking the resulting
+actual first-hit positions against $g_A+u_A\le H$.
+These tests describe an executable height certificate; the optimal
+comparison blocks are used only to prove that some trial passes.
+
+\input{procedures/priority-trial}
+
+\subsection{Technical proofs of the local ingredients}
+
+\begin{proof}[Proof of Proposition~\ref{lem:worst-floor-credit}]
+For real $x,y$, write $x-y=k+\theta$ with integer
+$k=\lfloor x-y\rfloor$ and $0\le\theta<1$. Then
+$\lfloor x\rfloor=\lfloor y+k+\theta\rfloor
+\ge\lfloor y\rfloor+k$, proving the floor-difference inequality.
+Apply it to the two count potentials:
+\[
+ \Phi(s)-\Phi(a)
+ \ge\left\lfloor\gamma\log_2(s/a)\right\rfloor.
+\]
+Indeed, the difference of the unfloored logarithms is
+$\gamma\log_2s-\gamma\log_2a=\gamma\log_2(s/a)$, which is the
+argument to the floor-difference inequality. For a balanced child,
+$a\le(1-\delta)s$, hence $s/a\ge1/(1-\delta)$. The first
+condition in \eqref{eq:worst-parameter-conditions} therefore gives
+\[
+ \gamma\log_2(s/a)
+ \ge\gamma\log_2\frac1{1-\delta}\ge1.
+\]
+Since every real number at least one has floor at least one, the
+balanced-child claim follows, including the equality case.
+For a flat class put $x=\log_2(s/a)$ and
+ $\ell=\log_2(1/\delta)$. Since $a<\delta s$, we have $x>\ell$.
+The calibration gives $\gamma\ell=5$, so, using $\gamma>1$,
+\[
+ \gamma x=\gamma\ell+\gamma(x-\ell)
+          =5+\gamma(x-\ell)>5+(x-\ell).
+\]
+Monotonicity of the floor therefore gives
+\[
+ \left\lfloor\gamma x\right\rfloor
+ \ge\lfloor5+x-\ell\rfloor
+ =5+\lfloor\log_2(\delta s/a)\rfloor=5+z_A,
+\]
+which proves the flat credit including its integer rounding.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{lem:height-prefix}]
+There are two distinct steps. Common answers give a restriction credit;
+supporting blocks then cover the positive classes with deadlines measured
+from the same witness path. The terminal leaf needs separate attention
+because the witness may end at a real hypothesis with a nonzero pattern.
+Claims~\ref{clm:height-prefix-constant} and
+\ref{clm:height-comparison-cover} establish these two steps, respectively.
+
+\begin{claim}[The common prefix disappears under restriction]
+\label{clm:height-prefix-constant}
+Every member of $A$ follows the witness's first $t_A-1$ answers.
+\end{claim}
+\begin{proof}
+For every index $i<t_A$, no support of the $i$th query meets the positive
+pattern of $A$. Lemma~\ref{lem:hull-structure} then makes its answer
+constant on $A$, with the same value as on the witness. This includes a
+query whose support uses the free origin marker. Thus every member of $A$
+traverses the same first $t_A-1$ nodes of the optimal tree.
+
+Restrict that tree to $A$. Since $A$ is nonempty and each of those answers
+is constant, each corresponding node contracts to its witness-side child.
+The remaining tree identifies $A$ and has height at most
+$D-(t_A-1)$: each original path had length at most $D$, and the shared
+prefix has been removed from every such path. Minimizing over identifying
+trees on $A$ proves the inequality.
+
+\end{proof}
+The restriction credit must come with a cover that can be compared
+against a scheduler. Queries along the path cover every class except,
+possibly, the hypothesis at its terminal leaf.
+
+\begin{claim}[The supporting blocks form a comparison cover]
+\label{clm:height-comparison-cover}
+Only an uncovered terminal nonzero singleton needs an appended block.
+\end{claim}
+\begin{proof}
+Each class with $t_A\le r$ is hit by that path query's supports.
+By Claim~\ref{clm:height-prefix-constant}, an unhit class follows
+the entire original path and is therefore the
+single leaf hypothesis reached by the witness. If its pattern is
+nonzero, append a positive hull vertex at index $r+1$; if it is zero,
+the witness leaf already completes the cover. Retaining the first
+occurrence of a repeated support preserves every first-hit deadline.
+\end{proof}
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{lem:endpoint-height}]
+The query-free cut of Lemma~\ref{lem:legal-endpoint-queries} makes the
+positive pattern an ordinary interval. Let $R$ be the hypotheses
+compatible with the first positive transcript, so $|R|<\delta s$.
+Use uniform counts, conditioned on that transcript, as code-design
+probabilities, while the algorithm itself follows the deterministic
+construction.
+The two conditional endpoint probabilities multiply to the probability
+of the full class. Their logarithmic query bounds therefore telescope
+to one bound depending on the class size.
+Claims~\ref{clm:height-two-endpoints} and~\ref{clm:height-pinned-endpoint}
+establish the two allowances, according to whether discovery has
+already fixed a boundary.
+
+\begin{claim}[Two endpoint searches telescope their probabilities]
+\label{clm:height-two-endpoints}
+If $a_L$ compatible hypotheses have the target's left endpoint, its
+full pattern is learned in fewer than $\log_2(\delta s/a)+4$ queries.
+\end{claim}
+\begin{proof}
+Lemma~\ref{lem:legal-endpoint-queries} makes both searches legal.
+Applying the pointwise bound of Lemma~\ref{lem:alphabetic-endpoints}
+to the first endpoint and then to the conditional second endpoint gives
+\[
+ \log_2\frac{|R|}{a_L}+2+
+ \log_2\frac{a_L}{a}+2
+ =\log_2\frac{|R|}{a}+4<\log_2\frac{\delta s}{a}+4.
+\]
+The logarithms add because
+$(|R|/a_L)(a_L/a)=|R|/a$: the second distribution is conditioned
+on the learned first endpoint. The endpoint pair uniquely specifies
+the pattern, while the strict inequality uses $|R|<\delta s$:
+the first positive transcript confines $R$ to one minority cap.
+If $q_A$ is the integer number of endpoint queries,
+the displayed strict bound gives
+$q_A<\log_2(\delta s/a)+4<z_A+5$. Thus
+$q_A\le z_A+4$, including when the logarithm itself is an integer.
+\end{proof}
+A negative neighbor supplies more information than ordinary discovery:
+it fixes an endpoint. This removes an entire endpoint search and gives
+the extra saving needed on the second exit of the initial pair.
+
+\begin{claim}[A cached negative neighbor removes one search]
+\label{clm:height-pinned-endpoint}
+A pinned positive vertex fixes one interval endpoint.
+\end{claim}
+\begin{proof}
+Cut at the negative neighbor and orient the order to place the
+positive vertex first. Lemma~\ref{lem:legal-endpoint-queries}
+fixes that boundary; hence Lemma~\ref{lem:alphabetic-endpoints}
+requires only one search to learn the other endpoint
+in fewer than $\log_2(\delta s/a)+2$ queries. Writing its integer
+query count as $q_A$, we have
+$q_A<\log_2(\delta s/a)+2<z_A+3$, hence $q_A\le z_A+2$.
+The negative neighbor is a real cached answer, so no anchor
+query is added. In dimension at most one the positive pattern is
+already determined; inference and cached answers can only lower cost.
+\end{proof}
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{lem:worst-local-height}]
+A route through $A$ makes at most $g_A$ discovery queries,
+then uses the endpoint allowance of Proposition~\ref{lem:endpoint-height},
+and finally follows a stored
+code of height $h_A$. Its height is their sum, bounded by $H$ by
+hypothesis. The ordering is truncated as soon as all nonzero classes
+are covered, namely after at most $\max_{A\ne A_0}g_A$ queries.
+Since $h_A$ and both endpoint allowances are nonnegative, the route
+tests imply $g_A\le H$ for each nonzero class. Thus the all-negative
+route also has length at most $H$ and ends at the zero singleton. If that class is absent its leaf is
+omitted. A nonsingleton state has a nonzero pattern because
+Lemma~\ref{lem:hull-structure} gives $|A_0|\le1$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{lem:deadline-cover}]
+The proof separates priorities from geometry. First, the priorities
+make the global order greedy for every nested deadline prefix. Then
+an interval-cover bound limits the number of queries for each prefix.
+
+\begin{claim}[Later deadlines cannot change a prefix greedy choice]
+\label{clm:deadline-priority-prefix}
+The global ordering is weighted greedy for every surviving deadline
+prefix until that prefix is covered.
+\end{claim}
+\begin{proof}
+Put $U=(s+1)^{r-j}$. A class of earlier or equal deadline has
+weight $U(s+1)^{j-i}$ for some $i\le j$, so every candidate's
+prefix score is an integer multiple of $U$. For $j<r$, all later
+classes together have weight at most
+\[
+ s(s+1)^{r-j-1}=\frac{s}{s+1}U<U;
+\]
+for $j=r$ their total is zero. Deleting already hit classes can only
+lower these totals. If one candidate's prefix score exceeds another's,
+it exceeds it by at least $U$; no difference in their later-class
+scores can reverse that comparison. Therefore a global score maximizer
+also maximizes the prefix score. A nonzero prefix score is at least
+$U$ and beats every zero prefix score while demands remain. Global
+tie-breaking chooses among legitimate prefix greedy ties.
+This applies to every deadline prefix at every step of the same order.
+\end{proof}
+The prefix argument determines which demands each greedy choice serves.
+To bound the number of choices, use the forced adjacent pair to cut the
+line of blocks and remove its first block; the remaining cover's size
+and runs then pay for every later greedy choice.
+
+\begin{claim}[The first pair leaves at most $3d-4$ later greedy choices]
+\label{clm:deadline-prefix-length}
+A nonempty deadline-$d$ prefix finishes by actual position $3d-2$.
+\end{claim}
+\begin{proof}
+Cut at $v$ and delete its adjacent vertex $w$. Surviving demands are
+ordinary intervals. Remove these two vertices from the union $P$
+of the first $d$ comparison blocks. Each of the other $d-1$ blocks
+contributes at most three to $|P|+c(P)$, where $c(P)$ counts runs:
+a pair contributes at most two vertices and one run, and a singleton
+at most one vertex and one run. Deleting the two adjacent cut vertices
+cannot split any surviving adjacent-pair block. For finite sets
+$U,V$ on a line, $|U\cup V|\le|U|+|V|$ and
+$c(U\cup V)\le c(U)+c(V)$: joining runs cannot create a new run.
+Applying these inequalities to the remaining $d-1$ blocks gives
+$|P|+c(P)\le3(d-1)$. Every prefix demand misses the forced pair
+and was hit by one of these remaining blocks, so $P$ still covers it.
+By Claim~\ref{clm:deadline-priority-prefix}, the actual later
+choices form a greedy sequence for this prefix. Consequently
+Lemma~\ref{lem:greedy-cover-length} bounds their number by
+\[
+ |P|+c(P)-1\le3(d-1)-1=3d-4.
+\]
+The inequality uses the size-plus-run bound just established;
+the equality simplifies the resulting integer allowance.
+Adding the two forced queries gives position at most $3d-2$. An empty prefix needs no further choice.
+\end{proof}
+The auxiliary weights have $O(s\log s)$ bits, and their incidence
+scores are computed from the explicit class-to-vertex table. Thus the
+ordering and actual first-hit times have polynomial bit complexity.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{thm:worst}]
+Put $D=\OPT_W(S)$. For a balanced child $A$, restriction and
+count credit, specifically Lemma~\ref{lem:restriction} and
+Proposition~\ref{lem:worst-floor-credit}, give
+\[
+ \OPT_W(A)\le D,\qquad \Phi(|A|)\le\Phi(s)-1.
+\]
+Thus its complete route satisfies
+\[
+ 1+h_A\le1+3\OPT_W(A)+\Phi(|A|)
+          \le3D+\Phi(s)=H^*.
+\]
+The first inequality is the stored-child invariant. The second
+substitutes the two preceding bounds, so the potential drop pays
+for the new root query.
+At a flat state,
+enumerate an initial pair containing the first optimal-witness query's
+supports; pad a singleton support by an adjacent real neighbor.
+The first two exits must be checked directly: the deadline scheduler
+handles only classes that miss both initial queries. The cached
+negative answer makes the second positive exit cheaper to decode.
+
+\begin{claim}[Both initial positive exits fit $H^*$]
+\label{clm:fallback-initial-exits}
+The first-query exit has at least one query of discovery credit;
+the pinned second-query exit has at least three.
+\end{claim}
+\begin{proof}
+For either class, Lemma~\ref{lem:restriction} gives
+$\OPT_W(A)\le D$. Using the stored-child invariant and then
+Proposition~\ref{lem:worst-floor-credit},
+\[
+ H^*-h_A\ge3D+\Phi(s)
+                -3\OPT_W(A)-\Phi(|A|)
+             \ge\Phi(s)-\Phi(|A|)
+             \byref{Prop.}{lem:worst-floor-credit}{\ge}z_A+5.
+\]
+The middle inequality drops the nonnegative difference
+$3(D-\OPT_W(A))$. Thus the first positive exit satisfies
+$1+h_A+(z_A+4)\le H^*$. By Proposition~\ref{lem:endpoint-height},
+the second positive exit has a cached negative neighbor and only
+the smaller allowance, so
+$2+h_A+(z_A+2)\le H^*-1\le H^*$.
+Neither calculation assumes that the class meets the original support;
+restriction and flat count credit also cover classes hit only by
+the padding vertex.
+\end{proof}
+For the remaining classes, the supporting-prefix credit becomes an
+integer block deadline. The floor below preserves that credit exactly,
+so the comparison schedule meets the deadlines computed from actual
+child heights.
+
+\begin{claim}[Every later class meets its computed deadline]
+\label{clm:fallback-later-deadline}
+For a class negative on the initial pair, $d_A\ge t_A$.
+\end{claim}
+\begin{proof}
+Here $t_A\ge2$, because this class misses the first query's
+supports. Proposition~\ref{lem:height-prefix} and the actual
+child invariant give
+$h_A\le3[D-(t_A-1)]+\Phi(|A|)$. Substituting this into the
+budget and then using count credit yields
+\begin{align*}
+ B_A&=3D+\Phi(s)-h_A-(z_A+4)\\
+    &\ge3(t_A-1)+\Phi(s)-\Phi(|A|)-(z_A+4)\\
+    &\byref{Prop.}{lem:worst-floor-credit}{\ge}3(t_A-1)+(z_A+5)-(z_A+4)
+      =3t_A-2\ge4.
+\end{align*}
+Hence $(B_A+2)/3\ge t_A$; since $t_A$ is an integer,
+$d_A=\lfloor(B_A+2)/3\rfloor\ge t_A$.
+The padded first block and the remaining comparison blocks, including
+the terminal singleton block if needed, satisfy
+Proposition~\ref{lem:deadline-cover}. Its ordering has
+\[
+ g_A\le3d_A-2=3\lfloor(B_A+2)/3\rfloor-2\le B_A.
+\]
+The first inequality is Proposition~\ref{lem:deadline-cover};
+the equality substitutes the computed deadline.
+To justify the last inequality, write $B_A+2=3d_A+r_A$ with
+$r_A\in\{0,1,2\}$. Then $3d_A-2=B_A-r_A\le B_A$,
+so adding $u_A=h_A+e_A^{(4)}$ gives $g_A+u_A\le H^*$.
+\end{proof}
+The deadline argument bounds every route that uses block scheduling,
+including the truncated zero route, by
+Proposition~\ref{lem:worst-local-height} and
+Claims~\ref{clm:fallback-initial-exits}--\ref{clm:fallback-later-deadline}.
+When the hull has dimension at most one, the scheduler is unnecessary:
+Lemma~\ref{lem:legal-endpoint-queries} shows that two extreme tests
+determine the pattern and leave no endpoints to decode. A nonzero class
+then costs at most $2+h_A$. The stored-child, restriction, and
+count-credit calculation from Claim~\ref{clm:fallback-initial-exits}
+gives
+\[
+ 2+h_A\le3D+\Phi(s)-z_A-3\le H^*.
+\]
+The second inequality uses $z_A\ge0$ and the definition of $H^*$.
+The zero route also ends after at most the two extreme tests. Thus the
+local fallback bound holds in every dimension, and induction gives the
+stated invariant for the hybrid tree.
+\end{proof}

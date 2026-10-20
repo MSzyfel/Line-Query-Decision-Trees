@@ -1,0 +1,21 @@
+﻿\begin{algorithm}[H]
+\caption{Rational choice between stopping and querying both endpoints}
+\label{alg:block-mode}
+\KwIn{New exclusive masses $x,y$, shared mass $z$;
+calibrated $p_*$ and $h_*=1-2p_*$.}
+\KwOut{Stored endpoint order, mode, and rational saving $D$.}
+Label the endpoints so $x\le y$\;
+$E\gets\min\{(h_*/p_*)y,\ h_*(y+z),\ (h_*/p_*)z\}$\;
+\eIf{$y\ge x+y-z+E$}{
+ Record stop mode with the $x$ endpoint first; $D\gets y$\;
+}{
+ Record query-both mode with the $y$ endpoint first;
+ $D\gets x+y-z+E$\;
+}
+\KwRet the recorded order, mode, and $D$\;
+\end{algorithm}
+
+These new masses are computed on the all-negative prefix before the
+block. In the stored discovery stage, stop mode ends at the first
+positive answer; query-both mode learns both bits before endpoint
+recovery. Their union and first-cover rank are the same.

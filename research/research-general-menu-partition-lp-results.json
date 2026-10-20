@@ -1,0 +1,877 @@
+{
+  "checked_points": 29,
+  "total_virtual_occurrences": 1442,
+  "total_productive_applications": 31,
+  "uses_an_LP_optimizer": false,
+  "results": [
+    {
+      "n": 3,
+      "occurrences": 10,
+      "mass_by_level": [
+        3,
+        6,
+        4
+      ],
+      "maximum_menu": 2,
+      "horizon": 2,
+      "LP_point_objective": "16/3",
+      "actual_work": 5,
+      "size_cap": 1,
+      "accepted_cells": 3,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 3,
+          "actual_work": 5,
+          "settled": 3,
+          "profit": "1/3"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "20/9",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 4,
+      "occurrences": 22,
+      "mass_by_level": [
+        4,
+        8,
+        14,
+        4
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "12046/955",
+      "actual_work": 8,
+      "size_cap": 1,
+      "accepted_cells": 4,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 4,
+          "actual_work": 8,
+          "settled": 4,
+          "profit": "4406/955"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "539/191",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 4,
+      "occurrences": 10,
+      "mass_by_level": [
+        4,
+        8,
+        6,
+        0
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "31/6",
+      "actual_work": 4,
+      "size_cap": 2,
+      "accepted_cells": 2,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 4,
+          "actual_work": 4,
+          "settled": 4,
+          "profit": "7/6"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "35/18",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 5,
+      "occurrences": 31,
+      "mass_by_level": [
+        5,
+        10,
+        16,
+        14
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "891/40",
+      "actual_work": 12,
+      "size_cap": 1,
+      "accepted_cells": 5,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 5,
+          "actual_work": 12,
+          "settled": 5,
+          "profit": "411/40"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "3",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 5,
+      "occurrences": 15,
+      "mass_by_level": [
+        5,
+        10,
+        8,
+        6
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "269/20",
+      "actual_work": 8,
+      "size_cap": 2,
+      "accepted_cells": 3,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 5,
+          "actual_work": 8,
+          "settled": 5,
+          "profit": "109/20"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "21/10",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 6,
+      "occurrences": 35,
+      "mass_by_level": [
+        6,
+        12,
+        22,
+        16
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "641/14",
+      "actual_work": 16,
+      "size_cap": 1,
+      "accepted_cells": 6,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 6,
+          "actual_work": 16,
+          "settled": 6,
+          "profit": "417/14"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "64/9",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 6,
+      "occurrences": 24,
+      "mass_by_level": [
+        6,
+        12,
+        22,
+        8
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "12701/495",
+      "actual_work": 12,
+      "size_cap": 2,
+      "accepted_cells": 4,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 6,
+          "actual_work": 12,
+          "settled": 6,
+          "profit": "6761/495"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "112/27",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 6,
+      "occurrences": 14,
+      "mass_by_level": [
+        6,
+        12,
+        10,
+        8
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "299/20",
+      "actual_work": 6,
+      "size_cap": 3,
+      "accepted_cells": 2,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 6,
+          "actual_work": 6,
+          "settled": 6,
+          "profit": "179/20"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "27/10",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 7,
+      "occurrences": 42,
+      "mass_by_level": [
+        7,
+        14,
+        26,
+        26
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "22255/492",
+      "actual_work": 20,
+      "size_cap": 1,
+      "accepted_cells": 7,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 7,
+          "actual_work": 20,
+          "settled": 7,
+          "profit": "12415/492"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "210/41",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 7,
+      "occurrences": 30,
+      "mass_by_level": [
+        7,
+        14,
+        18,
+        22
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "64636/2451",
+      "actual_work": 14,
+      "size_cap": 2,
+      "accepted_cells": 4,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 7,
+          "actual_work": 14,
+          "settled": 7,
+          "profit": "30322/2451"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "2520/817",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 7,
+      "occurrences": 15,
+      "mass_by_level": [
+        7,
+        14,
+        12,
+        10
+      ],
+      "maximum_menu": 2,
+      "horizon": 3,
+      "LP_point_objective": "1671/97",
+      "actual_work": 11,
+      "size_cap": 3,
+      "accepted_cells": 3,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 7,
+          "actual_work": 11,
+          "settled": 7,
+          "profit": "604/97"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "180/97",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 8,
+      "occurrences": 69,
+      "mass_by_level": [
+        8,
+        16,
+        30,
+        34,
+        26
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "111013/2028",
+      "actual_work": 25,
+      "size_cap": 1,
+      "accepted_cells": 8,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 8,
+          "actual_work": 25,
+          "settled": 8,
+          "profit": "60313/2028"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "1225/338",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 8,
+      "occurrences": 48,
+      "mass_by_level": [
+        8,
+        16,
+        30,
+        30,
+        16
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "29381/1005",
+      "actual_work": 16,
+      "size_cap": 2,
+      "accepted_cells": 4,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 8,
+          "actual_work": 16,
+          "settled": 8,
+          "profit": "13301/1005"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "168/67",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 8,
+      "occurrences": 20,
+      "mass_by_level": [
+        8,
+        16,
+        14,
+        12,
+        10
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "603/37",
+      "actual_work": 8,
+      "size_cap": 4,
+      "accepted_cells": 2,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 8,
+          "actual_work": 8,
+          "settled": 8,
+          "profit": "307/37"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "245/74",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 9,
+      "occurrences": 100,
+      "mass_by_level": [
+        9,
+        18,
+        34,
+        48,
+        58
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "88953913/1090012",
+      "actual_work": 29,
+      "size_cap": 1,
+      "accepted_cells": 9,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 9,
+          "actual_work": 29,
+          "settled": 9,
+          "profit": "57343565/1090012"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "22275/3539",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 9,
+      "occurrences": 32,
+      "mass_by_level": [
+        9,
+        18,
+        24,
+        30,
+        12
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "39143/1122",
+      "actual_work": 18,
+      "size_cap": 3,
+      "accepted_cells": 4,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 9,
+          "actual_work": 18,
+          "settled": 9,
+          "profit": "18947/1122"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "40/17",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 9,
+      "occurrences": 20,
+      "mass_by_level": [
+        9,
+        18,
+        16,
+        14,
+        12
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "13776/523",
+      "actual_work": 14,
+      "size_cap": 4,
+      "accepted_cells": 3,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 9,
+          "actual_work": 14,
+          "settled": 9,
+          "profit": "6454/523"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "2475/1046",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 10,
+      "occurrences": 115,
+      "mass_by_level": [
+        10,
+        20,
+        38,
+        66,
+        72
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "9464039/68565",
+      "actual_work": 34,
+      "size_cap": 1,
+      "accepted_cells": 10,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 10,
+          "actual_work": 34,
+          "settled": 10,
+          "profit": "7132829/68565"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "7560/653",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 10,
+      "occurrences": 49,
+      "mass_by_level": [
+        10,
+        20,
+        38,
+        40,
+        30
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "1541017/26008",
+      "actual_work": 20,
+      "size_cap": 3,
+      "accepted_cells": 4,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 10,
+          "actual_work": 20,
+          "settled": 10,
+          "profit": "1020857/26008"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "24255/6502",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 10,
+      "occurrences": 19,
+      "mass_by_level": [
+        10,
+        20,
+        18,
+        16,
+        14
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "7426/353",
+      "actual_work": 10,
+      "size_cap": 5,
+      "accepted_cells": 2,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 10,
+          "actual_work": 10,
+          "settled": 10,
+          "profit": "3896/353"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "1024/353",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 11,
+      "occurrences": 126,
+      "mass_by_level": [
+        11,
+        22,
+        42,
+        68,
+        80
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "263768567/1089495",
+      "actual_work": 39,
+      "size_cap": 1,
+      "accepted_cells": 11,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 11,
+          "actual_work": 39,
+          "settled": 11,
+          "profit": "221278262/1089495"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "23520/2201",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 11,
+      "occurrences": 51,
+      "mass_by_level": [
+        11,
+        22,
+        30,
+        46,
+        40
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "10975220/244329",
+      "actual_work": 22,
+      "size_cap": 3,
+      "accepted_cells": 4,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 11,
+          "actual_work": 22,
+          "settled": 11,
+          "profit": "5599982/244329"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "291060/81443",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 11,
+      "occurrences": 19,
+      "mass_by_level": [
+        11,
+        22,
+        20,
+        18,
+        16
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "7864/297",
+      "actual_work": 17,
+      "size_cap": 5,
+      "accepted_cells": 3,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 11,
+          "actual_work": 17,
+          "settled": 11,
+          "profit": "2815/297"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "56/33",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 12,
+      "occurrences": 137,
+      "mass_by_level": [
+        12,
+        24,
+        46,
+        86,
+        102
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "5276042/31995",
+      "actual_work": 44,
+      "size_cap": 1,
+      "accepted_cells": 12,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 12,
+          "actual_work": 44,
+          "settled": 12,
+          "profit": "3868262/31995"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "1540/237",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 12,
+      "occurrences": 52,
+      "mass_by_level": [
+        12,
+        24,
+        46,
+        50,
+        38
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "579269/8074",
+      "actual_work": 24,
+      "size_cap": 4,
+      "accepted_cells": 4,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 12,
+          "actual_work": 24,
+          "settled": 12,
+          "profit": "385493/8074"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "2016/367",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 12,
+      "occurrences": 19,
+      "mass_by_level": [
+        12,
+        24,
+        22,
+        20,
+        18
+      ],
+      "maximum_menu": 2,
+      "horizon": 4,
+      "LP_point_objective": "1601/61",
+      "actual_work": 12,
+      "size_cap": 6,
+      "accepted_cells": 2,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 12,
+          "actual_work": 12,
+          "settled": 12,
+          "profit": "869/61"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "180/61",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 16,
+      "complementary_partial_policies": true,
+      "occurrences": 19,
+      "mass_by_level": [
+        16,
+        32
+      ],
+      "maximum_menu": 2,
+      "horizon": 1,
+      "LP_point_objective": "80",
+      "actual_work": 64,
+      "size_cap": 1,
+      "accepted_cells": 16,
+      "productive_applications": 2,
+      "stages": [
+        {
+          "population": 16,
+          "actual_work": 40,
+          "settled": 8,
+          "profit": "0"
+        },
+        {
+          "population": 8,
+          "actual_work": 24,
+          "settled": 8,
+          "profit": "16"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "2",
+      "restricted_profit_DPs": 2,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 16,
+      "complementary_partial_policies": true,
+      "occurrences": 11,
+      "mass_by_level": [
+        16,
+        32
+      ],
+      "maximum_menu": 2,
+      "horizon": 1,
+      "LP_point_objective": "64",
+      "actual_work": 48,
+      "size_cap": 2,
+      "accepted_cells": 8,
+      "productive_applications": 2,
+      "stages": [
+        {
+          "population": 16,
+          "actual_work": 32,
+          "settled": 8,
+          "profit": "0"
+        },
+        {
+          "population": 8,
+          "actual_work": 16,
+          "settled": 8,
+          "profit": "16"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "2",
+      "restricted_profit_DPs": 2,
+      "uses_an_LP_optimizer": false
+    },
+    {
+      "n": 32,
+      "singleton_only": true,
+      "first_macro_primitive_depth": 16,
+      "occurrences": 288,
+      "mass_by_level": [
+        32,
+        64,
+        94,
+        136,
+        194,
+        266
+      ],
+      "maximum_menu": 2,
+      "horizon": 5,
+      "LP_point_objective": "167282517733/47120931",
+      "actual_work": 525,
+      "size_cap": 2,
+      "accepted_cells": 31,
+      "productive_applications": 1,
+      "stages": [
+        {
+          "population": 32,
+          "actual_work": 525,
+          "settled": 32,
+          "profit": "142544028958/47120931"
+        }
+      ],
+      "minimum_coverage": "1",
+      "root_policy_weight": "6209280/475969",
+      "restricted_profit_DPs": 1,
+      "uses_an_LP_optimizer": false
+    }
+  ]
+}

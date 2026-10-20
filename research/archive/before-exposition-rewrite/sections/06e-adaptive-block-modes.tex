@@ -1,0 +1,287 @@
+\section{Polynomial expected depth with adaptive block modes}
+\label{sec:adaptive-blocks}
+
+Sometimes querying the second endpoint of a block remains useful after
+the first endpoint was positive. The additional answer can pin an arc
+boundary and reveals information that would otherwise be learned by
+endpoint decoding. Accounting for both effects, while choosing every
+mode by rational arithmetic, improves the general expected-depth factor
+to below $5.272565$. The proof has two independent components:
+a local two-endpoint saving, proved below, and a finite coverage-prefix
+certificate. Lemmas~\ref{lem:capped-rank-credit}
+and~\ref{lem:stage-conversion} then convert that certificate into
+the full recursive guarantee.
+
+\subsection{Physical costs and a coarsened transcript}
+
+Keep the polynomial exact-coverage and geometric-batch construction of
+Section~\ref{sec:polynomial-blocks}. In a block of rank $k$, let $x,y$
+be its newly hit masses exclusive to its two endpoints and $z$ their
+shared mass. Orient the block so $x\le y$, and put $m=x+y+z$.
+Each endpoint cap has mass at most $\delta w$, where $w=w(S)$;
+thus $x+z,y+z\le\delta w$.
+
+In \emph{stop mode}, stop querying this block at the first positive
+answer. Relative to the nonentropy allowance $(2k+3)m$, the $y$ mass
+exits second with a pinned boundary and saves one query per hypothesis.
+The saving is $y$.
+
+In \emph{query-both mode}, ask the second endpoint even when the first
+was positive. Each exclusive mass has one adjacent negative endpoint,
+so only one alphabetic endpoint code is needed. Its nonentropy cost
+is at most $2k+2$. The shared mass has two positive endpoints and
+costs at most $2k+4$. The physical saving is therefore $x+y-z$.
+An origin endpoint is free, and cached answers only lower these costs.
+For the analysis, complete the chosen mode before singleton inference;
+constant queries can be contracted afterwards.
+
+Let $\mathcal R_{\rm act}$ be the actual discovery partition and
+$J_{\rm act}=I(S,\mathcal R_{\rm act})$. Define a coarsened
+partition $\mathcal R_*$ by forgetting the second answer on each
+query-both route whose first answer was positive. This merges that
+block's $x$ and $z$ events. Its $y$ event remains separate. Stop-mode
+events are unchanged. Every nonzero coarsened event lies in a single
+positive endpoint cap, so, for $J_*=I(S,\mathcal R_*)$,
+\begin{equation}\label{eq:coarse-discovery-cap}
+ J_*\ge b\sigma(\delta),\qquad b=w-p_0.
+\end{equation}
+The zero event is the same zero-pattern singleton as before.
+
+The coarsening loses exactly
+\[
+ J_{\rm act}-J_*
+ =\sum_{\text{query-both blocks}}
+ (x+z)h\!\left(\frac{x}{x+z}\right),
+\]
+with zero contribution when $x+z=0$. Here
+$h(p)=-p\ln p-(1-p)\ln(1-p)$. Actual endpoint decoding costs
+at most its physical allowance plus $(I-J_{\rm act})/\ln2$,
+where $I=I(S,\Pi)$ is the full-pattern information. Rewriting this
+term as $(I-J_*)/\ln2$ therefore credits an additional
+$(x+z)H_2(x/(x+z))$ queries on every query-both block. The useful ledger is therefore physical saving plus the information
+forgotten by coarsening. The remaining-information term uses $J_*$
+throughout, so that information is charged exactly once.
+
+\subsection{Rational mode choices and affine saving bounds}
+
+Fix
+\[
+ p_* =\frac{21317}{125000},\qquad
+ h_* =1-2p_* =\frac{41183}{62500}.
+\]
+Exact logarithm enclosures certify $H_2(p_*)>h_*$. Concavity and
+symmetry of binary entropy give the rational tent bound
+\[
+ H_2(p)\ge\min\left\{\frac{h_*}{p_*}p,\ h_*,
+                         \frac{h_*}{p_*}(1-p)\right\}.
+\]
+Its homogeneous mass version and the rational block saving are
+\begin{equation}\label{eq:rational-block-saving}
+ \begin{aligned}
+ E_*(x,z)&=\min\left\{\frac{h_*}{p_*}x,\ h_*(x+z),
+                                  \frac{h_*}{p_*}z\right\},\\
+ D(x,y,z)&=\max\{y,\ x+y-z+E_*(x,z)\}.
+ \end{aligned}
+\end{equation}
+Algorithm~\ref{alg:block-mode} selects the mode attaining this maximum;
+Algorithm~\ref{alg:expected-tree} gives the full recursion. Both its choice and its saving
+are rational functions of the supplied prior weights. Let
+$\operatorname{Save}(G)=\sum_{\text{blocks of }G}D(x,y,z)$.
+For each candidate geometric shift, choose its modes and minimize
+the rational surrogate
+\begin{equation}\label{eq:adaptive-shift-objective}
+ F_*(G)=2\MSSC_{\rm blk}(G)+2p_0|G|-\operatorname{Save}(G).
+\end{equation}
+The full stage then obeys
+\begin{equation}\label{eq:adaptive-stage}
+ W_{\rm pat}(S)\le F_*(G)+3b+\frac{I-J_*}{\ln2}.
+\end{equation}
+Modes do not change a block's union, newly covered mass, coverage sets,
+or greedy order within a batch. The shift-average coverage proof
+therefore remains available, and every shift satisfies
+\eqref{eq:coarse-discovery-cap}.
+
+\input{procedures/block-mode}
+
+\begin{lemma}[Affine block credits]\label{lem:affine-block-credit}
+Put
+\[
+ c_* =\frac{228683}{103683}=\frac{2-p_*}{1-p_*},\qquad
+ d_* =\frac{250000}{103683}=\frac2{1-p_*}.
+\]
+Every block with newly hit mass $m$ satisfies
+\[
+ D\ge0,\qquad D\ge m-\delta w,\qquad
+ D\ge c_*m-d_*\delta w.
+\]
+\end{lemma}
+\begin{proof}
+The first two follow from $D\ge y\ge0$ and
+$m-y=x+z\le\delta w$. For the third, normalize $\delta w=1$.
+If $m\le1$, its right side is negative. Otherwise $1\le m\le2$,
+and the feasible triangle for $x\le y$, with $z=m-x-y$, has vertices
+\[
+ (m-1,m-1),\qquad(m-1,1),\qquad(m/2,m/2).
+\]
+The query-both expression $x+y-z+E_*(x,z)$ is concave on this
+triangle, hence bounded below by its smallest vertex value. The
+two vertices with $z=0$ have value $m$. At the first vertex it is
+\[
+ f(m)=3m-4+
+       \min\left\{\frac{h_*}{p_*}(m-1),\ h_*,
+                            \frac{h_*}{p_*}(2-m)\right\}.
+\]
+For $m\le1+p_*$, $c_*m-d_*\le m-1$, already covered by the
+second credit. For $m\ge1+p_*$, $f$ is concave with
+$f(1+p_*)=p_*$ and $f(2)=2$. Its chord on this interval is
+exactly $c_*m-d_*$. Also $m\ge c_*m-d_*$ for $m\le2$.
+Both possible lower vertex values therefore dominate the required
+line. Rescale by $\delta w$.
+\end{proof}
+
+\subsection{A certified mixture of coverage-prefix credits}
+
+Keep the witness masses $m_t$ and $M_k=\sum_{t\le k}m_t$ from
+Section~\ref{sec:polynomial-blocks}, with $m_t\le2\delta w$.
+A comparison edge sequence covers at least $M_k$ in its first $k$
+blocks. Exact budgeted coverage therefore gives covered mass at least
+$M_k$ in a batch with budget $k$. If the schedule prefix through
+that batch uses at most $\ell$ blocks, Lemma~\ref{lem:affine-block-credit}
+and nonnegative later savings imply each of the lower bounds
+\[
+ \operatorname{Save}(G)\ge
+ \mathsf A(k,\ell):=M_k-\delta w\ell,
+ \qquad
+ \operatorname{Save}(G)\ge
+ \mathsf C(k,\ell):=c_*M_k-d_*\delta w\ell.
+\]
+It is also at least zero. Early completion only improves these bounds.
+For a shift $u\in[1,\beta)$, the first batch has
+$k=\lfloor u\rfloor$, $\ell\le\lfloor u\rfloor$; through the
+second batch, $k=\lfloor\beta u\rfloor$ and
+$\ell\le\lfloor u\rfloor+\lfloor\beta u\rfloor$.
+Any convex combination of their lower bounds and zero bounds the
+\emph{same} total saving, counting it once.
+
+Use
+\[
+ \beta=\frac{3512863}{10^6},\qquad
+ \delta=\frac{144136826}{10^9},\qquad
+ v_1=\frac{830027}{10^7},\quad
+ v_2=\frac{472577}{10^6},\quad
+ v_3=\frac{1701301}{5\cdot10^6}.
+\]
+The following fixed choices are used only in the proof:
+\begin{center}
+\small
+\begin{tabular}{ll}
+\hline
+Shift range & Lower bound on $\operatorname{Save}(G_u)$\\
+\hline
+$[1,4/\beta)$ & $\mathsf C(1,1)$\\
+$[4/\beta,5/\beta)$ & $v_1\mathsf C(1,1)+(1-v_1)\mathsf A(4,5)$\\
+$[5/\beta,6/\beta)$ & $\mathsf A(5,6)$\\
+$[6/\beta,2)$ & $\mathsf C(1,1)$\\
+$[2,10/\beta)$ & $\mathsf A(2,2)$\\
+$[10/\beta,3)$ & $v_2\mathsf A(2,2)+(1-v_2)0$\\
+$[3,11/\beta)$ & $v_3\mathsf A(3,3)+(1-v_3)\mathsf C(3,3)$\\
+$[11/\beta,12/\beta)$ & $\mathsf C(3,3)$\\
+$[12/\beta,\beta)$ & $\mathsf A(3,3)$\\
+\hline
+\end{tabular}
+\end{center}
+
+Here is an explicit coefficient definition for the certificate. Start
+with $a_t=e_\beta(t)$ and $\mu=0$. A table row with range $[l,r)$
+has log-uniform probability $P=\ln(r/l)/\ln\beta$. For each
+minorant $\alpha M_k-\rho\delta w$ in that row, with mixing weight
+$v'$, add $Pv'\alpha$ to every $a_t$ with $t\le k$ and add
+$Pv'\rho$ to $\mu$. For a zero term both additions are zero.
+No table entry has $k>5$, so $a_t=e_\beta(t)$ for $t\ge6$.
+This defines fixed analytical constants without an optimization oracle.
+The shift-average transfer is
+\[
+ \sum_t m_t e_\beta(t)+\mathbb E[\operatorname{Save}(G_u)]
+ \ge\sum_t m_t a_t-\delta w\mu.
+\]
+
+Set $\tau=345603/250000=1.382412$. Exact rational logarithm
+enclosures certify that only $a_4$ lies below $\tau$:
+\[
+ \begin{aligned}
+ a_1&>1.38241213,& a_2&>1.38241211,\\
+ a_3&>1.38241211,& a_4&<1.37612333,\\
+ a_5&>1.38241212,& e_\beta(6)&>1.38382029.
+ \end{aligned}
+\]
+Monotonicity of $e_\beta$ controls the remaining tail. Define
+\begin{equation}\label{eq:adaptive-chi-B}
+ \chi_* =\tau-2\delta(\tau-a_4)-\delta\mu,\qquad
+ B_* =3+2\Phi_\beta(1)-\chi_*
+      =7-\frac{\ln6}{\ln\beta}-\chi_*.
+\end{equation}
+This is Lemma~\ref{lem:capped-rank-credit} with the single
+exceptional index $E=\{4\}$ and $\zeta=2/\ln\beta$.
+The certified inequality $\chi_*+2/\ln\beta>\tau$ is its
+zero-route condition. Thus the combined discrete, block-mode, and
+zero-route discounts save at least $\chi_*b$.
+Minimizing \eqref{eq:adaptive-shift-objective} allows the saving to
+be retained under the same shift average as the first-hit and length
+terms. The proof of \eqref{eq:poly-block-discrete} now gives
+\begin{equation}\label{eq:adaptive-local}
+ W_{\rm pat}(S)\le A\Delta+B_*b+\frac{I-J_*}{\ln2},
+ \qquad A=\frac{\beta+1}{\ln\beta}.
+\end{equation}
+The at-most-two-real-tests degenerate-hull construction also satisfies
+this bound because $A,B_*>2$, exactly as in the earlier block proof.
+
+\begin{theorem}[Adaptive-mode polynomial expected-depth approximation]
+\label{thm:poly-adaptive-expected}
+For general supplied binary unit-cost planar line queries and arbitrary
+strictly positive rational priors, the adaptive-mode block algorithm
+runs in deterministic polynomial time and has approximation factor
+\[
+ \boxed{\rho_*=
+ A+\max\{\ln2/h(\delta),\ B_*\ln2/\sigma(\delta)\}<5.272565.}
+\]
+Its exponent has no dependence on the smallest prior.
+\end{theorem}
+\begin{proof}
+Apply Lemma~\ref{lem:stage-conversion} with $B=B_*$ to
+\eqref{eq:adaptive-local} and \eqref{eq:coarse-discovery-cap}.
+The coarsened transcript is a function of the full pattern, so
+$0\le J_*\le I$ and the lemma applies unchanged.
+
+The exact rational certificate \texttt{further-expected-check.py}
+verifies the tent inequality, all coefficient comparisons, the
+zero-route condition, and
+\[
+ \begin{aligned}
+ 0.856049452254&<\chi_*<0.856049452257,\\
+ 4.717880246117&<B_*<4.717880246121,\\
+ \max\{\ln2/h(\delta),B_*\ln2/\sigma(\delta)\}
+ &<1.680753968384.
+ \end{aligned}
+\]
+Together with $A<3.591810178840040$, these certify
+$\rho_*<5.272564147225<5.272565$.
+The script also checks 5,000 rational block-credit instances and
+10,000 analytical source profiles; its theorem certificate does not
+use floating-point optimization.
+
+Coverage DPs, rational shift enumeration, and the disjoint-pattern
+recursion remain polynomial. Each mode uses fixed rational linear
+forms in the prior weights. Computing the entropy, logarithms, or
+analysis-table mixture is unnecessary for constructing the tree.
+Every query remains a supplied endpoint line.
+\end{proof}
+
+\paragraph{Further refinements.}
+For an instance-level improvement, query-both mode can also use the
+larger exclusive mass first, replacing $E_*(x,z)$ by $E_*(y,z)$.
+This is no smaller and its coarsened exits retain the same cap.
+Choosing the best of both orientations and stop mode by the rational
+surrogate preserves the theorem. A larger constant improvement would
+require additional scheduling or accounting structure; the present
+affine proof is tight at symmetric exclusive masses and cannot alone
+benefit from this orientation change.

@@ -1,0 +1,314 @@
+{
+  "cases": 13,
+  "simulation_product_groups": 7987,
+  "small_exact_comparisons": 7,
+  "count_state_integrality_checks": 1100,
+  "charged_count_state_integrality_checks": 1100,
+  "pathwise_charged_simulation_checks": 1552,
+  "rows": [
+    {
+      "M": 2,
+      "parents": [
+        [],
+        []
+      ],
+      "n": 4,
+      "tests": 4,
+      "count_states": 2,
+      "relaxed_mean": "0",
+      "legacy_actual_work": 8,
+      "greedy_work": 8,
+      "charged_relaxed_mean": "2",
+      "charged_count_states": 2,
+      "actual_work": 8,
+      "optimal_work": 8
+    },
+    {
+      "M": 2,
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "n": 4,
+      "tests": 7,
+      "count_states": 4,
+      "relaxed_mean": "1",
+      "legacy_actual_work": 8,
+      "greedy_work": 8,
+      "charged_relaxed_mean": "2",
+      "charged_count_states": 4,
+      "actual_work": 8,
+      "optimal_work": 8
+    },
+    {
+      "M": 2,
+      "parents": [
+        [
+          2
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "n": 8,
+      "tests": 12,
+      "count_states": 5,
+      "relaxed_mean": "1",
+      "legacy_actual_work": 24,
+      "greedy_work": 24,
+      "charged_relaxed_mean": "3",
+      "charged_count_states": 5,
+      "actual_work": 24,
+      "optimal_work": 24
+    },
+    {
+      "M": 2,
+      "parents": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "n": 8,
+      "tests": 13,
+      "count_states": 8,
+      "relaxed_mean": "2",
+      "legacy_actual_work": 24,
+      "greedy_work": 24,
+      "charged_relaxed_mean": "3",
+      "charged_count_states": 8,
+      "actual_work": 24,
+      "optimal_work": 24
+    },
+    {
+      "M": 4,
+      "parents": [
+        [],
+        [
+          0
+        ]
+      ],
+      "n": 16,
+      "tests": 18,
+      "count_states": 2,
+      "relaxed_mean": "0",
+      "legacy_actual_work": 64,
+      "greedy_work": 64,
+      "charged_relaxed_mean": "4",
+      "charged_count_states": 2,
+      "actual_work": 64,
+      "optimal_work": 64
+    },
+    {
+      "M": 4,
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "n": 16,
+      "tests": 24,
+      "count_states": 16,
+      "relaxed_mean": "9/4",
+      "legacy_actual_work": 68,
+      "greedy_work": 68,
+      "charged_relaxed_mean": "17/4",
+      "charged_count_states": 16,
+      "actual_work": 68,
+      "optimal_work": 68
+    },
+    {
+      "M": 4,
+      "parents": [
+        [
+          0
+        ],
+        []
+      ],
+      "n": 16,
+      "tests": 10,
+      "count_states": 5,
+      "relaxed_mean": "9/4",
+      "legacy_actual_work": 68,
+      "greedy_work": 68,
+      "charged_relaxed_mean": "17/4",
+      "charged_count_states": 5,
+      "actual_work": 68,
+      "optimal_work": 68
+    },
+    {
+      "M": 4,
+      "parents": [
+        [
+          2
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "n": 64,
+      "tests": 36,
+      "count_states": 55,
+      "relaxed_mean": "9/4",
+      "legacy_actual_work": 400,
+      "greedy_work": 400,
+      "charged_relaxed_mean": "25/4",
+      "charged_count_states": 55,
+      "actual_work": 400
+    },
+    {
+      "M": 4,
+      "parents": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "n": 64,
+      "tests": 108,
+      "count_states": 64,
+      "relaxed_mean": "9/2",
+      "legacy_actual_work": 416,
+      "greedy_work": 416,
+      "charged_relaxed_mean": "13/2",
+      "charged_count_states": 64,
+      "actual_work": 416
+    },
+    {
+      "M": 4,
+      "parents": [
+        [],
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "n": 256,
+      "tests": 42,
+      "count_states": 2,
+      "relaxed_mean": "0",
+      "legacy_actual_work": 2048,
+      "greedy_work": 2048,
+      "charged_relaxed_mean": "8",
+      "charged_count_states": 2,
+      "actual_work": 2048
+    },
+    {
+      "M": 4,
+      "parents": [
+        [
+          3
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "n": 256,
+      "tests": 48,
+      "count_states": 190,
+      "relaxed_mean": "9/4",
+      "legacy_actual_work": 2112,
+      "greedy_work": 2112,
+      "charged_relaxed_mean": "33/4",
+      "charged_count_states": 190,
+      "actual_work": 2112
+    },
+    {
+      "M": 4,
+      "parents": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "n": 256,
+      "tests": 528,
+      "count_states": 256,
+      "relaxed_mean": "27/4",
+      "legacy_actual_work": 2240,
+      "greedy_work": 2240,
+      "charged_relaxed_mean": "35/4",
+      "charged_count_states": 256,
+      "actual_work": 2240
+    },
+    {
+      "M": 8,
+      "parents": [
+        [
+          2
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "n": 512,
+      "tests": 96,
+      "count_states": 491,
+      "relaxed_mean": "35/8",
+      "legacy_actual_work": 5312,
+      "greedy_work": 5312,
+      "charged_relaxed_mean": "83/8",
+      "charged_count_states": 491,
+      "actual_work": 5312
+    }
+  ]
+}

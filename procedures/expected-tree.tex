@@ -1,0 +1,33 @@
+﻿\begin{algorithm}[H]
+\caption{\ExpectedTree: the polynomial expected-depth algorithm}
+\label{alg:expected-tree}
+\KwIn{State $S$, original positive rational priors;
+calibrated $\beta,\delta,p_*$.}
+\KwOut{A supplied-query identification tree.}
+\If{$|S|\le1$}{\KwRet its leaf\;}
+\If{a mass-balanced supplied line $\ell$ exists}{
+ \KwRet $\ell$ with children $\ExpectedTree(S_\ell^-)$
+ and $\ExpectedTree(S_\ell^+)$\;
+}
+Compute $\HullData(S)$, its pattern classes, and zero weight $p_0=w(A_0)$\;
+\eIf{there are at most two real extreme hull tests}{
+ Build their direct full-pattern stage\;
+}{
+ Use edges of the full hull as blocks, retaining its free origin marker\;
+ Select the schedule and stored modes by Algorithm~\ref{alg:two-phase-family}\;
+ Build discovery along its all-negative prefix, with those modes on each first hit\;
+ At each positive exit build expected $\EndpointCode$ to recover the full pattern\;
+}
+Attach $\ExpectedTree(A)$ to each nonzero pattern class $A$\;
+Use a zero-query leaf for the zero singleton; omit it when absent\;
+\KwRet the tree after contracting constant and cached questions\;
+\end{algorithm}
+
+The cases in the algorithm have a direct purpose: singleton states
+already identify their hypothesis, balanced lines split immediately,
+and flat states use the hull schedule to discover a full pattern before
+recursing within its class. Each recursive call reuses the fixed
+calibration and full supplied-query family. Since the incidence table
+and prior weights are known, schedule scores, endpoint modes, and child
+codes can all be determined before the hidden hypothesis is queried;
+the routine therefore returns a concrete tree for it to follow.

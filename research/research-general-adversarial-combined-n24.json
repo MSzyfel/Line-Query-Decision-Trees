@@ -1,0 +1,85 @@
+{
+  "n": 24,
+  "tests": [
+    10000084,
+    4345201,
+    15953285,
+    11993082,
+    8395782,
+    422032,
+    16613396,
+    131088
+  ],
+  "m": 8,
+  "greedy_cost": 113,
+  "output_cost": 112,
+  "baseline_output_cost": 113,
+  "fitness": "combined",
+  "optimum": 112,
+  "ratio": 1.0,
+  "history": [
+    {
+      "cost": 113,
+      "base_states": 300,
+      "states": 2578,
+      "profit": 1,
+      "candidate_cost": 112
+    },
+    {
+      "cost": 112,
+      "base_states": 309,
+      "states": 2578,
+      "profit": 0,
+      "candidate_cost": 112
+    }
+  ],
+  "evaluations": 756,
+  "iterations": 1200,
+  "enriched_output_cost": 112,
+  "enriched_ratio": 1.0,
+  "enrichment_history": [
+    {
+      "cost": 112,
+      "base_states": 225,
+      "states": 354,
+      "profit": 0,
+      "candidate_cost": 112
+    }
+  ],
+  "diagnosis": {
+    "mode": "combined",
+    "stable_cost": 112,
+    "optimum_cost": 112,
+    "stable_depths": [
+      5,
+      5,
+      4,
+      5,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      4,
+      5,
+      5,
+      4,
+      4,
+      5,
+      5,
+      4,
+      5
+    ],
+    "optimal_root_mask": 15953285,
+    "missing_optimal_states": [],
+    "unrestricted_maximum_prize_work_profit": 0,
+    "base_states": 309,
+    "represented_states": 2578
+  }
+}

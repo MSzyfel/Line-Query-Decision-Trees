@@ -1,0 +1,79 @@
+{
+  "n": 18,
+  "tests": [
+    592,
+    211391,
+    44160,
+    88107,
+    228858,
+    33264,
+    514,
+    206464,
+    259695,
+    9772
+  ],
+  "m": 10,
+  "greedy_cost": 82,
+  "output_cost": 81,
+  "baseline_output_cost": 81,
+  "fitness": "weighted-tail3",
+  "optimum": 79,
+  "ratio": 1.0253164556962024,
+  "history": [
+    {
+      "cost": 81,
+      "base_states": 209,
+      "states": 1191,
+      "profit": 0,
+      "candidate_cost": 81
+    }
+  ],
+  "diagnosis": {
+    "mode": "weighted-tail3",
+    "stable_cost": 81,
+    "optimum_cost": 79,
+    "stable_depths": [
+      6,
+      7,
+      4,
+      4,
+      3,
+      4,
+      3,
+      4,
+      4,
+      4,
+      4,
+      5,
+      7,
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "optimal_root_mask": 9772,
+    "missing_optimal_states": [
+      {
+        "mask": 200707,
+        "size": 5,
+        "minimum_base_intersection_arity_up_to_6": 3,
+        "optimal_subtree_cost": 12
+      }
+    ],
+    "unrestricted_maximum_prize_work_profit": 2,
+    "base_states": 209,
+    "represented_states": 1191
+  },
+  "enriched_output_cost": 81,
+  "enriched_ratio": 1.0253164556962024,
+  "enrichment_history": [
+    {
+      "cost": 81,
+      "base_states": 209,
+      "states": 330,
+      "profit": 0,
+      "candidate_cost": 81
+    }
+  ]
+}

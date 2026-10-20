@@ -1,0 +1,316 @@
+{
+  "accepted_cases": 8,
+  "rejected_cases": 7,
+  "accepted": [
+    {
+      "n": 4,
+      "queries": 6,
+      "orientation_mode": "none",
+      "alphabet": 4,
+      "dimension": 1,
+      "parents": [
+        []
+      ],
+      "palette_groups": 1,
+      "count_states": 2,
+      "charged_mean": "2",
+      "actual_work": 8,
+      "support_oracle_calls": 76,
+      "complement_oriented_equalities": 0,
+      "complement_oriented_palette_rows": 0
+    },
+    {
+      "n": 16,
+      "queries": 18,
+      "orientation_mode": "none",
+      "alphabet": 4,
+      "dimension": 2,
+      "parents": [
+        [],
+        [
+          0
+        ]
+      ],
+      "palette_groups": 5,
+      "count_states": 2,
+      "charged_mean": "4",
+      "actual_work": 64,
+      "support_oracle_calls": 440,
+      "complement_oriented_equalities": 0,
+      "complement_oriented_palette_rows": 0
+    },
+    {
+      "n": 16,
+      "queries": 18,
+      "orientation_mode": "all",
+      "alphabet": 4,
+      "dimension": 2,
+      "parents": [
+        [],
+        [
+          0
+        ]
+      ],
+      "palette_groups": 5,
+      "count_states": 2,
+      "charged_mean": "4",
+      "actual_work": 64,
+      "support_oracle_calls": 440,
+      "complement_oriented_equalities": 8,
+      "complement_oriented_palette_rows": 8
+    },
+    {
+      "n": 16,
+      "queries": 24,
+      "orientation_mode": "mixed",
+      "alphabet": 4,
+      "dimension": 2,
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "palette_groups": 8,
+      "count_states": 16,
+      "charged_mean": "17/4",
+      "actual_work": 68,
+      "support_oracle_calls": 224,
+      "complement_oriented_equalities": 5,
+      "complement_oriented_palette_rows": 8
+    },
+    {
+      "n": 64,
+      "queries": 54,
+      "orientation_mode": "all",
+      "alphabet": 4,
+      "dimension": 3,
+      "parents": [
+        [],
+        [
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "palette_groups": 21,
+      "count_states": 2,
+      "charged_mean": "6",
+      "actual_work": 384,
+      "support_oracle_calls": 1388,
+      "complement_oriented_equalities": 12,
+      "complement_oriented_palette_rows": 40
+    },
+    {
+      "n": 64,
+      "queries": 36,
+      "orientation_mode": "mixed",
+      "alphabet": 4,
+      "dimension": 3,
+      "parents": [
+        [
+          2
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "palette_groups": 12,
+      "count_states": 55,
+      "charged_mean": "25/4",
+      "actual_work": 400,
+      "support_oracle_calls": 832,
+      "complement_oriented_equalities": 8,
+      "complement_oriented_palette_rows": 15
+    },
+    {
+      "n": 64,
+      "queries": 108,
+      "orientation_mode": "mixed",
+      "alphabet": 4,
+      "dimension": 3,
+      "parents": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "palette_groups": 48,
+      "count_states": 64,
+      "charged_mean": "13/2",
+      "actual_work": 416,
+      "support_oracle_calls": 832,
+      "complement_oriented_equalities": 6,
+      "complement_oriented_palette_rows": 47
+    },
+    {
+      "n": 64,
+      "queries": 64,
+      "orientation_mode": "mixed",
+      "alphabet": 8,
+      "dimension": 2,
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "palette_groups": 16,
+      "count_states": 64,
+      "charged_mean": "59/8",
+      "actual_work": 472,
+      "support_oracle_calls": 1728,
+      "complement_oriented_equalities": 13,
+      "complement_oriented_palette_rows": 27
+    }
+  ],
+  "rejections": [
+    {
+      "case": "false Cartesian box",
+      "diagnostics": [
+        {
+          "alphabet": 4,
+          "reason": "query 2 is neither a pure equality nor a permitted private box"
+        },
+        {
+          "alphabet": 8,
+          "reason": "hypothesis count is not a positive power of the alphabet"
+        },
+        {
+          "alphabet": 16,
+          "reason": "query 0 is neither a pure equality nor a permitted private box"
+        }
+      ]
+    },
+    {
+      "case": "missing palette row",
+      "diagnostics": [
+        {
+          "alphabet": 4,
+          "reason": "target 0, context (1,) does not have exactly b distinct local bits"
+        },
+        {
+          "alphabet": 8,
+          "reason": "hypothesis count is not a positive power of the alphabet"
+        },
+        {
+          "alphabet": 16,
+          "reason": "query 0 is neither a pure equality nor a permitted private box"
+        }
+      ]
+    },
+    {
+      "case": "missing entire parent context",
+      "diagnostics": [
+        {
+          "alphabet": 4,
+          "reason": "target 0 is missing at least one parent context"
+        },
+        {
+          "alphabet": 8,
+          "reason": "hypothesis count is not a positive power of the alphabet"
+        },
+        {
+          "alphabet": 16,
+          "reason": "query 0 is neither a pure equality nor a permitted private box"
+        }
+      ]
+    },
+    {
+      "case": "extra incompatible diagonal question",
+      "diagnostics": [
+        {
+          "alphabet": 4,
+          "reason": "threshold factors do not have the proposed common alphabet"
+        },
+        {
+          "alphabet": 8,
+          "reason": "hypothesis count is not a positive power of the alphabet"
+        },
+        {
+          "alphabet": 16,
+          "reason": "query 0 is neither a pure equality nor a permitted private box"
+        }
+      ]
+    },
+    {
+      "case": "missing pure equality",
+      "diagnostics": [
+        {
+          "alphabet": 4,
+          "reason": "some pure coordinate equality is missing"
+        },
+        {
+          "alphabet": 8,
+          "reason": "hypothesis count is not a positive power of the alphabet"
+        },
+        {
+          "alphabet": 16,
+          "reason": "query 0 is neither a pure equality nor a permitted private box"
+        }
+      ]
+    },
+    {
+      "case": "mixed target parent sets",
+      "diagnostics": [
+        {
+          "alphabet": 4,
+          "reason": "target 0 has mixed parent sets"
+        },
+        {
+          "alphabet": 8,
+          "reason": "hypothesis count is not a positive power of the alphabet"
+        },
+        {
+          "alphabet": 16,
+          "reason": "query 0 is neither a pure equality nor a permitted private box"
+        }
+      ]
+    },
+    {
+      "case": "balanced but noninjective local palette",
+      "diagnostics": [
+        {
+          "alphabet": 4,
+          "reason": "threshold quotient does not identify the hypotheses"
+        },
+        {
+          "alphabet": 8,
+          "reason": "target 0, context (0,) has a noninjective local palette"
+        },
+        {
+          "alphabet": 16,
+          "reason": "hypothesis count is not a positive power of the alphabet"
+        },
+        {
+          "alphabet": 32,
+          "reason": "hypothesis count is not a positive power of the alphabet"
+        },
+        {
+          "alphabet": 64,
+          "reason": "query 0 is neither a pure equality nor a permitted private box"
+        }
+      ]
+    }
+  ],
+  "recognizer_input_is_only_original_response_matrix": true,
+  "no_unrestricted_optimum_oracle": true,
+  "structured_approximation_factor": 2
+}

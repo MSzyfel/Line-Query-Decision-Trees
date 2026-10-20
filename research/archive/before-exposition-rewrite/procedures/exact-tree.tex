@@ -1,0 +1,20 @@
+\begin{algorithm}[H]
+\caption{Exact supplied-query Bellman recursion (small local states)}
+\label{alg:exact-tree}
+\KwIn{State $S$; objective $o\in\{\mathrm W,\mathrm E\}$; original weights $\pi_h$.}
+\KwOut{An optimal supplied-query tree and its cost.}
+\If{$|S|\le1$}{\KwRet the leaf of cost zero\;}
+\If{the memoized value for $(S,o)$ exists}{\KwRet that value and tree\;}
+\ForEach{supplied line $\ell$ splitting $S$}{
+  $(T_-,v_-)\gets\ExactTree(S_\ell^-,o)$;
+  $(T_+,v_+)\gets\ExactTree(S_\ell^+,o)$\;
+  $v_\ell\gets1+\max\{v_-,v_+\}$ if $o=\mathrm W$,
+  and $v_\ell\gets w(S)+v_-+v_+$ otherwise\;
+}
+Memoize the minimum $v_\ell$ and the tree joining its stored children\;
+\KwRet the memoized cost and tree\;
+\end{algorithm}
+
+Algorithm~\ref{alg:exact-tree} takes $2^{O(|S|)}\operatorname{poly}(m,L)$
+time with bit-mask states. It is used only on bounded local sets;
+the general approximation algorithms never call it on the full input.

@@ -1,0 +1,108 @@
+{
+  "fixed_query_only": true,
+  "families": [
+    {
+      "vertices": 2,
+      "edges": [
+        [
+          0,
+          1
+        ]
+      ],
+      "maximum_cut": 1,
+      "cases": [
+        {
+          "threshold": 0,
+          "n": 6,
+          "maximum_violation": "1/48",
+          "nonconsensus_maximum": "-11/12"
+        },
+        {
+          "threshold": 1,
+          "n": 6,
+          "maximum_violation": "0",
+          "nonconsensus_maximum": "-15/16"
+        }
+      ]
+    },
+    {
+      "vertices": 3,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "maximum_cut": 2,
+      "cases": [
+        {
+          "threshold": 0,
+          "n": 12,
+          "maximum_violation": "1/48",
+          "nonconsensus_maximum": "-91/96"
+        },
+        {
+          "threshold": 1,
+          "n": 12,
+          "maximum_violation": "1/96",
+          "nonconsensus_maximum": "-23/24"
+        },
+        {
+          "threshold": 2,
+          "n": 12,
+          "maximum_violation": "0",
+          "nonconsensus_maximum": "-31/32"
+        }
+      ]
+    },
+    {
+      "vertices": 3,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "maximum_cut": 2,
+      "cases": [
+        {
+          "threshold": 0,
+          "n": 18,
+          "maximum_violation": "1/72",
+          "nonconsensus_maximum": "-23/24"
+        },
+        {
+          "threshold": 1,
+          "n": 18,
+          "maximum_violation": "1/144",
+          "nonconsensus_maximum": "-139/144"
+        },
+        {
+          "threshold": 2,
+          "n": 18,
+          "maximum_violation": "0",
+          "nonconsensus_maximum": "-35/36"
+        },
+        {
+          "threshold": 3,
+          "n": 18,
+          "maximum_violation": "0",
+          "nonconsensus_maximum": "-47/48"
+        }
+      ]
+    }
+  ],
+  "subset_threshold_checks": 1060992
+}

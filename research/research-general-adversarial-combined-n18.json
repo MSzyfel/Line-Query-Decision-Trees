@@ -1,0 +1,81 @@
+{
+  "n": 18,
+  "tests": [
+    253306,
+    244159,
+    514,
+    121131,
+    592,
+    33008,
+    272,
+    206464,
+    227183,
+    9772
+  ],
+  "m": 10,
+  "greedy_cost": 90,
+  "output_cost": 81,
+  "baseline_output_cost": 84,
+  "fitness": "combined",
+  "optimum": 81,
+  "ratio": 1.0,
+  "history": [
+    {
+      "cost": 84,
+      "base_states": 367,
+      "states": 1437,
+      "profit": 3,
+      "candidate_cost": 81
+    },
+    {
+      "cost": 81,
+      "base_states": 433,
+      "states": 1445,
+      "profit": 0,
+      "candidate_cost": 81
+    }
+  ],
+  "evaluations": 4400,
+  "iterations": 6000,
+  "enriched_output_cost": 81,
+  "enriched_ratio": 1.0,
+  "enrichment_history": [
+    {
+      "cost": 81,
+      "base_states": 218,
+      "states": 433,
+      "profit": 0,
+      "candidate_cost": 81
+    }
+  ],
+  "diagnosis": {
+    "mode": "combined",
+    "stable_cost": 81,
+    "optimum_cost": 81,
+    "stable_depths": [
+      5,
+      6,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      7,
+      3,
+      3,
+      4,
+      7,
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "optimal_root_mask": 9772,
+    "missing_optimal_states": [],
+    "unrestricted_maximum_prize_work_profit": 0,
+    "base_states": 433,
+    "represented_states": 574
+  }
+}

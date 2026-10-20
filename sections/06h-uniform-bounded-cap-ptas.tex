@@ -1,0 +1,360 @@
+\section{A PTAS for uniform shallow caps in convex position}
+\label{sec:uniform-cap-ptas}
+
+The bounded-cap restriction also permits an approximation scheme for
+uniform expected depth when the hypotheses are in convex position.
+The construction first clears short gaps in their cyclic order.
+Every remaining query then acts inside one bounded-size block.
+A count-vector dynamic program retains all choices of how to interleave
+queries from these blocks. Uniform weights make blocks with the same
+local test family interchangeable.
+
+\begin{theorem}\label{thm:uniform-cap-ptas}
+Suppose $\HH=P\cup\{p\}$ is in strictly convex position, $p$ is a
+distinguished hypothesis, and every supplied side missing $p$ contains
+at most a fixed number $b\ge1$ of hypotheses. Under the uniform prior,
+expected depth admits a polynomial-time approximation scheme. Every
+query in the returned tree is supplied, and the result permits input
+families with no singleton caps.
+
+For $0<\varepsilon\le1$, the returned cost is at most
+$(1+\varepsilon)\OPT_E$. For the block length $\ell$ chosen in the
+final calibration, put
+$d_{b,\ell}=2^{(b+1)\ell}$. One running-time bound is
+$f(b,\ell)(n+1)^{d_{b,\ell}}\operatorname{poly}(n,m,L)$, where
+$L$ is the input bit length and $f$ depends only on $b,\ell$.
+The polynomial exponent depends on $b$ and $\varepsilon$; the
+guarantee is a PTAS.
+\end{theorem}
+
+\begin{proofstrategy}
+\begin{enumerate}
+\item Clear short gaps in the convex cyclic order using supplied
+caps containing marked points. A cap cannot reach two remaining blocks.
+\item Describe each small block by its supplied interval masks.
+Equal point weights make blocks with the same type and live mask
+interchangeable, so only their multiplicities need to be stored.
+\item Optimize all block interleavings by an exact count-vector DP,
+using exact supplied-query codes on positive branches.
+\item Charge the clearing prefix against the witness-spine rank
+lower bound. Large enough blocks make that charge at most
+$\varepsilon$ times the optimum.
+\end{enumerate}
+\end{proofstrategy}
+
+\subsection{Supporting propositions and the algorithm}
+
+Write $N=|P|=n-1$, $G(T)=\sum_{h\in\HH}d_T(h)$, and
+$\OPT_G=\min_TG(T)=n\OPT_E$. We use a positive integer block length
+$\ell\ge\max\{2b,b(b-1)\}$ and choose its value in the final
+calibration. When $N<\ell$, exact subset Bellman optimization solves the
+instance. Assume henceforth that $N\ge\ell$.
+
+The purpose of clearing is to make every surviving query local.
+Short gaps suffice because a shallow cap cannot cross a fully
+cleared gap and still reach points on both sides.
+
+\begin{proposition}[Clearing gaps isolates small residual blocks]
+\label{prop:uniform-cap-prefix}
+Partition the convex cyclic order into pieces of length $\ell$ and
+mark the first $b$ points of each piece, or the whole piece if shorter.
+The number $r$ of marked points satisfies
+\begin{equation}\label{eq:uniform-cap-deletion-count}
+ r\le b\lceil N/\ell\rceil\le\frac{2bN}{\ell}.
+\end{equation}
+A legal supplied-query prefix clears all marked points in at most
+$r$ spine queries and has total raw contribution
+\begin{equation}\label{eq:uniform-cap-prefix-cost}
+ G_{\rm prefix}\le r(N+1)+b(b-1)r\le2r(N+1).
+\end{equation}
+Every remaining cap acts inside one residual block of size at most
+$\ell$.
+\end{proposition}
+
+The global state records each block's available splits and live
+positions. Uniform weights then let us forget a block's identity.
+
+\begin{proposition}[Block types retain all continuation information]
+\label{prop:uniform-cap-types}
+A residual block's type is its size and its family $\mathcal F_T$ of
+nonempty supplied interval masks. There are at most $2^{b\ell}$ types
+and at most $d_{b,\ell}$ pairs $(T,R)$ of a type and a nonempty live
+mask. Under uniform weights, blocks with the same $(T,R)$ can be
+exchanged without changing the optimum continuation cost. Each mask
+retains a realizing query for every physical block of its type.
+\end{proposition}
+
+Let $c_{T,R}$ count blocks in local state $(T,R)$, and put
+$W(c)=1+\sum_{T,R}c_{T,R}|R|$, including the distinguished hypothesis.
+For each type, use Algorithm~\ref{alg:exact-tree} to compute the exact
+raw local identification cost $g_T(A)$ for every subset $A$ using
+its supplied masks; $g_T(A)=0$ for $|A|\le1$. The positive branch
+has no distinguished witness. Let $e_{T,R}$ be a unit count vector,
+with $e_{T,\varnothing}=0$.
+
+The algorithm must still choose which block to query next. The
+count vector preserves these choices, while the local tables handle
+the positive exits that no longer interact with other blocks.
+
+\begin{proposition}[The residual count-vector recurrence is exact]
+\label{prop:uniform-cap-count-dp}
+The optimum residual raw cost is
+\begin{equation}\label{eq:uniform-cap-count-dp}
+ \begin{aligned}
+ F(0)&=0,\\
+ F(c)&=W(c)+\min_{\substack{c_{T,R}>0,\ q\in\mathcal F_T\\
+                          A=R\cap q\ne\varnothing}}
+ \left\{g_T(A)+F\bigl(c-e_{T,R}+e_{T,R\setminus A}\bigr)\right\}.
+ \end{aligned}
+\end{equation}
+The DP has at most $(N+1)^{d_{b,\ell}}$ states, polynomial bit
+complexity, and a supplied-query reconstruction realizing its value.
+The recurrence includes every adaptive interleaving of the blocks.
+\end{proposition}
+
+Clearing buys exact residual optimization at an extra prefix cost.
+The witness path already incurs substantial rank cost when caps are
+small, so this prefix can be charged against the full optimum.
+
+\begin{proposition}[The clearing charge is small relative to the optimum]
+\label{prop:uniform-cap-charge}
+The exact residual optimum is at most $\OPT_G$, and
+\begin{equation}\label{eq:uniform-cap-rank-lower}
+ \OPT_G\ge\sum_{i=1}^N\lceil i/b\rceil
+          \ge\frac{N(N+1)}{2b}.
+\end{equation}
+The prefix followed by the exact residual tree therefore has
+$G_{\rm alg}\le(1+8b^2/\ell)\OPT_G$.
+\end{proposition}
+
+\input{procedures/uniform-cap-ptas}
+
+\begin{proof}[Proof of Theorem~\ref{thm:uniform-cap-ptas}]
+Choose $\ell$ by Section~\ref{sec:uniform-cap-calibration}.
+If $N<\ell$, exact subset optimization takes time depending only on
+$b,\varepsilon$, apart from polynomial input processing. Otherwise,
+Proposition~\ref{prop:uniform-cap-prefix} constructs the legal prefix,
+and Propositions~\ref{prop:uniform-cap-types}
+and~\ref{prop:uniform-cap-count-dp} give an exact supplied-query
+residual tree with the stated time bound.
+Proposition~\ref{prop:uniform-cap-charge} and the calibration yield
+$G_{\rm alg}\le(1+\varepsilon)\OPT_G$. Divide by $n$ to obtain the
+expected-depth ratio. No step introduces an unsupplied singleton test.
+\end{proof}
+
+\subsection{Technical proofs of the supporting propositions}
+
+\begin{proof}[Proof of Proposition~\ref{prop:uniform-cap-prefix}]
+There are two separate obligations: show that the marked gaps
+isolate the surviving blocks, and clear those gaps using only supplied
+queries. We begin with the geometric separation property.
+
+\begin{claim}[Marked gaps prevent caps from crossing blocks]
+\label{clm:uniform-cap-gap}
+Every residual cap meets at most one unmarked block.
+\end{claim}
+\begin{proof}
+Each cap is a cyclic interval in the convex order of $P$: a line
+crosses the boundary of its convex polygon at most twice. Partition
+that order into consecutive pieces of length $\ell$, with a possibly
+shorter last piece. Mark the first $b$ points of each piece, or the
+whole piece when its size is at most $b$. Let $D$ be the marked set
+and $r=|D|$. There are $\lceil N/\ell\rceil$ pieces and each contributes
+at most $b$ marked points. Since $N/\ell\ge1$,
+\[
+ r\le b\lceil N/\ell\rceil
+   \le b(N/\ell+1)\le2bN/\ell,
+\]
+which proves \eqref{eq:uniform-cap-deletion-count}.
+The middle inequality uses $\lceil x\rceil\le x+1$, and the last
+uses $N/\ell\ge1$ to absorb the additional piece.
+The unmarked portions are blocks of at most $\ell$ points. Between
+neighboring nonempty blocks, including across the cyclic wraparound,
+there are at least $b$ marked points. A cyclic cap of size at most $b$
+cannot meet two such blocks, because it would also contain an entire
+intervening gap and hence at least $b+2$ points.
+
+\end{proof}
+Supplied caps containing the remaining marked points clear them
+legally; removing additional unmarked points can only shrink the
+residual blocks.
+
+\begin{claim}[Supplied queries clear the marked set with controlled cost]
+No private or arbitrary singleton query is required by the prefix.
+\end{claim}
+\begin{proof}
+While a marked point $x$ remains on the miss spine, query any supplied
+cap containing $x$. Such a cap exists because the supplied tests
+distinguish $x$ from $p$. Identify its first-hit group by a proper
+local supplied-query tree, and continue on the miss side. Separation
+gives a local height at most $|A|-1\le b-1$ for each hit group $A$:
+repeatedly query a line separating two remaining hypotheses. Each
+spine query clears a new marked point, so at most $r$ are used.
+Additional unmarked points may leave through these exits. The
+residual portions of the blocks still have size at most $\ell$, and
+Claim~\ref{clm:uniform-cap-gap} therefore ensures that every residual
+cap still lies in one block: clearing extra points cannot create a
+new hit across a marked gap.
+
+Each spine node queries at most $N+1$ live hypotheses, so at most
+$r$ such nodes contribute $r(N+1)$ to the raw sum of depths.
+Its disjoint positive exits contain at most $br$ points in total,
+each with at most $b-1$ additional local queries. Therefore
+\[
+ G_{\rm prefix}\le r(N+1)+br(b-1).
+\]
+Since $b(b-1)\le\ell\le N$, the second term is at most
+$rN\le r(N+1)$. This gives
+$G_{\rm prefix}\le2r(N+1)$, as required.
+
+\end{proof}
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:uniform-cap-types}]
+Relabel the points of each residual block by their positions. Its
+type $T$ is its size together with the family $\mathcal F_T$ of all
+distinct nonempty supplied-query masks on that block. No cap can
+wrap around a block's ends, since it would contain an entire marked
+gap. Deleting additional points preserves interval order. Thus every
+mask is an ordinary interval of at most $b$ positions. For each possible left endpoint there are at most $b$ possible
+interval lengths. Padding to $\ell$ positions therefore gives at
+most $b\ell$ masks, hence at most $2^{b\ell}$ subsets of masks
+that could form a family. The union of a family's masks is its full block,
+since every point is separated from $p$, so the family also determines
+the block size. A local
+state $(T,R)$ records a nonempty live mask $R$ in a block of type $T$.
+For each type there are at most $2^\ell-1$ nonempty live masks,
+so the total number of local states is at most
+$2^{b\ell}(2^\ell-1)\le2^{(b+1)\ell}=d_{b,\ell}$, using
+$2^\ell-1\le2^\ell$.
+
+Two blocks of the same type have identical available splits after
+relabelling positions. Store a realizing supplied query separately for
+each physical block and mask, so every chosen split uses a line valid
+on that block. Each realizing query misses all other residual blocks.
+Uniform costs depend only on their live
+cardinalities, so exchanging blocks of the same $(T,R)$ preserves
+every continuation cost. The count vector therefore retains all needed
+information.
+
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:uniform-cap-count-dp}]
+Exactness requires both directions: every adaptive tree must obey
+the recurrence, and each recurrence choice must have a legal supplied
+query realization. Locality supplies the common reason for both.
+Any query that is constant on the current live hypotheses can be
+deleted: every hypothesis continues to the same child, and removing
+the query shortens each of their depths by one. Thus we may suppress
+such queries and analyze a nonconstant root query.
+
+\begin{claim}[Every nonconstant adaptive query gives one recurrence transition]
+\label{clm:uniform-cap-transition}
+A positive branch is local; the miss branch changes only one block state.
+\end{claim}
+\begin{proof}
+By Proposition~\ref{prop:uniform-cap-prefix}, a nonconstant query
+hits only one residual block. A query at state $c$ contributes one unit of depth for each live
+hypothesis, hence raw cost $W(c)$. Its hit group lies in one block
+with local state $(T,R)$ and equals $A=R\cap q\ne\varnothing$.
+The miss branch retains $p$ and all other blocks, and changes this
+block to $R\setminus A$. The two branch costs are bounded below
+by $g_T(A)$ and $F(c-e_{T,R}+e_{T,R\setminus A})$ respectively.
+Thus every adaptive tree has cost at least the recurrence value,
+by induction on the number of live nonwitness points.
+
+Conversely, for a minimizing transition choose a physical block in
+state $(T,R)$, which exists because $c_{T,R}>0$, and its stored
+supplied query realizing $q$. The query misses every other residual
+block and is proper because its hit group is nonempty and $p$ is
+on the miss side. Attach the exact local code of cost $g_T(A)$ and
+the inductively reconstructed miss continuation. Their total cost is
+$W(c)+g_T(A)+F(c-e_{T,R}+e_{T,R\setminus A})$, attaining the
+recurrence. Its live nonwitness count decreases by $|A|\ge1$,
+so the induction and the DP are acyclic. The choice of block at every
+transition remains unrestricted, covering all adaptive interleavings.
+When no live block remains, only $p$ remains and $F(0)=0$.
+
+\end{proof}
+Once these transitions are exact, the remaining issue is their
+representation. Counting interchangeable block states gives the size
+bound, while backtracking retains the physical queries needed for
+one output tree.
+
+\begin{claim}[The compressed state space has the stated bit complexity]
+Only counts, supplied masks, and integral costs are needed.
+\end{claim}
+\begin{proof}
+There are at most $d_{b,\ell}$ count coordinates, each between
+zero and $N$, so the enclosing count cube has at most
+$(N+1)^{d_{b,\ell}}$ states. For a coordinate with positive count,
+there are at most $b\ell$ supplied masks to try. Each local Bellman
+table concerns at most $2^\ell$ subsets; these bounds depend only
+on $b,\ell$. Constructing the type and physical-query maps requires
+polynomial input processing.
+
+Every reachable state contains at most $n$ actual hypotheses. A proper
+identifying tree for it has height at most $n-1$, giving raw cost
+at most $n(n-1)$. All weights are one, so the DP costs are integers
+with $O(\log n)$ bits on reachable states. Storing a minimizing
+transition and a physical realizing query at each used state suffices
+for backtracking; no list of all adaptive trees is stored.
+
+\end{proof}
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:uniform-cap-charge}]
+Restrict an optimal full tree to the residual hypotheses, suppressing
+constant-answer nodes. Lemma~\ref{lem:restriction} shows that this
+can only decrease depths; Proposition~\ref{prop:uniform-cap-count-dp}
+therefore makes the exact residual cost at most
+$\OPT_G$. For the lower bound, order the nonwitness hypotheses by their
+first-hit position on the witness spine. The first $j$ queries can
+remove at most $bj$ of them, so the $i$th hypothesis in this order
+has first-hit position at least $\lceil i/b\rceil$ and leaf depth
+at least that large. Ignoring the nonnegative witness and continuation
+costs yields
+\[
+ \OPT_G\ge\sum_{i=1}^N\lceil i/b\rceil
+ \ge\sum_{i=1}^N i/b=\frac{N(N+1)}{2b}.
+\]
+The second inequality uses $\lceil i/b\rceil\ge i/b$ term by term,
+and the equality sums the first $N$ integers.
+Write $G_{\rm res}$ for the exact residual cost. The restriction
+argument gives $G_{\rm res}\le\OPT_G$, while the prefix estimate
+gives $G_{\rm alg}\le2r(N+1)+G_{\rm res}$. Consequently
+\begin{align*}
+ \frac{G_{\rm alg}-\OPT_G}{\OPT_G}
+ &\byref{Prop.}{prop:uniform-cap-prefix}{\le}\frac{2r(N+1)}{\OPT_G}\\
+ &\le\frac{2r(N+1)}{N(N+1)/(2b)}
+       =\frac{4br}{N}\\
+ &\byref{Eq.}{eq:uniform-cap-deletion-count}{\le}\frac{4b}{N}\frac{2bN}{\ell}
+       =\frac{8b^2}{\ell}.
+\end{align*}
+The first inequality uses residual optimality, the second the rank
+lower bound, and the last the marked-point count.
+Dividing by $n$ proves the expected-depth guarantee.
+\end{proof}
+
+\subsection{Calibration of the block length}
+\label{sec:uniform-cap-calibration}
+
+\begin{parameterchoice}
+For $0<\varepsilon\le1$, choose
+\[
+ \ell=\max\left\{2b,\ b(b-1),\
+                 \left\lceil\frac{8b^2}{\varepsilon}\right\rceil\right\}.
+\]
+The first two bounds ensure gap separation and the prefix estimate;
+the last gives $8b^2/\ell\le\varepsilon$. For fixed $b,\varepsilon$,
+$\ell$ and $d_{b,\ell}$ are constants, yielding the claimed PTAS time.
+\end{parameterchoice}
+
+
+The proof uses only the cyclic-interval property of the caps. In
+particular it also applies when the nonwitness points alone are in
+convex position. For fixed $b$, a constant-factor hardness reduction
+through uniform one-layer shallow-cap instances would contradict
+this PTAS unless $\mathrm P=\mathrm{NP}$. A construction based on
+bounded-size caps must therefore prove interactions beyond this
+cyclic-interval subclass to establish such a gap.

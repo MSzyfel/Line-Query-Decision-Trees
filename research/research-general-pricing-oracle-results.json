@@ -1,0 +1,267 @@
+{
+  "witnesses": [
+    {
+      "n": 12,
+      "tests": [
+        96,
+        1042,
+        129,
+        8,
+        2748,
+        3264,
+        3840
+      ],
+      "greedy": 47,
+      "baseline": 47,
+      "exact_optimum": 46,
+      "coalition2": 46,
+      "incident": 46,
+      "combined": 46,
+      "coalition_history": [
+        {
+          "old_cost": 47,
+          "new_cost": 46,
+          "profit": 1,
+          "base_states": 95,
+          "represented_states": 140
+        },
+        {
+          "old_cost": 46,
+          "new_cost": 46,
+          "profit": 0,
+          "base_states": 99,
+          "represented_states": 140
+        }
+      ],
+      "incident_history": [
+        {
+          "old_cost": 47,
+          "new_cost": 46,
+          "profit": 1,
+          "base_states": 73,
+          "represented_states": 112
+        },
+        {
+          "old_cost": 46,
+          "new_cost": 46,
+          "profit": 0,
+          "base_states": 86,
+          "represented_states": 124
+        }
+      ],
+      "combined_history": [
+        {
+          "old_cost": 47,
+          "new_cost": 46,
+          "profit": 1,
+          "base_states": 101,
+          "represented_states": 140
+        },
+        {
+          "old_cost": 46,
+          "new_cost": 46,
+          "profit": 0,
+          "base_states": 102,
+          "represented_states": 140
+        }
+      ]
+    },
+    {
+      "n": 12,
+      "tests": [
+        3264,
+        700,
+        1153,
+        8,
+        1042,
+        97,
+        3840,
+        1022
+      ],
+      "greedy": 48,
+      "baseline": 47,
+      "exact_optimum": 45,
+      "coalition2": 45,
+      "incident": 45,
+      "combined": 45,
+      "coalition_history": [
+        {
+          "old_cost": 47,
+          "new_cost": 45,
+          "profit": 2,
+          "base_states": 102,
+          "represented_states": 146
+        },
+        {
+          "old_cost": 45,
+          "new_cost": 45,
+          "profit": 0,
+          "base_states": 102,
+          "represented_states": 146
+        }
+      ],
+      "incident_history": [
+        {
+          "old_cost": 47,
+          "new_cost": 45,
+          "profit": 2,
+          "base_states": 82,
+          "represented_states": 121
+        },
+        {
+          "old_cost": 45,
+          "new_cost": 45,
+          "profit": 0,
+          "base_states": 88,
+          "represented_states": 123
+        }
+      ],
+      "combined_history": [
+        {
+          "old_cost": 47,
+          "new_cost": 45,
+          "profit": 2,
+          "base_states": 109,
+          "represented_states": 146
+        },
+        {
+          "old_cost": 45,
+          "new_cost": 45,
+          "profit": 0,
+          "base_states": 104,
+          "represented_states": 146
+        }
+      ]
+    },
+    {
+      "n": 18,
+      "tests": [
+        536,
+        203199,
+        44160,
+        88107,
+        228858,
+        41456,
+        514,
+        206464,
+        261742
+      ],
+      "greedy": 87,
+      "baseline": 85,
+      "exact_optimum": 80,
+      "coalition2": 80,
+      "incident": 80,
+      "combined": 80,
+      "coalition_history": [
+        {
+          "old_cost": 85,
+          "new_cost": 80,
+          "profit": 5,
+          "base_states": 233,
+          "represented_states": 436
+        },
+        {
+          "old_cost": 80,
+          "new_cost": 80,
+          "profit": 0,
+          "base_states": 254,
+          "represented_states": 446
+        }
+      ],
+      "incident_history": [
+        {
+          "old_cost": 85,
+          "new_cost": 80,
+          "profit": 5,
+          "base_states": 178,
+          "represented_states": 326
+        },
+        {
+          "old_cost": 80,
+          "new_cost": 80,
+          "profit": 0,
+          "base_states": 198,
+          "represented_states": 334
+        }
+      ],
+      "combined_history": [
+        {
+          "old_cost": 85,
+          "new_cost": 80,
+          "profit": 5,
+          "base_states": 255,
+          "represented_states": 439
+        },
+        {
+          "old_cost": 80,
+          "new_cost": 80,
+          "profit": 0,
+          "base_states": 263,
+          "represented_states": 447
+        }
+      ]
+    },
+    {
+      "n": 18,
+      "tests": [
+        592,
+        211391,
+        44160,
+        88107,
+        228858,
+        33264,
+        514,
+        206464,
+        259695,
+        9772
+      ],
+      "greedy": 82,
+      "baseline": 81,
+      "exact_optimum": 79,
+      "coalition2": 79,
+      "incident": 81,
+      "combined": 79,
+      "coalition_history": [
+        {
+          "old_cost": 81,
+          "new_cost": 79,
+          "profit": 2,
+          "base_states": 263,
+          "represented_states": 454
+        },
+        {
+          "old_cost": 79,
+          "new_cost": 79,
+          "profit": 0,
+          "base_states": 256,
+          "represented_states": 458
+        }
+      ],
+      "incident_history": [
+        {
+          "old_cost": 81,
+          "new_cost": 81,
+          "profit": 0,
+          "base_states": 196,
+          "represented_states": 316
+        }
+      ],
+      "combined_history": [
+        {
+          "old_cost": 81,
+          "new_cost": 79,
+          "profit": 2,
+          "base_states": 274,
+          "represented_states": 454
+        },
+        {
+          "old_cost": 79,
+          "new_cost": 79,
+          "profit": 0,
+          "base_states": 265,
+          "represented_states": 458
+        }
+      ]
+    }
+  ]
+}

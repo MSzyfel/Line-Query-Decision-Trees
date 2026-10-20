@@ -1,0 +1,31 @@
+\begin{algorithm}[H]
+\caption{Alphabetic code on ordered outcomes}
+\label{alg:alphabetic-code}
+\KwIn{Ordered outcomes $y_1<\cdots<y_r$ of positive rational masses $a_i$;
+mode \emph{pointwise} or \emph{expected}.}
+\KwOut{A threshold-comparison tree.}
+\If{$r=1$}{\KwRet its zero-depth leaf\;}
+\eIf{mode is \emph{pointwise}}{
+  Normalize $q_i=a_i/\sum_j a_j$ and put $F_i=\sum_{j<i}q_j$\;
+  \ForEach{$i$}{
+    Find $d_i=\lceil\log_2(1/q_i)\rceil+1$ by rational powers-of-two comparisons\;
+    Take the depth-$d_i$ dyadic cell containing $F_i+q_i/2$ as codeword $i$\;
+  }
+  Build the alphabetic prefix tree and contract unary nodes\;
+}{
+  Set $D_{i,i}=0$\;
+  \For{$h=2,\ldots,r$}{
+    \ForEach{$[i,j]$ of length $h$}{
+      $D_{i,j}\gets\sum_{a=i}^j a_a+min_{i\le t<j}(D_{i,t}+D_{t+1,j})$\;
+      Store a minimizing split after $y_t$\;
+    }
+  }
+  Reconstruct the stored interval splits\;
+}
+\KwRet the ordered tree, implementing each split by its available threshold\;
+\end{algorithm}
+
+The pointwise mode preserves the per-outcome bound; the expected mode
+has $O(r^3)$ arithmetic complexity and avoids long expansions for small
+priors. Their distinct roles are proved in
+Lemma~\ref{lem:alphabetic-endpoints}.

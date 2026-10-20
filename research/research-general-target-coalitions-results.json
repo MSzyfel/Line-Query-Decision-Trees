@@ -1,0 +1,115 @@
+{
+  "status": "passed",
+  "independent_exact_cost_checks": 125,
+  "set_cover_sandwich_checks": 125,
+  "actual_cover_policy_execution_checks": 125,
+  "exact_target_only_weighted_pricing_checks": 119,
+  "central_cover_combinatorial_checks": 120,
+  "triangle_exact_examples": [
+    {
+      "outside_hypotheses": 8,
+      "cohort_exact_cost": 22,
+      "feasible_fractional_cover_cost": "39/2",
+      "certified_gap_at_least": "44/39"
+    },
+    {
+      "outside_hypotheses": 16,
+      "cohort_exact_cost": 38,
+      "feasible_fractional_cover_cost": "63/2",
+      "certified_gap_at_least": "76/63"
+    },
+    {
+      "outside_hypotheses": 64,
+      "cohort_exact_cost": 134,
+      "feasible_fractional_cover_cost": "207/2",
+      "certified_gap_at_least": "268/207"
+    },
+    {
+      "outside_hypotheses": 128,
+      "cohort_exact_cost": 262,
+      "feasible_fractional_cover_cost": "399/2",
+      "certified_gap_at_least": "524/399"
+    }
+  ],
+  "asymptotic_family_bounds": [
+    {
+      "r": 4,
+      "k": 2,
+      "target_count": 6,
+      "outside_count": 216,
+      "full_cohort_cost_lower": 648,
+      "fractional_cover_upper": "454",
+      "gap_lower": "324/227",
+      "gap_lower_float": 1.4273127753303965,
+      "symbolic_bounds_only": true
+    },
+    {
+      "r": 8,
+      "k": 4,
+      "target_count": 70,
+      "outside_count": 343000,
+      "full_cohort_cost_lower": 1715000,
+      "fractional_cover_upper": "687398",
+      "gap_lower": "857500/343699",
+      "gap_lower_float": 2.4949156092976703,
+      "symbolic_bounds_only": true
+    },
+    {
+      "r": 12,
+      "k": 6,
+      "target_count": 924,
+      "outside_count": 788889024,
+      "full_cohort_cost_lower": 5522223168,
+      "fractional_cover_upper": "1577993800",
+      "gap_lower": "690277896/197249225",
+      "gap_lower_float": 3.4995214607307075,
+      "symbolic_bounds_only": true
+    },
+    {
+      "r": 16,
+      "k": 8,
+      "target_count": 12870,
+      "outside_count": 2131746903000,
+      "full_cohort_cost_lower": 19185722127000,
+      "fractional_cover_upper": "4263535247398",
+      "gap_lower": "9592861063500/2131767623699",
+      "gap_lower_float": 4.499956260173734,
+      "symbolic_bounds_only": true
+    },
+    {
+      "r": 24,
+      "k": 12,
+      "target_count": 2704156,
+      "outside_count": 19774031697705428416,
+      "full_cohort_cost_lower": 257062412070170569408,
+      "fractional_cover_upper": "39548065223532535304",
+      "gap_lower": "32132801508771321176/4943508152941566913",
+      "gap_lower_float": 6.499999699535468,
+      "symbolic_bounds_only": true
+    },
+    {
+      "r": 32,
+      "k": 16,
+      "target_count": 601080390,
+      "outside_count": 217168923497670960863319000,
+      "full_cohort_cost_lower": 3691871699460406334676423000,
+      "fractional_cover_upper": "434337847085666332039976998",
+      "gap_lower": "1845935849730203167338211500/217168923542833166019988499",
+      "gap_lower_float": 8.499999998232349,
+      "symbolic_bounds_only": true
+    },
+    {
+      "r": 64,
+      "k": 32,
+      "target_count": 1832624140942590534,
+      "outside_count": 6154888779653181750357194939345176227673387651934393304,
+      "full_cohort_cost_lower": 203111329728554997761787432998390815513221792513834979032,
+      "fractional_cover_upper": "12309777559306363501554017689181744443522400264921864230",
+      "gap_lower": "101555664864277498880893716499195407756610896256917489516/6154888779653181750777008844590872221761200132460932115",
+      "gap_lower_float": 16.5,
+      "symbolic_bounds_only": true
+    }
+  ],
+  "exponential_dp_is_validation_only": true,
+  "no_unrestricted_approximation_claim": true
+}

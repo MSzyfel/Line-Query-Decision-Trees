@@ -1,0 +1,139 @@
+{
+  "status": "passed",
+  "no_numerical_LP_or_exponential_algorithm": true,
+  "exact_dual_identities": 13,
+  "all_variable_coefficients_checked": 2516,
+  "graph_invariance_checks": 1512,
+  "cases": [
+    {
+      "q": 2,
+      "dimension": 1,
+      "n": 2,
+      "profile_and_restriction_variables": 2,
+      "nonzero_dual_capacities": 1,
+      "exact_root_upper_bound": 2,
+      "coordinate_only_exact_OPT": 2,
+      "graph_invariance_checks": 3
+    },
+    {
+      "q": 2,
+      "dimension": 2,
+      "n": 4,
+      "profile_and_restriction_variables": 8,
+      "nonzero_dual_capacities": 2,
+      "exact_root_upper_bound": 8,
+      "coordinate_only_exact_OPT": 8,
+      "graph_invariance_checks": 9
+    },
+    {
+      "q": 2,
+      "dimension": 3,
+      "n": 8,
+      "profile_and_restriction_variables": 24,
+      "nonzero_dual_capacities": 4,
+      "exact_root_upper_bound": 24,
+      "coordinate_only_exact_OPT": 24,
+      "graph_invariance_checks": 81
+    },
+    {
+      "q": 2,
+      "dimension": 4,
+      "n": 16,
+      "profile_and_restriction_variables": 64,
+      "nonzero_dual_capacities": 8,
+      "exact_root_upper_bound": 64,
+      "coordinate_only_exact_OPT": 64,
+      "graph_invariance_checks": 120
+    },
+    {
+      "q": 3,
+      "dimension": 1,
+      "n": 3,
+      "profile_and_restriction_variables": 5,
+      "nonzero_dual_capacities": 2,
+      "exact_root_upper_bound": 5,
+      "coordinate_only_exact_OPT": 5,
+      "graph_invariance_checks": 4
+    },
+    {
+      "q": 3,
+      "dimension": 2,
+      "n": 9,
+      "profile_and_restriction_variables": 30,
+      "nonzero_dual_capacities": 4,
+      "exact_root_upper_bound": 30,
+      "coordinate_only_exact_OPT": 30,
+      "graph_invariance_checks": 64
+    },
+    {
+      "q": 3,
+      "dimension": 3,
+      "n": 27,
+      "profile_and_restriction_variables": 135,
+      "nonzero_dual_capacities": 10,
+      "exact_root_upper_bound": 132,
+      "coordinate_only_exact_OPT": 135,
+      "graph_invariance_checks": 120
+    },
+    {
+      "q": 3,
+      "dimension": 4,
+      "n": 81,
+      "profile_and_restriction_variables": 540,
+      "nonzero_dual_capacities": 28,
+      "exact_root_upper_bound": 525,
+      "coordinate_only_exact_OPT": 540,
+      "graph_invariance_checks": 120
+    },
+    {
+      "q": 4,
+      "dimension": 2,
+      "n": 16,
+      "profile_and_restriction_variables": 72,
+      "nonzero_dual_capacities": 6,
+      "exact_root_upper_bound": 68,
+      "coordinate_only_exact_OPT": 72,
+      "graph_invariance_checks": 625
+    },
+    {
+      "q": 4,
+      "dimension": 3,
+      "n": 64,
+      "profile_and_restriction_variables": 432,
+      "nonzero_dual_capacities": 18,
+      "exact_root_upper_bound": 400,
+      "coordinate_only_exact_OPT": 432,
+      "graph_invariance_checks": 120
+    },
+    {
+      "q": 5,
+      "dimension": 1,
+      "n": 5,
+      "profile_and_restriction_variables": 14,
+      "nonzero_dual_capacities": 4,
+      "exact_root_upper_bound": 14,
+      "coordinate_only_exact_OPT": 14,
+      "graph_invariance_checks": 6
+    },
+    {
+      "q": 5,
+      "dimension": 2,
+      "n": 25,
+      "profile_and_restriction_variables": 140,
+      "nonzero_dual_capacities": 8,
+      "exact_root_upper_bound": 130,
+      "coordinate_only_exact_OPT": 140,
+      "graph_invariance_checks": 120
+    },
+    {
+      "q": 5,
+      "dimension": 3,
+      "n": 125,
+      "profile_and_restriction_variables": 1050,
+      "nonzero_dual_capacities": 28,
+      "exact_root_upper_bound": 940,
+      "coordinate_only_exact_OPT": 1050,
+      "graph_invariance_checks": 120
+    }
+  ]
+}

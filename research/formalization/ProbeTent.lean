@@ -1,0 +1,1 @@
+import Mathlib\n#check (fun (x : Real) => x)\n#check (fun (x : ℝ) => x)\n

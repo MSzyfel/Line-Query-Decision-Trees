@@ -1,0 +1,86 @@
+\section{Conclusion}
+
+\begin{center}
+\begin{tabular}{p{0.37\textwidth}p{0.24\textwidth}p{0.27\textwidth}}
+\hline
+Objective & Polynomial time & Quasipolynomial time\\
+\hline
+Maximum depth, binary answers &
+$2+\gamma=4.46496526$ & $2+\varepsilon$\\[3pt]
+Maximum depth, on-line answers &
+$4+2\gamma=8.92993052$ & $4+\varepsilon$\\[3pt]
+Expected depth, binary answers and arbitrary priors &
+$\rho_{\rm two}<5.182976$ & $2+\varepsilon$\\[3pt]
+Expected depth, on-line answers and arbitrary priors &
+$2\rho_{\rm two}<10.365952$ & $4+\varepsilon$\\
+\hline
+\end{tabular}
+\end{center}
+
+The common-witness normalization is the structural step shared by
+both algorithms. In a flat state, it turns each supplied test into
+an opposite cap and represents that cap by at most two adjacent
+vertices of a convex hull. For each hypothesis, the positive hull
+answers form a circular interval. This representation does not
+enlarge the query family: it supplies an interval view of the tests
+that were already given.
+
+The two objectives then use that structure differently. For maximum
+depth, the algorithm schedules discovery around the actual heights
+of its recursively built children. The comparison path in an
+optimal tree supplies the deadline credits, while adjacent support
+blocks control discovery delay; route-specific endpoint searches
+preserve those credits. Exact Cartesian-tree scheduling with rank
+subsets handles logarithmically many discovery slots in polynomial
+time. A global slot cap and the priority fallback support simultaneous
+small-optimum and universal bounds, yielding factor $4.464966$.
+For expected depth, the algorithm
+learns each full hull pattern before recursing. Queries that become
+unnecessary after restriction pay for discovery, and the entropy
+still remaining after discovery pays for endpoint information.
+Exact integer-budget coverage applied to adjacent hull blocks,
+joint discovery and endpoint accounting, and the zero-pattern waiting
+time sharpen the polynomial factor. Retaining an orientation credit
+through the first two batches' coverage guarantees lowers it to $5.283310$.
+Rational choices between stopping and querying both endpoints retain
+the second answer's conditional information and lower it further to
+$5.272565$. Coarsening the transcript preserves the individual cap
+bound without charging the information twice. Changing the initial
+coverage budget and merging selected first phases lowers the factor to
+$5.197569$. Modifying both initial budgets lowers it further to
+$5.182976$. Signed first-cover corrections and a separate all-negative
+waiting calculation account for every effect of these changed schedules.
+In both analyses, the local credits
+are decreases of quantities that telescope over the recursive tree.
+
+The quasipolynomial algorithms retain a logarithmic number of schedule
+grades, giving direct factors below $4.464966$ and $3.7187$.
+Their additive bounds have leading coefficient arbitrarily close to
+two. A logarithmic-depth lookahead dynamic program then removes the
+count and entropy surcharge from the ratio, proving factors
+$2+\varepsilon$ for every fixed $\varepsilon>0$.
+The on-line-answer entries follow from the same factor-two simulation,
+using the binary guarantee with parameter $\varepsilon/2$.
+These results have quasipolynomial running time.
+
+The small-cap results place additional limits on potential hardness
+constructions. With a distinguished all-miss hypothesis and fixed
+cap size, maximum depth is exactly solvable in polynomial time.
+The weighted singleton/pair path-and-cycle subclass with all
+singleton tests has an EPTAS for expected depth. Thus the current
+weighted pair-path reduction cannot yield APX-hardness unless
+$\mathrm P=\mathrm{NP}$.
+Uniform fixed-size caps in convex position with an all-miss hypothesis
+also admit a PTAS, without requiring singleton tests. Clearing short
+gaps permits exact optimization of the residual block interleavings;
+the prefix cost is a small fraction of the full optimum. Constant-factor
+hardness must therefore escape this additional restricted class.
+
+The hardness reductions show that this geometry does not make exact
+optimization easy: even points on a parabola with only supplied
+binary line queries encode strongly NP-complete 3-Partition
+instances. The expected-depth result holds for both arbitrary positive
+priors and uniform priors: a uniform cloud lift adds a fixed internal
+cost to the weighted optimum. Constant-factor inapproximability
+remains open. Whether the polynomial factors can be lowered or
+the quasipolynomial factors can be brought below two remains open.

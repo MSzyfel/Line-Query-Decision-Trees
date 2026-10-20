@@ -1,0 +1,40 @@
+\begin{algorithm}[H]
+\caption{\ExpectedTree: shared recursive expected-depth construction}
+\label{alg:expected-tree}
+\KwIn{State $S$, original priors; variant \emph{vertex}, \emph{block},
+\emph{oriented}, or \emph{adaptive}; its specified rational parameters;
+scheduler $\mathcal B$, defaulting to \BatchOrders.}
+\KwOut{A supplied-query identification tree.}
+\If{$|S|\le1$}{\KwRet its leaf\;}
+\If{a mass-balanced supplied line $\ell$ exists}{
+  \KwRet $\ell$ with children $\ExpectedTree(S_\ell^-,\text{variant})$
+  and $\ExpectedTree(S_\ell^+,\text{variant})$\;
+}
+Compute $\HullData(S)$; put $p_0=w(A_0)$ and $b=w(S)-p_0$\;
+Use real hull vertices as candidates in \emph{vertex} mode;
+otherwise use edges of the full hull, retaining its origin marker\;
+\If{the hull has at most two real extreme vertices}{
+  Build their direct pattern stage and go to child attachment\;
+}
+\ForEach{candidate schedule $Q$ from $\mathcal B$ on the positive-pattern demands}{
+  \eIf{variant is \emph{vertex}}{$F(Q)\gets\MSSC(Q)+p_0|Q|$\;}{
+    Use fixed block orientations in \emph{block} mode, and smaller exclusive mass first otherwise\;
+    Compute each block's newly hit masses $x,y,z$\;
+    Set $D=0$ in \emph{block} mode, $D=\max\{x,y\}$ in \emph{oriented} mode,
+    or choose the adaptive mode and $D$ by Algorithm~\ref{alg:block-mode}\;
+    $F(Q)\gets2\MSSC_{\rm blk}(Q)+2p_0|Q|-\sum D$\;
+  }
+}
+Choose $Q$ minimizing its rational score and build its discovery stage\;
+At each positive exit use expected $\EndpointCode$ to learn the full pattern\;
+\textbf{Child attachment:} attach $\ExpectedTree(A,\text{variant})$ to each nonzero pattern class\;
+Use a zero-query leaf for the zero singleton; omit that route when absent\;
+\KwRet the contracted tree\;
+\end{algorithm}
+
+The oriented and mixed-prefix theorems use this same recipe with
+different rational balance thresholds; their prefix mixtures are
+\emph{analysis certificates}, not new scheduling subroutines.
+Algorithms~\ref{alg:first-phase-family} and~\ref{alg:two-phase-family}
+replace $\mathcal B$ in adaptive mode and return its best rational-score
+candidate; the chosen scheduler and parameters are inherited by children.

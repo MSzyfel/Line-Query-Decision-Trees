@@ -1,0 +1,32 @@
+\begin{algorithm}[H]
+\caption{Uniform expected-depth PTAS for bounded convex-position caps}
+\label{alg:uniform-cap-ptas}
+\KwIn{Uniform hypotheses $P\cup\{p\}$ in convex position; supplied
+caps missing $p$, each of size at most fixed $b$; $0<\varepsilon\le1$.}
+\KwOut{A supplied-query tree of expected cost at most
+$(1+\varepsilon)\OPT_E$.}
+$N\gets|P|$; use $\ell$ from
+Section~\ref{sec:uniform-cap-calibration}\;
+\If{$N<\ell$}{\KwRet $\ExactTree(P\cup\{p\},\mathrm E)$ with raw unit weights\;}
+Partition the convex cyclic order of $P$ into pieces of length
+$\ell$; mark their first $\min\{b,\text{piece size}\}$ points as $D$\;
+$U\gets P$; start an empty miss-spine prefix\;
+\While{$D\cap U\ne\varnothing$}{
+ Choose $x\in D\cap U$ and a supplied cap $q$ containing $x$\;
+ $A\gets U\cap q$\;
+ Append $q$ to the prefix; attach a legal local code for $A$
+ of height at most $|A|-1$ on its hit side\;
+ $U\gets U\setminus A$; continue on the miss side\;
+}
+Intersect the unmarked pieces with $U$ to obtain the residual blocks\;
+Store each physical block's map from its masks to realizing supplied
+queries; group identical mask families as types $T$ and compute every
+local cost $g_T(A)$ by \ExactTree\;
+Compute the initial count vector $c$ of the full residual block masks\;
+Evaluate \eqref{eq:uniform-cap-count-dp}, memoizing minimizing transitions\;
+Backtrack from $c$: select a physical block in the chosen state,
+query that block's stored realizing line, and translate the local
+positive code using the same block's query map\;
+Attach the reconstructed continuation to the prefix's miss leaf\;
+\KwRet the resulting tree\;
+\end{algorithm}

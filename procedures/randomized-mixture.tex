@@ -1,0 +1,25 @@
+\begin{algorithm}[H]
+\caption{LP-compressed Las Vegas per-hypothesis identification}
+\label{alg:randomized-mixture}
+\KwIn{Identifiable $\HH$, supplied lines $\LL$; expected-depth oracle
+$\mathcal A_E$ of fixed rational factor $\alpha$; rational tolerance
+$0<\varepsilon\le1$.}
+\KwOut{A rational mixture of at most $|\HH|$ legal identifying trees.}
+\If{$|\HH|=1$}{\KwRet its leaf with probability one\;}
+Set $n=|\HH|$, $L=n-1$, and choose $\eta,K$ by
+\eqref{eq:randomized-calibration}; write $\eta=p/q$ in lowest terms\;
+Set $w_h=1$ for every $h\in\HH$\;
+\For{$t=1,\ldots,K$}{
+  Set $\pi_{h,t}=w_h/\sum_gw_g$\;
+  Construct $T_t=\mathcal A_E(\pi_t)$ and contract constant queries\;
+  Record every depth $d_{T_t}(h)$\;
+  \ForEach{$h\in\HH$}{
+    Set $w_h\leftarrow w_h(qL+p\,d_{T_t}(h))$\;
+  }
+}
+Solve \eqref{eq:randomized-master-lp}, retaining an optimal basic
+solution $(\mu,r)$\;
+Discard trees whose probability is zero\;
+\KwRet the retained rational mixture; sample it exactly and execute
+the selected tree on each identification run\;
+\end{algorithm}

@@ -1,0 +1,673 @@
+\section{A constant approximation for expected depth}
+\label{sec:mass-improvement}
+
+The expected-depth algorithm distinguishes balanced and flat states
+by probability mass. Like the maximum-depth algorithm, it learns
+the complete hull pattern before recursing. Its discovery ordering
+uses exact weighted coverage rather than the heights of child codes.
+The proof uses the same three steps in this section and in all later
+expected-depth improvements: compare discovery with queries deleted
+from an optimal witness path; bound the information still needed to
+recover the full pattern; then telescope these two local credits.
+Lemma~\ref{lem:stage-conversion} performs the last step once for all
+variants. The algorithm itself uses only coverage, endpoint codes, and
+rational scores; the witness path and information quantities are proof
+objects.
+Fix
+\[
+ \beta=\frac{3512863}{10^6},\qquad
+ \lambda=\frac{\beta+1}{2\ln\beta},\qquad
+ \nu=1+\frac1{\ln\beta},
+\]
+and the accounting coefficients
+\[
+ A_\beta=2\lambda,\qquad
+ C_\beta=\frac{\Phi_\beta(1)+\Phi_\beta(2)}2,\qquad
+ B_\beta=4+C_\beta.
+\]
+For this $\beta$, $\lfloor\beta\rfloor=3$ and
+$\lfloor2\beta\rfloor=7$. Splitting the integrals at their integer
+breakpoints gives
+\[
+ C_\beta=3-\frac{\ln(945/8)}{4\ln\beta},\qquad
+ B_\beta=7-\frac{\ln(945/8)}{4\ln\beta}.
+\]
+The chosen $\beta$ satisfies $\lambda>\nu$.
+
+Revealing a pattern makes an initial segment of an optimal witness
+path unnecessary; those deleted queries pay for its discovery.
+Entropy pays for the pattern information that remains. We seek a
+local bound of the form
+\[
+ \text{expected queries in a stage}
+ \ \le\ A_\beta\Delta_{\mathrm E}(S,\Pi)+cI(S,\Pi)
+\]
+for a constant $c$ and the stage's output partition $\Pi$.
+Unlike a bound proportional to $\OPT_{\mathrm E}(S)$ alone, this inequality sums
+over nested states without charging the same optimum repeatedly.
+
+\subsection{Hull tests and their answer patterns}
+
+Fix a strict test witness $p$ and use the common notation of
+Definitions~\ref{def:normalized-queries} and~\ref{def:hull-pattern}.
+These hull vertices are used for discovery, not as a replacement for
+the original query family. Once the pattern class is known, the
+recursive algorithm again has access to every supplied line.
+
+Lemma~\ref{lem:hull-structure} gives cap coverage and interval
+patterns. Lemma~\ref{lem:mssc} gives a deterministic ordering with
+latency and length bounds. Endpoint recovery is described in
+Section~\ref{sec:endpoint-geometry}.
+
+\subsection{The queries a pattern makes unnecessary}
+
+\begin{lemma}[Supporting-prefix credit]\label{lem:support-prefix}
+Let $T^*$ be an expected-depth-optimal proper tree for $S$.
+Follow $p$ through it, with queries $Q=(i_1,\ldots,i_q)$ and terminal
+hypothesis $z$.
+For $A\in\Pi$, let $t_A$ be the first index $j$ for which the pattern
+of $A$ is positive at a vertex of $J_{i_j}$; set $t_A=q+1$ if there
+is no such index.
+Then
+\begin{equation}\label{eq:support-prefix-credit}
+ \Delta_{\mathrm E}(S,\Pi)\ge
+ \sum_{A\in\Pi}w(A)(t_A-1).
+\end{equation}
+Every class with $t_A=q+1$ is the singleton $\{z\}$.
+If $A_0$ exists, then $z$ is its member and $t_{A_0}=q+1$.
+\end{lemma}
+\begin{proof}
+For $j<t_A$, every supporting hull bit in $J_{i_j}$ is negative on
+the whole class $A$. Equation~\eqref{eq:hull-cap-cover} forces
+test $i_j$ to have the witness's answer throughout $A$.
+Inductively, all members of $A$ follow the witness path through
+its first $t_A-1$ queries. Restricting $T^*$ to $A$ contracts
+those queries and reduces its weighted depth by
+$w(A)(t_A-1)$. Other contractions can only reduce it further.
+
+If there is no supporting hit, all members of $A$ follow the
+entire path to leaf $z$, so $A=\{z\}$. The all-zero class always
+does this. Summing the reductions over disjoint classes gives
+\[
+ \Delta_{\mathrm E}(S,\Pi)\ge
+ c_{\mathrm E}(T^*)-\sum_{A\in\Pi}c_{\mathrm E}(T^*|_A),
+\]
+and the right side is at least the stated prefix sum.
+The inequality uses $\OPT_{\mathrm E}(A)\le c_{\mathrm E}(T^*|_A)$: each restricted tree
+is a valid identifying tree for its class.
+\end{proof}
+
+The first supporting hit need not be the original test's first
+positive answer. That is harmless: the proof only needs the
+stronger implication that all-negative supports force a constant
+original answer. The algorithm will query the supports directly.
+
+\subsection{Finding a positive hull answer}
+
+Compute the pattern classes and put $U=S\setminus A_0$.
+Hull caps cover $U$. Apply Lemma~\ref{lem:mssc} to its weighted
+interval demands with $p_0=w(A_0)$. Query the resulting ordering
+until a positive answer or a singleton can be inferred.
+If every answer is negative and
+$A_0=\{z_0\}$, completing the cover identifies $z_0$.
+When $A_0$ is absent, a complete all-negative route is impossible.
+
+The shift is chosen by the joint first-cover and waiting-time
+objective, using the actual all-zero weight rather than a guessed
+terminal point. Its average waiting-time bound is sharper than
+the uniform length bound. Choosing the joint objective makes that
+saving available to the same deterministic schedule.
+
+To analyze discovery, follow a witness through an optimal expected-
+depth tree and replace each query by its one or two hull supports.
+This is only a comparison ordering; the algorithm cannot see it.
+Within a support block, querying the heavier newly hit part first
+ensures that at least half of its mass is found at the earlier of
+the two possible positions. The exact batch analysis can then charge
+the actual schedule to those integer first-cover times.
+
+\begin{lemma}[Discovery bound]\label{lem:hull-discovery}
+The weighted expected number $W_{\mathrm{disc}}(S)$ of discovery
+queries satisfies
+\[
+ W_{\mathrm{disc}}(S)\le
+ A_\beta\Delta_{\mathrm E}(S,\Pi)+(B_\beta-4)b(S).
+\]
+\end{lemma}
+\begin{proof}
+Singleton states require no query. Otherwise $U$ is nonempty,
+because the all-zero class has at most one hypothesis.
+Use the witness path and supporting-prefix indices of
+Lemma~\ref{lem:support-prefix}. Put
+\[
+ D_+=\sum_{A\in\Pi,\ A\ne A_0}w(A)(t_A-1).
+\]
+Expand each path query into its at most two real supports.
+Within that block, put first the support hitting the larger
+weight of classes whose first supporting index is this block.
+It hits at least half of that newly supported mass.
+Their preceding blocks use at most $2(t_A-1)$ tests.
+Consequently at least half of a block's newly supported mass is
+hit by position $2t_A-1$, and all of it by position $2t_A$.
+Removing repetitions only improves these positions.
+This mass ordering belongs to the comparison proof, not to the
+algorithm, which does not know the optimal witness path.
+
+The discrete curve must be applied before replacing these two
+positions by their average. Write $\eta=\eta_\beta$ and put
+\[
+ g(t)=\lambda t+\eta-\Phi_\beta(t)
+     =\frac1{2\ln\beta}\int_1^t
+       \frac{(x-\lfloor x\rfloor)
+              +(\beta x-\lfloor\beta x\rfloor)}x\,dx.
+\]
+The function $g$ is the exact saving lost by replacing the discrete
+curve $\Phi_\beta$ with its coarser linear upper bound
+$\lambda t+\eta$. Its integral representation shows that it is
+nonnegative and nondecreasing, with $g(1)=0$.
+Define
+\[
+ \varepsilon_\beta(t)
+ =\frac{g(2t-1)+g(2t)-g(2)}2.
+\]
+It too is nonnegative and nondecreasing, because $g$ is, and
+$\varepsilon_\beta(1)=0$.
+For every integer $t\ge1$,
+\[
+ \begin{aligned}
+ \frac{\Phi_\beta(2t-1)+\Phi_\beta(2t)}2
+ &=2\lambda(t-1)+\frac32\lambda+\eta
+     -\frac{g(2t-1)+g(2t)}2\\
+ &=2\lambda(t-1)+C_\beta-\varepsilon_\beta(t),
+ \end{aligned}
+\]
+because the last average is at least $g(2)/2$ and
+$C_\beta=\frac32\lambda+\eta-g(2)/2$.
+Since $\Phi_\beta$ is increasing, the worst placement consistent
+with the block order puts half the new mass at position $2t-1$ and
+half at position $2t$. Its contribution is therefore bounded by
+the displayed average times the block mass. A singleton support
+places all of its mass at the earlier position and obeys the same
+bound.
+
+If $A_0$ is absent, the only possibly unhit class after all blocks
+is the singleton $\{z\}$. Append one positive hull test for it
+if needed. Its position is at most $2q+1=2(t_{\{z\}}-1)+1$.
+It too obeys the preceding bound.
+Let $m_t$ be the mass of classes whose first supporting block is
+$t$, including the appended terminal singleton when present.
+For the resulting comparison order $Q_{\mathrm{sup}}$,
+\[
+ \sum_{h\in U}\pi_h\Phi_\beta(t_{Q_{\mathrm{sup}}}(h))
+ \le2\lambda D_++C_\beta b(S)
+       -\sum_t m_t\varepsilon_\beta(t).
+\]
+If $A_0=\{z_0\}$, every nonzero class has $t_A\le q$.
+The support expansion covers $U$ with at most $2q$ tests.
+Its minimum hull cover size $k_0$ is therefore at most $2q$.
+Supporting-prefix credit gives
+$D_++\pi_{z_0}q\le\Delta_{\mathrm E}$.
+When $A_0$ is absent, it instead gives $D_+\le\Delta_{\mathrm E}$.
+Apply the joint inequality in Lemma~\ref{lem:mssc} to this
+comparison order and the actual zero weight:
+\[
+\begin{aligned}
+ W_{\mathrm{disc}}
+ &\le2\lambda D_++C_\beta b(S)+w(A_0)Z_\beta(k_0)\\
+ &\le2\lambda D_++C_\beta b(S)+2\nu w(A_0)q\\
+ &\le A_\beta\Delta_{\mathrm E}(S,\Pi)+(B_\beta-4)b(S).
+\end{aligned}
+\]
+The middle inequality drops the nonpositive correction
+$-w(A_0)/\ln\beta$. For the last inequality, if $A_0$ is present,
+the support-prefix credit gives
+$D_++w(A_0)q\le\Delta_{\mathrm E}$ and $\nu\le\lambda$ gives
+$2\lambda D_++2\nu w(A_0)q\le2\lambda\Delta_{\mathrm E}$.
+If $A_0$ is absent, $D_+\le\Delta_{\mathrm E}$ directly. Finally,
+$A_\beta=2\lambda$ and $B_\beta-4=C_\beta$.
+Before discarding these savings, the same calculation gives
+\begin{equation}\label{eq:discrete-discovery-credit}
+ W_{\mathrm{disc}}\le
+ A_\beta\Delta_{\mathrm E}+C_\beta b(S)
+ -\sum_t m_t\varepsilon_\beta(t)-\frac{w(A_0)}{\ln\beta}.
+\end{equation}
+Indeed, $Z_\beta(k_0)\le\nu k_0-1/\ln\beta$ and
+$k_0\le2q$ retain the stated zero-target credit.
+When $A_0$ is absent, its waiting-time terms vanish, so no
+bound on $k_0$ is needed there.
+Early singleton inference can only reduce the actual work.
+\end{proof}
+
+\subsection{The full-pattern stage}
+
+\begin{lemma}[Full-pattern bound]\label{lem:pruning-macro}
+Let $\mathcal R$ be the partition at the end of discovery, including
+early singleton inferences, and put $J(S)=I(S,\mathcal R)$.
+Let $b_{\mathrm{pin}}$ be the mass of positive exits with at least
+one cached negative neighbor of the discovered vertex, and
+$b_{\mathrm{both}}$ the mass with both neighbors negative.
+The discovery and endpoint procedures form a polynomial-time partial
+decision tree whose output classes are exactly $\Pi$. Its weighted
+expected number of queries satisfies
+\begin{equation}\label{eq:pruning-macro}
+ \begin{aligned}
+ W_{\mathrm{pat}}(S)\le{}&
+ A_\beta\Delta_{\mathrm E}(S,\Pi)+B_\beta b(S)
+       -2b_{\mathrm{pin}}-2b_{\mathrm{both}}\\
+ &+\frac{I(S,\Pi)-J(S)}{\ln2}.
+ \end{aligned}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Discovery depends only on the full hull pattern. An inferred singleton
+therefore has a unique pattern; on other positive exits the endpoints
+identify it. The completed negative cover identifies the zero singleton.
+Hence the output partition is exactly $\Pi$.
+
+Use Algorithm~\ref{alg:endpoint-code} with the optimal expected-depth
+alphabetic codes of Algorithm~\ref{alg:alphabetic-code}. An unpinned exit
+uses two searches, a singly pinned exit one, and a doubly pinned exit
+none. Their two-query code overheads sum to
+$4b-2b_{\mathrm{pin}}-2b_{\mathrm{both}}$; the doubly pinned mass is
+also included in $b_{\mathrm{pin}}$.
+
+Let $\Sigma$ denote the full pattern and $Z$ the discovery transcript
+under the conditional hypothesis distribution on $S$. The transcript
+is determined by $\Sigma$, and after each transcript the realized
+endpoint pair $(L,R)$ uniquely describes the positive pattern. Use a
+fixed dummy pair on already determined routes. The entropy chain rule
+then gives
+\[
+ w(S)H((L,R)\mid Z)=w(S)H(\Sigma\mid Z)=I(S,\Pi)-J(S),
+\]
+and $H((L,R)\mid Z)=H(L\mid Z)+H(R\mid L,Z)$.
+Lemma~\ref{lem:alphabetic-endpoints} bounds the conditional search cost
+by these entropy terms divided by $\ln2$, plus the overheads already
+counted. Consequently additional endpoint work is at most
+\[
+ 4b-2b_{\mathrm{pin}}-2b_{\mathrm{both}}
+     +\frac{I-J}{\ln2}.
+\]
+Adding Lemma~\ref{lem:hull-discovery} proves the claim.
+\end{proof}
+
+\subsection{The recursive algorithm and its telescoping bound}
+
+Fix a rational $0<\delta<1/3$. We use the near-minimizing threshold
+\[
+ \delta=\frac{1234989569}{10^{10}}=0.1234989569.
+\]
+For the chosen $\beta$, this rational approximates the minimizing
+balance threshold in \eqref{eq:parameter-ratio}. Its factor is certified
+below; algorithmic comparisons require only rational arithmetic.
+\begin{symboltable}
+$\beta,\ \lambda_\beta,\ \nu_\beta$ & Fixed geometric-batch factor and its positive-target and zero-target coefficients.\\
+$A_\beta,\ C_\beta,\ B_\beta$ & Discovery, first-two-block, and endpoint-inclusive coefficients.\\
+$\delta,\ h(\delta),\ \sigma(\delta)$ & Mass-balance threshold, binary entropy at that threshold, and capped-discovery entropy per unit mass.\\
+$N_\delta,\ s_\delta,\ \chi_\beta(\delta)$ & Number of full early mass blocks, final fractional mass, and guaranteed discrete discovery saving.\\
+$\Pi,\ \mathcal R,\ J(S),\ I(S,\Pi)$ & Full-pattern partition, discovery-transcript partition, information learned by discovery, and total pattern information.\\
+$b(S),\ b_{\mathrm{pin}},\ b_{\mathrm{both}}$ & Nonzero-pattern mass, mass with a cached negative neighbor, and mass with both neighbors negative.\\
+$\Delta_{\mathrm E},\ W_{\mathrm{disc}},\ W_{\mathrm{pat}}$ & Restriction credit, weighted discovery-query cost, and weighted full-stage query cost.\\
+$B_{\beta,\delta}$ & Final flat-stage coefficient after the guaranteed discovery saving.\\
+\end{symboltable}
+Algorithm~\ref{alg:expected-tree}, in its \emph{vertex} variant,
+gives the recursion. A mass-balanced supplied line is queried directly.
+Otherwise compute the common-witness hull and execute the full-pattern
+stage of Lemma~\ref{lem:pruning-macro}; recurse on its classes and stop
+at singletons. Its schedule comes from Algorithm~\ref{alg:batch-orders}
+with score $\MSSC(G)+w(A_0)|G|$. All decisions use the supplied
+incidence table and rational probabilities. The optima and restriction
+credit occur only in the analysis.
+
+\input{procedures/expected-tree}
+
+\begin{lemma}[Capped-rank credit conversion]\label{lem:capped-rank-credit}
+Let $w=b+p_0$, with $p_0\ge0$, and let nonnegative witness masses
+$m_t$ satisfy $\sum_t m_t=b$ and $m_t\le2\delta w$.
+Suppose coefficients $a_t$ are at least $\tau$ except on a finite
+set $E$. For $\mu\ge0$, define
+\[
+ \chi=\tau-2\delta\sum_{t\in E}(\tau-a_t)_+-\delta\mu,
+ \qquad (x)_+=\max\{x,0\}.
+\]
+If $\chi+\zeta\ge\tau$, then
+\begin{equation}\label{eq:capped-rank-conversion}
+ \sum_t m_t a_t-\delta w\mu+\zeta p_0\ge\chi b.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Charge only the coefficients below $\tau$, each using its individual
+mass cap:
+\[
+ \sum_t m_t a_t\ge\tau b-
+     2\delta w\sum_{t\in E}(\tau-a_t)_+.
+\]
+After subtracting the intercept and adding the zero-route credit,
+the right side is
+\[
+ \tau b-(\tau-\chi)w+\zeta p_0
+ =\chi b+p_0(\chi+\zeta-\tau)\ge\chi b.
+\]
+Thus the same calculation handles arbitrary positive mass $b$ and
+arbitrary zero-pattern mass $p_0$; it never assumes $b=w$.
+\end{proof}
+
+\begin{lemma}[Flat-state discrete credit]\label{lem:flat-discrete-credit}
+Put
+\[
+ \begin{aligned}
+ N_\delta&=\lfloor1/(2\delta)\rfloor,\qquad
+ s_\delta=1-2\delta N_\delta,\\
+ \chi_\beta(\delta)
+ &=2\delta\sum_{t=1}^{N_\delta}\varepsilon_\beta(t)
+       +s_\delta\varepsilon_\beta(N_\delta+1),\\
+ B_{\beta,\delta}&=4+C_\beta-\chi_\beta(\delta).
+ \end{aligned}
+\]
+If
+\begin{equation}\label{eq:flat-discrete-condition}
+ \varepsilon_\beta(N_\delta+1)
+ \le\chi_\beta(\delta)+\frac1{\ln\beta},
+\end{equation}
+then a mass-flat stage satisfies
+\[
+ \begin{aligned}
+ W_{\mathrm{pat}}(S)\le{}&
+ A_\beta\Delta_{\mathrm E}(S,\Pi)+B_{\beta,\delta}b(S)
+       -2b_{\mathrm{pin}}-2b_{\mathrm{both}}\\
+ &+\frac{I(S,\Pi)-J(S)}{\ln2}.
+ \end{aligned}
+\]
+The discovery construction is unchanged.
+\end{lemma}
+\begin{proof}
+Each witness query contributes at most two hull caps, each of mass
+less than $\delta w(S)$, so its newly supported mass is at most
+$2\delta w(S)$. An appended terminal singleton lies in a positive
+cap and obeys the same bound. Their masses sum to $b(S)$.
+
+Apply Lemma~\ref{lem:capped-rank-credit} with
+\[
+ a_t=\varepsilon_\beta(t),\quad
+ \tau=\varepsilon_\beta(N_\delta+1),\quad
+ E=\{1,\ldots,N_\delta\},\quad \mu=0,\quad
+ \zeta=1/\ln\beta.
+\]
+The discounts are nondecreasing. Its definition of $\chi$ is exactly
+$\chi_\beta(\delta)$, since $s_\delta=1-2\delta N_\delta$.
+Condition~\eqref{eq:flat-discrete-condition} is precisely
+$\chi+\zeta\ge\tau$. Thus the positive-rank discounts and the
+zero-route discount retained in
+\eqref{eq:discrete-discovery-credit} save at least
+$\chi_\beta(\delta)b(S)$.
+
+The endpoint cost from Lemma~\ref{lem:pruning-macro} is unchanged.
+Substituting this saving in its stage ledger replaces
+$B_\beta$ by $B_{\beta,\delta}=B_\beta-\chi_\beta(\delta)$ and gives
+the displayed bound. No witness masses are computed by the algorithm.
+\end{proof}
+
+The cap on each nonzero discovery class gives a useful entropy
+lower bound, but the total mass of those classes matters as well.
+They cannot all have mass $\delta$ unless their masses sum to the
+positive mass $b(S)$; any remainder and the possible zero-pattern
+singleton affect the least possible entropy. At total capped mass
+one, the lowest-entropy arrangement fills as many entries to
+$\delta$ as possible and leaves at most one smaller remainder;
+$\sigma(\delta)$ is the entropy of that arrangement. The next lemma
+shows that a smaller total capped mass still pays at least the same
+entropy per unit mass, even when the remaining mass is placed in one
+unrestricted entry.
+
+\begin{lemma}[Entropy of capped discovery exits]
+\label{lem:capped-discovery-entropy}
+For $0<\delta<1$, put
+\[
+ k_\delta=\lfloor1/\delta\rfloor,\qquad
+ r_\delta=1-k_\delta\delta,\qquad
+ \sigma(\delta)=-k_\delta\delta\ln\delta-r_\delta\ln r_\delta,
+\]
+with $0\ln0=0$.
+If a probability vector has one unrestricted entry $p_0$ and
+all other entries at most $\delta$, its entropy is at least
+$(1-p_0)\sigma(\delta)$.
+\end{lemma}
+\begin{proof}
+Write $f(x)=-x\ln x$ with $f(0)=0$, and fix the capped total
+$b=1-p_0$. Concavity of $f$ lets us transfer mass between any two
+entries in $(0,\delta)$ until one is zero or the other is $\delta$,
+without increasing entropy. Repeating gives the minimum-entropy shape:
+$j=\lfloor b/\delta\rfloor$ entries of mass $\delta$ and at most
+one remainder. Including the unrestricted entry, its entropy is
+\[
+ T(b)=f(1-b)+j f(\delta)+f(b-j\delta).
+\]
+It remains to show $T(b)\ge b\sigma(\delta)$.
+
+On each interval between consecutive multiples of $\delta$, $T$ is
+concave. It therefore suffices to prove the inequality at those
+multiples and at the endpoints $0,1$. We have $T(0)=0$ and
+$T(1)=\sigma(\delta)$. At a positive multiple $b=j\delta$,
+\[
+ \frac{T(b)}b=L+g(1-b),\qquad
+ L=\ln(1/\delta),\qquad
+ g(p)=\frac{-p\ln p}{1-p}.
+\]
+Since
+$g'(p)=(-\ln p-1+p)/(1-p)^2\ge0$, these ratios decrease as the
+multiple $b$ increases. Put $r=r_\delta$. If $r=0$, the last ratio
+is $L=\sigma(\delta)$. If $r>0$, its difference from $T(1)$ is
+\[
+ L+\frac{f(r)}{1-r}-[(1-r)L+f(r)]
+ =rL+\frac{r f(r)}{1-r}\ge0.
+\]
+Thus every required endpoint lies above the line
+$b\sigma(\delta)$, and concavity supplies the intervals between them.
+The given vector has entropy at least $T(b)$, proving the claim.
+Also $\sigma(\delta)=\ln(1/\delta)+r_\delta
+\ln(\delta/r_\delta)\ge\ln(1/\delta)$, with the second term
+interpreted as zero when $r_\delta=0$.
+\end{proof}
+
+In a mass-flat state, every hull cap has mass less than
+$\delta w(S)$. Each nonzero discovery class lies in its first
+positive hull cap, or is an inferred singleton with a nonzero
+pattern. Thus its mass is less than $\delta w(S)$.
+Normalize the discovery-class masses by $w(S)$ and apply
+Lemma~\ref{lem:capped-discovery-entropy},
+using the zero-pattern class as the unrestricted entry. Multiplying
+the resulting entropy bound by $w(S)$ gives
+$J(S)\ge b(S)\sigma(\delta)$.
+In particular, the zero-pattern mass is included rather than
+discarded, and the capped distribution also accounts for any
+remainder when the positive masses cannot all equal $\delta$.
+Therefore
+\begin{equation}\label{eq:pattern-entropy-slack}
+ J(S)\ge b(S)\sigma(\delta)\ge b(S)\ln(1/\delta).
+\end{equation}
+If $\Sigma$ is the full pattern and $Z$ is the discovery transcript,
+then $\Pi$ refines $\mathcal R$ and $Z$ is a function of $\Sigma$.
+The chain rule of Lemma~\ref{lem:entropy-chain-rule} gives
+\[
+ I(S,\Pi)-J(S)=w(S)H(\Sigma\mid Z)\ge0,
+\]
+since conditional entropy is a weighted sum of terms
+$-p\ln p\ge0$ for probabilities $p\in[0,1]$.
+So $I(S,\Pi)\ge J(S)$.
+The zero pattern, when present, is a singleton. Thus every
+nonterminal class in a flat stage is a proper subset of $S$.
+
+Let $T_{\mathrm E}(S)$ denote the tree returned by this recursion
+when it is started on state $S$.
+
+\begin{lemma}[Common stage-to-tree conversion]\label{lem:stage-conversion}
+Suppose a recursive algorithm uses mass-balanced queries and flat
+full-pattern stages, and every flat stage satisfies
+\[
+ W\le A\Delta_{\mathrm E}+Bb+\frac{I-J}{\ln2},\qquad
+ 0\le J\le I,\qquad J\ge b\sigma(\delta),
+\]
+with nonnegative $A,B$. Put
+$c=\max\{1/h(\delta),B/\sigma(\delta)\}$. Then
+\[
+ c_{\mathrm E}(T(S))\le A\OPT_{\mathrm E}(S)+c\mathcal E(S)
+ \le(A+c\ln2)\OPT_{\mathrm E}(S).
+\]
+\end{lemma}
+\begin{proof}
+Binary entropy is minimized on $[\delta,1-\delta]$ at an endpoint,
+so a balanced query has information at least $w(S)h(\delta)$ and
+costs at most $cI$. Also $c\ge1/\ln2$. A flat stage satisfies
+\[
+ Bb+\frac{I-J}{\ln2}\le cJ+c(I-J)=cI.
+\]
+Thus every stage costs at most $A\Delta_{\mathrm E}+cI$. The identities
+$\Delta_{\mathrm E}=\OPT_{\mathrm E}(S)-\sum_A\OPT_{\mathrm E}(A)$
+and $I=\mathcal E(S)-\sum_A\mathcal E(A)$ telescope over the disjoint
+recursive classes; both potentials vanish at singleton leaves.
+Lemma~\ref{lem:restriction} gives the last inequality.
+\end{proof}
+
+\begin{theorem}[Constant expected-depth approximation]
+\label{thm:mass-average}
+Let
+\[
+ h(\delta)=-\delta\ln\delta-(1-\delta)\ln(1-\delta),\qquad
+ c(\delta)=\max\left\{\frac1{h(\delta)},
+                    \frac{B_{\beta,\delta}}{\sigma(\delta)}\right\}.
+\]
+The chosen parameters satisfy \eqref{eq:flat-discrete-condition}.
+For binary supplied-line queries and arbitrary positive hypothesis
+probabilities, the preceding algorithm satisfies
+\[
+ c_{\mathrm E}(T_{\mathrm E}(S))\le
+ A_\beta \OPT_{\mathrm E}(S)+c(\delta)\mathcal E(S)
+ \quad\text{for every state }S.
+\]
+Its approximation factor is at most
+\begin{equation}\label{eq:parameter-ratio}
+ R_\beta(\delta)=A_\beta+
+ \max\left\{\frac{\ln2}{h(\delta)},
+            \frac{B_{\beta,\delta}\ln2}{\sigma(\delta)}\right\}.
+\end{equation}
+For the chosen rational threshold, this gives
+\begin{equation}\label{eq:mass-average}
+ \boxed{c_{\mathrm E}(T_{\mathrm E}(\HH))
+         \le\rho \OPT_{\mathrm E}(\HH),\qquad
+ \rho=A_\beta+\frac{B_{\beta,\delta}\ln2}{\sigma(\delta)}<5.445944.}
+\end{equation}
+Here $c_{\mathrm E}(T_{\mathrm E}(S))$ uses the original,
+unnormalized probabilities, just like $\OPT_{\mathrm E}(S)$.
+The approximation factor is independent of $n$ and of the smallest
+hypothesis probability.
+\end{theorem}
+\begin{proof}
+Lemma~\ref{lem:flat-discrete-credit}, with its nonpositive pinning terms
+discarded, supplies the local stage bound. Equation~\eqref{eq:pattern-entropy-slack}
+supplies the capped-transcript bound. Apply
+Lemma~\ref{lem:stage-conversion} with $A=A_\beta$ and
+$B=B_{\beta,\delta}$ to obtain the additive guarantee and
+\eqref{eq:parameter-ratio}.
+
+The concrete constant can be certified without floating-point
+rounding. For rational $x\ge1$, put $z=(x-1)/(x+1)$ and
+\[
+ L_N(x)=2\sum_{j=0}^{N-1}\frac{z^{2j+1}}{2j+1}.
+\]
+The positive logarithm series and a geometric tail bound give
+\begin{equation}\label{eq:rational-log-bounds}
+ L_N(x)\le\ln x\le L_N(x)+
+ \frac{2z^{2N+1}}{(2N+1)(1-z^2)}.
+\end{equation}
+Apply these rational bounds with $N=180$ to
+$x=2$, $\beta$, $1/\delta$, $1/(1-\delta)$ and
+$1/(64r_\delta)$. For the factorials below, range-reduce each
+integer $j$ from $2$ through $35$ by writing
+$j=2^k(j/2^k)$ with $j/2^k\in[1,2)$.
+Use $\ln x=k\ln2+\ln(x/2^k)$ for this range reduction and
+$\ln(1/r_\delta)=6\ln2+\ln(1/(64r_\delta))$.
+The identity
+$\ln(945/8)=3\ln3+\ln5+\ln7-3\ln2$ also avoids a slowly
+converging logarithm series at the larger argument.
+For integer $t$, set $s_t=\lfloor\beta t\rfloor$; the required
+values of the discrete curve can be evaluated as
+\[
+ \Phi_\beta(t)=\frac{s_t+1}{2}
+  +\frac{(t+s_t)\ln t-\ln(t!)-\ln(s_t!)}{2\ln\beta}.
+\]
+Compute $\varepsilon_\beta(2),\ldots,\varepsilon_\beta(5)$
+from $t\le10$, expanding each log-factorial as a sum of logarithms.
+Here $k_\delta=8$ and $N_\delta=4$. Substituting
+$h(\delta)=\delta\ln(1/\delta)+(1-\delta)\ln(1/(1-\delta))$
+gives the outward-rounded intervals
+\[
+ \begin{aligned}
+ 1.79590508&<\lambda<1.79590509,\qquad
+ 1.79590498<\nu<1.79590499,\\
+ 3.59181017&<A_\beta<3.59181018,\\
+ 0.736855718583&<\varepsilon_\beta(5)<0.736855718585,\\
+ 0.380956768686&<\chi_\beta(\delta)<0.380956768688,\\
+ 5.669579638912&<B_{\beta,\delta}<5.669579638914,\\
+ 2.119509588573&<\sigma(\delta)<2.119509588575,\\
+ 1.854133220728&<\frac{\ln2}{h(\delta)}<1.854133220730,\\
+ 1.854133221598&<\frac{B_{\beta,\delta}\ln2}{\sigma(\delta)}
+               <1.854133221600.
+ \end{aligned}
+\]
+This verifies $\lambda>\nu$,
+\eqref{eq:flat-discrete-condition}, and dominance of the flat-stage
+coefficient. In particular,
+$\rho<3.59181018+1.854133221600<5.445944$.
+\end{proof}
+
+The two terms in \eqref{eq:parameter-ratio} describe the threshold
+tradeoff. For fixed $\beta$, the balanced-query term decreases
+and the flat-stage term increases. The mass constraint defining
+$\chi_\beta(\delta)$ weakens as $\delta$ grows, so
+$B_{\beta,\delta}$ is nondecreasing.
+The capped entropy
+$\sigma(\delta)$ is continuous and nonincreasing; between reciprocal
+breakpoints its derivative is
+$k_\delta\ln(r_\delta/\delta)\le0$.
+The crossing of the two terms is the
+minimizing threshold. The rational logarithm bounds certify
+\[
+ 0.123498956866<\delta_*<0.123498956870.
+\]
+The chosen value gives $\rho\approx5.4459434004$ and lies within
+$10^{-7}$ of that fixed-$\beta$ optimum. The parameters $\beta$
+and $\delta$ were chosen together: $\beta$ is just above the
+solution of $\beta-1=2\ln\beta$, where the positive-target and
+zero-target coefficients satisfy $\lambda=\nu$.
+The certified guarantee does not rely on floating-point comparisons.
+
+\subsection{Implementation and running time}
+
+Each stage computes a planar linear program, a convex hull, its
+explicit pattern table, a minimum circular-interval cover and
+the budgeted-coverage dynamic programs of
+Lemma~\ref{lem:budget-coverage}. There are at most $|V|$ distinct
+budgets and polynomially many shift intervals.
+The two-support representation and the free opposite-edge cut
+are computable by planar convex-hull operations.
+Endpoint codes use polynomial interval dynamic programs.
+Discovery's positive exits and terminal singleton are disjoint
+subsets of $S$, so there are at most $|S|$ nonempty transcripts.
+Each conditioned endpoint problem has at most $|S|$ possible
+values. Thus the number and size of the dynamic programs are polynomial.
+
+Each nonterminal stage partitions its state into at least two
+nonempty proper children, so the recursive stage hierarchy has at
+most $n-1$ internal stages. Constant questions, cached questions,
+and empty branches are suppressed. The actual complete binary
+decision tree then has $n-1$ internal nodes.
+All arithmetic and comparisons have polynomial bit complexity.
+In particular, the algorithm compares rational masses and optimizes
+rational dynamic-program values; logarithms appear only in the
+analysis. The fixed balance threshold is exactly
+$1234989569/10^{10}$, and $\beta=3512863/10^6$ is rational as well.
+
+The proof uses no lower bound on hypothesis probabilities.
+A rare pattern may require many queries, but its small mass also
+reduces its contribution to both accounting sums. This is why the
+argument controls expected depth rather than maximum depth.

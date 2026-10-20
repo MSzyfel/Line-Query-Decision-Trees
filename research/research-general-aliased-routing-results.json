@@ -1,0 +1,753 @@
+[
+  {
+    "bits": 2,
+    "levels": 1,
+    "alias_degree": 2,
+    "nonlinear_incompatible_palettes": false,
+    "row_size": 4,
+    "base_size": 8,
+    "n": 32,
+    "m": 28,
+    "initial_greedy_cost": 203,
+    "initial_reverse_equality_row_work": 72,
+    "conditional_root_source_cost": 8,
+    "conditional_source_costs": [
+      8
+    ],
+    "conditional_source_leaf_depths": [
+      2
+    ],
+    "proved_conditional_path_depth_bound": 2,
+    "thin_slice_source_first_test": [
+      "bit",
+      1,
+      [
+        0
+      ],
+      0
+    ],
+    "thin_slice_first_positive_contexts": 2,
+    "nonprojection_same_context_witness": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "root_partial_policy_work": 40,
+    "root_partial_policy_work_values": [
+      40
+    ],
+    "root_star_actual_mean_certificate": "10",
+    "root_star_mean_bound": 10,
+    "root_star_profit_sum_on_initial": -117,
+    "reduced_family_depth_prize_profit": 0,
+    "reduced_family_output": 203,
+    "deliberately_poor_incumbent_cost": 356,
+    "star_descent_output": 205,
+    "star_descent_history": [
+      {
+        "cost": 356,
+        "max_root_star_profit": 42,
+        "candidate_cost": 310,
+        "completed_base_value": 7
+      },
+      {
+        "cost": 310,
+        "max_root_star_profit": 36,
+        "candidate_cost": 273,
+        "completed_base_value": 6
+      },
+      {
+        "cost": 273,
+        "max_root_star_profit": 28,
+        "candidate_cost": 244,
+        "completed_base_value": 5
+      },
+      {
+        "cost": 244,
+        "max_root_star_profit": 20,
+        "candidate_cost": 223,
+        "completed_base_value": 4
+      },
+      {
+        "cost": 223,
+        "max_root_star_profit": 12,
+        "candidate_cost": 210,
+        "completed_base_value": 3
+      },
+      {
+        "cost": 210,
+        "max_root_star_profit": 4,
+        "candidate_cost": 205,
+        "completed_base_value": 2
+      },
+      {
+        "cost": 205,
+        "max_root_star_profit": -3,
+        "stable": true
+      }
+    ],
+    "explicit_context_first_average": "51/8",
+    "rare_positive_average_lower_bound": "5/2",
+    "information_average_lower_bound": 5.0,
+    "strong_generator_mean_ratio_bound": 2.0,
+    "different_local_maps": {
+      "0": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "1": [
+        3,
+        1,
+        2,
+        0
+      ]
+    },
+    "local_map_is_affine": {
+      "0": true,
+      "1": true
+    },
+    "uses_exact_OPT_oracle": false
+  },
+  {
+    "bits": 2,
+    "levels": 1,
+    "alias_degree": 3,
+    "nonlinear_incompatible_palettes": false,
+    "row_size": 4,
+    "base_size": 12,
+    "n": 48,
+    "m": 40,
+    "initial_greedy_cost": 361,
+    "initial_reverse_equality_row_work": 108,
+    "conditional_root_source_cost": 8,
+    "conditional_source_costs": [
+      8
+    ],
+    "conditional_source_leaf_depths": [
+      2
+    ],
+    "proved_conditional_path_depth_bound": 2,
+    "thin_slice_source_first_test": [
+      "bit",
+      1,
+      [
+        0
+      ],
+      0
+    ],
+    "thin_slice_first_positive_contexts": 3,
+    "nonprojection_same_context_witness": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "root_partial_policy_work": 56,
+    "root_partial_policy_work_values": [
+      56
+    ],
+    "root_star_actual_mean_certificate": "14",
+    "root_star_mean_bound": 14,
+    "root_star_profit_sum_on_initial": -311,
+    "reduced_family_depth_prize_profit": 0,
+    "reduced_family_output": 361,
+    "deliberately_poor_incumbent_cost": 740,
+    "star_descent_output": 406,
+    "star_descent_history": [
+      {
+        "cost": 740,
+        "max_root_star_profit": 66,
+        "candidate_cost": 670,
+        "completed_base_value": 11
+      },
+      {
+        "cost": 670,
+        "max_root_star_profit": 60,
+        "candidate_cost": 609,
+        "completed_base_value": 10
+      },
+      {
+        "cost": 609,
+        "max_root_star_profit": 52,
+        "candidate_cost": 556,
+        "completed_base_value": 9
+      },
+      {
+        "cost": 556,
+        "max_root_star_profit": 44,
+        "candidate_cost": 511,
+        "completed_base_value": 8
+      },
+      {
+        "cost": 511,
+        "max_root_star_profit": 36,
+        "candidate_cost": 474,
+        "completed_base_value": 7
+      },
+      {
+        "cost": 474,
+        "max_root_star_profit": 28,
+        "candidate_cost": 445,
+        "completed_base_value": 6
+      },
+      {
+        "cost": 445,
+        "max_root_star_profit": 20,
+        "candidate_cost": 424,
+        "completed_base_value": 5
+      },
+      {
+        "cost": 424,
+        "max_root_star_profit": 12,
+        "candidate_cost": 411,
+        "completed_base_value": 4
+      },
+      {
+        "cost": 411,
+        "max_root_star_profit": 4,
+        "candidate_cost": 406,
+        "completed_base_value": 3
+      },
+      {
+        "cost": 406,
+        "max_root_star_profit": -3,
+        "stable": true
+      }
+    ],
+    "explicit_context_first_average": "101/12",
+    "rare_positive_average_lower_bound": "5/2",
+    "information_average_lower_bound": 5.584962500721156,
+    "strong_generator_mean_ratio_bound": 2.506731244514579,
+    "different_local_maps": {
+      "0": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "1": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "2": [
+        3,
+        1,
+        0,
+        2
+      ]
+    },
+    "local_map_is_affine": {
+      "0": true,
+      "1": true,
+      "2": true
+    },
+    "uses_exact_OPT_oracle": false
+  },
+  {
+    "bits": 2,
+    "levels": 2,
+    "alias_degree": 2,
+    "nonlinear_incompatible_palettes": false,
+    "row_size": 4,
+    "base_size": 8,
+    "n": 128,
+    "m": 96,
+    "initial_greedy_cost": 1073,
+    "initial_reverse_equality_row_work": 576,
+    "conditional_root_source_cost": 64,
+    "conditional_source_costs": [
+      64
+    ],
+    "conditional_source_leaf_depths": [
+      4
+    ],
+    "proved_conditional_path_depth_bound": 4,
+    "thin_slice_source_first_test": [
+      "bit",
+      1,
+      [
+        0
+      ],
+      0
+    ],
+    "thin_slice_first_positive_contexts": 2,
+    "nonprojection_same_context_witness": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "root_partial_policy_work": 192,
+    "root_partial_policy_work_values": [
+      192
+    ],
+    "root_star_actual_mean_certificate": "12",
+    "root_star_mean_bound": 12,
+    "root_star_profit_sum_on_initial": -463,
+    "reduced_family_depth_prize_profit": 0,
+    "reduced_family_output": 1073,
+    "deliberately_poor_incumbent_cost": 4920,
+    "star_descent_output": 1072,
+    "star_descent_history": [
+      {
+        "cost": 4920,
+        "max_root_star_profit": 538,
+        "candidate_cost": 3874,
+        "completed_base_value": 7
+      },
+      {
+        "cost": 3874,
+        "max_root_star_profit": 448,
+        "candidate_cost": 3017,
+        "completed_base_value": 6
+      },
+      {
+        "cost": 3017,
+        "max_root_star_profit": 360,
+        "candidate_cost": 2316,
+        "completed_base_value": 5
+      },
+      {
+        "cost": 2316,
+        "max_root_star_profit": 272,
+        "candidate_cost": 1771,
+        "completed_base_value": 4
+      },
+      {
+        "cost": 1771,
+        "max_root_star_profit": 184,
+        "candidate_cost": 1382,
+        "completed_base_value": 3
+      },
+      {
+        "cost": 1382,
+        "max_root_star_profit": 96,
+        "candidate_cost": 1149,
+        "completed_base_value": 2
+      },
+      {
+        "cost": 1149,
+        "max_root_star_profit": 28,
+        "candidate_cost": 1108,
+        "completed_base_value": 0
+      },
+      {
+        "cost": 1108,
+        "max_root_star_profit": 20,
+        "candidate_cost": 1072,
+        "completed_base_value": 1
+      },
+      {
+        "cost": 1072,
+        "max_root_star_profit": -16,
+        "stable": true
+      }
+    ],
+    "explicit_context_first_average": "67/8",
+    "rare_positive_average_lower_bound": "5/2",
+    "information_average_lower_bound": 7.0,
+    "strong_generator_mean_ratio_bound": 1.7142857142857142,
+    "different_local_maps": {
+      "0": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "1": [
+        3,
+        1,
+        2,
+        0
+      ]
+    },
+    "local_map_is_affine": {
+      "0": true,
+      "1": true
+    },
+    "uses_exact_OPT_oracle": false
+  },
+  {
+    "bits": 3,
+    "levels": 1,
+    "alias_degree": 2,
+    "nonlinear_incompatible_palettes": true,
+    "row_size": 8,
+    "base_size": 16,
+    "n": 128,
+    "m": 72,
+    "initial_greedy_cost": 1395,
+    "initial_reverse_equality_row_work": 560,
+    "conditional_root_source_cost": 24,
+    "conditional_source_costs": [
+      24
+    ],
+    "conditional_source_leaf_depths": [
+      3
+    ],
+    "proved_conditional_path_depth_bound": 6,
+    "thin_slice_source_first_test": [
+      "bit",
+      1,
+      [
+        0
+      ],
+      0
+    ],
+    "thin_slice_first_positive_contexts": 2,
+    "nonprojection_same_context_witness": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "root_partial_policy_work": 152,
+    "root_partial_policy_work_values": [
+      152
+    ],
+    "root_star_actual_mean_certificate": "19",
+    "root_star_mean_bound": 22,
+    "root_star_profit_sum_on_initial": -1037,
+    "reduced_family_depth_prize_profit": 0,
+    "reduced_family_output": 1395,
+    "deliberately_poor_incumbent_cost": 3924,
+    "star_descent_output": 1465,
+    "star_descent_history": [
+      {
+        "cost": 3924,
+        "max_root_star_profit": 321,
+        "candidate_cost": 3589,
+        "completed_base_value": 15
+      },
+      {
+        "cost": 3589,
+        "max_root_star_profit": 308,
+        "candidate_cost": 3279,
+        "completed_base_value": 14
+      },
+      {
+        "cost": 3279,
+        "max_root_star_profit": 284,
+        "candidate_cost": 2994,
+        "completed_base_value": 13
+      },
+      {
+        "cost": 2994,
+        "max_root_star_profit": 257,
+        "candidate_cost": 2736,
+        "completed_base_value": 12
+      },
+      {
+        "cost": 2736,
+        "max_root_star_profit": 233,
+        "candidate_cost": 2502,
+        "completed_base_value": 11
+      },
+      {
+        "cost": 2502,
+        "max_root_star_profit": 209,
+        "candidate_cost": 2292,
+        "completed_base_value": 10
+      },
+      {
+        "cost": 2292,
+        "max_root_star_profit": 185,
+        "candidate_cost": 2106,
+        "completed_base_value": 9
+      },
+      {
+        "cost": 2106,
+        "max_root_star_profit": 161,
+        "candidate_cost": 1944,
+        "completed_base_value": 8
+      },
+      {
+        "cost": 1944,
+        "max_root_star_profit": 137,
+        "candidate_cost": 1806,
+        "completed_base_value": 7
+      },
+      {
+        "cost": 1806,
+        "max_root_star_profit": 113,
+        "candidate_cost": 1692,
+        "completed_base_value": 6
+      },
+      {
+        "cost": 1692,
+        "max_root_star_profit": 89,
+        "candidate_cost": 1602,
+        "completed_base_value": 5
+      },
+      {
+        "cost": 1602,
+        "max_root_star_profit": 65,
+        "candidate_cost": 1536,
+        "completed_base_value": 4
+      },
+      {
+        "cost": 1536,
+        "max_root_star_profit": 41,
+        "candidate_cost": 1494,
+        "completed_base_value": 3
+      },
+      {
+        "cost": 1494,
+        "max_root_star_profit": 17,
+        "candidate_cost": 1476,
+        "completed_base_value": 2
+      },
+      {
+        "cost": 1476,
+        "max_root_star_profit": 6,
+        "candidate_cost": 1465,
+        "completed_base_value": 0
+      },
+      {
+        "cost": 1465,
+        "max_root_star_profit": -7,
+        "stable": true
+      }
+    ],
+    "explicit_context_first_average": "183/16",
+    "rare_positive_average_lower_bound": "9/2",
+    "information_average_lower_bound": 7.0,
+    "strong_generator_mean_ratio_bound": 3.142857142857143,
+    "different_local_maps": {
+      "0": [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "1": [
+        7,
+        3,
+        1,
+        5,
+        6,
+        0,
+        2,
+        4
+      ]
+    },
+    "local_map_is_affine": {
+      "0": true,
+      "1": false
+    },
+    "uses_exact_OPT_oracle": false
+  },
+  {
+    "bits": 3,
+    "levels": 2,
+    "alias_degree": 2,
+    "nonlinear_incompatible_palettes": true,
+    "row_size": 8,
+    "base_size": 16,
+    "n": 1024,
+    "m": 464,
+    "initial_greedy_cost": 14905,
+    "initial_reverse_equality_row_work": 8960,
+    "conditional_root_source_cost": 384,
+    "conditional_source_costs": [
+      384
+    ],
+    "conditional_source_leaf_depths": [
+      6
+    ],
+    "proved_conditional_path_depth_bound": 12,
+    "thin_slice_source_first_test": [
+      "bit",
+      1,
+      [
+        0
+      ],
+      0
+    ],
+    "thin_slice_first_positive_contexts": 2,
+    "nonprojection_same_context_witness": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "root_partial_policy_work": 1408,
+    "root_partial_policy_work_values": [
+      1408
+    ],
+    "root_star_actual_mean_certificate": "22",
+    "root_star_mean_bound": 28,
+    "root_star_profit_sum_on_initial": -7623,
+    "reduced_family_depth_prize_profit": 0,
+    "reduced_family_output": 14905,
+    "deliberately_poor_incumbent_cost": 204079,
+    "star_descent_output": 14784,
+    "star_descent_history": [
+      {
+        "cost": 204079,
+        "max_root_star_profit": 12931,
+        "candidate_cost": 177677,
+        "completed_base_value": 15
+      },
+      {
+        "cost": 177677,
+        "max_root_star_profit": 11876,
+        "candidate_cost": 156030,
+        "completed_base_value": 14
+      },
+      {
+        "cost": 156030,
+        "max_root_star_profit": 11023,
+        "candidate_cost": 135928,
+        "completed_base_value": 13
+      },
+      {
+        "cost": 135928,
+        "max_root_star_profit": 10172,
+        "candidate_cost": 117373,
+        "completed_base_value": 12
+      },
+      {
+        "cost": 117373,
+        "max_root_star_profit": 9324,
+        "candidate_cost": 100362,
+        "completed_base_value": 11
+      },
+      {
+        "cost": 100362,
+        "max_root_star_profit": 8476,
+        "candidate_cost": 84895,
+        "completed_base_value": 10
+      },
+      {
+        "cost": 84895,
+        "max_root_star_profit": 7628,
+        "candidate_cost": 70972,
+        "completed_base_value": 9
+      },
+      {
+        "cost": 70972,
+        "max_root_star_profit": 6780,
+        "candidate_cost": 58593,
+        "completed_base_value": 8
+      },
+      {
+        "cost": 58593,
+        "max_root_star_profit": 5932,
+        "candidate_cost": 47758,
+        "completed_base_value": 7
+      },
+      {
+        "cost": 47758,
+        "max_root_star_profit": 5084,
+        "candidate_cost": 38467,
+        "completed_base_value": 6
+      },
+      {
+        "cost": 38467,
+        "max_root_star_profit": 4236,
+        "candidate_cost": 30720,
+        "completed_base_value": 5
+      },
+      {
+        "cost": 30720,
+        "max_root_star_profit": 3388,
+        "candidate_cost": 24517,
+        "completed_base_value": 4
+      },
+      {
+        "cost": 24517,
+        "max_root_star_profit": 2540,
+        "candidate_cost": 19858,
+        "completed_base_value": 3
+      },
+      {
+        "cost": 19858,
+        "max_root_star_profit": 1692,
+        "candidate_cost": 16743,
+        "completed_base_value": 2
+      },
+      {
+        "cost": 16743,
+        "max_root_star_profit": 967,
+        "candidate_cost": 15513,
+        "completed_base_value": 0
+      },
+      {
+        "cost": 15513,
+        "max_root_star_profit": 665,
+        "candidate_cost": 14784,
+        "completed_base_value": 1
+      },
+      {
+        "cost": 14784,
+        "max_root_star_profit": -64,
+        "stable": true
+      }
+    ],
+    "explicit_context_first_average": "231/16",
+    "rare_positive_average_lower_bound": "9/2",
+    "information_average_lower_bound": 10.0,
+    "strong_generator_mean_ratio_bound": 2.8,
+    "different_local_maps": {
+      "0": [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "1": [
+        7,
+        3,
+        1,
+        5,
+        6,
+        0,
+        2,
+        4
+      ]
+    },
+    "local_map_is_affine": {
+      "0": true,
+      "1": false
+    },
+    "uses_exact_OPT_oracle": false
+  }
+]

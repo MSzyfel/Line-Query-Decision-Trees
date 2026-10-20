@@ -1,0 +1,1818 @@
+[
+  {
+    "name": "PlanarQuery.deficit_nonneg",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.coefficient_from_deficit",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.capped_coefficient",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.capped_rank_credit",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.flat_stage_absorption",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.finite_ledger_bound",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.Ledger.potential_cancels",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.Ledger.entropy_cancels",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.Ledger.local_to_global",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.entropy_to_ratio",
+    "file": "Accounting.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.interior_nonempty",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.intervalDP_base",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.intervalDP_step",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.threshold_branch_false",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.threshold_branch_true",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.intervalDP_lower_bound",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.intervalDP_attained",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.intervalDP_global_optimum",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.intervalDP_entropy_bound",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.interval_dependencies",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.interval_state_count",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.interval_transition_count",
+    "file": "AlphabeticDP.lean"
+  },
+  {
+    "name": "PlanarQuery.StageLedger.local_to_global",
+    "file": "ArityAccounting.lean"
+  },
+  {
+    "name": "PlanarQuery.expected_depth_scale_div",
+    "file": "AverageCalibration.lean"
+  },
+  {
+    "name": "PlanarQuery.expected_depth_scale_dominates_bins",
+    "file": "AverageCalibration.lean"
+  },
+  {
+    "name": "PlanarQuery.expected_depth_eminus_lt_scale_div",
+    "file": "AverageCalibration.lean"
+  },
+  {
+    "name": "PlanarQuery.average_boundary_floor_correction_le",
+    "file": "AverageConstructionCorrection.lean"
+  },
+  {
+    "name": "PlanarQuery.average_boundary_Eplus_lt_scale",
+    "file": "AverageConstructionCorrection.lean"
+  },
+  {
+    "name": "PlanarQuery.nat_floor_multiple_error_eq_neg_remainder",
+    "file": "AverageFloorCorrection.lean"
+  },
+  {
+    "name": "PlanarQuery.nat_floor_multiple_error_bounds",
+    "file": "AverageFloorCorrection.lean"
+  },
+  {
+    "name": "PlanarQuery.sum_nat_floor_multiple_error_bounds",
+    "file": "AverageFloorCorrection.lean"
+  },
+  {
+    "name": "PlanarQuery.average_internal_penalty",
+    "file": "AverageInternalPenalty.lean"
+  },
+  {
+    "name": "PlanarQuery.load_deviations_sum_zero",
+    "file": "AverageInvoice.lean"
+  },
+  {
+    "name": "PlanarQuery.load_deviation_square_identity",
+    "file": "AverageInvoice.lean"
+  },
+  {
+    "name": "PlanarQuery.unbalanced_load_square_gap",
+    "file": "AverageInvoice.lean"
+  },
+  {
+    "name": "PlanarQuery.zero_load_deviation_iff_balanced",
+    "file": "AverageInvoice.lean"
+  },
+  {
+    "name": "PlanarQuery.load_gap_exceeds_error_budget",
+    "file": "AverageInvoice.lean"
+  },
+  {
+    "name": "PlanarQuery.unbalanced_invoice_exceeds_threshold",
+    "file": "AverageInvoice.lean"
+  },
+  {
+    "name": "PlanarQuery.balanced_invoice_within_threshold",
+    "file": "AverageInvoice.lean"
+  },
+  {
+    "name": "PlanarQuery.average_pair_perturbation_bound",
+    "file": "AverageInvoice.lean"
+  },
+  {
+    "name": "PlanarQuery.expected_depth_Eplus_le_of_pointwise",
+    "file": "AveragePairPerturbation.lean"
+  },
+  {
+    "name": "PlanarQuery.expected_depth_Eplus_lt_scale",
+    "file": "AveragePairPerturbation.lean"
+  },
+  {
+    "name": "PlanarQuery.fin_rank_sum",
+    "file": "AverageReferenceBound.lean"
+  },
+  {
+    "name": "PlanarQuery.pair_completion_cost_le_triangular_bound",
+    "file": "AverageReferenceBound.lean"
+  },
+  {
+    "name": "PlanarQuery.three_partition_square_decomposition",
+    "file": "AverageThresholdBound.lean"
+  },
+  {
+    "name": "PlanarQuery.three_partition_quadratic_coefficient_le",
+    "file": "AverageThresholdBound.lean"
+  },
+  {
+    "name": "PlanarQuery.three_partition_quadratic_threshold_le_fourth",
+    "file": "AverageThresholdBound.lean"
+  },
+  {
+    "name": "PlanarQuery.three_partition_reference_term_le_total",
+    "file": "AverageThresholdBound.lean"
+  },
+  {
+    "name": "PlanarQuery.BatchFirstCover.weighted_rank_le_average",
+    "file": "BatchFirstCover.lean"
+  },
+  {
+    "name": "PlanarQuery.BatchFirstCover.first_cover_bound",
+    "file": "BatchFirstCover.lean"
+  },
+  {
+    "name": "PlanarQuery.BatchPhaseCoverage.totalMass_eq_covered_add_uncovered",
+    "file": "BatchPhaseCoverage.lean"
+  },
+  {
+    "name": "PlanarQuery.BatchPhaseCoverage.maximum_coverage_residual_le",
+    "file": "BatchPhaseCoverage.lean"
+  },
+  {
+    "name": "PlanarQuery.BatchPhaseCoverage.phase_residual_le_comparison",
+    "file": "BatchPhaseCoverage.lean"
+  },
+  {
+    "name": "PlanarQuery.BatchPhaseLength.schedule_length_geometric_bound",
+    "file": "BatchPhaseLength.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.toBinary_eval",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.toBinary_depth",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.fromBinary_eval",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.fromBinary_depth",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.toBinary_identifies",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.fromBinary_identifies",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.toBinary_expected",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.fromBinary_expected",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.toBinary_liveHeight",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.fromBinary_liveHeight",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.expected_approximation_transfer",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.height_approximation_transfer",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.expected_real_approximation_transfer",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.TernaryTree.height_real_approximation_transfer",
+    "file": "Boundary.lean"
+  },
+  {
+    "name": "PlanarQuery.finite_rational_margin",
+    "file": "BoundaryGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.shifted_virtual_predicates",
+    "file": "BoundaryGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.RationalLine.virtualShift_semantics",
+    "file": "BoundaryGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.RationalLine.virtualShift_offLine",
+    "file": "BoundaryGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.mem_words",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cons_images_disjoint",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.card_words",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.mem_extensions",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.extensions_eq_image",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.card_extensions",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.prefix_extensions_disjoint",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.scaled_dyadic",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.kraft",
+    "file": "Coding.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.kraft_converse",
+    "file": "CodingConverse.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.binaryWord_length",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.value_lt",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.binaryWord_value",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.value_append",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cell_width",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cell_nonempty",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.prefix_cellLeft_le",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.prefix_cellRight_le",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.dyadic_cell_containing",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.midpoint_width_le",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.midpoint_depth_bound",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.midpoint_cell_inside",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.probability_interval_codeword",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.ordered_cells_prefix_free",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cumulative_add",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cumulative_mono",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.midpoint_alphabetic_code",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.mapThresholds_eval",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.mapThresholds_depth",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cellLeft_nonneg",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cellLeft_lt_one",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cellLeft_false",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.cellLeft_true",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.prefix_code_threshold_tree",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.thresholdIndex_answer",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.toIndexThresholds_eval",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.toIndexThresholds_depth",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.alphabetic_threshold_tree",
+    "file": "CodingDyadic.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.transcript_length",
+    "file": "CodingTree.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.transcript_prefix_eval_eq",
+    "file": "CodingTree.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.identifying_transcripts_prefix_free",
+    "file": "CodingTree.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.identifying_tree_kraft",
+    "file": "CodingTree.lean"
+  },
+  {
+    "name": "PlanarQuery.Coding.identifying_tree_kraft_real",
+    "file": "CodingTree.lean"
+  },
+  {
+    "name": "PlanarQuery.floor_difference",
+    "file": "CountCredit.lean"
+  },
+  {
+    "name": "PlanarQuery.flat_count_credit",
+    "file": "CountCredit.lean"
+  },
+  {
+    "name": "PlanarQuery.balanced_count_credit",
+    "file": "CountCredit.lean"
+  },
+  {
+    "name": "PlanarQuery.slot_cap_fallback",
+    "file": "CountCredit.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.passes_iff",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.mem_catalog_iff",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.solve_sound",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.solve_complete",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.solve_feasible_iff",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.zero_deadline_infeasible",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.translated_grades_iff",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.graded_solver_complete",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.last_position_hit_iff",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.grade_prefix_insert",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.grade_count_insert",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.last_position_insert",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.querySpine_identifies",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.querySpine_negative_depth",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.querySpine_hit_depth",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.DeadlineScheduling.querySpine_route_certificate",
+    "file": "DeadlineScheduling.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.mass_nonneg",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weight_le_mass",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_empty",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_singleton",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_card_le_one",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.mass_union",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_union",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.binaryInformation_eq",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.binaryInformation_nonneg",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.binaryInformation_le",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.binEntropy_balanced_lower",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.binaryInformation_balanced_lower",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_eq_normalized",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_nonneg",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_eq_log_ratio",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.mass_branches",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_branches",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.expected_node",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_le_expected_log_two",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_div_log_two_le_expected",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.executable_information_telescope",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.expected_rational_cast",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.rational_entropy_lower_bound",
+    "file": "Entropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.log_sum",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.normalized_entropy_le_log_card",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.normalized_entropy_nonneg",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.sum_support",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.entropy_sum_support",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.normalized_entropy_bounds",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.binary_entropy_bounds",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.information_normalized_bounds",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_le_mass_log_card",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.normalized_entropy_le_code_length",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.prefix_code_entropy_lower_bound",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.identifying_tree_entropy_lower_bound_via_kraft",
+    "file": "EntropyInequalities.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.sum_fiber",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.information_eq",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.information_normalized",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.weighted_chain_rule",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.information_nonneg",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.conditionalWeighted_nonneg",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.conditionalInformation_nonneg",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.information_le_weighted",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.fiber_fiber",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.joint_information_chain_rule",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.joint_information_symmetric",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.conditional_joint_chain_rule",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.conditional_pair_eq_sum",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.shannon_conditional_chain_rule",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.shannon_conditional_chain_rule_left",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.fiber_graph",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.graph_information_eq",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.determined_chain_rule",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.information_postprocess_le",
+    "file": "EntropyPartitions.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.node_information_nonneg",
+    "file": "EntropyStages.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.balanced_node_information",
+    "file": "EntropyStages.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.balanced_cost_information",
+    "file": "EntropyStages.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.balanced_cost_partial_stage",
+    "file": "EntropyStages.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.balanced_cost_identifying",
+    "file": "EntropyStages.lean"
+  },
+  {
+    "name": "PlanarQuery.singletonTree_identifies",
+    "file": "Examples.lean"
+  },
+  {
+    "name": "PlanarQuery.singletonTree_height",
+    "file": "Examples.lean"
+  },
+  {
+    "name": "PlanarQuery.singletonTree_raw_cost",
+    "file": "Examples.lean"
+  },
+  {
+    "name": "PlanarQuery.singletonTree_restriction",
+    "file": "Examples.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedCoarseningAccounting.block_score_paid",
+    "file": "ExpectedCoarseningAccounting.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedCoarseningAccounting.stage_information_saving_bound",
+    "file": "ExpectedCoarseningAccounting.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedCoarsening.calibrated_binary_entropy_tent",
+    "file": "ExpectedCoarseningTent.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedCoarsening.coarseningPenalty_le_binaryInformation",
+    "file": "ExpectedCoarseningTent.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedCoarsening.endpoint_credit_paid",
+    "file": "ExpectedCoarseningTent.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeChoiceAlgebra.estar_mono_left",
+    "file": "ExpectedModeChoiceAlgebra.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeChoiceAlgebra.both_mode_saving_le_D",
+    "file": "ExpectedModeChoiceAlgebra.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeChoiceAlgebra.stop_saving_le_D",
+    "file": "ExpectedModeChoiceAlgebra.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeCosts.stop_first_positive_allowance",
+    "file": "ExpectedModeCosts.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeCosts.stop_second_positive_allowance",
+    "file": "ExpectedModeCosts.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeCosts.both_exclusive_allowance",
+    "file": "ExpectedModeCosts.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeCosts.both_shared_allowance",
+    "file": "ExpectedModeCosts.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeCosts.stop_weighted_saving",
+    "file": "ExpectedModeCosts.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedModeCosts.both_weighted_saving",
+    "file": "ExpectedModeCosts.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedTranscriptCoarsening.finite_label_merge_entropy_loss",
+    "file": "ExpectedTranscriptCoarsening.lean"
+  },
+  {
+    "name": "PlanarQuery.ExpectedTranscriptCoarsening.transcript_fiber_merge_information_loss",
+    "file": "ExpectedTranscriptCoarsening.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.linear_form_coordinates",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.lower_orthant_coeff_nonneg",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.hull_feasible_iff_dual",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.legal_tree_game_duality",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.best_response_continuous",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.attained_saddle",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.independent_on_positive_level",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.compressed_saddle",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.legal_depth_positive",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.compressed_legal_tree_game",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.restriction_mem_legal_catalog",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.FiniteGame.full_legal_tree_saddle",
+    "file": "FiniteDuality.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.catalog_complete",
+    "file": "FiniteSearch.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.catalog_sound",
+    "file": "FiniteSearch.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.mem_catalog_iff",
+    "file": "FiniteSearch.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.finite_expected_minimum",
+    "file": "FiniteSearch.lean"
+  },
+  {
+    "name": "PlanarQuery.interval_encoding_factor",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.integer_add_half_nonzero",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.interval_encoding_nonzero",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.interval_encoding_negative_iff",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.private_encoding_factor",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.integer_difference_sq_ge_one",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.private_encoding_positive_of_ne",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.private_encoding_negative_iff",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.private_encoding_nonzero",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.tangent_encoding_factor",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.tangent_encoding_exposes",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.interval_encoding_offLine",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.private_encoding_offLine",
+    "file": "GeometryEncoding.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.mem_next_iff",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.mem_run_iff",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.trace_count",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.trace_points_bounds",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.trace_last",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.trace_last_hit_iff",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.trace_count_mono",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.trace_points_mono",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.trace_old_hit",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.traceOK_iff_prefixFeasible",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.run_feasible_iff",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.run_state_bounds",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.pointsAt_assignments",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.assignment_bounds",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.assignments_nodup",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.ordered_sorted",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.ordered_perm",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.ordered_filter_length",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.sorted_grade_early",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.output_nodup",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.output_bounds",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.output_grade_early",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.run_reconstructs",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GradedDP.run_card_bound",
+    "file": "GradedDP.lean"
+  },
+  {
+    "name": "PlanarQuery.GreedyRunAccounting.split_run_count_bound",
+    "file": "GreedyRunAccounting.lean"
+  },
+  {
+    "name": "PlanarQuery.GreedyRunAccounting.split_size_run_charge",
+    "file": "GreedyRunAccounting.lean"
+  },
+  {
+    "name": "PlanarQuery.planar_helly",
+    "file": "Helly.lean"
+  },
+  {
+    "name": "PlanarQuery.RationalLine.strictSide_convex",
+    "file": "Helly.lean"
+  },
+  {
+    "name": "PlanarQuery.PlanarInstance.majority_strict_point",
+    "file": "Helly.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.sorted_intervals",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.sort_mem_iff",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.greedyFuel_covers",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.greedyFuel_length_le",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.greedyFuel_endpoint",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_covers",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_minimal",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_endpoints",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_available",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.solve_eq_some_iff",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.invalid_infeasible",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_nil",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_card_eq_length",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_optimal",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.solve_sound",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.solve_complete",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.solve_none_iff",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.greedyFilterWork_bound",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_filter_work",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.IntervalCover.minimumCover_supplied_discovery",
+    "file": "IntervalCover.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.liveHeight_le_height",
+    "file": "LiveHeight.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restricted_height_realized",
+    "file": "LiveHeight.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restricted_height_le_liveHeight",
+    "file": "LiveHeight.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.identification_log_liveHeight",
+    "file": "LiveHeight.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restricted_liveHeight_eq_height",
+    "file": "LiveHeight.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.subset_live_height_optimum_le",
+    "file": "LiveHeight.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.global_live_height_minimum",
+    "file": "LiveHeight.lean"
+  },
+  {
+    "name": "PlanarQuery.lookahead_height",
+    "file": "Lookahead.lean"
+  },
+  {
+    "name": "PlanarQuery.lookahead_expected",
+    "file": "Lookahead.lean"
+  },
+  {
+    "name": "PlanarQuery.exact_choice_inherits",
+    "file": "Lookahead.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.branch_mass_add",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.invoices_decompose",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.frontierInvoice_le_mass",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.prefixInvoice_pays_frontier",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.completePrefix_identifies",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.completePrefix_invoice_bound",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.frontierInvoice_nonneg",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.completePrefix_expected_approximation",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.completePrefix_past_height",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.completePrefix_height_envelope",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.completePrefix_height_approximation",
+    "file": "LookaheadCompletion.lean"
+  },
+  {
+    "name": "PlanarQuery.state_mass_positive",
+    "file": "Majority.lean"
+  },
+  {
+    "name": "PlanarQuery.state_union_mass_le",
+    "file": "Majority.lean"
+  },
+  {
+    "name": "PlanarQuery.three_small_sets_omit",
+    "file": "Majority.lean"
+  },
+  {
+    "name": "PlanarQuery.mem_opposite_branch",
+    "file": "Majority.lean"
+  },
+  {
+    "name": "PlanarQuery.three_minority_branches_intersect",
+    "file": "Majority.lean"
+  },
+  {
+    "name": "PlanarQuery.rationalDot_supportCombination",
+    "file": "Majority.lean"
+  },
+  {
+    "name": "PlanarQuery.two_support_dot_le",
+    "file": "Majority.lean"
+  },
+  {
+    "name": "PlanarQuery.two_support_cap_implication",
+    "file": "Majority.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.mem_branch",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.branches_disjoint",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.branches_union",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.depth_le_height",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.eval_mem_leaves",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.leaf_capacity",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.identification_capacity",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rawExpected_nonneg",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rawExpected_leaf",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rawExpected_node",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rawExpected_mono_depth",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restriction_preserves",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restriction_identifies",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restriction_expected_nonincrease",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restriction_height_nonincrease",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.PlanarInstance.query_semantics",
+    "file": "Model.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.log_chord",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.weights_pos",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.total_pos",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.prior_pos",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.prior_sum",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.meanGain_nonneg",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.total_meanGain",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.total_succ",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.individual_log",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.individual_lower",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.total_log_upper",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.potential_comparison",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.log_ratio_bounds",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.gain_regret",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.integer_weights_eq",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.integer_prior_eq",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.integer_depth_regret",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.legal_tree_mixture_regret",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.MWU.restricted_depth_cap",
+    "file": "MWURegret.lean"
+  },
+  {
+    "name": "PlanarQuery.RationalLine.normalized_dot",
+    "file": "NormalizedGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.RationalLine.normalized_cap_iff",
+    "file": "NormalizedGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.convexHull_cap_domination",
+    "file": "NormalizedGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.QuerySystem.same_answers_unique",
+    "file": "NormalizedGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.PlanarInstance.zero_pattern_forces_majority",
+    "file": "NormalizedGeometry.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.choiceSize_le",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.choiceSize_eq_of_full",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.matchingBlockMap_injective",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.matching_card_eq_forces_block_occupancy",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.matching_odd_choice_propagates",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.matchingEvenEndpoint_injective",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.matching_maximum_leaves_unique_even_vertex",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.matching_odd_choice_propagates_to",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.matching_has_even_to_odd_cutoff",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.OddPathMatching.matching_card_le",
+    "file": "OddPathMatching.lean"
+  },
+  {
+    "name": "PlanarQuery.PlanarInstance.strict_query_semantics",
+    "file": "PlanarSemantics.lean"
+  },
+  {
+    "name": "PlanarQuery.PlanarInstance.three_majority_strict_point",
+    "file": "PlanarSemantics.lean"
+  },
+  {
+    "name": "PlanarQuery.nonempty_card_le_three_cover",
+    "file": "PlanarSemantics.lean"
+  },
+  {
+    "name": "PlanarQuery.PlanarInstance.small_majority_family_intersects",
+    "file": "PlanarSemantics.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.prefix_suffix_decomposition",
+    "file": "Prefix.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.prefix_pays_frontier",
+    "file": "Prefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityInterval.extreme_hit_subset",
+    "file": "PriorityInterval.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityInterval.extreme_hitWeight_le",
+    "file": "PriorityInterval.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityInterval.extreme_maximizer_score_eq",
+    "file": "PriorityInterval.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.lower_priority_geometric_budget",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.finite_suffix_sum_below_level",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.priority_level_sum_divisible",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.priority_score_dominates_suffix",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.global_maximizer_maximizes_prefix",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.full_priority_score_split",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.earlier_priority_score_divisible",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.later_priority_score_lt_unit",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.PriorityPrefix.ranked_global_maximizer_maximizes_prefix",
+    "file": "PriorityPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.linear_program_weak_duality",
+    "file": "Programming.lean"
+  },
+  {
+    "name": "PlanarQuery.finite_mixture_bound",
+    "file": "Programming.lean"
+  },
+  {
+    "name": "PlanarQuery.minimum_below_mixture",
+    "file": "Programming.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.leafCount_le_pow_height",
+    "file": "Properization.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restricted_height_le_card_pred",
+    "file": "Properization.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.disjoint_restriction_expected",
+    "file": "Properization.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.disjoint_expected_optima_le",
+    "file": "Properization.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.subset_height_optimum_le",
+    "file": "Properization.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.global_expected_minimum",
+    "file": "Properization.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.global_height_minimum",
+    "file": "Properization.lean"
+  },
+  {
+    "name": "PlanarQuery.randomized_tree_weak_duality",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.integer_update_positive",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.integer_update_bound",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.integer_weights_positive",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.integer_weights_size_bound",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.positive_integer_total",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.normalized_integer_prior_positive",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.normalized_integer_prior_sum",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.randomized_transfer_arithmetic",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.randomized_calibration",
+    "file": "Randomized.lean"
+  },
+  {
+    "name": "PlanarQuery.exact_additive_threshold",
+    "file": "Reduction.lean"
+  },
+  {
+    "name": "PlanarQuery.uniform_cloud_threshold",
+    "file": "Reduction.lean"
+  },
+  {
+    "name": "PlanarQuery.additive_lift_preserves_ratio",
+    "file": "Reduction.lean"
+  },
+  {
+    "name": "PlanarQuery.singletonCloudCost_one",
+    "file": "Reduction.lean"
+  },
+  {
+    "name": "PlanarQuery.singletonCloudCost_two",
+    "file": "Reduction.lean"
+  },
+  {
+    "name": "PlanarQuery.integer_zero_sum_gap",
+    "file": "Reduction.lean"
+  },
+  {
+    "name": "PlanarQuery.capped_spine_lower_bound",
+    "file": "Restricted.lean"
+  },
+  {
+    "name": "PlanarQuery.shallow_cap_ratio",
+    "file": "Restricted.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.selectBest_le_seed",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.selectBest_le_member",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.selectBest_preserves",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.mem_legalLeaves",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rollout_identifies",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rollout_le_baseline",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rollout_expected_le_completion",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rollout_height_le_completion",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rollout_expected_approximation",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rollout_height_approximation",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.completePrefix_expected_real_invoice",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rollout_expected_real_approximation",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.completePrefix_height_real_envelope",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.rollout_height_real_approximation",
+    "file": "Rollout.lean"
+  },
+  {
+    "name": "PlanarQuery.ThreePartitionBounds.lower_sum_bound",
+    "file": "ThreePartitionBounds.lean"
+  },
+  {
+    "name": "PlanarQuery.ThreePartitionBounds.lower_sum_strict",
+    "file": "ThreePartitionBounds.lean"
+  },
+  {
+    "name": "PlanarQuery.ThreePartitionBounds.upper_sum_bound",
+    "file": "ThreePartitionBounds.lean"
+  },
+  {
+    "name": "PlanarQuery.ThreePartitionBounds.upper_sum_strict",
+    "file": "ThreePartitionBounds.lean"
+  },
+  {
+    "name": "PlanarQuery.ThreePartitionBounds.length_eq_three_of_sum_eq",
+    "file": "ThreePartitionBounds.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.identification_log_height",
+    "file": "TreePotentials.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.executable_potential_cancellation",
+    "file": "TreePotentials.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.identifies_children",
+    "file": "TreePotentials.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.terminal_potentials_zero",
+    "file": "TreePotentials.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.executable_potential_telescope",
+    "file": "TreePotentials.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.uniformWeight_nonneg",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.uniformWeight_mass",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.uniformWeight_entropy",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.uniformWeight_expected_eq_average",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.uniform_identifying_tree_entropy_lower_bound",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Entropy.uniform_identifying_tree_average_lower_bound",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.legal_mixture_uniform_average_lower_bound",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.mixture_uniform_average_eq",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.legal_mixture_log_two_lower_bound",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.legal_mixture_log_strict_lower_bound",
+    "file": "UniformEntropy.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.restrict_common_root",
+    "file": "WitnessPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.height_restrict_common_root",
+    "file": "WitnessPrefix.lean"
+  },
+  {
+    "name": "PlanarQuery.Tree.height_restrict_commonPrefix",
+    "file": "WitnessPrefix.lean"
+  }
+]

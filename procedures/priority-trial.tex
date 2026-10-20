@@ -1,0 +1,32 @@
+For a fixed target height $H$, each oriented adjacent pair determines
+which patterns are hit at its first endpoint, second endpoint, or
+neither. The first two groups have immediate local height tests, so a
+pair that already exceeds $H$ can be discarded. For patterns left on
+the miss route, the remaining height becomes a deadline; the priority
+weights make the greedy order favor the tightest deadlines. The final
+check uses the actual hit ranks and child allowances, and accepts the
+order only when every miss-route pattern fits.
+
+\begin{algorithm}[H]
+\caption{\PriorityTrial: internal fallback for one height trial}
+\label{alg:priority-trial}
+\KwIn{Flat state's hull and classes; child heights $h_A$; allowances $e_A^{(4)},e_A^{(2)}$; target $H$.}
+\KwOut{A passing discovery order, or infeasible.}
+\ForEach{oriented adjacent real pair $(v,w)$}{
+  Form $\mathcal F,\mathcal S,\mathcal N$ by their first hit on $(v,w)$\;
+  \If{some $A\in\mathcal F$ has $1+h_A+e_A^{(4)}>H$, or
+  some $A\in\mathcal S$ has $2+h_A+e_A^{(2)}>H$}{\Continue\;}
+  \ForEach{$A\in\mathcal N$}{
+    $u_A\gets h_A+e_A^{(4)}$;
+    $B_A\gets H-u_A$;
+    $d_A\gets\lfloor(B_A+2)/3\rfloor$\;
+  }
+  \If{some $B_A<4$}{\Continue\;}
+  Sort distinct budgets as $d^{(1)}<\cdots<d^{(r)}$\;
+  Give each deadline-$d^{(j)}$ class weight $(|S|+1)^{r-j}$\;
+  Force $v,w$ and complete by maximum-remaining-weight greedy;
+  truncate when all nonzero classes are hit\;
+  \If{every $A\in\mathcal N$ has actual $g_A+u_A\le H$}{\KwRet this order\;}
+}
+\KwRet infeasible\;
+\end{algorithm}

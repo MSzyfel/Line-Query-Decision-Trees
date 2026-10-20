@@ -1,0 +1,85 @@
+{
+  "activation_toys": [
+    {
+      "b": 6,
+      "n": 76,
+      "m": 30,
+      "core_size": 64,
+      "outside_size": 12,
+      "core_work": 384,
+      "core_height": 6,
+      "partial_work": 456,
+      "outside_path_work": 72,
+      "contaminated_core_leaves": 1,
+      "completed_core": 63,
+      "completed_outside": 0,
+      "minimum_all_negative_activation_tests": 6,
+      "activation_first_core_work_lower_bound": 768,
+      "greedy_full_cost": 510,
+      "lifted_complete_cost": 516,
+      "clean_frontier_work": 236,
+      "clean_frontier_completed": 32,
+      "clean_frontier_density": "59/8",
+      "exact_template_pruning": {
+        "work": 424,
+        "completed": 60,
+        "density": 7.066666666666666,
+        "density_fraction": "106/15"
+      }
+    },
+    {
+      "b": 10,
+      "n": 1056,
+      "m": 74,
+      "core_size": 1024,
+      "outside_size": 32,
+      "core_work": 10240,
+      "core_height": 10,
+      "partial_work": 10560,
+      "outside_path_work": 320,
+      "contaminated_core_leaves": 1,
+      "completed_core": 1023,
+      "completed_outside": 0,
+      "minimum_all_negative_activation_tests": 16,
+      "activation_first_core_work_lower_bound": 26624,
+      "greedy_full_cost": 10864,
+      "lifted_complete_cost": 10880,
+      "clean_frontier_work": 5664,
+      "clean_frontier_completed": 512,
+      "clean_frontier_density": "177/16",
+      "exact_template_pruning": {
+        "work": 10440,
+        "completed": 1016,
+        "density": 10.275590551181102,
+        "density_fraction": "1305/127"
+      }
+    },
+    {
+      "b": 6,
+      "n": 1088,
+      "m": 2054,
+      "core_size": 64,
+      "outside_size": 1024,
+      "core_work": 384,
+      "core_height": 6,
+      "partial_work": 6528,
+      "outside_path_work": 6144,
+      "contaminated_core_leaves": 1,
+      "completed_core": 63,
+      "completed_outside": 0,
+      "minimum_all_negative_activation_tests": 512,
+      "activation_first_core_work_lower_bound": 33152,
+      "greedy_full_cost": 270208,
+      "lifted_complete_cost": 270720,
+      "clean_frontier_work": 1248,
+      "clean_frontier_completed": 32,
+      "clean_frontier_density": "39",
+      "exact_template_pruning": {
+        "work": 1248,
+        "completed": 32,
+        "density": 39.0,
+        "density_fraction": "39"
+      }
+    }
+  ]
+}

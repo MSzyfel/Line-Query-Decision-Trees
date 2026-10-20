@@ -1,0 +1,35 @@
+# Python environments and caches
+.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Lean build products and vendored dependencies
+.lake/
+toolchain/
+vendor/
+mathlib-git/
+cache/
+*.zip
+lake-manifest.json
+
+# LaTeX build products
+research/article-build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.out
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

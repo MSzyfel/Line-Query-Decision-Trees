@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "exact_integer_profile_split_checks": 2145,
+  "exact_closure_cases": 84,
+  "exact_density_cases": 84,
+  "two_witness_entropy_checks": 84,
+  "exact_two_witness_integer_profile_checks": 84,
+  "affine_checks": [
+    {
+      "q": 2,
+      "dimension": 3,
+      "n": 8,
+      "tests": 14,
+      "pair_cut_count": 8,
+      "supports_checked": 247,
+      "containment_upper_raw": "14"
+    },
+    {
+      "q": 3,
+      "dimension": 2,
+      "n": 9,
+      "tests": 12,
+      "pair_cut_count": 6,
+      "supports_checked": 502,
+      "containment_upper_raw": "18"
+    },
+    {
+      "q": 5,
+      "dimension": 2,
+      "n": 25,
+      "tests": 30,
+      "pair_cut_count": 10,
+      "supports_checked": 500,
+      "containment_upper_raw": "75"
+    }
+  ]
+}

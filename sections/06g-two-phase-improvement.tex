@@ -1,0 +1,255 @@
+﻿\subsection{Calibration of the expected-depth bound}
+\label{sec:two-phase}
+
+The preceding proof separates the algorithm from its numerical tuning.
+The calibration has two tasks: make every symbolic credit valid,
+then show that the resulting restriction and entropy coefficients
+give the announced approximation factor. The checks below follow
+that order.
+The calibration uses three fixed values:
+\begin{equation}\label{eq:two-phase-parameters}
+ \beta=\frac{3512863}{10^6},\qquad
+ \delta=\frac{393931}{2500000},\qquad
+ p_*=\frac{21317}{125000}.
+\end{equation}
+All other coefficients are derived from these and from the fixed
+comparison distribution in Section~\ref{sec:two-phase-certificate}.
+That distribution is used to prove the score bound; the algorithm
+minimizes its rational score over the entire candidate family.
+
+Each parameter has a separate role: the growth rate sets the batch
+budgets, the balance threshold bounds flat-state cap masses, and the
+tent parameter determines the rational credit for asking both
+endpoints. The remaining numbers describe their proof analysis.
+
+\paragraph{What must be checked.}
+Claim~\ref{lem:affine-block-credit} requires the entropy tent
+$H_2(p_*)\ge1-2p_*$. The geometric comparison in
+Proposition~\ref{prop:expected-schedule} also requires
+$\lambda_\beta\ge\nu_\beta$. The fixed distribution must then pass
+three certificate checks. First, every rank coefficient except one
+must stay above the target threshold. Next, the mean waiting length of
+the zero route must remain within its comparison bound. Finally, the
+retained credit must cover the zero-route term. Set
+$\tau=2190079/10^6$. The exact coefficient construction
+\eqref{eq:two-phase-coefficients} gives
+\[
+ 1.276476788627<a_1<1.276476788629<\tau,
+ \qquad \min_{2\le t\le14}a_t>2.1900797>\tau.
+\]
+All first-batch cutoffs are at most six, $k_0\le3$, $k_1\le12$,
+and $r\le13$. Thus the signed corrections are constant for $t\ge14$;
+$a_t=e_\beta(t)+\kappa$ on that entire tail. Its monotonicity reduces
+all later coefficients to the single $a_{14}$ check.
+Indeed, when $t\ge14$ all signed-correction indicators equal one
+and all first-batch credit indicators equal zero, so
+\[
+ d_{q,r}(u,t)=2(k_0+k_1-q-r),\qquad
+ \kappa=2\mathbb E[k_0+k_1-q-r].
+\]
+Since $\lfloor x\rfloor\le x$ and
+$\lfloor\beta x\rfloor\le\beta x$, the integrand defining
+$e_\beta$ is nonnegative. Thus
+$a_t-a_{14}=e_\beta(t)-e_\beta(14)\ge0$ for every $t\ge14$:
+\eqref{eq:two-phase-coefficients} cancels the common tail correction
+$\kappa$, and the integral over $[14,t]$ has nonnegative integrand.
+
+The all-negative route adds a separate waiting cost. We check its
+entire length because its mass can be arbitrarily large.
+Likewise, writing $D_0(k)=\mathbb E[z_{q,r}(u,k)]$,
+\[
+ D_0(1)=0,\qquad \max_{2\le k\le14}D_0(k)<-0.06992,
+ \qquad D_0(k)=D_0(14)\quad(k\ge14).
+\]
+By the zero-route correction \eqref{eq:two-phase-zero-correction},
+these comparisons prove the required mean waiting inequality for every possible
+minimum-cover size, including small ones.
+For $k=1$, every indicator in $z_{q,r}(u,k)$ vanishes. For $k\ge14$,
+all indicators for nonzero budgets equal one, and consequently
+\[
+ D_0(k)=\mathbb E[q+r-k_0-k_1]=-\kappa/2=D_0(14).
+\]
+The capped-rank calculation now bounds the loss at the exceptional
+first rank. Its net credit must still cover the zero-prior term;
+Claim~\ref{lem:capped-rank-credit} makes this the condition
+$\chi+2/\ln\beta\ge\tau$; the direct treatment of degenerate hulls also needs both local
+coefficients to exceed two.
+The derived coefficients satisfy $A,B>2$ and
+\[
+ \chi>1.199202587061,\qquad
+ B<4.374727111314,\qquad \chi+2/\ln\beta>\tau.
+\]
+Here $3+2\Phi_\beta(1)=7-\ln6/\ln\beta$. The strict inequality
+$\beta-1>2\ln\beta$ gives $\lambda_\beta>\nu_\beta$.
+More explicitly, $\lfloor\beta\rfloor=3$ gives
+$\Phi_\beta(1)=2-\ln6/(2\ln\beta)$, while
+\[
+ \lambda_\beta-\nu_\beta
+ =\frac{\beta-1-2\ln\beta}{2\ln\beta}>0.
+\]
+
+\paragraph{How the checks are certified.}
+All finite checks reduce to rational coefficients and logarithms.
+We enclose the logarithms from above and below, then evaluate the
+coefficient formulas with outward bounds. The rank and waiting-length
+tail arguments above complete the checks beyond the finite range.
+For rational $x\ge1$, write $z=(x-1)/(x+1)$ and
+$L_N(x)=2\sum_{j=0}^{N-1}z^{2j+1}/(2j+1)$.
+The positive logarithm series has the rational enclosure
+\begin{equation}\label{eq:rational-log-bounds}
+ L_N(x)\le\ln x\le L_N(x)+
+ \frac{2z^{2N+1}}{(2N+1)(1-z^2)}.
+\end{equation}
+To derive the enclosure, write $x=(1+z)/(1-z)$. Integrating the
+geometric series for $1/(1-t^2)$ on $[0,z]$ gives
+\[
+ \ln x=2\int_0^z\frac{dt}{1-t^2}
+       =2\sum_{j\ge0}\frac{z^{2j+1}}{2j+1}.
+\]
+Every term is nonnegative, and its omitted tail satisfies
+\[
+ 0\le\ln x-L_N(x)
+ \le\frac{2z^{2N+1}}{2N+1}\sum_{j\ge0}z^{2j}
+ =\frac{2z^{2N+1}}{(2N+1)(1-z^2)}.
+\]
+For the inequality, the $j$th omitted denominator is
+$2N+2j+1\ge2N+1$, so replacing it by $2N+1$ increases that term.
+The equality then sums the geometric series, valid because $0\le z<1$.
+Range reduction to $[1,2]$ makes $N=100$ terms sufficient for the
+comparisons above. In detail, write any positive rational argument
+as $x=2^s y$, with integer $s$ and $1\le y\le2$; then
+$\ln x=s\ln2+\ln y$. Evaluate the displayed enclosure for $y$
+and for $2$. If $s<0$, multiplying the interval for $\ln2$ by $s$
+reverses its endpoints. This also handles the arguments below one
+in the entropy formulas. For $y\in[1,2]$, $z\le1/3$, so the
+remainder at $N=100$ is at most
+$2\cdot3^{-201}/(201(1-1/9))$.
+
+For integer $t\ge2$, put $n_t=\lfloor\beta t\rfloor$.
+The first floor integral telescopes as
+\[
+ \int_1^t\frac{\lfloor x\rfloor}{x}\,dx
+ =\sum_{j=1}^{t-1}j\ln\frac{j+1}{j}
+ =t\ln t-\ln(t!).
+\]
+On $[j,j+1)$ the floor is $j$, giving the first equality.
+In the resulting sum, the coefficient of $\ln j$ is $-1$ for
+$2\le j<t$ and the coefficient of $\ln t$ is $t-1$; collecting
+these terms gives the factorial expression.
+For the second, substitute $y=\beta x$ and subtract the same
+floor-integral primitive at the two endpoints. Since
+$\lfloor\beta\rfloor=3$,
+\[
+ \begin{aligned}
+ \int_1^t\frac{\lfloor\beta x\rfloor}{x}\,dx
+ &=\int_\beta^{\beta t}\frac{\lfloor y\rfloor}{y}\,dy\\
+ &=n_t\ln(\beta t)-\ln(n_t!)
+      -\bigl(3\ln\beta-\ln6\bigr)\\
+ &=(n_t-3)\ln\beta+n_t\ln t-\ln(n_t!/6).
+ \end{aligned}
+\]
+Subtract these two integrals from $(\beta+1)(t-1)$ and divide by
+$\ln\beta$, as prescribed by the definition of $e_\beta$ in
+Proposition~\ref{prop:expected-schedule}, to obtain
+\[
+ \begin{aligned}
+ e_\beta(t)={}&
+ \frac{(\beta+1)(t-1)-(t+n_t)\ln t+\ln(t!)}{\ln\beta}\\
+ &-(n_t-3)+\frac{\ln(n_t!/6)}{\ln\beta}.
+ \end{aligned}
+\]
+Together with the complete fixed rational table, these formulas
+reproduce every finite coefficient and waiting-length check.
+They also verify $h(p_*)>(1-2p_*)\ln2$, which supplies the entropy tent.
+The fixed table and outward interval bounds provide a reproducible
+certificate for these numerical claims.
+
+For clarity, the outward rational checks of the finite ranks are
+listed below. Each decimal is an exact rational endpoint, rounded
+outward from the $N=100$ enclosure. Only rank one needs an upper
+bound, namely $a_1<1.276476788629<\tau$ as stated above.
+\begin{center}\small
+\begin{tabular}{r|rr}
+\hline
+$t$ or $k$ & Lower bound for $a_t$ & Upper bound for $D_0(k)$\\\hline
+1&1.276476788627&0\\
+2&2.190079716489&$-0.246077347242$\\
+3&2.190079716462&$-0.308016911051$\\
+4&2.190079716311&$-0.339177879272$\\
+5&2.190079716316&$-0.313280064542$\\
+6&2.190079716371&$-0.261411526812$\\
+7&2.190079716472&$-0.219499207512$\\
+8&2.190079716131&$-0.186529025533$\\
+9&2.190079716691&$-0.158717650632$\\
+10&2.190079716422&$-0.135101669420$\\
+11&2.190079716565&$-0.115461022418$\\
+12&2.190079716480&$-0.097796497729$\\
+13&2.190079716692&$-0.083683085595$\\
+14&2.190079716520&$-0.069926303070$\\\hline
+\end{tabular}
+\end{center}
+Every listed $a_t$ with $t\ge2$ exceeds $2.1900797$, and every
+listed $D_0(k)$ with $k\ge2$ is below $-0.06992$.
+The remaining intermediate enclosures include
+\[
+ \begin{aligned}
+ 4.461183727319&<\mu<4.461183727320,\\
+ 1.256431374515&<\ln\beta<1.256431374516,\\
+ 0.435622350180&<h(\delta)<0.435622350181,\\
+ 1.905736047002&<\sigma(\delta)<1.905736047003,\\
+ \beta-1-2\ln\beta&>0.000000250968,\\
+ h(p_*)-(1-2p_*)\ln2&>0.000001006640.
+ \end{aligned}
+\]
+The script checks the displayed rational inequalities directly; their
+decimal renderings serve only as readable summaries.
+
+With the local inequalities verified, only the stage-to-tree
+conversion of Proposition~\ref{lem:stage-conversion} remains to be
+calibrated. It chooses the larger of the
+balanced-query entropy coefficient and the capped-discovery
+coefficient; the following bound checks their resulting total.
+Finally $6<1/\delta<7$, so
+$\sigma(\delta)=-6\delta\ln\delta
+ -(1-6\delta)\ln(1-6\delta)$. The same rational enclosures certify
+the final factor as follows. If an expression has enclosure
+$[\underline x,\overline x]$, sums add endpoints, products take
+the minimum and maximum of the four endpoint products, and a
+division by a positive interval uses the reciprocal interval
+$[1/\overline x,1/\underline x]$. These rules preserve every sign
+in the preceding sums. In particular,
+\[
+ \begin{aligned}
+ \underline\chi
+ &=\tau-2\delta(\tau-\underline a_1)-\delta\overline\mu,\\
+ \overline B
+ &=7-\frac{\underline{\ln6}}{\overline{\ln\beta}}-\underline\chi,\\
+ \underline h
+ &=-\delta\,\overline{\ln\delta}
+       -(1-\delta)\,\overline{\ln(1-\delta)},\\
+ \underline\sigma
+ &=-6\delta\,\overline{\ln\delta}
+       -(1-6\delta)\,\overline{\ln(1-6\delta)},\\
+ A+c\ln2
+ &\le\frac{\beta+1}{\underline{\ln\beta}}
+    +\max\left\{\frac{\overline{\ln2}}{\underline h},
+       \frac{\overline B\,\overline{\ln2}}{\underline\sigma}\right\}.
+ \end{aligned}
+\]
+Both entropy denominators and $B$ have strictly positive enclosures.
+The sign of the subtracted quotient in $B$ explains why its
+numerator uses a lower bound and its denominator an upper bound.
+The negative entropy coefficients explain the upper logarithm
+endpoints in $\underline h$ and $\underline\sigma$. Evaluating
+the last line with the full rational series bounds, before their
+decimal display rounding, proves
+\[
+ \boxed{A+\max\{\ln2/h(\delta),B\ln2/\sigma(\delta)\}
+       <5.182975508794<5.182976.}
+\]
+The file \texttt{expected-two-phase-}\allowbreak\texttt{check.py}
+checks these enclosures with exact fractions. Its supplementary tests
+verify $9{,}900$ signed-phase identities and $1{,}650$ modified-batch
+comparisons, including early minimum-cover completion and full negative
+waiting invoices. They support the implementation audit; the stated
+claims and the exact fixed-table certificate establish the theorem.

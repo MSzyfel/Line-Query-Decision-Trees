@@ -1,0 +1,306 @@
+\section{Scheduling the first positive answer}
+\label{sec:scheduling}
+
+The maximum-depth algorithm schedules discovery around the heights
+of its child codes. For expected depth, a cap containing a likely
+target should instead be encountered early. This is a weighted min-sum set cover (MSSC) problem. The sets remain
+the supplied caps;
+singleton sets are not added unless an actual supplied test realizes
+them.
+
+In the decision-tree application, a positive hull answer exits the
+all-negative route and reveals that the target lies in a small cap.
+The all-zero pattern has no positive answer, so on the full-cover
+route it is identified after every positive pattern has been covered
+(and an earlier singleton inference only shortens that route). Its
+contribution is therefore at most its weight times the schedule
+length. This is why the
+ordering analysis keeps both the first-cover sum and a separate
+length term.
+
+\begin{symboltable}
+$U,\ \pi_h,\ p_0$ & Coverable positive-pattern demands, their positive weights, and the weight of a target found only after the schedule finishes.\\
+$t_Q(h),\ \MSSC(Q)$ & First-cover position of demand $h$ in ordering $Q$ and the sum $\sum_h\pi_h t_Q(h)$.\\
+$k_0$ & Minimum number of candidate tests needed to cover all demands in $U$.\\
+$\beta,\ \Phi_\beta,\ Z_\beta$ & Geometric budget factor and the first-cover and total-length accounting functions.\\
+$r_Q(x),\ G_u$ & Comparison-order mass with first-cover time greater than $x$, and the constructed schedule for shift $u$.\\
+\end{symboltable}
+
+For background, weighted MSSC has a classical greedy
+four-approximation~\cite{flt2004}. We do not use that guarantee in
+either proof. Instead, exact coverage with a cardinality budget
+gives the stronger circular-interval ordering proved below,
+including a bound on its total length.
+
+\begin{lemma}[Exact budgeted interval coverage]\label{lem:budget-coverage}
+For positively weighted interval or circular-interval demands on
+a finite candidate set, a set of at most $k$ candidates hitting
+maximum demand weight is computable in polynomial time.
+\end{lemma}
+\begin{proof}
+Algorithm~\ref{alg:interval-cover} gives both interval oracles.
+For ordinary intervals, number the candidates $1,\ldots,M$.
+If the previous selected candidate is $p$ and the next is $q>p$,
+the newly hit demands are exactly the intervals containing $q$
+whose left endpoint is greater than $p$. An interval containing
+$q$ and an earlier selected point must also contain $p$.
+Conversely, any interval containing $q$ with left endpoint greater
+than $p$ contains no earlier selected candidate. Thus the added
+weight $g(p,q)$ depends only on these two positions, not on the
+earlier choices.
+
+For exactly $t$ selected candidates ending at $q$, use the recurrence
+\[
+ D(t,q)=\max_{p<q}\{D(t-1,p)+g(p,q)\},
+ \qquad D(0,0)=0.
+\]
+The position $0$ is a \emph{sentinel}, an artificial initial marker
+before every interval, not a selectable candidate.
+All other zero-candidate or nonexistent states are infeasible
+and have value $-\infty$ in this maximization.
+Take the maximum over
+$t\le k$ and final positions, including the empty selection.
+This is a polynomial dynamic program.
+
+For circular intervals and $k\ge1$, enumerate a selected candidate
+$v$. Credit the demands it hits and delete them. Cutting at $v$
+turns the remaining demands into ordinary intervals, on which
+the dynamic program selects at most $k-1$ more candidates.
+One enumeration contains a candidate of an optimal nonempty
+selection, so taking the best is exact. The $k=0$ case is empty.
+\end{proof}
+
+\input{procedures/interval-cover}
+
+The next lemma uses exact budgeted covers at geometrically
+increasing budgets. Small budgets can discover likely targets early;
+the minimum cover at the final budget guarantees that every positive
+target is eventually found. Shifting the budget sequence changes
+where it crosses integer thresholds. Averaging over shifts bounds
+both positive first-cover times and the zero-pattern waiting time;
+a finite search over the distinct resulting schedules removes the
+random shift.
+
+\begin{lemma}[Geometric-batch ordering]\label{lem:mssc}
+Let $U$ be a nonempty family of coverable weighted circular intervals.
+Let $k_0$ be its minimum cover size and let $p_0\ge0$ be the weight
+of a target covered only when the entire schedule finishes.
+Fix rational $\beta>1$, and put
+\[
+ r_\beta=\lfloor\beta\rfloor,\qquad
+ \lambda_\beta=\frac{\beta+1}{2\ln\beta},\qquad
+ \nu_\beta=1+\frac1{\ln\beta},\qquad
+ \eta_\beta=\frac{r_\beta+1}{2}
+            -\frac{\ln(r_\beta!)}{2\ln\beta}-\lambda_\beta.
+\]
+For integer $t,k\ge1$, define the accounting functions
+\[
+ \begin{aligned}
+ \Phi_\beta(t)
+ &=\lambda_\beta+\eta_\beta
+    +\frac1{2\ln\beta}\int_1^t
+       \frac{\lfloor x\rfloor+\lfloor\beta x\rfloor}{x}\,dx,\\
+ Z_\beta(k)
+ &=k+\frac{k\ln k-\ln(k!)}{\ln\beta}.
+ \end{aligned}
+\]
+A deterministic polynomial-time ordering $G$ satisfies, for every
+comparison cover ordering $Q$,
+\[
+ \MSSC(G)+p_0|G|
+ \le\sum_{h\in U}\pi_h\Phi_\beta(t_Q(h))+p_0 Z_\beta(k_0).
+\]
+The simpler bounds
+$\Phi_\beta(t)\le\lambda_\beta t+\eta_\beta$ and
+$Z_\beta(k)\le\nu_\beta k-1/\ln\beta$ also hold.
+Every candidate schedule considered by the construction also has
+length at most $\bigl(1+\beta/(\beta-1)\bigr)k_0$.
+\end{lemma}
+\begin{proof}
+Compute a minimum cover $Q_*$ using
+Lemma~\ref{lem:minimum-interval-cover} and, for each integer $k<k_0$,
+an exact maximum-weight coverage set $Q_k$ of at most $k$
+candidates using Lemma~\ref{lem:budget-coverage}.
+Fix the selected sets deterministically.
+
+Fix a comparison cover ordering $Q$, and write
+\[
+ r_Q(x)=\sum_{h:t_Q(h)>x}\pi_h
+\]
+for the weight whose first-cover index in $Q$ exceeds $x$.
+For a shift $u\in[1,\beta)$, use budgets
+$k^{(j)}=\lfloor\beta^ju\rfloor$, $j=0,1,\ldots$.
+In each phase, process $Q_{k^{(j)}}$ when $k^{(j)}<k_0$ and $Q_*$
+otherwise. Order that set greedily by the weight it covers among
+the demands still unhit by earlier queries. Omit repeated queries
+and those hitting no remaining demand. Stop after the first phase
+whose budget reaches $k_0$.
+\begin{claim}[Phase coverage and schedule length]
+After a phase with budget $k<k_0$, the weight still unhit is at
+most $r_Q(k)$. The complete shifted schedule has length at most
+$\bigl(1+\beta/(\beta-1)\bigr)k_0$.
+\end{claim}
+\begin{proof}
+The union of all queries processed through this phase covers every
+demand covered by $Q_k$: a query omitted for hitting no remaining
+demand has its covered demands already hit by an earlier phase.
+The set $Q_k$ covers at least as much total weight as the first
+$k$ queries of $Q$, since those queries are one feasible
+at-most-$k$ candidate set. Hence the schedule has hit at least the
+weight hit by that comparison prefix, leaving at most $r_Q(k)$.
+The final $Q_*$ phase covers all demands.
+
+Let $J$ be the first phase whose budget reaches $k_0$. The
+pre-final phases use at most
+\[
+ \sum_{j<J}\lfloor\beta^ju\rfloor
+ <\sum_{j<J}\beta^ju
+ <\frac{\beta}{\beta-1}k_0
+\]
+queries: the last pre-final unrounded budget is below $k_0$, and
+the preceding terms decrease geometrically by a factor $1/\beta$.
+The final minimum cover uses $k_0$ queries, proving the length
+bound.
+\end{proof}
+
+\begin{claim}[First-cover cost within one batch]
+Suppose a phase processes $m$ queries, newly hitting weights
+$g_1,\ldots,g_m$ in order, and starts and ends with unhit weights
+$r$ and $r'$. Its contribution to the first-cover sum is at most
+\[
+ mr'+\sum_{i=1}^m i g_i
+ \le mr'+\frac{m+1}{2}(r-r')
+ =\frac{m+1}{2}r+\frac{m-1}{2}r'.
+\]
+\end{claim}
+\begin{proof}
+After each greedy choice, the remaining coverage of every unused
+candidate can only decrease. Therefore the newly hit weights are
+nonincreasing: $g_1\ge\cdots\ge g_m$. Pairing ranks $i$ and
+$m+1-i$ shows
+\[
+ \sum_{i=1}^m i g_i\le\frac{m+1}{2}\sum_{i=1}^m g_i.
+\]
+Indeed, in each pair the earlier rank has at least as much weight
+as the later one, so replacing both ranks by their mean cannot
+decrease the weighted sum. A demand first hit at rank $i$ remains
+unhit for exactly $i$ queries in this batch, while each demand
+still unhit at the end remains unhit for all $m$ queries. Since
+$\sum_i g_i=r-r'$, their combined contribution gives the claim.
+\end{proof}
+
+Now let $r_j$ be the unhit weight after phase $j$, and put
+$r_{-1}=w(U)$. If phase $j$ processes $m_j$ queries, the preceding
+claim bounds its first-cover contribution by
+\[
+ \frac{m_j+1}{2}r_{j-1}+\frac{m_j-1}{2}r_j.
+\]
+Since $m_j\le k^{(j)}$, replacing $m_j$ by its integer budget and
+combining adjacent phase coefficients gives
+\[
+ \MSSC(G_u)\le
+ \frac{\lfloor u\rfloor+1}{2}w(U)
+ +\frac12\sum_{j\ge0}
+       \bigl(k^{(j)}+k^{(j+1)}\bigr)r_Q(\beta^ju).
+\]
+For every pre-final phase, the first claim gives
+$r_j\le r_Q(k^{(j)})=r_Q(\beta^ju)$; the equality uses the
+integer-valued comparison first-cover indices. The final phase
+has residual zero. The displayed infinite sum only adds
+nonnegative upper bounds for the final and later phases.
+
+\paragraph{Average the first-cover cost.}
+Average this expression over a \emph{log-uniform shift}, with
+probability density $1/(u\ln\beta)$ on $[1,\beta)$. This density
+integrates to one because $\int_1^\beta du/u=\ln\beta$.
+Splitting the first term's integral at its integers
+gives
+\[
+ \begin{aligned}
+ \mathbb E[\lfloor u\rfloor]
+ &=\frac{\displaystyle
+     \sum_{k=1}^{r_\beta-1}k\ln\frac{k+1}{k}
+        +r_\beta\ln\frac{\beta}{r_\beta}}{\ln\beta}\\
+ &=r_\beta-\frac{\ln(r_\beta!)}{\ln\beta}.
+ \end{aligned}
+\]
+The intervals $[\beta^j,\beta^{j+1})$ partition $[1,\infty)$,
+so averaging the remaining terms gives
+\[
+ \begin{aligned}
+ \mathbb E[\MSSC(G_u)]
+ &\le(\lambda_\beta+\eta_\beta)w(U)\\
+ &\quad+\frac1{2\ln\beta}\int_1^\infty
+      \frac{\lfloor x\rfloor+\lfloor\beta x\rfloor}{x}
+      r_Q(x)\,dx\\
+ &=\sum_{h\in U}\pi_h\Phi_\beta(t_Q(h)).
+ \end{aligned}
+\]
+For each real $x$, write
+$r_Q(x)=\sum_{h:t_Q(h)>x}\pi_h$. Interchanging this finite sum
+with the integral makes each hypothesis contribute the integral
+from $1$ to its integer first-cover time. Adding the initial
+$(\lambda_\beta+\eta_\beta)w(U)$ term gives exactly
+$\sum_{h\in U}\pi_h\Phi_\beta(t_Q(h))$.
+Bounding the integrand by $\beta+1$ recovers
+$\Phi_\beta(t)\le\lambda_\beta t+\eta_\beta$, but would discard
+the savings from all later integer budgets.
+
+\begin{claim}[Shift-averaged schedule length]
+Under the same shift distribution,
+\[
+ \mathbb E[|G_u|]\le Z_\beta(k_0)
+ \le\nu_\beta k_0-\frac1{\ln\beta}.
+\]
+\end{claim}
+\begin{proof}
+The final cover contributes $k_0$ queries. The earlier phases
+contribute at most
+$\sum_{j:\,\beta^ju<k_0}\lfloor\beta^ju\rfloor$.
+After averaging and substituting $x=\beta^ju$, their expected
+length is
+\[
+ \frac1{\ln\beta}\int_1^{k_0}\frac{\lfloor x\rfloor}{x}\,dx.
+\]
+On each interval $[j,j+1)$, $\lfloor x\rfloor=j$, so summing the
+integrals gives
+\[
+ \int_1^{k_0}\frac{\lfloor x\rfloor}{x}\,dx
+ =k_0\ln k_0-\ln(k_0!).
+\]
+Consequently $\mathbb E[|G_u|]\le Z_\beta(k_0)$. Since $\ln x$
+is increasing,
+\[
+ \ln(k_0!)=\sum_{j=2}^{k_0}\ln j
+ \ge\int_1^{k_0}\ln x\,dx
+ =k_0\ln k_0-k_0+1.
+\]
+Substituting this in $Z_\beta(k_0)$ gives
+$Z_\beta(k_0)\le\nu_\beta k_0-1/\ln\beta$. The formula also gives
+$Z_\beta(1)=1$.
+\end{proof}
+
+The first-cover and length bounds hold under the same shift
+distribution. Therefore
+\[
+ \mathbb E[\MSSC(G_u)+p_0|G_u|]
+ \le\sum_{h\in U}\pi_h\Phi_\beta(t_Q(h))
+      +p_0Z_\beta(k_0).
+\]
+
+No random shift is used by the algorithm. Let $J$ be the first
+integer with $\beta^J\ge k_0$. All budget changes occur at the
+rational breakpoints $u=k/\beta^j$ for
+$0\le j\le J$, $1\le k\le k_0$, inside $[1,\beta)$.
+Enumerate these breakpoints and one rational midpoint between
+each consecutive pair, construct the resulting orderings, and
+take the one minimizing the rational quantity
+$\MSSC(G_u)+p_0|G_u|$. There are
+$O(k_0\log k_0)$ intervals for fixed $\beta$.
+The budgets, selected sets, and their greedy internal orders are
+constant on each interval. Their minimum joint value is at most
+the average just bounded. The waiting-time weight $p_0$ is used
+only to choose the schedule; all queries remain supplied candidates.
+\end{proof}
+
+\input{procedures/batch-orders}

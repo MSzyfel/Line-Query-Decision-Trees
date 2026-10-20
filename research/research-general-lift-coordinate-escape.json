@@ -1,0 +1,213 @@
+{
+  "n": 64,
+  "tests": [
+    16017187393205310075,
+    12297829382473034410,
+    14757395258967641292,
+    17361641481138401520,
+    18374966859414961920,
+    18446462603027742720,
+    18446744069414584320
+  ],
+  "greedy_cost": 400,
+  "optimum": 384,
+  "core": 73469388526781700,
+  "core_size": 12,
+  "core_work": 44,
+  "lifted_partial_work": 224,
+  "code_program": [
+    [
+      73469388526781700,
+      2
+    ],
+    [
+      72339073326448896,
+      4
+    ],
+    [
+      281479271743488,
+      5
+    ],
+    [
+      4294967296,
+      -1
+    ],
+    [
+      281474976776192,
+      6
+    ],
+    [
+      65536,
+      -1
+    ],
+    [
+      281474976710656,
+      -1
+    ],
+    [
+      72057594054705408,
+      5
+    ],
+    [
+      256,
+      -1
+    ],
+    [
+      72057594054705152,
+      6
+    ],
+    [
+      16777216,
+      -1
+    ],
+    [
+      72057594037927936,
+      -1
+    ],
+    [
+      1130315200332804,
+      4
+    ],
+    [
+      1125917086711812,
+      5
+    ],
+    [
+      17179869188,
+      6
+    ],
+    [
+      4,
+      -1
+    ],
+    [
+      17179869184,
+      -1
+    ],
+    [
+      1125899906842624,
+      -1
+    ],
+    [
+      4398113620992,
+      5
+    ],
+    [
+      4398046512128,
+      6
+    ],
+    [
+      1024,
+      -1
+    ],
+    [
+      4398046511104,
+      -1
+    ],
+    [
+      67108864,
+      -1
+    ]
+  ],
+  "exits": [
+    {
+      "state": 219043332147,
+      "size": 8,
+      "dimension": 3,
+      "incumbent_restriction_cost": 26,
+      "fresh_greedy_cost": 24,
+      "selected_fallback_cost": 24
+    },
+    {
+      "state": 3342336,
+      "size": 4,
+      "dimension": 2,
+      "incumbent_restriction_cost": 8,
+      "fresh_greedy_cost": 8,
+      "selected_fallback_cost": 8
+    },
+    {
+      "state": 14355223812243456,
+      "size": 4,
+      "dimension": 2,
+      "incumbent_restriction_cost": 8,
+      "fresh_greedy_cost": 8,
+      "selected_fallback_cost": 8
+    },
+    {
+      "state": 56075093029632,
+      "size": 8,
+      "dimension": 3,
+      "incumbent_restriction_cost": 26,
+      "fresh_greedy_cost": 24,
+      "selected_fallback_cost": 24
+    },
+    {
+      "state": 855638016,
+      "size": 4,
+      "dimension": 2,
+      "incumbent_restriction_cost": 8,
+      "fresh_greedy_cost": 8,
+      "selected_fallback_cost": 8
+    },
+    {
+      "state": 3674937295934324736,
+      "size": 4,
+      "dimension": 2,
+      "incumbent_restriction_cost": 8,
+      "fresh_greedy_cost": 8,
+      "selected_fallback_cost": 8
+    },
+    {
+      "state": 204,
+      "size": 4,
+      "dimension": 2,
+      "incumbent_restriction_cost": 8,
+      "fresh_greedy_cost": 8,
+      "selected_fallback_cost": 8
+    },
+    {
+      "state": 876173328384,
+      "size": 4,
+      "dimension": 2,
+      "incumbent_restriction_cost": 8,
+      "fresh_greedy_cost": 8,
+      "selected_fallback_cost": 8
+    },
+    {
+      "state": 57420895262343168,
+      "size": 8,
+      "dimension": 3,
+      "incumbent_restriction_cost": 26,
+      "fresh_greedy_cost": 24,
+      "selected_fallback_cost": 24
+    },
+    {
+      "state": 52224,
+      "size": 4,
+      "dimension": 2,
+      "incumbent_restriction_cost": 8,
+      "fresh_greedy_cost": 8,
+      "selected_fallback_cost": 8
+    },
+    {
+      "state": 224300372066304,
+      "size": 4,
+      "dimension": 2,
+      "incumbent_restriction_cost": 8,
+      "fresh_greedy_cost": 8,
+      "selected_fallback_cost": 8
+    },
+    {
+      "state": 14699749187159851008,
+      "size": 8,
+      "dimension": 3,
+      "incumbent_restriction_cost": 26,
+      "fresh_greedy_cost": 24,
+      "selected_fallback_cost": 24
+    }
+  ],
+  "full_selected_fallback_cost": 384,
+  "exits_requiring_fresh_greedy": 4,
+  "number_of_such_sources": 18
+}

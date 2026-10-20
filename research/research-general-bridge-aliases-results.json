@@ -1,0 +1,287 @@
+[
+  {
+    "M": 4,
+    "selectors": 2,
+    "bodies": 2,
+    "body_size": 2,
+    "n": 64,
+    "m": 17,
+    "bridge_context_support": 8,
+    "half_alphabet_bridge": false,
+    "initial_cost": 404,
+    "initial_body_equality_work": 128,
+    "accepted_partitions_are_exactly_body_axes": true,
+    "all_nonbody_queries_independent_joint_body_vector": true,
+    "actual_selected_families": [
+      {
+        "retained_queries": 0,
+        "classification": "empty",
+        "factor_alphabets": [],
+        "planned_raw_cost": 404,
+        "contexts": 1
+      },
+      {
+        "retained_queries": 1,
+        "classification": "body_axes",
+        "factor_alphabets": [
+          2
+        ],
+        "planned_raw_cost": 404,
+        "contexts": 3
+      },
+      {
+        "retained_queries": 4,
+        "classification": "body_axes",
+        "factor_alphabets": [
+          2,
+          2
+        ],
+        "planned_raw_cost": 404,
+        "contexts": 9
+      },
+      {
+        "retained_queries": 17,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          64
+        ],
+        "planned_raw_cost": 404,
+        "contexts": 65
+      },
+      {
+        "retained_queries": 15,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          64
+        ],
+        "planned_raw_cost": 404,
+        "contexts": 65
+      },
+      {
+        "retained_queries": 2,
+        "classification": "body_axes",
+        "factor_alphabets": [
+          2,
+          2
+        ],
+        "planned_raw_cost": 404,
+        "contexts": 9
+      },
+      {
+        "retained_queries": 1,
+        "classification": "body_axes",
+        "factor_alphabets": [
+          2
+        ],
+        "planned_raw_cost": 404,
+        "contexts": 3
+      },
+      {
+        "retained_queries": 15,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          64
+        ],
+        "planned_raw_cost": 404,
+        "contexts": 65
+      },
+      {
+        "retained_queries": 13,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          64
+        ],
+        "planned_raw_cost": 404,
+        "contexts": 65
+      }
+    ],
+    "full_generic_portfolio": {
+      "initial_greedy_cost": 404,
+      "output_cost": 404,
+      "selected_families": 9,
+      "partition_components": 2,
+      "contexts_summed_across_families": 285,
+      "pool_states": 130,
+      "one_independence_refinement_level": true
+    },
+    "pool_structure": {
+      "body_rectangles_with_full_selectors": 5,
+      "original_known_body_selector_nodes": 124,
+      "other_nonempty_states": 0
+    },
+    "is_fixed_point_of_this_generic_portfolio": true,
+    "full_stronger_lifting_generator_run": false,
+    "uses_exact_OPT": false
+  },
+  {
+    "M": 8,
+    "selectors": 2,
+    "bodies": 1,
+    "body_size": 4,
+    "n": 256,
+    "m": 29,
+    "bridge_context_support": 16,
+    "half_alphabet_bridge": true,
+    "initial_cost": 2546,
+    "initial_body_equality_work": 576,
+    "accepted_partitions_are_exactly_body_axes": true,
+    "all_nonbody_queries_independent_joint_body_vector": true,
+    "actual_selected_families": [
+      {
+        "retained_queries": 0,
+        "classification": "empty",
+        "factor_alphabets": [],
+        "planned_raw_cost": 2546,
+        "contexts": 1
+      },
+      {
+        "retained_queries": 4,
+        "classification": "body_axes",
+        "factor_alphabets": [
+          4
+        ],
+        "planned_raw_cost": 2546,
+        "contexts": 5
+      },
+      {
+        "retained_queries": 29,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          256
+        ],
+        "planned_raw_cost": 2546,
+        "contexts": 257
+      },
+      {
+        "retained_queries": 25,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          256
+        ],
+        "planned_raw_cost": 2546,
+        "contexts": 257
+      }
+    ],
+    "full_generic_portfolio": {
+      "initial_greedy_cost": 2546,
+      "output_cost": 2546,
+      "selected_families": 4,
+      "partition_components": 1,
+      "contexts_summed_across_families": 520,
+      "pool_states": 512,
+      "one_independence_refinement_level": true
+    },
+    "pool_structure": {
+      "body_rectangles_with_full_selectors": 3,
+      "original_known_body_selector_nodes": 508,
+      "other_nonempty_states": 0
+    },
+    "is_fixed_point_of_this_generic_portfolio": true,
+    "full_stronger_lifting_generator_run": false,
+    "uses_exact_OPT": false
+  },
+  {
+    "M": 8,
+    "selectors": 2,
+    "bodies": 2,
+    "body_size": 4,
+    "n": 1024,
+    "m": 41,
+    "bridge_context_support": 16,
+    "half_alphabet_bridge": true,
+    "initial_cost": 12270,
+    "initial_body_equality_work": 4608,
+    "accepted_partitions_are_exactly_body_axes": true,
+    "all_nonbody_queries_independent_joint_body_vector": true,
+    "actual_selected_families": [
+      {
+        "retained_queries": 0,
+        "classification": "empty",
+        "factor_alphabets": [],
+        "planned_raw_cost": 12270,
+        "contexts": 1
+      },
+      {
+        "retained_queries": 4,
+        "classification": "body_axes",
+        "factor_alphabets": [
+          4
+        ],
+        "planned_raw_cost": 12270,
+        "contexts": 5
+      },
+      {
+        "retained_queries": 8,
+        "classification": "body_axes",
+        "factor_alphabets": [
+          4,
+          4
+        ],
+        "planned_raw_cost": 12270,
+        "contexts": 25
+      },
+      {
+        "retained_queries": 41,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          1024
+        ],
+        "planned_raw_cost": 12270,
+        "contexts": 1025
+      },
+      {
+        "retained_queries": 37,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          1024
+        ],
+        "planned_raw_cost": 12270,
+        "contexts": 1025
+      },
+      {
+        "retained_queries": 4,
+        "classification": "body_axes",
+        "factor_alphabets": [
+          4
+        ],
+        "planned_raw_cost": 12270,
+        "contexts": 5
+      },
+      {
+        "retained_queries": 37,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          1024
+        ],
+        "planned_raw_cost": 12270,
+        "contexts": 1025
+      },
+      {
+        "retained_queries": 33,
+        "classification": "prime_identifying",
+        "factor_alphabets": [
+          1024
+        ],
+        "planned_raw_cost": 12270,
+        "contexts": 1025
+      }
+    ],
+    "full_generic_portfolio": {
+      "initial_greedy_cost": 12270,
+      "output_cost": 12270,
+      "selected_families": 8,
+      "partition_components": 2,
+      "contexts_summed_across_families": 4136,
+      "pool_states": 2062,
+      "one_independence_refinement_level": true
+    },
+    "pool_structure": {
+      "body_rectangles_with_full_selectors": 29,
+      "original_known_body_selector_nodes": 2032,
+      "other_nonempty_states": 0
+    },
+    "is_fixed_point_of_this_generic_portfolio": true,
+    "full_stronger_lifting_generator_run": false,
+    "uses_exact_OPT": false
+  }
+]

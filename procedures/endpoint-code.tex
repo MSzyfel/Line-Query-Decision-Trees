@@ -1,0 +1,41 @@
+\begin{algorithm}[H]
+\caption{\EndpointCode: legal full-pattern recovery}
+\label{alg:endpoint-code}
+\KwIn{A positive hull vertex $v$, compatible patterns, cached answers;
+code mode; optionally fixed continuation heights $h_A$.}
+\KwOut{A supplied-query decoder whose leaves are full pattern classes.}
+\If{the hull has dimension at most one}{\KwRet the already determined nonzero pattern\;}
+\eIf{$v$ has a cached negative neighbor}{
+  Cut at that neighbor and orient so $v$ is the first positive vertex\;
+}{
+  Cut at a boundary origin, or at the opposite edge met by the ray $v0$\;
+}
+List the realized left and right endpoint pairs in the cut order\;
+\eIf{no continuation heights are supplied}{
+  Search each unfixed endpoint using Algorithm~\ref{alg:alphabetic-code};
+  condition the second search on the first answer\;
+}{
+  \ForEach{nonempty realized endpoint rectangle $U$, in increasing size}{
+    \eIf{$U$ has a single realized class $A$}{$E(U)\gets h_A$\;}{
+      $E(U)\gets\min_\ell(1+\max\{E(U\cap\ell^-),E(U\cap\ell^+)\})$,
+      over proper supplied endpoint thresholds\;
+    }
+  }
+  Reconstruct the minimizing rectangle splits, retaining full-pattern
+  leaves and their recorded continuation heights\;
+}
+\KwRet the decoder; skip fixed endpoints and cached thresholds\;
+\end{algorithm}
+
+The cut turns the cyclic endpoint problem into a linear one, and
+Lemma~\ref{lem:legal-endpoint-queries} shows that its thresholds are
+supplied queries, so no extra anchor query is needed. If child heights
+are provided, the rectangle recurrence compares each legal split by
+the height of its endpoint subproblems together with the continuation
+at the resulting pattern leaf. This is the complete-exit optimization
+of Section~\ref{sec:polynomial-slots}. Its $O(M^4)$ rectangles and
+$O(M)$ thresholds give polynomial running time. The routine returns
+pattern leaves, after which the recursive algorithm attaches each
+stored child once. The values $E(U)$ include the continuation heights
+when comparing splits, while each child's query cost is accounted for
+inside its attached recursive tree.

@@ -1,0 +1,17 @@
+﻿{
+  "status": "submodularity disproved",
+  "instances_checked": 301,
+  "n": 4,
+  "tests": [
+    1,
+    6,
+    10
+  ],
+  "base": 2,
+  "x": 2,
+  "y": 3,
+  "cost_base": 6,
+  "cost_base_x": 6,
+  "cost_base_y": 6,
+  "cost_union": 8
+}

@@ -1,0 +1,112 @@
+\section{Allowing hypotheses on supplied lines}
+\label{sec:boundaries}
+
+Allowing a hypothesis to lie on a queried line adds a third outcome.
+To compare with the binary algorithms, encode each line answer using
+at most two bits: the first separates zero from nonzero, and the
+second separates negative from positive on the nonzero branch. Thus
+each ternary query expands to at most two levels in a binary comparison
+tree, which accounts for the factor of two in the guarantee.
+
+Algorithm~\ref{alg:boundary} implements the reduction below.
+In this section a supplied line returns one of three answers:
+negative, zero, or positive. The \emph{zero}, or \emph{on-line},
+answer means the hypothesis lies on the queried line, and its
+answer class is $S_\ell^0=\{h\in S:f_\ell(h)=0\}$.
+A \emph{ternary decision tree} has an outgoing edge for each
+possible answer; a proper such tree retains only nonempty outcomes.
+Leaf depths and both cost objectives use the same conventions as in
+the binary model.
+Use the two virtual binary predicates
+\[
+ b_1(h)=\mathbf1[f_\ell(h)<0],\qquad
+ b_2(h)=\mathbf1[f_\ell(h)\le0].
+\]
+Their pair of bits distinguishes the three outcomes.
+In the order $(b_1,b_2)$, negative, zero, and positive signs map to
+$(1,1)$, $(0,1)$, and $(0,0)$, respectively; the unused pair $(1,0)$
+never occurs. Thus no outcome is merged, and the virtual binary tree
+can omit the unused branch at each query.
+Requesting either bit is implemented by querying the original line
+once and storing its full sign. Both bits are then known. For analysis
+we count each requested virtual bit as a separate binary query;
+the actual number of supplied-line queries can only be smaller.
+
+For preprocessing, we also represent these bit labelings by planar
+queries whose lines avoid every hypothesis. On the finite hypothesis
+set, sufficiently small shifts preserve both bit values while moving
+the virtual boundaries off the points. During execution, the algorithm
+asks the original supplied line and reads its full ternary sign, so
+the virtual representation changes only the analysis and preprocessing.
+Any query whose answer is constant on the hypothesis set can be
+discarded. For every remaining query, choose $\epsilon_\ell$ to be
+half the minimum nonzero $|f_\ell(h)|$ on the finite hypothesis set.
+At least one such nonzero value exists because the query is not
+constant (a nonconstant sign labeling must contain a nonzero value).
+For a rational input instance, this minimum is computable by scanning
+the hypotheses and has polynomial encoding length: evaluating an
+input affine form and taking the minimum of finitely many rational
+absolute values preserves polynomial bit length. Then $b_1$ is represented
+by $f_\ell(x)<-\epsilon_\ell$ and $b_2$ by
+$f_\ell(x)<\epsilon_\ell$. These strict inequalities agree with the
+definitions on every
+hypothesis: a negative nonzero value is at most $-2\epsilon_\ell$,
+and a positive value is at least $2\epsilon_\ell$, while zero lies
+between the two thresholds. In particular, neither shifted boundary
+contains a hypothesis. The shifts are used only for preprocessing;
+their answers are obtained from the original supplied line.
+
+\begin{symboltable}
+$f_\ell(h)$ & Affine value whose sign is the answer for hypothesis $h$.\\
+$b_1(h),\ b_2(h)$ & Virtual bits for $f_\ell(h)<0$ and $f_\ell(h)\le0$; together they encode the ternary sign.\\
+$\epsilon_\ell$ & Positive shift smaller than every nonzero $|f_\ell(h)|$ on the finite hypothesis set.
+\end{symboltable}
+
+\input{procedures/boundary}
+
+There are two comparisons to make. An optimal ternary tree can be
+simulated using at most two virtual bits per query. A constructed
+virtual tree can then be executed using original line queries,
+with the cached sign supplying both bits whenever either is asked.
+Because the first comparison bounds each hypothesis's virtual depth
+by twice its original depth, and the second bounds each executed depth
+by that hypothesis's virtual depth, both comparisons survive either
+taking a maximum or summing depths with nonnegative prior weights.
+\begin{proposition}[Boundary reduction]\label{prop:boundary}
+An $\alpha$-approximation for either binary objective gives a
+$2\alpha$-approximation for the corresponding three-answer objective.
+\end{proposition}
+\begin{proof}
+Simulate every query of an optimal original tree by its two virtual
+bits. Each hypothesis uses at most twice as many binary queries,
+so the virtual optimum is at most twice the original optimum
+for either objective. Conversely, execute a constructed virtual
+tree by original line queries and cached signs. Its actual depth
+is no larger than its virtual depth on every hypothesis.
+To combine these comparisons explicitly, write $C_{\rm orig}$ for
+the executed cost and $\OPT_{\rm virt},\OPT_{\rm orig}$ for the two
+optima. Then, for either depth objective,
+\[
+ C_{\rm orig}\le C_{\rm virt}
+ \le\alpha\OPT_{\rm virt}\le2\alpha\OPT_{\rm orig}.
+\]
+The first step uses cached-sign execution, the second is the assumed
+binary approximation guarantee, and the last uses the two-bit
+simulation of the optimal ternary tree. Thus the comparison applies
+to both maximum depth and any weighted sum of leaf depths.
+\end{proof}
+
+The reduction is independent of the binary algorithm's internal
+geometry or schedule. Applying it to the strongest deterministic
+algorithms established above gives the following bounds for the
+model with on-line outcomes.
+\begin{corollary}[Constant approximations with on-line outcomes]
+\label{cor:constant-boundaries}
+With on-line answers, expected depth has a polynomial-time
+approximation factor below $10.365952$ for arbitrary positive priors,
+and deterministic maximum depth has a factor below $8.929931$.
+\end{corollary}
+\begin{proof}
+Apply Proposition~\ref{prop:boundary} to
+Theorems~\ref{thm:two-phase-expected} and~\ref{thm:poly-slot-worst}.
+\end{proof}

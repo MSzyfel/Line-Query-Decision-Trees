@@ -1,0 +1,4550 @@
+{
+  "status": "conditional transfer and exact supplied-template primitive; no unrestricted ratio",
+  "prefix_comparisons": 792,
+  "collision_threshold_comparisons": 2393,
+  "adaptive_collision_density_checks": 707,
+  "recursive_stage_checks": 173,
+  "entropy_counterexample_actual": [
+    {
+      "t": 1,
+      "n": 8,
+      "actual_stage_work": [
+        17
+      ]
+    },
+    {
+      "t": 2,
+      "n": 64,
+      "actual_stage_work": [
+        275,
+        134
+      ]
+    },
+    {
+      "t": 3,
+      "n": 512,
+      "actual_stage_work": [
+        3542,
+        2084,
+        1304
+      ]
+    }
+  ],
+  "entropy_counterexample_formula": [
+    {
+      "t": 1,
+      "n": 8,
+      "core_size": 4,
+      "core_optimum": 9,
+      "global_optimum_upper_bound": 25,
+      "algorithm_work_lower_bound": 13,
+      "ratio_lower_bound": 0.52,
+      "stages": [
+        {
+          "size": 8,
+          "easy": 4,
+          "point_probes": 1,
+          "point_work": 4,
+          "work_upper_bound": 18,
+          "conditional_log_size": 1.0,
+          "entropy": 2.0
+        }
+      ]
+    },
+    {
+      "t": 2,
+      "n": 64,
+      "core_size": 16,
+      "core_optimum": 135,
+      "global_optimum_upper_bound": 455,
+      "algorithm_work_lower_bound": 256,
+      "ratio_lower_bound": 0.5626373626373626,
+      "stages": [
+        {
+          "size": 64,
+          "easy": 32,
+          "point_probes": 2,
+          "point_work": 63,
+          "work_upper_bound": 277,
+          "conditional_log_size": 2.5,
+          "entropy": 3.5
+        },
+        {
+          "size": 32,
+          "easy": 16,
+          "point_probes": 4,
+          "point_work": 58,
+          "work_upper_bound": 138,
+          "conditional_log_size": 2.0,
+          "entropy": 3.0
+        }
+      ]
+    },
+    {
+      "t": 3,
+      "n": 512,
+      "core_size": 64,
+      "core_optimum": 2079,
+      "global_optimum_upper_bound": 6303,
+      "algorithm_work_lower_bound": 4997,
+      "ratio_lower_bound": 0.792797080755196,
+      "stages": [
+        {
+          "size": 512,
+          "easy": 256,
+          "point_probes": 4,
+          "point_work": 1018,
+          "work_upper_bound": 3546,
+          "conditional_log_size": 4.0,
+          "entropy": 5.0
+        },
+        {
+          "size": 256,
+          "easy": 128,
+          "point_probes": 8,
+          "point_work": 996,
+          "work_upper_bound": 2092,
+          "conditional_log_size": 3.5,
+          "entropy": 4.5
+        },
+        {
+          "size": 128,
+          "easy": 64,
+          "point_probes": 16,
+          "point_work": 904,
+          "work_upper_bound": 1320,
+          "conditional_log_size": 3.0,
+          "entropy": 4.0
+        }
+      ]
+    },
+    {
+      "t": 4,
+      "n": 4096,
+      "core_size": 256,
+      "core_optimum": 32895,
+      "global_optimum_upper_bound": 79999,
+      "algorithm_work_lower_bound": 95771,
+      "ratio_lower_bound": 1.1971524644058051,
+      "stages": [
+        {
+          "size": 4096,
+          "easy": 2048,
+          "point_probes": 8,
+          "point_work": 16356,
+          "work_upper_bound": 42892,
+          "conditional_log_size": 5.5,
+          "entropy": 6.5
+        },
+        {
+          "size": 2048,
+          "easy": 1024,
+          "point_probes": 16,
+          "point_work": 16264,
+          "work_upper_bound": 28392,
+          "conditional_log_size": 5.0,
+          "entropy": 6.0
+        },
+        {
+          "size": 1024,
+          "easy": 512,
+          "point_probes": 32,
+          "point_work": 15888,
+          "work_upper_bound": 21232,
+          "conditional_log_size": 4.5,
+          "entropy": 5.5
+        },
+        {
+          "size": 512,
+          "easy": 256,
+          "point_probes": 64,
+          "point_work": 14368,
+          "work_upper_bound": 16416,
+          "conditional_log_size": 4.0,
+          "entropy": 5.0
+        }
+      ]
+    },
+    {
+      "t": 5,
+      "n": 32768,
+      "core_size": 1024,
+      "core_optimum": 524799,
+      "global_optimum_upper_bound": 1006079,
+      "algorithm_work_lower_bound": 1792119,
+      "ratio_lower_bound": 1.7812905348387154,
+      "stages": [
+        {
+          "size": 32768,
+          "easy": 16384,
+          "point_probes": 16,
+          "point_work": 262024,
+          "work_upper_bound": 523944,
+          "conditional_log_size": 7.0,
+          "entropy": 8.0
+        },
+        {
+          "size": 16384,
+          "easy": 8192,
+          "point_probes": 32,
+          "point_work": 261648,
+          "work_upper_bound": 384112,
+          "conditional_log_size": 6.5,
+          "entropy": 7.5
+        },
+        {
+          "size": 8192,
+          "easy": 4096,
+          "point_probes": 64,
+          "point_work": 260128,
+          "work_upper_bound": 316704,
+          "conditional_log_size": 6.0,
+          "entropy": 7.0
+        },
+        {
+          "size": 4096,
+          "easy": 2048,
+          "point_probes": 128,
+          "point_work": 254016,
+          "work_upper_bound": 279232,
+          "conditional_log_size": 5.5,
+          "entropy": 6.5
+        },
+        {
+          "size": 2048,
+          "easy": 1024,
+          "point_probes": 256,
+          "point_work": 229504,
+          "work_upper_bound": 239232,
+          "conditional_log_size": 5.0,
+          "entropy": 6.0
+        }
+      ]
+    },
+    {
+      "t": 6,
+      "n": 262144,
+      "core_size": 4096,
+      "core_optimum": 8390655,
+      "global_optimum_upper_bound": 13060095,
+      "algorithm_work_lower_bound": 32858607,
+      "ratio_lower_bound": 2.5159546695487283,
+      "stages": [
+        {
+          "size": 262144,
+          "easy": 131072,
+          "point_probes": 32,
+          "point_work": 4193808,
+          "work_upper_bound": 6683632,
+          "conditional_log_size": 8.5,
+          "entropy": 9.5
+        },
+        {
+          "size": 131072,
+          "easy": 65536,
+          "point_probes": 64,
+          "point_work": 4192288,
+          "work_upper_bound": 5370912,
+          "conditional_log_size": 8.0,
+          "entropy": 9.0
+        },
+        {
+          "size": 65536,
+          "easy": 32768,
+          "point_probes": 128,
+          "point_work": 4186176,
+          "work_upper_bound": 4741312,
+          "conditional_log_size": 7.5,
+          "entropy": 8.5
+        },
+        {
+          "size": 32768,
+          "easy": 16384,
+          "point_probes": 256,
+          "point_work": 4161664,
+          "work_upper_bound": 4420224,
+          "conditional_log_size": 7.0,
+          "entropy": 8.0
+        },
+        {
+          "size": 16384,
+          "easy": 8192,
+          "point_probes": 512,
+          "point_work": 4063488,
+          "work_upper_bound": 4179712,
+          "conditional_log_size": 6.5,
+          "entropy": 7.5
+        },
+        {
+          "size": 8192,
+          "easy": 4096,
+          "point_probes": 1024,
+          "point_work": 3670528,
+          "work_upper_bound": 3715584,
+          "conditional_log_size": 6.0,
+          "entropy": 7.0
+        }
+      ]
+    },
+    {
+      "t": 7,
+      "n": 2097152,
+      "core_size": 16384,
+      "core_optimum": 134225919,
+      "global_optimum_upper_bound": 178036735,
+      "algorithm_work_lower_bound": 592807903,
+      "ratio_lower_bound": 3.3296943071889067,
+      "stages": [
+        {
+          "size": 2097152,
+          "easy": 1048576,
+          "point_probes": 64,
+          "point_work": 67106848,
+          "work_upper_bound": 90174240,
+          "conditional_log_size": 10.0,
+          "entropy": 11.0
+        },
+        {
+          "size": 1048576,
+          "easy": 524288,
+          "point_probes": 128,
+          "point_work": 67100736,
+          "work_upper_bound": 78108352,
+          "conditional_log_size": 9.5,
+          "entropy": 10.5
+        },
+        {
+          "size": 524288,
+          "easy": 262144,
+          "point_probes": 256,
+          "point_work": 67076224,
+          "work_upper_bound": 72314496,
+          "conditional_log_size": 9.0,
+          "entropy": 10.0
+        },
+        {
+          "size": 262144,
+          "easy": 131072,
+          "point_probes": 512,
+          "point_work": 66978048,
+          "work_upper_bound": 69459712,
+          "conditional_log_size": 8.5,
+          "entropy": 9.5
+        },
+        {
+          "size": 131072,
+          "easy": 65536,
+          "point_probes": 1024,
+          "point_work": 66585088,
+          "work_upper_bound": 67748352,
+          "conditional_log_size": 8.0,
+          "entropy": 9.0
+        },
+        {
+          "size": 65536,
+          "easy": 32768,
+          "point_probes": 2048,
+          "point_work": 65012736,
+          "work_upper_bound": 65539072,
+          "conditional_log_size": 7.5,
+          "entropy": 8.5
+        },
+        {
+          "size": 32768,
+          "easy": 16384,
+          "point_probes": 4096,
+          "point_work": 58722304,
+          "work_upper_bound": 58927104,
+          "conditional_log_size": 7.0,
+          "entropy": 8.0
+        }
+      ]
+    },
+    {
+      "t": 8,
+      "n": 16777216,
+      "core_size": 65536,
+      "core_optimum": 2147516415,
+      "global_optimum_upper_bound": 2549121023,
+      "algorithm_work_lower_bound": 10558513087,
+      "ratio_lower_bound": 4.142021109132722,
+      "stages": [
+        {
+          "size": 16777216,
+          "easy": 8388608,
+          "point_probes": 128,
+          "point_work": 1073733696,
+          "work_upper_bound": 1283445952,
+          "conditional_log_size": 11.5,
+          "entropy": 12.5
+        },
+        {
+          "size": 8388608,
+          "easy": 4194304,
+          "point_probes": 256,
+          "point_work": 1073709184,
+          "work_upper_bound": 1174366848,
+          "conditional_log_size": 11.0,
+          "entropy": 12.0
+        },
+        {
+          "size": 4194304,
+          "easy": 2097152,
+          "point_probes": 512,
+          "point_work": 1073611008,
+          "work_upper_bound": 1121834752,
+          "conditional_log_size": 10.5,
+          "entropy": 11.5
+        },
+        {
+          "size": 2097152,
+          "easy": 1048576,
+          "point_probes": 1024,
+          "point_work": 1073218048,
+          "work_upper_bound": 1096266240,
+          "conditional_log_size": 10.0,
+          "entropy": 11.0
+        },
+        {
+          "size": 1048576,
+          "easy": 524288,
+          "point_probes": 2048,
+          "point_work": 1071645696,
+          "work_upper_bound": 1082616832,
+          "conditional_log_size": 9.5,
+          "entropy": 10.5
+        },
+        {
+          "size": 524288,
+          "easy": 262144,
+          "point_probes": 4096,
+          "point_work": 1065355264,
+          "work_upper_bound": 1070524416,
+          "conditional_log_size": 9.0,
+          "entropy": 10.0
+        },
+        {
+          "size": 262144,
+          "easy": 131072,
+          "point_probes": 8192,
+          "point_work": 1040191488,
+          "work_upper_bound": 1042542592,
+          "conditional_log_size": 8.5,
+          "entropy": 9.5
+        },
+        {
+          "size": 131072,
+          "easy": 65536,
+          "point_probes": 16384,
+          "point_work": 939532288,
+          "work_upper_bound": 940449792,
+          "conditional_log_size": 8.0,
+          "entropy": 9.0
+        }
+      ]
+    },
+    {
+      "t": 9,
+      "n": 134217728,
+      "core_size": 262144,
+      "core_optimum": 34359869439,
+      "global_optimum_upper_bound": 37979029503,
+      "algorithm_work_lower_bound": 186115456895,
+      "ratio_lower_bound": 4.900479536484695,
+      "stages": [
+        {
+          "size": 134217728,
+          "easy": 67108864,
+          "point_probes": 256,
+          "point_work": 17179836544,
+          "work_upper_bound": 19058878080,
+          "conditional_log_size": 13.0,
+          "entropy": 14.0
+        },
+        {
+          "size": 67108864,
+          "easy": 33554432,
+          "point_probes": 512,
+          "point_work": 17179738368,
+          "work_upper_bound": 18085695232,
+          "conditional_log_size": 12.5,
+          "entropy": 13.5
+        },
+        {
+          "size": 33554432,
+          "easy": 16777216,
+          "point_probes": 1024,
+          "point_work": 17179345408,
+          "work_upper_bound": 17615528448,
+          "conditional_log_size": 12.0,
+          "entropy": 13.0
+        },
+        {
+          "size": 16777216,
+          "easy": 8388608,
+          "point_probes": 2048,
+          "point_work": 17177773056,
+          "work_upper_bound": 17387441152,
+          "conditional_log_size": 11.5,
+          "entropy": 12.5
+        },
+        {
+          "size": 8388608,
+          "easy": 4194304,
+          "point_probes": 4096,
+          "point_work": 17171482624,
+          "work_upper_bound": 17272055808,
+          "conditional_log_size": 11.0,
+          "entropy": 12.0
+        },
+        {
+          "size": 4194304,
+          "easy": 2097152,
+          "point_probes": 8192,
+          "point_work": 17146318848,
+          "work_upper_bound": 17194381312,
+          "conditional_log_size": 10.5,
+          "entropy": 11.5
+        },
+        {
+          "size": 2097152,
+          "easy": 1048576,
+          "point_probes": 16384,
+          "point_work": 17045659648,
+          "work_upper_bound": 17068400640,
+          "conditional_log_size": 10.0,
+          "entropy": 11.0
+        },
+        {
+          "size": 1048576,
+          "easy": 524288,
+          "point_probes": 32768,
+          "point_work": 16643014656,
+          "work_upper_bound": 16653402112,
+          "conditional_log_size": 9.5,
+          "entropy": 10.5
+        },
+        {
+          "size": 524288,
+          "easy": 262144,
+          "point_probes": 65536,
+          "point_work": 15032418304,
+          "work_upper_bound": 15036481536,
+          "conditional_log_size": 9.0,
+          "entropy": 10.0
+        }
+      ]
+    },
+    {
+      "t": 10,
+      "n": 1073741824,
+      "core_size": 1048576,
+      "core_optimum": 549756338175,
+      "global_optimum_upper_bound": 581947621375,
+      "algorithm_work_lower_bound": 3252722728703,
+      "ratio_lower_bound": 5.589373698302282,
+      "stages": [
+        {
+          "size": 1073741824,
+          "easy": 536870912,
+          "point_probes": 512,
+          "point_work": 274877776128,
+          "work_upper_bound": 291520759552,
+          "conditional_log_size": 14.5,
+          "entropy": 15.5
+        },
+        {
+          "size": 536870912,
+          "easy": 268435456,
+          "point_probes": 1024,
+          "point_work": 274877383168,
+          "work_upper_bound": 282930418176,
+          "conditional_log_size": 14.0,
+          "entropy": 15.0
+        },
+        {
+          "size": 268435456,
+          "easy": 134217728,
+          "point_probes": 2048,
+          "point_work": 274875810816,
+          "work_upper_bound": 278768069632,
+          "conditional_log_size": 13.5,
+          "entropy": 14.5
+        },
+        {
+          "size": 134217728,
+          "easy": 67108864,
+          "point_probes": 4096,
+          "point_work": 274869520384,
+          "work_upper_bound": 276748462080,
+          "conditional_log_size": 13.0,
+          "entropy": 14.0
+        },
+        {
+          "size": 67108864,
+          "easy": 33554432,
+          "point_probes": 8192,
+          "point_work": 274844356608,
+          "work_upper_bound": 275750121472,
+          "conditional_log_size": 12.5,
+          "entropy": 13.5
+        },
+        {
+          "size": 33554432,
+          "easy": 16777216,
+          "point_probes": 16384,
+          "point_work": 274743697408,
+          "work_upper_bound": 275179511808,
+          "conditional_log_size": 12.0,
+          "entropy": 13.0
+        },
+        {
+          "size": 16777216,
+          "easy": 8388608,
+          "point_probes": 32768,
+          "point_work": 274341052416,
+          "work_upper_bound": 274550013952,
+          "conditional_log_size": 11.5,
+          "entropy": 12.5
+        },
+        {
+          "size": 8388608,
+          "easy": 4194304,
+          "point_probes": 65536,
+          "point_work": 272730456064,
+          "work_upper_bound": 272829677568,
+          "conditional_log_size": 11.0,
+          "entropy": 12.0
+        },
+        {
+          "size": 4194304,
+          "easy": 2097152,
+          "point_probes": 131072,
+          "point_work": 266288037888,
+          "work_upper_bound": 266333519872,
+          "conditional_log_size": 10.5,
+          "entropy": 11.5
+        },
+        {
+          "size": 2097152,
+          "easy": 1048576,
+          "point_probes": 262144,
+          "point_work": 240518299648,
+          "work_upper_bound": 240536125440,
+          "conditional_log_size": 10.0,
+          "entropy": 11.0
+        }
+      ]
+    },
+    {
+      "t": 11,
+      "n": 8589934592,
+      "core_size": 4194304,
+      "core_optimum": 8796095119359,
+      "global_optimum_upper_bound": 9079470686207,
+      "algorithm_work_lower_bound": 56441600212479,
+      "ratio_lower_bound": 6.216397647301376,
+      "stages": [
+        {
+          "size": 8589934592,
+          "easy": 4294967296,
+          "point_probes": 1024,
+          "point_work": 4398045987328,
+          "work_upper_bound": 4544074842624,
+          "conditional_log_size": 16.0,
+          "entropy": 17.0
+        },
+        {
+          "size": 4294967296,
+          "easy": 2147483648,
+          "point_probes": 2048,
+          "point_work": 4398044414976,
+          "work_upper_bound": 4468911311872,
+          "conditional_log_size": 15.5,
+          "entropy": 16.5
+        },
+        {
+          "size": 2147483648,
+          "easy": 1073741824,
+          "point_probes": 4096,
+          "point_work": 4398038124544,
+          "work_upper_bound": 4432397740032,
+          "conditional_log_size": 15.0,
+          "entropy": 16.0
+        },
+        {
+          "size": 1073741824,
+          "easy": 536870912,
+          "point_probes": 8192,
+          "point_work": 4398012960768,
+          "work_upper_bound": 4414655721472,
+          "conditional_log_size": 14.5,
+          "entropy": 15.5
+        },
+        {
+          "size": 536870912,
+          "easy": 268435456,
+          "point_probes": 16384,
+          "point_work": 4397912301568,
+          "work_upper_bound": 4405964906496,
+          "conditional_log_size": 14.0,
+          "entropy": 15.0
+        },
+        {
+          "size": 268435456,
+          "easy": 134217728,
+          "point_probes": 32768,
+          "point_work": 4397509656576,
+          "work_upper_bound": 4401401085952,
+          "conditional_log_size": 13.5,
+          "entropy": 14.5
+        },
+        {
+          "size": 134217728,
+          "easy": 67108864,
+          "point_probes": 65536,
+          "point_work": 4395899060224,
+          "work_upper_bound": 4397776404480,
+          "conditional_log_size": 13.0,
+          "entropy": 14.0
+        },
+        {
+          "size": 67108864,
+          "easy": 33554432,
+          "point_probes": 131072,
+          "point_work": 4389456642048,
+          "work_upper_bound": 4390359334912,
+          "conditional_log_size": 12.5,
+          "entropy": 13.5
+        },
+        {
+          "size": 33554432,
+          "easy": 16777216,
+          "point_probes": 262144,
+          "point_work": 4363686903808,
+          "work_upper_bound": 4364116819968,
+          "conditional_log_size": 12.0,
+          "entropy": 13.0
+        },
+        {
+          "size": 16777216,
+          "easy": 8388608,
+          "point_probes": 524288,
+          "point_work": 4260607819776,
+          "work_upper_bound": 4260805476352,
+          "conditional_log_size": 11.5,
+          "entropy": 12.5
+        },
+        {
+          "size": 8388608,
+          "easy": 4194304,
+          "point_probes": 1048576,
+          "point_work": 3848291221504,
+          "work_upper_bound": 3848368816128,
+          "conditional_log_size": 11.0,
+          "entropy": 12.0
+        }
+      ]
+    },
+    {
+      "t": 12,
+      "n": 68719476736,
+      "core_size": 16777216,
+      "core_optimum": 140737496743935,
+      "global_optimum_upper_bound": 143210995253247,
+      "algorithm_work_lower_bound": 973434307738623,
+      "ratio_lower_bound": 6.797203706442033,
+      "stages": [
+        {
+          "size": 68719476736,
+          "easy": 34359738368,
+          "point_probes": 2048,
+          "point_work": 70368742081536,
+          "work_upper_bound": 71640052329472,
+          "conditional_log_size": 17.5,
+          "entropy": 18.5
+        },
+        {
+          "size": 34359738368,
+          "easy": 17179869184,
+          "point_probes": 4096,
+          "point_work": 70368735791104,
+          "work_upper_bound": 70987210942464,
+          "conditional_log_size": 17.0,
+          "entropy": 18.0
+        },
+        {
+          "size": 17179869184,
+          "easy": 8589934592,
+          "point_probes": 8192,
+          "point_work": 70368710627328,
+          "work_upper_bound": 70669358067712,
+          "conditional_log_size": 16.5,
+          "entropy": 17.5
+        },
+        {
+          "size": 8589934592,
+          "easy": 4294967296,
+          "point_probes": 16384,
+          "point_work": 70368609968128,
+          "work_upper_bound": 70514638331904,
+          "conditional_log_size": 16.0,
+          "entropy": 17.0
+        },
+        {
+          "size": 4294967296,
+          "easy": 2147483648,
+          "point_probes": 32768,
+          "point_work": 70368207323136,
+          "work_upper_bound": 70439073267712,
+          "conditional_log_size": 15.5,
+          "entropy": 16.5
+        },
+        {
+          "size": 2147483648,
+          "easy": 1073741824,
+          "point_probes": 65536,
+          "point_work": 70366596726784,
+          "work_upper_bound": 70400954499072,
+          "conditional_log_size": 15.0,
+          "entropy": 16.0
+        },
+        {
+          "size": 1073741824,
+          "easy": 536870912,
+          "point_probes": 131072,
+          "point_work": 70360154308608,
+          "work_upper_bound": 70376793505792,
+          "conditional_log_size": 14.5,
+          "entropy": 15.5
+        },
+        {
+          "size": 536870912,
+          "easy": 268435456,
+          "point_probes": 262144,
+          "point_work": 70334384570368,
+          "work_upper_bound": 70342430294016,
+          "conditional_log_size": 14.0,
+          "entropy": 15.0
+        },
+        {
+          "size": 268435456,
+          "easy": 134217728,
+          "point_probes": 524288,
+          "point_work": 70231305486336,
+          "work_upper_bound": 70235183644672,
+          "conditional_log_size": 13.5,
+          "entropy": 14.5
+        },
+        {
+          "size": 134217728,
+          "easy": 67108864,
+          "point_probes": 1048576,
+          "point_work": 69818988888064,
+          "work_upper_bound": 69820840673280,
+          "conditional_log_size": 13.0,
+          "entropy": 14.0
+        },
+        {
+          "size": 67108864,
+          "easy": 33554432,
+          "point_probes": 2097152,
+          "point_work": 68169721970688,
+          "work_upper_bound": 68170575511552,
+          "conditional_log_size": 12.5,
+          "entropy": 13.5
+        },
+        {
+          "size": 33554432,
+          "easy": 16777216,
+          "point_probes": 4194304,
+          "point_work": 61572653252608,
+          "work_upper_bound": 61572988796928,
+          "conditional_log_size": 12.0,
+          "entropy": 13.0
+        }
+      ]
+    },
+    {
+      "t": 13,
+      "n": 549755813888,
+      "core_size": 67108864,
+      "core_optimum": 2251799847239679,
+      "global_optimum_upper_bound": 2273238579150847,
+      "algorithm_work_lower_bound": 16700848671291391,
+      "ratio_lower_bound": 7.346720588179478,
+      "stages": [
+        {
+          "size": 549755813888,
+          "easy": 274877906944,
+          "point_probes": 4096,
+          "point_work": 1125899898456064,
+          "work_upper_bound": 1136895014578176,
+          "conditional_log_size": 19.0,
+          "entropy": 20.0
+        },
+        {
+          "size": 274877906944,
+          "easy": 137438953472,
+          "point_probes": 8192,
+          "point_work": 1125899873292288,
+          "work_upper_bound": 1131259992174592,
+          "conditional_log_size": 18.5,
+          "entropy": 19.5
+        },
+        {
+          "size": 137438953472,
+          "easy": 68719476736,
+          "point_probes": 16384,
+          "point_work": 1125899772633088,
+          "work_upper_bound": 1128511112159232,
+          "conditional_log_size": 18.0,
+          "entropy": 19.0
+        },
+        {
+          "size": 68719476736,
+          "easy": 34359738368,
+          "point_probes": 32768,
+          "point_work": 1125899369988096,
+          "work_upper_bound": 1127170679160832,
+          "conditional_log_size": 17.5,
+          "entropy": 18.5
+        },
+        {
+          "size": 34359738368,
+          "easy": 17179869184,
+          "point_probes": 65536,
+          "point_work": 1125897759391744,
+          "work_upper_bound": 1126516232454144,
+          "conditional_log_size": 17.0,
+          "entropy": 18.0
+        },
+        {
+          "size": 17179869184,
+          "easy": 8589934592,
+          "point_probes": 131072,
+          "point_work": 1125891316973568,
+          "work_upper_bound": 1126191960358912,
+          "conditional_log_size": 16.5,
+          "entropy": 17.5
+        },
+        {
+          "size": 8589934592,
+          "easy": 4294967296,
+          "point_probes": 262144,
+          "point_work": 1125865547235328,
+          "work_upper_bound": 1126011567734784,
+          "conditional_log_size": 16.0,
+          "entropy": 17.0
+        },
+        {
+          "size": 4294967296,
+          "easy": 2147483648,
+          "point_probes": 524288,
+          "point_work": 1125762468151296,
+          "work_upper_bound": 1125833318858752,
+          "conditional_log_size": 15.5,
+          "entropy": 16.5
+        },
+        {
+          "size": 2147483648,
+          "easy": 1073741824,
+          "point_probes": 1048576,
+          "point_work": 1125350151553024,
+          "work_upper_bound": 1125384479834112,
+          "conditional_log_size": 15.0,
+          "entropy": 16.0
+        },
+        {
+          "size": 1073741824,
+          "easy": 536870912,
+          "point_probes": 2097152,
+          "point_work": 1123700884635648,
+          "work_upper_bound": 1123717466816512,
+          "conditional_log_size": 14.5,
+          "entropy": 15.5
+        },
+        {
+          "size": 536870912,
+          "easy": 268435456,
+          "point_probes": 4194304,
+          "point_work": 1117103815917568,
+          "work_upper_bound": 1117111751540736,
+          "conditional_log_size": 14.0,
+          "entropy": 15.0
+        },
+        {
+          "size": 268435456,
+          "easy": 134217728,
+          "point_probes": 8388608,
+          "point_work": 1090715538948096,
+          "work_upper_bound": 1090719204769792,
+          "conditional_log_size": 13.5,
+          "entropy": 14.5
+        },
+        {
+          "size": 134217728,
+          "easy": 67108864,
+          "point_probes": 16777216,
+          "point_work": 985162426875904,
+          "work_upper_bound": 985163869716480,
+          "conditional_log_size": 13.0,
+          "entropy": 14.0
+        }
+      ]
+    },
+    {
+      "t": 14,
+      "n": 4398046511104,
+      "core_size": 268435456,
+      "core_optimum": 36028797153181695,
+      "global_optimum_upper_bound": 36213507590455295,
+      "algorithm_work_lower_bound": 285227976612638719,
+      "ratio_lower_bound": 7.876286932443284,
+      "stages": [
+        {
+          "size": 4398046511104,
+          "easy": 2199023255552,
+          "point_probes": 8192,
+          "point_work": 18014398475931648,
+          "work_upper_bound": 18108956475584512,
+          "conditional_log_size": 20.5,
+          "entropy": 21.5
+        },
+        {
+          "size": 2199023255552,
+          "easy": 1099511627776,
+          "point_probes": 16384,
+          "point_work": 18014398375272448,
+          "work_upper_bound": 18060577862983680,
+          "conditional_log_size": 20.0,
+          "entropy": 21.0
+        },
+        {
+          "size": 1099511627776,
+          "easy": 549755813888,
+          "point_probes": 32768,
+          "point_work": 18014397972627456,
+          "work_upper_bound": 18036937959718912,
+          "conditional_log_size": 19.5,
+          "entropy": 20.5
+        },
+        {
+          "size": 549755813888,
+          "easy": 274877906944,
+          "point_probes": 65536,
+          "point_work": 18014396362031104,
+          "work_upper_bound": 18025391475818496,
+          "conditional_log_size": 19.0,
+          "entropy": 20.0
+        },
+        {
+          "size": 274877906944,
+          "easy": 137438953472,
+          "point_probes": 131072,
+          "point_work": 18014389919612928,
+          "work_upper_bound": 18019750033948672,
+          "conditional_log_size": 18.5,
+          "entropy": 19.5
+        },
+        {
+          "size": 137438953472,
+          "easy": 68719476736,
+          "point_probes": 262144,
+          "point_work": 18014364149874688,
+          "work_upper_bound": 18016975480553472,
+          "conditional_log_size": 18.0,
+          "entropy": 19.0
+        },
+        {
+          "size": 68719476736,
+          "easy": 34359738368,
+          "point_probes": 524288,
+          "point_work": 18014261070790656,
+          "work_upper_bound": 18015532362760192,
+          "conditional_log_size": 17.5,
+          "entropy": 18.5
+        },
+        {
+          "size": 34359738368,
+          "easy": 17179869184,
+          "point_probes": 1048576,
+          "point_work": 18013848754192384,
+          "work_upper_bound": 18014467193831424,
+          "conditional_log_size": 17.0,
+          "entropy": 18.0
+        },
+        {
+          "size": 17179869184,
+          "easy": 8589934592,
+          "point_probes": 2097152,
+          "point_work": 18012199487275008,
+          "work_upper_bound": 18012500065779712,
+          "conditional_log_size": 16.5,
+          "entropy": 17.5
+        },
+        {
+          "size": 8589934592,
+          "easy": 4294967296,
+          "point_probes": 4194304,
+          "point_work": 18005602418556928,
+          "work_upper_bound": 18005748313227264,
+          "conditional_log_size": 16.0,
+          "entropy": 17.0
+        },
+        {
+          "size": 4294967296,
+          "easy": 2147483648,
+          "point_probes": 8388608,
+          "point_work": 17979214141587456,
+          "work_upper_bound": 17979284748500992,
+          "conditional_log_size": 15.5,
+          "entropy": 16.5
+        },
+        {
+          "size": 2147483648,
+          "easy": 1073741824,
+          "point_probes": 16777216,
+          "point_work": 17873661029515264,
+          "work_upper_bound": 17873694885937152,
+          "conditional_log_size": 15.0,
+          "entropy": 16.0
+        },
+        {
+          "size": 1073741824,
+          "easy": 536870912,
+          "point_probes": 33554432,
+          "point_work": 17451448572837888,
+          "work_upper_bound": 17451464242757632,
+          "conditional_log_size": 14.5,
+          "entropy": 15.5
+        },
+        {
+          "size": 536870912,
+          "easy": 268435456,
+          "point_probes": 67108864,
+          "point_work": 15762598729351168,
+          "work_upper_bound": 15762604903366656,
+          "conditional_log_size": 14.0,
+          "entropy": 15.0
+        }
+      ]
+    },
+    {
+      "t": 15,
+      "n": 35184372088832,
+      "core_size": 1073741824,
+      "core_optimum": 576460752840294399,
+      "global_optimum_upper_bound": 578044017372037119,
+      "algorithm_work_lower_bound": 4851877999403851775,
+      "ratio_lower_bound": 8.39361338166245,
+      "stages": [
+        {
+          "size": 35184372088832,
+          "easy": 17592186044416,
+          "point_probes": 16384,
+          "point_work": 288230376017502208,
+          "work_upper_bound": 289039616574824448,
+          "conditional_log_size": 22.0,
+          "entropy": 23.0
+        },
+        {
+          "size": 17592186044416,
+          "easy": 8796093022208,
+          "point_probes": 32768,
+          "point_work": 288230375614857216,
+          "work_upper_bound": 288626199799447552,
+          "conditional_log_size": 21.5,
+          "entropy": 22.5
+        },
+        {
+          "size": 8796093022208,
+          "easy": 4398046511104,
+          "point_probes": 65536,
+          "point_work": 288230374004260864,
+          "work_upper_bound": 288423888047996928,
+          "conditional_log_size": 21.0,
+          "entropy": 22.0
+        },
+        {
+          "size": 4398046511104,
+          "easy": 2199023255552,
+          "point_probes": 131072,
+          "point_work": 288230367561842688,
+          "work_upper_bound": 288324925556457472,
+          "conditional_log_size": 20.5,
+          "entropy": 21.5
+        },
+        {
+          "size": 2199023255552,
+          "easy": 1099511627776,
+          "point_probes": 262144,
+          "point_work": 288230341792104448,
+          "work_upper_bound": 288276521269985280,
+          "conditional_log_size": 20.0,
+          "entropy": 21.0
+        },
+        {
+          "size": 1099511627776,
+          "easy": 549755813888,
+          "point_probes": 524288,
+          "point_work": 288230238713020416,
+          "work_upper_bound": 288252778680942592,
+          "conditional_log_size": 19.5,
+          "entropy": 20.5
+        },
+        {
+          "size": 549755813888,
+          "easy": 274877906944,
+          "point_probes": 1048576,
+          "point_work": 288229826396422144,
+          "work_upper_bound": 288240821472854016,
+          "conditional_log_size": 19.0,
+          "entropy": 20.0
+        },
+        {
+          "size": 274877906944,
+          "easy": 137438953472,
+          "point_probes": 2097152,
+          "point_work": 288228177129504768,
+          "work_upper_bound": 288233537171095552,
+          "conditional_log_size": 18.5,
+          "entropy": 19.5
+        },
+        {
+          "size": 137438953472,
+          "easy": 68719476736,
+          "point_probes": 4194304,
+          "point_work": 288221580060786688,
+          "work_upper_bound": 288224191249907712,
+          "conditional_log_size": 18.0,
+          "entropy": 19.0
+        },
+        {
+          "size": 68719476736,
+          "easy": 34359738368,
+          "point_probes": 8388608,
+          "point_work": 288195191783817216,
+          "work_upper_bound": 288196462800535552,
+          "conditional_log_size": 17.5,
+          "entropy": 18.5
+        },
+        {
+          "size": 34359738368,
+          "easy": 17179869184,
+          "point_probes": 16777216,
+          "point_work": 288089638671745024,
+          "work_upper_bound": 288090256576610304,
+          "conditional_log_size": 17.0,
+          "entropy": 18.0
+        },
+        {
+          "size": 17179869184,
+          "easy": 8589934592,
+          "point_probes": 33554432,
+          "point_work": 287667426215067648,
+          "work_upper_bound": 287667725755482112,
+          "conditional_log_size": 16.5,
+          "entropy": 17.5
+        },
+        {
+          "size": 8589934592,
+          "easy": 4294967296,
+          "point_probes": 67108864,
+          "point_work": 285978576371580928,
+          "work_upper_bound": 285978720252985344,
+          "conditional_log_size": 16.0,
+          "entropy": 17.0
+        },
+        {
+          "size": 4294967296,
+          "easy": 2147483648,
+          "point_probes": 134217728,
+          "point_work": 279223176964079616,
+          "work_upper_bound": 279223243670290432,
+          "conditional_log_size": 15.5,
+          "entropy": 16.5
+        },
+        {
+          "size": 2147483648,
+          "easy": 1073741824,
+          "point_probes": 268435456,
+          "point_work": 252201579266965504,
+          "work_upper_bound": 252201605573640192,
+          "conditional_log_size": 15.0,
+          "entropy": 16.0
+        }
+      ]
+    },
+    {
+      "t": 16,
+      "n": 281474976710656,
+      "core_size": 4294967296,
+      "core_optimum": 9223372039002259455,
+      "global_optimum_upper_bound": 9236882700445417471,
+      "algorithm_work_lower_bound": 82241733998688583679,
+      "ratio_lower_bound": 8.903624379112529,
+      "stages": [
+        {
+          "size": 281474976710656,
+          "easy": 140737488355328,
+          "point_probes": 32768,
+          "point_work": 4611686017890533376,
+          "work_upper_bound": 4618582154818404352,
+          "conditional_log_size": 23.5,
+          "entropy": 24.5
+        },
+        {
+          "size": 140737488355328,
+          "easy": 70368744177664,
+          "point_probes": 65536,
+          "point_work": 4611686016279937024,
+          "work_upper_bound": 4615063715997450240,
+          "conditional_log_size": 23.0,
+          "entropy": 24.0
+        },
+        {
+          "size": 70368744177664,
+          "easy": 35184372088832,
+          "point_probes": 131072,
+          "point_work": 4611686009837518848,
+          "work_upper_bound": 4613339675319795712,
+          "conditional_log_size": 22.5,
+          "entropy": 23.5
+        },
+        {
+          "size": 35184372088832,
+          "easy": 17592186044416,
+          "point_probes": 262144,
+          "point_work": 4611685984067780608,
+          "work_upper_bound": 4612495224614289408,
+          "conditional_log_size": 22.0,
+          "entropy": 23.0
+        },
+        {
+          "size": 17592186044416,
+          "easy": 8796093022208,
+          "point_probes": 524288,
+          "point_work": 4611685880988696576,
+          "work_upper_bound": 4612081705152151552,
+          "conditional_log_size": 21.5,
+          "entropy": 22.5
+        },
+        {
+          "size": 8796093022208,
+          "easy": 4398046511104,
+          "point_probes": 1048576,
+          "point_work": 4611685468672098304,
+          "work_upper_bound": 4611878982674546688,
+          "conditional_log_size": 21.0,
+          "entropy": 22.0
+        },
+        {
+          "size": 4398046511104,
+          "easy": 2199023255552,
+          "point_probes": 2097152,
+          "point_work": 4611683819405180928,
+          "work_upper_bound": 4611778377319186432,
+          "conditional_log_size": 20.5,
+          "entropy": 21.5
+        },
+        {
+          "size": 2199023255552,
+          "easy": 1099511627776,
+          "point_probes": 4194304,
+          "point_work": 4611677222336462848,
+          "work_upper_bound": 4611723401657057280,
+          "conditional_log_size": 20.0,
+          "entropy": 21.0
+        },
+        {
+          "size": 1099511627776,
+          "easy": 549755813888,
+          "point_probes": 8388608,
+          "point_work": 4611650834059493376,
+          "work_upper_bound": 4611673373720707072,
+          "conditional_log_size": 19.5,
+          "entropy": 20.5
+        },
+        {
+          "size": 549755813888,
+          "easy": 274877906944,
+          "point_probes": 16777216,
+          "point_work": 4611545280947421184,
+          "work_upper_bound": 4611556275426164736,
+          "conditional_log_size": 19.0,
+          "entropy": 20.0
+        },
+        {
+          "size": 274877906944,
+          "easy": 137438953472,
+          "point_probes": 33554432,
+          "point_work": 4611123068490743808,
+          "work_upper_bound": 4611128427368415232,
+          "conditional_log_size": 18.5,
+          "entropy": 19.5
+        },
+        {
+          "size": 137438953472,
+          "easy": 68719476736,
+          "point_probes": 67108864,
+          "point_work": 4609434218647257088,
+          "work_upper_bound": 4609436827571453952,
+          "conditional_log_size": 18.0,
+          "entropy": 19.0
+        },
+        {
+          "size": 68719476736,
+          "easy": 34359738368,
+          "point_probes": 134217728,
+          "point_work": 4602678819239755776,
+          "work_upper_bound": 4602680085852454912,
+          "conditional_log_size": 17.5,
+          "entropy": 18.5
+        },
+        {
+          "size": 34359738368,
+          "easy": 17179869184,
+          "point_probes": 268435456,
+          "point_work": 4575657221542641664,
+          "work_upper_bound": 4575657830891126784,
+          "conditional_log_size": 17.0,
+          "entropy": 18.0
+        },
+        {
+          "size": 17179869184,
+          "easy": 8589934592,
+          "point_probes": 536870912,
+          "point_work": 4467570830619967488,
+          "work_upper_bound": 4467571113550938112,
+          "conditional_log_size": 16.5,
+          "entropy": 17.5
+        },
+        {
+          "size": 8589934592,
+          "easy": 4294967296,
+          "point_probes": 1073741824,
+          "point_work": 4035225266660835328,
+          "work_upper_bound": 4035225378329985024,
+          "conditional_log_size": 16.0,
+          "entropy": 17.0
+        }
+      ]
+    },
+    {
+      "t": 17,
+      "n": 2251799813685248,
+      "core_size": 17179869184,
+      "core_optimum": 147573952598266347519,
+      "global_optimum_upper_bound": 147688793804648742911,
+      "algorithm_work_lower_bound": 1389654720233053585407,
+      "ratio_lower_bound": 9.40934436820698,
+      "stages": [
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 65536,
+          "point_work": 73786976292690755584,
+          "work_upper_bound": 73845523087843295232,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        },
+        {
+          "size": 1125899906842624,
+          "easy": 562949953421312,
+          "point_probes": 131072,
+          "point_work": 73786976286248337408,
+          "work_upper_bound": 73815686733866401792,
+          "conditional_log_size": 24.5,
+          "entropy": 25.5
+        },
+        {
+          "size": 562949953421312,
+          "easy": 281474976710656,
+          "point_probes": 262144,
+          "point_work": 73786976260478599168,
+          "work_upper_bound": 73801050009301549056,
+          "conditional_log_size": 24.0,
+          "entropy": 25.0
+        },
+        {
+          "size": 281474976710656,
+          "easy": 140737488355328,
+          "point_probes": 524288,
+          "point_work": 73786976157399515136,
+          "work_upper_bound": 73793872294304284672,
+          "conditional_log_size": 23.5,
+          "entropy": 24.5
+        },
+        {
+          "size": 140737488355328,
+          "easy": 70368744177664,
+          "point_probes": 1048576,
+          "point_work": 73786975745082916864,
+          "work_upper_bound": 73790353444755210240,
+          "conditional_log_size": 23.0,
+          "entropy": 24.0
+        },
+        {
+          "size": 70368744177664,
+          "easy": 35184372088832,
+          "point_probes": 2097152,
+          "point_work": 73786974095815999488,
+          "work_upper_bound": 73788627761209802752,
+          "conditional_log_size": 22.5,
+          "entropy": 23.5
+        },
+        {
+          "size": 35184372088832,
+          "easy": 17592186044416,
+          "point_probes": 4194304,
+          "point_work": 73786967498747281408,
+          "work_upper_bound": 73787776739120775168,
+          "conditional_log_size": 22.0,
+          "entropy": 23.0
+        },
+        {
+          "size": 17592186044416,
+          "easy": 8796093022208,
+          "point_probes": 8388608,
+          "point_work": 73786941110470311936,
+          "work_upper_bound": 73787336934295601152,
+          "conditional_log_size": 21.5,
+          "entropy": 22.5
+        },
+        {
+          "size": 8796093022208,
+          "easy": 4398046511104,
+          "point_probes": 16777216,
+          "point_work": 73786835557358239744,
+          "work_upper_bound": 73787029070700085248,
+          "conditional_log_size": 21.0,
+          "entropy": 22.0
+        },
+        {
+          "size": 4398046511104,
+          "easy": 2199023255552,
+          "point_probes": 33554432,
+          "point_work": 73786413344901562368,
+          "work_upper_bound": 73786507901525819392,
+          "conditional_log_size": 20.5,
+          "entropy": 21.5
+        },
+        {
+          "size": 2199023255552,
+          "easy": 1099511627776,
+          "point_probes": 67108864,
+          "point_work": 73784724495058075648,
+          "work_upper_bound": 73784770671862087680,
+          "conditional_log_size": 20.0,
+          "entropy": 21.0
+        },
+        {
+          "size": 1099511627776,
+          "easy": 549755813888,
+          "point_probes": 134217728,
+          "point_work": 73777969095650574336,
+          "work_upper_bound": 73777991630404452352,
+          "conditional_log_size": 19.5,
+          "entropy": 20.5
+        },
+        {
+          "size": 549755813888,
+          "easy": 274877906944,
+          "point_probes": 268435456,
+          "point_work": 73750947497953460224,
+          "work_upper_bound": 73750958482869190656,
+          "conditional_log_size": 19.0,
+          "entropy": 20.0
+        },
+        {
+          "size": 274877906944,
+          "easy": 137438953472,
+          "point_probes": 536870912,
+          "point_work": 73642861107030786048,
+          "work_upper_bound": 73642866447285747712,
+          "conditional_log_size": 18.5,
+          "entropy": 19.5
+        },
+        {
+          "size": 137438953472,
+          "easy": 68719476736,
+          "point_probes": 1073741824,
+          "point_work": 73210515543071653888,
+          "work_upper_bound": 73210518115757064192,
+          "conditional_log_size": 18.0,
+          "entropy": 19.0
+        },
+        {
+          "size": 68719476736,
+          "easy": 34359738368,
+          "point_probes": 2147483648,
+          "point_work": 71481133286698254336,
+          "work_upper_bound": 71481134482846646272,
+          "conditional_log_size": 17.5,
+          "entropy": 18.5
+        },
+        {
+          "size": 34359738368,
+          "easy": 17179869184,
+          "point_probes": 4294967296,
+          "point_work": 64563604260130914304,
+          "work_upper_bound": 64563604732577316864,
+          "conditional_log_size": 17.0,
+          "entropy": 18.0
+        }
+      ]
+    },
+    {
+      "t": 18,
+      "n": 18014398509481984,
+      "core_size": 68719476736,
+      "core_optimum": 2361183241469182345215,
+      "global_optimum_upper_bound": 2362156016514793209855,
+      "algorithm_work_lower_bound": 23415067144283060371455,
+      "ratio_lower_bound": 9.9125828186533,
+      "stages": [
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 131072,
+          "point_work": 1180591620708821434368,
+          "work_upper_bound": 1181087016667825242112,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 262144,
+          "point_work": 1180591620683051696128,
+          "work_upper_bound": 1180834815062916071424,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        },
+        {
+          "size": 4503599627370496,
+          "easy": 2251799813685248,
+          "point_probes": 524288,
+          "point_work": 1180591620579972612096,
+          "work_upper_bound": 1180710965970071191552,
+          "conditional_log_size": 25.5,
+          "entropy": 26.5
+        },
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 1048576,
+          "point_work": 1180591620167656013824,
+          "work_upper_bound": 1180650166962759401472,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        },
+        {
+          "size": 1125899906842624,
+          "easy": 562949953421312,
+          "point_probes": 2097152,
+          "point_work": 1180591618518389096448,
+          "work_upper_bound": 1180620328965910822912,
+          "conditional_log_size": 24.5,
+          "entropy": 25.5
+        },
+        {
+          "size": 562949953421312,
+          "easy": 281474976710656,
+          "point_probes": 4194304,
+          "point_work": 1180591611921320378368,
+          "work_upper_bound": 1180605685669954584576,
+          "conditional_log_size": 24.0,
+          "entropy": 25.0
+        },
+        {
+          "size": 281474976710656,
+          "easy": 140737488355328,
+          "point_probes": 8388608,
+          "point_work": 1180591585533043408896,
+          "work_upper_bound": 1180598481669578555392,
+          "conditional_log_size": 23.5,
+          "entropy": 24.5
+        },
+        {
+          "size": 140737488355328,
+          "easy": 70368744177664,
+          "point_probes": 16777216,
+          "point_work": 1180591479979931336704,
+          "work_upper_bound": 1180594857678880112640,
+          "conditional_log_size": 23.0,
+          "entropy": 24.0
+        },
+        {
+          "size": 70368744177664,
+          "easy": 35184372088832,
+          "point_probes": 33554432,
+          "point_work": 1180591057767474659328,
+          "work_upper_bound": 1180592711431452884992,
+          "conditional_log_size": 22.5,
+          "entropy": 23.5
+        },
+        {
+          "size": 35184372088832,
+          "easy": 17592186044416,
+          "point_probes": 67108864,
+          "point_work": 1180589368917631172608,
+          "work_upper_bound": 1180590178155236425728,
+          "conditional_log_size": 22.0,
+          "entropy": 23.0
+        },
+        {
+          "size": 17592186044416,
+          "easy": 8796093022208,
+          "point_probes": 134217728,
+          "point_work": 1180582613518223671296,
+          "work_upper_bound": 1180583009336638308352,
+          "conditional_log_size": 21.5,
+          "entropy": 22.5
+        },
+        {
+          "size": 8796093022208,
+          "easy": 4398046511104,
+          "point_probes": 268435456,
+          "point_work": 1180555591920526557184,
+          "work_upper_bound": 1180555785423298756608,
+          "conditional_log_size": 21.0,
+          "entropy": 22.0
+        },
+        {
+          "size": 4398046511104,
+          "easy": 2199023255552,
+          "point_probes": 536870912,
+          "point_work": 1180447505529603883008,
+          "work_upper_bound": 1180447600065592164352,
+          "conditional_log_size": 20.5,
+          "entropy": 21.5
+        },
+        {
+          "size": 2199023255552,
+          "easy": 1099511627776,
+          "point_probes": 1073741824,
+          "point_work": 1180015159965644750848,
+          "work_upper_bound": 1180015206102183444480,
+          "conditional_log_size": 20.0,
+          "entropy": 21.0
+        },
+        {
+          "size": 1099511627776,
+          "easy": 549755813888,
+          "point_probes": 2147483648,
+          "point_work": 1178285777709271351296,
+          "work_upper_bound": 1178285800165507858432,
+          "conditional_log_size": 19.5,
+          "entropy": 20.5
+        },
+        {
+          "size": 549755813888,
+          "easy": 274877906944,
+          "point_probes": 4294967296,
+          "point_work": 1171368248682704011264,
+          "work_upper_bound": 1171368259514611531776,
+          "conditional_log_size": 19.0,
+          "entropy": 20.0
+        },
+        {
+          "size": 274877906944,
+          "easy": 137438953472,
+          "point_probes": 8589934592,
+          "point_work": 1143698132574287167488,
+          "work_upper_bound": 1143698137616578772992,
+          "conditional_log_size": 18.5,
+          "entropy": 19.5
+        },
+        {
+          "size": 137438953472,
+          "easy": 68719476736,
+          "point_probes": 17179869184,
+          "point_work": 1033017668136324825088,
+          "work_upper_bound": 1033017670129189650432,
+          "conditional_log_size": 18.0,
+          "entropy": 19.0
+        }
+      ]
+    },
+    {
+      "t": 19,
+      "n": 144115188075855872,
+      "core_size": 274877906944,
+      "core_optimum": 37778931863094600663039,
+      "global_optimum_upper_bound": 37787146418369563983871,
+      "algorithm_work_lower_bound": 393530540239354712686591,
+      "ratio_lower_bound": 10.414402185396215,
+      "stages": [
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 262144,
+          "point_work": 18889465931444221247488,
+          "work_upper_bound": 18893645271898406387712,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 524288,
+          "point_work": 18889465931341142163456,
+          "work_upper_bound": 18891519572771194273792,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 1048576,
+          "point_work": 18889465930928825565184,
+          "work_upper_bound": 18890474737245299933184,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        },
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 2097152,
+          "point_work": 18889465929279558647808,
+          "work_upper_bound": 18889961325238458253312,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 4194304,
+          "point_work": 18889465922682489929728,
+          "work_upper_bound": 18889709117062149832704,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        },
+        {
+          "size": 4503599627370496,
+          "easy": 2251799813685248,
+          "point_probes": 8388608,
+          "point_work": 18889465896294212960256,
+          "work_upper_bound": 18889585241683910459392,
+          "conditional_log_size": 25.5,
+          "entropy": 26.5
+        },
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 16777216,
+          "point_work": 18889465790741100888064,
+          "work_upper_bound": 18889524337535417843712,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        },
+        {
+          "size": 1125899906842624,
+          "easy": 562949953421312,
+          "point_probes": 33554432,
+          "point_work": 18889465368528644210688,
+          "work_upper_bound": 18889494078974624530432,
+          "conditional_log_size": 24.5,
+          "entropy": 25.5
+        },
+        {
+          "size": 562949953421312,
+          "easy": 281474976710656,
+          "point_probes": 67108864,
+          "point_work": 18889463679678800723968,
+          "work_upper_bound": 18889477753424415031296,
+          "conditional_log_size": 24.0,
+          "entropy": 25.0
+        },
+        {
+          "size": 281474976710656,
+          "easy": 140737488355328,
+          "point_probes": 134217728,
+          "point_work": 18889456924279393222656,
+          "work_upper_bound": 18889463820410014400512,
+          "conditional_log_size": 23.5,
+          "entropy": 24.5
+        },
+        {
+          "size": 140737488355328,
+          "easy": 70368744177664,
+          "point_probes": 268435456,
+          "point_work": 18889429902681696108544,
+          "work_upper_bound": 18889433280369068605440,
+          "conditional_log_size": 23.0,
+          "entropy": 24.0
+        },
+        {
+          "size": 70368744177664,
+          "easy": 35184372088832,
+          "point_probes": 536870912,
+          "point_work": 18889321816290773434368,
+          "work_upper_bound": 18889323469932102418432,
+          "conditional_log_size": 22.5,
+          "entropy": 23.5
+        },
+        {
+          "size": 35184372088832,
+          "easy": 17592186044416,
+          "point_probes": 1073741824,
+          "point_work": 18888889470726814302208,
+          "work_upper_bound": 18888890279920127705088,
+          "conditional_log_size": 22.0,
+          "entropy": 23.0
+        },
+        {
+          "size": 17592186044416,
+          "easy": 8796093022208,
+          "point_probes": 2147483648,
+          "point_work": 18887160088470440902656,
+          "work_upper_bound": 18887160484202285105152,
+          "conditional_log_size": 21.5,
+          "entropy": 22.5
+        },
+        {
+          "size": 8796093022208,
+          "easy": 4398046511104,
+          "point_probes": 4294967296,
+          "point_work": 18880242559443873562624,
+          "work_upper_bound": 18880242752777531424768,
+          "conditional_log_size": 21.0,
+          "entropy": 22.0
+        },
+        {
+          "size": 4398046511104,
+          "easy": 2199023255552,
+          "point_probes": 8589934592,
+          "point_work": 18852572443335456718848,
+          "work_upper_bound": 18852572537541269389312,
+          "conditional_log_size": 20.5,
+          "entropy": 21.5
+        },
+        {
+          "size": 2199023255552,
+          "easy": 1099511627776,
+          "point_probes": 17179869184,
+          "point_work": 18741891978897494376448,
+          "work_upper_bound": 18741892024389787975680,
+          "conditional_log_size": 20.0,
+          "entropy": 21.0
+        },
+        {
+          "size": 1099511627776,
+          "easy": 549755813888,
+          "point_probes": 34359738368,
+          "point_work": 18299170121137055072256,
+          "work_upper_bound": 18299170142337013645312,
+          "conditional_log_size": 19.5,
+          "entropy": 20.5
+        },
+        {
+          "size": 549755813888,
+          "easy": 274877906944,
+          "point_probes": 68719476736,
+          "point_work": 16528282690078117986304,
+          "work_upper_bound": 16528282698461894148096,
+          "conditional_log_size": 19.0,
+          "entropy": 20.0
+        }
+      ]
+    },
+    {
+      "t": 20,
+      "n": 1152921504606846976,
+      "core_size": 1099511627776,
+      "core_optimum": 604462909807864343166975,
+      "global_optimum_upper_bound": 604532085054160288874495,
+      "algorithm_work_lower_bound": 6598720098730721358381055,
+      "ratio_lower_bound": 10.915417497054005,
+      "stages": [
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 524288,
+          "point_work": 302231454903519854985216,
+          "work_upper_bound": 302266619009410332884992,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 1048576,
+          "point_work": 302231454903107538386944,
+          "work_upper_bound": 302248748725676580274176,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 2097152,
+          "point_work": 302231454901458271469568,
+          "work_upper_bound": 302239957697554627428352,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 4194304,
+          "point_work": 302231454894861202751488,
+          "work_upper_bound": 302235634235315167690752,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 8388608,
+          "point_work": 302231454868472925782016,
+          "work_upper_bound": 302233508509902545354752,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 16777216,
+          "point_work": 302231454762919813709824,
+          "work_upper_bound": 302232463569235438731264,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        },
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 33554432,
+          "point_work": 302231454340707357032448,
+          "work_upper_bound": 302231949736664589402112,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 67108864,
+          "point_work": 302231452651857513545728,
+          "work_upper_bound": 302231695846233901891584,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        },
+        {
+          "size": 4503599627370496,
+          "easy": 2251799813685248,
+          "point_probes": 134217728,
+          "point_work": 302231445896458106044416,
+          "work_upper_bound": 302231565241841386258432,
+          "conditional_log_size": 25.5,
+          "entropy": 26.5
+        },
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 268435456,
+          "point_work": 302231418874860408930304,
+          "work_upper_bound": 302231477421642142973952,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        },
+        {
+          "size": 1125899906842624,
+          "easy": 562949953421312,
+          "point_probes": 536870912,
+          "point_work": 302231310788469486256128,
+          "work_upper_bound": 302231339498890804068352,
+          "conditional_log_size": 24.5,
+          "entropy": 25.5
+        },
+        {
+          "size": 562949953421312,
+          "easy": 281474976710656,
+          "point_probes": 1073741824,
+          "point_work": 302230878442905527123968,
+          "work_upper_bound": 302230892516602823049216,
+          "conditional_log_size": 24.0,
+          "entropy": 25.0
+        },
+        {
+          "size": 281474976710656,
+          "easy": 140737488355328,
+          "point_probes": 2147483648,
+          "point_work": 302229149060649153724416,
+          "work_upper_bound": 302229155956685151404032,
+          "conditional_log_size": 23.5,
+          "entropy": 24.5
+        },
+        {
+          "size": 140737488355328,
+          "easy": 70368744177664,
+          "point_probes": 4294967296,
+          "point_work": 302222231531622586384384,
+          "work_upper_bound": 302222234909124738416640,
+          "conditional_log_size": 23.0,
+          "entropy": 24.0
+        },
+        {
+          "size": 70368744177664,
+          "easy": 35184372088832,
+          "point_probes": 8589934592,
+          "point_work": 302194561415514169540608,
+          "work_upper_bound": 302194563068793110659072,
+          "conditional_log_size": 22.5,
+          "entropy": 23.5
+        },
+        {
+          "size": 35184372088832,
+          "easy": 17592186044416,
+          "point_probes": 17179869184,
+          "point_work": 302083880951076207198208,
+          "work_upper_bound": 302083881759560850997248,
+          "conditional_log_size": 22.0,
+          "entropy": 23.0
+        },
+        {
+          "size": 17592186044416,
+          "easy": 8796093022208,
+          "point_probes": 34359738368,
+          "point_work": 301641159093315767894016,
+          "work_upper_bound": 301641159487662485143552,
+          "conditional_log_size": 21.5,
+          "entropy": 22.5
+        },
+        {
+          "size": 8796093022208,
+          "easy": 4398046511104,
+          "point_probes": 68719476736,
+          "point_work": 299870271662256830808064,
+          "work_upper_bound": 299870271852884659273728,
+          "conditional_log_size": 21.0,
+          "entropy": 22.0
+        },
+        {
+          "size": 4398046511104,
+          "easy": 2199023255552,
+          "point_probes": 137438953472,
+          "point_work": 292786721937986722725888,
+          "work_upper_bound": 292786722026909725622272,
+          "conditional_log_size": 20.5,
+          "entropy": 21.5
+        },
+        {
+          "size": 2199023255552,
+          "easy": 1099511627776,
+          "point_probes": 274877906944,
+          "point_work": 264452523040837570920448,
+          "work_upper_bound": 264452523076021943009280,
+          "conditional_log_size": 20.0,
+          "entropy": 21.0
+        }
+      ]
+    },
+    {
+      "t": 21,
+      "n": 9223372036854775808,
+      "core_size": 4398046511104,
+      "core_optimum": 9671406556919232420904959,
+      "global_optimum_upper_bound": 9671987629172836318314495,
+      "algorithm_work_lower_bound": 110415224858139613076127743,
+      "ratio_lower_bound": 11.41598077783961,
+      "stages": [
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 1048576,
+          "point_work": 4835703278457966943535104,
+          "work_upper_bound": 4835998426363146231349248,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 2097152,
+          "point_work": 4835703278456317676617728,
+          "work_upper_bound": 4835848546565898011410432,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 4194304,
+          "point_work": 4835703278449720607899648,
+          "work_upper_bound": 4835774759583005980753920,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 8388608,
+          "point_work": 4835703278423332330930176,
+          "work_upper_bound": 4835738442529222344835072,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 16777216,
+          "point_work": 4835703278317779218857984,
+          "work_upper_bound": 4835720572140347348484096,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 33554432,
+          "point_work": 4835703277895566762180608,
+          "work_upper_bound": 4835711780691661325074432,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 67108864,
+          "point_work": 4835703276206716918693888,
+          "work_upper_bound": 4835707455547167360417792,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 134217728,
+          "point_work": 4835703269451317511192576,
+          "work_upper_bound": 4835705323092740210163712,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 268435456,
+          "point_work": 4835703242429719814078464,
+          "work_upper_bound": 4835704251236021849554944,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        },
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 536870912,
+          "point_work": 4835703134343328891404288,
+          "work_upper_bound": 4835703629739259448000512,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 1073741824,
+          "point_work": 4835702701997764932272128,
+          "work_upper_bound": 4835702945192088975704064,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        },
+        {
+          "size": 4503599627370496,
+          "easy": 2251799813685248,
+          "point_probes": 2147483648,
+          "point_work": 4835700972615508558872576,
+          "work_upper_bound": 4835701091960789162524672,
+          "conditional_log_size": 25.5,
+          "entropy": 26.5
+        },
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 4294967296,
+          "point_work": 4835694055086481991532544,
+          "work_upper_bound": 4835694113633062398984192,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        },
+        {
+          "size": 1125899906842624,
+          "easy": 562949953421312,
+          "point_probes": 8589934592,
+          "point_work": 4835666384970373574688768,
+          "work_upper_bound": 4835666413680400292380672,
+          "conditional_log_size": 24.5,
+          "entropy": 25.5
+        },
+        {
+          "size": 562949953421312,
+          "easy": 281474976710656,
+          "point_probes": 17179869184,
+          "point_work": 4835555704505935612346368,
+          "work_upper_bound": 4835555718578859814158336,
+          "conditional_log_size": 24.0,
+          "entropy": 25.0
+        },
+        {
+          "size": 281474976710656,
+          "easy": 140737488355328,
+          "point_probes": 34359738368,
+          "point_work": 4835112982648175173042176,
+          "work_upper_bound": 4835112989542697194749952,
+          "conditional_log_size": 23.5,
+          "entropy": 24.5
+        },
+        {
+          "size": 140737488355328,
+          "easy": 70368744177664,
+          "point_probes": 68719476736,
+          "point_work": 4833342095217116235956224,
+          "work_upper_bound": 4833342098591654860554240,
+          "conditional_log_size": 23.0,
+          "entropy": 24.0
+        },
+        {
+          "size": 70368744177664,
+          "easy": 35184372088832,
+          "point_probes": 137438953472,
+          "point_work": 4826258545492846127874048,
+          "work_upper_bound": 4826258547140326863142912,
+          "conditional_log_size": 22.5,
+          "entropy": 23.5
+        },
+        {
+          "size": 35184372088832,
+          "easy": 17592186044416,
+          "point_probes": 274877906944,
+          "point_work": 4797924346595696976068608,
+          "work_upper_bound": 4797924347392842906206208,
+          "conditional_log_size": 22.0,
+          "entropy": 23.0
+        },
+        {
+          "size": 17592186044416,
+          "easy": 8796093022208,
+          "point_probes": 549755813888,
+          "point_work": 4684587551006962929893376,
+          "work_upper_bound": 4684587551379147615895552,
+          "conditional_log_size": 21.5,
+          "entropy": 22.5
+        },
+        {
+          "size": 8796093022208,
+          "easy": 4398046511104,
+          "point_probes": 1099511627776,
+          "point_work": 4231240368651751867285504,
+          "work_upper_bound": 4231240368799086425407488,
+          "conditional_log_size": 21.0,
+          "entropy": 22.0
+        }
+      ]
+    },
+    {
+      "t": 22,
+      "n": 73786976294838206464,
+      "core_size": 17592186044416,
+      "core_optimum": 154742504910681330455412735,
+      "global_optimum_upper_bound": 154747374850342733591085055,
+      "algorithm_work_lower_bound": 1844014850185528294964723711,
+      "ratio_lower_bound": 11.916291646103128,
+      "stages": [
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 2097152,
+          "point_work": 77371252455334068158988288,
+          "work_upper_bound": 77373724319039945102589952,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 4194304,
+          "point_work": 77371252455327471090270208,
+          "work_upper_bound": 77372469940436335652241408,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 8388608,
+          "point_work": 77371252455301082813300736,
+          "work_upper_bound": 77371851974483477845245952,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 16777216,
+          "point_work": 77371252455195529701228544,
+          "work_upper_bound": 77371547603100708013867008,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 33554432,
+          "point_work": 77371252454773317244551168,
+          "work_upper_bound": 77371397722882895660449792,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 67108864,
+          "point_work": 77371252453084467401064448,
+          "work_upper_bound": 77371323934217748999045120,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 134217728,
+          "point_work": 77371252446329067993563136,
+          "work_upper_bound": 77371287610434950583549952,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 268435456,
+          "point_work": 77371252419307470296449024,
+          "work_upper_bound": 77371269713130023829897216,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 536870912,
+          "point_work": 77371252311221079373774848,
+          "work_upper_bound": 77371260814017145247629312,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 1073741824,
+          "point_work": 77371251878875515414642688,
+          "work_upper_bound": 77371256058215909484920832,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 2147483648,
+          "point_work": 77371250149493259041243136,
+          "work_upper_bound": 77371252203134571010588672,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 4294967296,
+          "point_work": 77371243231964232473903104,
+          "work_upper_bound": 77371244240770317076660224,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        },
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 8589934592,
+          "point_work": 77371215561848124057059328,
+          "work_upper_bound": 77371216057243627801280512,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 17179869184,
+          "point_work": 77371104881383686094716928,
+          "work_upper_bound": 77371105124577172619526144,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        },
+        {
+          "size": 4503599627370496,
+          "easy": 2251799813685248,
+          "point_probes": 34359738368,
+          "point_work": 77370662159525925655412736,
+          "work_upper_bound": 77370662278869563434074112,
+          "conditional_log_size": 25.5,
+          "entropy": 26.5
+        },
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 68719476736,
+          "point_work": 77368891272094866718326784,
+          "work_upper_bound": 77368891330638225900306432,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        },
+        {
+          "size": 1125899906842624,
+          "easy": 562949953421312,
+          "point_probes": 137438953472,
+          "point_work": 77361807722370596610244608,
+          "work_upper_bound": 77361807751074309726011392,
+          "conditional_log_size": 24.5,
+          "entropy": 25.5
+        },
+        {
+          "size": 562949953421312,
+          "easy": 281474976710656,
+          "point_probes": 274877906944,
+          "point_work": 77333473523473447458439168,
+          "work_upper_bound": 77333473537534002154438656,
+          "conditional_log_size": 24.0,
+          "entropy": 25.0
+        },
+        {
+          "size": 281474976710656,
+          "easy": 140737488355328,
+          "point_probes": 549755813888,
+          "point_work": 77220136727884713412263936,
+          "work_upper_bound": 77220136734755011818422272,
+          "conditional_log_size": 23.5,
+          "entropy": 24.5
+        },
+        {
+          "size": 140737488355328,
+          "easy": 70368744177664,
+          "point_probes": 1099511627776,
+          "point_work": 76766789545529502349656064,
+          "work_upper_bound": 76766789548856624535306240,
+          "conditional_log_size": 23.0,
+          "entropy": 24.0
+        },
+        {
+          "size": 70368744177664,
+          "easy": 35184372088832,
+          "point_probes": 2199023255552,
+          "point_work": 74953400816108108343410688,
+          "work_upper_bound": 74953400817662817785085952,
+          "conditional_log_size": 22.5,
+          "entropy": 23.5
+        },
+        {
+          "size": 35184372088832,
+          "easy": 17592186044416,
+          "point_probes": 4398046511104,
+          "point_work": 67699845898421432806801408,
+          "work_upper_bound": 67699845899037159318355968,
+          "conditional_log_size": 22.0,
+          "entropy": 23.0
+        }
+      ]
+    },
+    {
+      "t": 23,
+      "n": 590295810358705651712,
+      "core_size": 70368744177664,
+      "core_optimum": 2475880078570795734170337279,
+      "global_optimum_upper_bound": 2475920808978473522628132863,
+      "algorithm_work_lower_bound": 30742177642253665868581961727,
+      "ratio_lower_bound": 12.416462404925387,
+      "stages": [
+        {
+          "size": 590295810358705651712,
+          "easy": 295147905179352825856,
+          "point_probes": 4194304,
+          "point_work": 1237940039285371478808199168,
+          "work_upper_bound": 1237960699638734033220796416,
+          "conditional_log_size": 34.0,
+          "entropy": 35.0
+        },
+        {
+          "size": 295147905179352825856,
+          "easy": 147573952589676412928,
+          "point_probes": 8388608,
+          "point_work": 1237940039285345090531229696,
+          "work_upper_bound": 1237950221888073777641684992,
+          "conditional_log_size": 33.5,
+          "entropy": 34.5
+        },
+        {
+          "size": 147573952589676412928,
+          "easy": 73786976294838206464,
+          "point_probes": 16777216,
+          "point_work": 1237940039285239537419157504,
+          "work_upper_bound": 1237945056799627585309900800,
+          "conditional_log_size": 33.0,
+          "entropy": 34.0
+        },
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 33554432,
+          "point_work": 1237940039284817324962480128,
+          "work_upper_bound": 1237942511148523199861358592,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 67108864,
+          "point_work": 1237940039283128475118993408,
+          "work_upper_bound": 1237941256768237335654432768,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 134217728,
+          "point_work": 1237940039276373075711492096,
+          "work_upper_bound": 1237940638795555462816202752,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 268435456,
+          "point_work": 1237940039249351478014377984,
+          "work_upper_bound": 1237940334397256640724205568,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 536870912,
+          "point_work": 1237940039141265087091703808,
+          "work_upper_bound": 1237940184409374634805297152,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 1073741824,
+          "point_work": 1237940038708919523132571648,
+          "work_upper_bound": 1237940110190052744332574720,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 2147483648,
+          "point_work": 1237940036979537266759172096,
+          "work_upper_bound": 1237940072143643030566469632,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 4294967296,
+          "point_work": 1237940030062008240191832064,
+          "work_upper_bound": 1237940047355830560186433536,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 8589934592,
+          "point_work": 1237940002391892131774988288,
+          "work_upper_bound": 1237940010894687738624212992,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 17179869184,
+          "point_work": 1237939891711427693812645888,
+          "work_upper_bound": 1237939895890767185939791872,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 34359738368,
+          "point_work": 1237939448989569933373341696,
+          "work_upper_bound": 1237939451043209473668677632,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 68719476736,
+          "point_work": 1237937678102138874436255744,
+          "work_upper_bound": 1237937679110941480115503104,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        },
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 137438953472,
+          "point_work": 1237930594552414604328173568,
+          "work_upper_bound": 1237930595047803279074394112,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 274877906944,
+          "point_work": 1237902260353517455176368128,
+          "work_upper_bound": 1237902260596697541403213824,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        },
+        {
+          "size": 4503599627370496,
+          "easy": 2251799813685248,
+          "point_probes": 549755813888,
+          "point_work": 1237788923557928721130192896,
+          "work_upper_bound": 1237788923677246073709002752,
+          "conditional_log_size": 25.5,
+          "entropy": 26.5
+        },
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 1099511627776,
+          "point_work": 1237335576375573510067585024,
+          "work_upper_bound": 1237335576434065329642012672,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        },
+        {
+          "size": 1125899906842624,
+          "easy": 562949953421312,
+          "point_probes": 2199023255552,
+          "point_work": 1235522187646152116061339648,
+          "work_upper_bound": 1235522187674754811546304512,
+          "conditional_log_size": 24.5,
+          "entropy": 25.5
+        },
+        {
+          "size": 562949953421312,
+          "easy": 281474976710656,
+          "point_probes": 4398046511104,
+          "point_work": 1228268632728465440524730368,
+          "work_upper_bound": 1228268632742328083127730176,
+          "conditional_log_size": 24.0,
+          "entropy": 25.0
+        },
+        {
+          "size": 281474976710656,
+          "easy": 140737488355328,
+          "point_probes": 8796093022208,
+          "point_work": 1199254413057716539355037696,
+          "work_upper_bound": 1199254413064199259912404992,
+          "conditional_log_size": 23.5,
+          "entropy": 24.5
+        },
+        {
+          "size": 140737488355328,
+          "easy": 70368744177664,
+          "point_probes": 17592186044416,
+          "point_work": 1083197534374716536629755904,
+          "work_upper_bound": 1083197534377284995792240640,
+          "conditional_log_size": 23.0,
+          "entropy": 24.0
+        }
+      ]
+    },
+    {
+      "t": 24,
+      "n": 4722366482869645213696,
+      "core_size": 281474976710656,
+      "core_optimum": 39614081257132309534260330495,
+      "global_optimum_upper_bound": 39614421267505565349833605119,
+      "algorithm_work_lower_bound": 511681882904624069792657047551,
+      "ratio_lower_bound": 12.9165558029833,
+      "stages": [
+        {
+          "size": 4722366482869645213696,
+          "easy": 2361183241434822606848,
+          "point_probes": 8388608,
+          "point_work": 19807040628566049214018093056,
+          "work_upper_bound": 19807212994942673955472801792,
+          "conditional_log_size": 35.5,
+          "entropy": 36.5
+        },
+        {
+          "size": 2361183241434822606848,
+          "easy": 1180591620717411303424,
+          "point_probes": 16777216,
+          "point_work": 19807040628565943660906020864,
+          "work_upper_bound": 19807125631162635313345462272,
+          "conditional_log_size": 35.0,
+          "entropy": 36.0
+        },
+        {
+          "size": 1180591620717411303424,
+          "easy": 590295810358705651712,
+          "point_probes": 33554432,
+          "point_work": 19807040628565521448449343488,
+          "work_upper_bound": 19807082539568056914235359232,
+          "conditional_log_size": 34.5,
+          "entropy": 35.5
+        },
+        {
+          "size": 590295810358705651712,
+          "easy": 295147905179352825856,
+          "point_probes": 67108864,
+          "point_work": 19807040628563832598605856768,
+          "work_upper_bound": 19807061288917195148740263936,
+          "conditional_log_size": 34.0,
+          "entropy": 35.0
+        },
+        {
+          "size": 295147905179352825856,
+          "easy": 147573952589676412928,
+          "point_probes": 134217728,
+          "point_work": 19807040628557077199198355456,
+          "work_upper_bound": 19807050811159805877878259712,
+          "conditional_log_size": 33.5,
+          "entropy": 34.5
+        },
+        {
+          "size": 147573952589676412928,
+          "easy": 73786976294838206464,
+          "point_probes": 268435456,
+          "point_work": 19807040628530055601501241344,
+          "work_upper_bound": 19807045646044443632782540800,
+          "conditional_log_size": 33.0,
+          "entropy": 34.0
+        },
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 536870912,
+          "point_work": 19807040628421969210578567168,
+          "work_upper_bound": 19807043100285675052761874432,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 1073741824,
+          "point_work": 19807040627989623646619435008,
+          "work_upper_bound": 19807041845474732442730364928,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 2147483648,
+          "point_work": 19807040626260241390246035456,
+          "work_upper_bound": 19807041225779423650514993152,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 4294967296,
+          "point_work": 19807040619342712363678695424,
+          "work_upper_bound": 19807040914490617276743548928,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 8589934592,
+          "point_work": 19807040591672596255261851648,
+          "work_upper_bound": 19807040736940705311738560512,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 17179869184,
+          "point_work": 19807040480992131817299509248,
+          "work_upper_bound": 19807040552473264072131870720,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 34359738368,
+          "point_work": 19807040038270274056860205056,
+          "work_upper_bound": 19807040073434377920144474112,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 68719476736,
+          "point_work": 19807038267382842997923119104,
+          "work_upper_bound": 19807038284676661581296173056,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 137438953472,
+          "point_work": 19807031183833118727815036928,
+          "work_upper_bound": 19807031192335906990270185472,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 274877906944,
+          "point_work": 19807002849634221578663231488,
+          "work_upper_bound": 19807002853813546639700262912,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 549755813888,
+          "point_work": 19806889512838632844617056256,
+          "work_upper_bound": 19806889514892244038128238592,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 1099511627776,
+          "point_work": 19806436165656277633554448384,
+          "work_upper_bound": 19806436166665024576457539584,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        },
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 2199023255552,
+          "point_work": 19804622776926856239548203008,
+          "work_upper_bound": 19804622777422135650326413312,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 4398046511104,
+          "point_work": 19797369222009169564011593728,
+          "work_upper_bound": 19797369222252135245471023104,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        },
+        {
+          "size": 4503599627370496,
+          "easy": 2251799813685248,
+          "point_probes": 8796093022208,
+          "point_work": 19768355002338420662841901056,
+          "work_upper_bound": 19768355002457317452223086592,
+          "conditional_log_size": 25.5,
+          "entropy": 26.5
+        },
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 17592186044416,
+          "point_work": 19652298123655420660116619264,
+          "work_upper_bound": 19652298123713087845970214912,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        },
+        {
+          "size": 1125899906842624,
+          "easy": 562949953421312,
+          "point_probes": 35184372088832,
+          "point_work": 19188070608923411853122469888,
+          "work_upper_bound": 19188070608950398266514604032,
+          "conditional_log_size": 24.5,
+          "entropy": 25.5
+        },
+        {
+          "size": 562949953421312,
+          "easy": 281474976710656,
+          "point_probes": 70368744177664,
+          "point_work": 17331160549995359032959827968,
+          "work_upper_bound": 17331160550006055082074832896,
+          "conditional_log_size": 24.0,
+          "entropy": 25.0
+        }
+      ]
+    },
+    {
+      "t": 25,
+      "n": 37778931862957161709568,
+      "core_size": 1125899906842624,
+      "core_optimum": 633825300114115263698305023999,
+      "global_optimum_upper_bound": 633828133533948690490091110399,
+      "algorithm_work_lower_bound": 8503822776531039793044468531199,
+      "ratio_lower_bound": 13.41660668976216,
+      "stages": [
+        {
+          "size": 37778931862957161709568,
+          "easy": 18889465931478580854784,
+          "point_probes": 16777216,
+          "point_work": 316912650057057209636695834624,
+          "work_upper_bound": 316914085656468002007599284224,
+          "conditional_log_size": 37.0,
+          "entropy": 38.0
+        },
+        {
+          "size": 18889465931478580854784,
+          "easy": 9444732965739290427392,
+          "point_probes": 33554432,
+          "point_work": 316912650057056787424239157248,
+          "work_upper_bound": 316913358412029217868571738112,
+          "conditional_log_size": 36.5,
+          "entropy": 37.5
+        },
+        {
+          "size": 9444732965739290427392,
+          "easy": 4722366482869645213696,
+          "point_probes": 67108864,
+          "point_work": 316912650057055098574395670528,
+          "work_upper_bound": 316912999512174830923309645824,
+          "conditional_log_size": 36.0,
+          "entropy": 37.0
+        },
+        {
+          "size": 4722366482869645213696,
+          "easy": 2361183241434822606848,
+          "point_probes": 134217728,
+          "point_work": 316912650057048343174988169216,
+          "work_upper_bound": 316912822423424967907509010432,
+          "conditional_log_size": 35.5,
+          "entropy": 36.5
+        },
+        {
+          "size": 2361183241434822606848,
+          "easy": 1180591620717411303424,
+          "point_probes": 268435456,
+          "point_work": 316912650057021321577291055104,
+          "work_upper_bound": 316912735059618013212114419712,
+          "conditional_log_size": 35.0,
+          "entropy": 36.0
+        },
+        {
+          "size": 1180591620717411303424,
+          "easy": 590295810358705651712,
+          "point_probes": 536870912,
+          "point_work": 316912650056913235186368380928,
+          "work_upper_bound": 316912691967915770617425559552,
+          "conditional_log_size": 34.5,
+          "entropy": 35.5
+        },
+        {
+          "size": 590295810358705651712,
+          "easy": 295147905179352825856,
+          "point_probes": 1073741824,
+          "point_work": 316912650056480889622409248768,
+          "work_upper_bound": 316912670716834252104092614656,
+          "conditional_log_size": 34.0,
+          "entropy": 35.0
+        },
+        {
+          "size": 295147905179352825856,
+          "easy": 147573952589676412928,
+          "point_probes": 2147483648,
+          "point_work": 316912650054751507366035849216,
+          "work_upper_bound": 316912660237354235909826936832,
+          "conditional_log_size": 33.5,
+          "entropy": 34.5
+        },
+        {
+          "size": 147573952589676412928,
+          "easy": 73786976294838206464,
+          "point_probes": 4294967296,
+          "point_work": 316912650047833978339468509184,
+          "work_upper_bound": 316912655065348366104998707200,
+          "conditional_log_size": 33.0,
+          "entropy": 34.0
+        },
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 8589934592,
+          "point_work": 316912650020163862231051665408,
+          "work_upper_bound": 316912652492027567549785833472,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 17179869184,
+          "point_work": 316912649909483397793089323008,
+          "work_upper_bound": 316912651126968505558408101888,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 34359738368,
+          "point_work": 316912649466761540032650018816,
+          "work_upper_bound": 316912650066280720263546929152,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 68719476736,
+          "point_work": 316912647695874108973712932864,
+          "work_upper_bound": 316912647991022009892458201088,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 137438953472,
+          "point_work": 316912640612324384703604850688,
+          "work_upper_bound": 316912640757592485900291407872,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 274877906944,
+          "point_work": 316912612278125487554453045248,
+          "work_upper_bound": 316912612349606604347403141120,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 549755813888,
+          "point_work": 316912498941329898820406870016,
+          "work_upper_bound": 316912498976493972275322683392,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 1099511627776,
+          "point_work": 316912045594147543609344262144,
+          "work_upper_bound": 316912045611441302406772555776,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 2199023255552,
+          "point_work": 316910232205418122215338016768,
+          "work_upper_bound": 316910232213920792967487946752,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 4398046511104,
+          "point_work": 316902978650500435539801407488,
+          "work_upper_bound": 316902978654679529703396605952,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 8796093022208,
+          "point_work": 316873964430829686638631714816,
+          "work_upper_bound": 316873964432882844283596439552,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 17592186044416,
+          "point_work": 316757907552146686635906433024,
+          "work_upper_bound": 316757907553154542974391025664,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        },
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 35184372088832,
+          "point_work": 316293680037414677828912283648,
+          "work_upper_bound": 316293680037908209016202330112,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 70368744177664,
+          "point_work": 314436769978486625008749641728,
+          "work_upper_bound": 314436769978726160213930409984,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        },
+        {
+          "size": 4503599627370496,
+          "easy": 2251799813685248,
+          "point_probes": 140737488355328,
+          "point_work": 307009129742774378543726985216,
+          "work_upper_bound": 307009129742886546321946181632,
+          "conditional_log_size": 25.5,
+          "entropy": 26.5
+        },
+        {
+          "size": 2251799813685248,
+          "easy": 1125899906842624,
+          "point_probes": 281474976710656,
+          "point_work": 277298568799925322314892181504,
+          "work_upper_bound": 277298568799969795361212465152,
+          "conditional_log_size": 25.0,
+          "entropy": 26.0
+        }
+      ]
+    },
+    {
+      "t": 26,
+      "n": 302231454903657293676544,
+      "core_size": 4503599627370496,
+      "core_optimum": 10141204801825837463773439328255,
+      "global_optimum_upper_bound": 10141228375879085761861722832895,
+      "algorithm_work_lower_bound": 141131766825409543598649311756287,
+      "ratio_lower_bound": 13.916634316321234,
+      "stages": [
+        {
+          "size": 302231454903657293676544,
+          "easy": 151115727451828646838272,
+          "point_probes": 33554432,
+          "point_work": 5070602400912917043036876177408,
+          "work_upper_bound": 5070614339055385737497392709632,
+          "conditional_log_size": 38.5,
+          "entropy": 39.5
+        },
+        {
+          "size": 151115727451828646838272,
+          "easy": 75557863725914323419136,
+          "point_probes": 67108864,
+          "point_work": 5070602400912915354187032690688,
+          "work_upper_bound": 5070608294426285975499159109632,
+          "conditional_log_size": 38.0,
+          "entropy": 39.0
+        },
+        {
+          "size": 75557863725914323419136,
+          "easy": 37778931862957161709568,
+          "point_probes": 134217728,
+          "point_work": 5070602400912908598787625189376,
+          "work_upper_bound": 5070605309890662046479010496512,
+          "conditional_log_size": 37.5,
+          "entropy": 38.5
+        },
+        {
+          "size": 37778931862957161709568,
+          "easy": 18889465931478580854784,
+          "point_probes": 268435456,
+          "point_work": 5070602400912881577189928075264,
+          "work_upper_bound": 5070603836512292369542208815104,
+          "conditional_log_size": 37.0,
+          "entropy": 38.0
+        },
+        {
+          "size": 18889465931478580854784,
+          "easy": 9444732965739290427392,
+          "point_probes": 536870912,
+          "point_work": 5070602400912773490799005401088,
+          "work_upper_bound": 5070603109267745921206595878912,
+          "conditional_log_size": 36.5,
+          "entropy": 37.5
+        },
+        {
+          "size": 9444732965739290427392,
+          "easy": 4722366482869645213696,
+          "point_probes": 1073741824,
+          "point_work": 5070602400912341145235046268928,
+          "work_upper_bound": 5070602750367460877511482671104,
+          "conditional_log_size": 36.0,
+          "entropy": 37.0
+        },
+        {
+          "size": 4722366482869645213696,
+          "easy": 2361183241434822606848,
+          "point_probes": 2147483648,
+          "point_work": 5070602400910611762978672869376,
+          "work_upper_bound": 5070602573276988387568251830272,
+          "conditional_log_size": 35.5,
+          "entropy": 36.5
+        },
+        {
+          "size": 2361183241434822606848,
+          "easy": 1180591620717411303424,
+          "point_probes": 4294967296,
+          "point_work": 5070602400903694233952105529344,
+          "work_upper_bound": 5070602485906290925305071665152,
+          "conditional_log_size": 35.0,
+          "entropy": 36.0
+        },
+        {
+          "size": 1180591620717411303424,
+          "easy": 590295810358705651712,
+          "point_probes": 8589934592,
+          "point_work": 5070602400876024117843688685568,
+          "work_upper_bound": 5070602442787026652719084470272,
+          "conditional_log_size": 34.5,
+          "entropy": 35.5
+        },
+        {
+          "size": 590295810358705651712,
+          "easy": 295147905179352825856,
+          "point_probes": 17179869184,
+          "point_work": 5070602400765343653405726343168,
+          "work_upper_bound": 5070602421425697014792193048576,
+          "conditional_log_size": 34.0,
+          "entropy": 35.0
+        },
+        {
+          "size": 295147905179352825856,
+          "easy": 147573952589676412928,
+          "point_probes": 34359738368,
+          "point_work": 5070602400322621795645287038976,
+          "work_upper_bound": 5070602410505224522030857060352,
+          "conditional_log_size": 33.5,
+          "entropy": 34.5
+        },
+        {
+          "size": 147573952589676412928,
+          "easy": 73786976294838206464,
+          "point_probes": 68719476736,
+          "point_work": 5070602398551734364586349953024,
+          "work_upper_bound": 5070602403569248748099862528000,
+          "conditional_log_size": 33.0,
+          "entropy": 34.0
+        },
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 137438953472,
+          "point_work": 5070602391468184640316241870848,
+          "work_upper_bound": 5070602393940048337259789811712,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 274877906944,
+          "point_work": 5070602363133985743167090065408,
+          "work_upper_bound": 5070602364351470834439734427648,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 549755813888,
+          "point_work": 5070602249797190154433043890176,
+          "work_upper_bound": 5070602250396709302193988042752,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 1099511627776,
+          "point_work": 5070601796450007799221981282304,
+          "work_upper_bound": 5070601796745155636231613186048,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 2199023255552,
+          "point_work": 5070599983061278377827975036928,
+          "work_upper_bound": 5070599983206546353268019167232,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 4398046511104,
+          "point_work": 5070592729506360691152438427648,
+          "work_upper_bound": 5070592729577841560555272273920,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 8796093022208,
+          "point_work": 5070563715286689942251268734976,
+          "work_upper_bound": 5070563715321853529172289257472,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 17592186044416,
+          "point_work": 5070447658408006942248543453184,
+          "work_upper_bound": 5070447658425299744470855581696,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 35184372088832,
+          "point_work": 5069983430893274933441549303808,
+          "work_upper_bound": 5069983430901775724028815736832,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 70368744177664,
+          "point_work": 5068126520834346880621386661888,
+          "work_upper_bound": 5068126520838522280425912532992,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 140737488355328,
+          "point_work": 5060698880598634634156364005376,
+          "work_upper_bound": 5060698880600680535024585408512,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 281474976710656,
+          "point_work": 5030988319655785577927529201664,
+          "work_upper_bound": 5030988319656779184595317817344,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        },
+        {
+          "size": 18014398509481984,
+          "easy": 9007199254740992,
+          "point_probes": 562949953421312,
+          "point_work": 4912146075884389212274701631488,
+          "work_upper_bound": 4912146075884854771886181056512,
+          "conditional_log_size": 26.5,
+          "entropy": 27.5
+        },
+        {
+          "size": 9007199254740992,
+          "easy": 4503599627370496,
+          "point_probes": 1125899906842624,
+          "point_work": 4436777100798803468188414640128,
+          "work_upper_bound": 4436777100798988115773136830464,
+          "conditional_log_size": 26.0,
+          "entropy": 27.0
+        }
+      ]
+    },
+    {
+      "t": 27,
+      "n": 2417851639229258349412352,
+      "core_size": 18014398509481984,
+      "core_optimum": 162259276829213372398777265029119,
+      "global_optimum_upper_bound": 162259472675195177191184055402495,
+      "algorithm_work_lower_bound": 2339237907621159336489981768105983,
+      "ratio_lower_bound": 14.41664926585677,
+      "stages": [
+        {
+          "size": 2417851639229258349412352,
+          "easy": 1208925819614629174706176,
+          "point_probes": 67108864,
+          "point_work": 81129638414606679443989225013248,
+          "work_upper_bound": 81129737546523887843576182210560,
+          "conditional_log_size": 40.0,
+          "entropy": 41.0
+        },
+        {
+          "size": 1208925819614629174706176,
+          "easy": 604462909807314587353088,
+          "point_probes": 134217728,
+          "point_work": 81129638414606672688589817511936,
+          "work_upper_bound": 81129687376102367081060789911552,
+          "conditional_log_size": 39.5,
+          "entropy": 40.5
+        },
+        {
+          "size": 604462909807314587353088,
+          "easy": 302231454903657293676544,
+          "point_probes": 268435456,
+          "point_work": 81129638414606645666992120397824,
+          "work_upper_bound": 81129662593123037959554676555776,
+          "conditional_log_size": 39.0,
+          "entropy": 40.0
+        },
+        {
+          "size": 302231454903657293676544,
+          "easy": 151115727451828646838272,
+          "point_probes": 536870912,
+          "point_work": 81129638414606537580601197723648,
+          "work_upper_bound": 81129650352749006275022958886912,
+          "conditional_log_size": 38.5,
+          "entropy": 39.5
+        },
+        {
+          "size": 151115727451828646838272,
+          "easy": 75557863725914323419136,
+          "point_probes": 1073741824,
+          "point_work": 81129638414606105235037238591488,
+          "work_upper_bound": 81129644308119475856272860905472,
+          "conditional_log_size": 38.0,
+          "entropy": 39.0
+        },
+        {
+          "size": 75557863725914323419136,
+          "easy": 37778931862957161709568,
+          "point_probes": 2147483648,
+          "point_work": 81129638414604375852780865191936,
+          "work_upper_bound": 81129641323582129300321255555072,
+          "conditional_log_size": 37.5,
+          "entropy": 38.5
+        },
+        {
+          "size": 37778931862957161709568,
+          "easy": 18889465931478580854784,
+          "point_probes": 4294967296,
+          "point_work": 81129638414597458323754297851904,
+          "work_upper_bound": 81129639850196869115808615235584,
+          "conditional_log_size": 37.0,
+          "entropy": 38.0
+        },
+        {
+          "size": 18889465931478580854784,
+          "easy": 9444732965739290427392,
+          "point_probes": 8589934592,
+          "point_work": 81129638414569788207645881008128,
+          "work_upper_bound": 81129639122924760637465597837312,
+          "conditional_log_size": 36.5,
+          "entropy": 37.5
+        },
+        {
+          "size": 9444732965739290427392,
+          "easy": 4722366482869645213696,
+          "point_probes": 17179869184,
+          "point_work": 81129638414459107743207918665728,
+          "work_upper_bound": 81129638763914227474324713897984,
+          "conditional_log_size": 36.0,
+          "entropy": 37.0
+        },
+        {
+          "size": 4722366482869645213696,
+          "easy": 2361183241434822606848,
+          "point_probes": 34359738368,
+          "point_work": 81129638414016385885447479361536,
+          "work_upper_bound": 81129638586382762507749988237312,
+          "conditional_log_size": 35.5,
+          "entropy": 36.5
+        },
+        {
+          "size": 2361183241434822606848,
+          "easy": 1180591620717411303424,
+          "point_probes": 68719476736,
+          "point_work": 81129638412245498454388542275584,
+          "work_upper_bound": 81129638497248095141231792750592,
+          "conditional_log_size": 35.0,
+          "entropy": 36.0
+        },
+        {
+          "size": 1180591620717411303424,
+          "easy": 590295810358705651712,
+          "point_probes": 137438953472,
+          "point_work": 81129638405161948730118434193408,
+          "work_upper_bound": 81129638447072951256103247675392,
+          "conditional_log_size": 34.5,
+          "entropy": 35.5
+        },
+        {
+          "size": 590295810358705651712,
+          "easy": 295147905179352825856,
+          "point_probes": 274877906944,
+          "point_work": 81129638376827749832969282387968,
+          "work_upper_bound": 81129638397488103176832282525696,
+          "conditional_log_size": 34.0,
+          "entropy": 35.0
+        },
+        {
+          "size": 295147905179352825856,
+          "easy": 147573952589676412928,
+          "point_probes": 549755813888,
+          "point_work": 81129638263490954244235236212736,
+          "work_upper_bound": 81129638273673556936089269174272,
+          "conditional_log_size": 33.5,
+          "entropy": 34.5
+        },
+        {
+          "size": 147573952589676412928,
+          "easy": 73786976294838206464,
+          "point_probes": 1099511627776,
+          "point_work": 81129637810143771889024173604864,
+          "work_upper_bound": 81129637815161286204505404211200,
+          "conditional_log_size": 33.0,
+          "entropy": 34.0
+        },
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 2199023255552,
+          "point_work": 81129635996755042467630167359488,
+          "work_upper_bound": 81129635999226906030570735665152,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 4398046511104,
+          "point_work": 81129628743200124780954630750208,
+          "work_upper_bound": 81129628744417609608344484446208,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 8796093022208,
+          "point_work": 81129599728980454032053461057536,
+          "work_upper_bound": 81129599729579972660295161085952,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 17592186044416,
+          "point_work": 81129483672101771032050735775744,
+          "work_upper_bound": 81129483672396917846514553847808,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 35184372088832,
+          "point_work": 81129019444587039023243741626368,
+          "work_upper_bound": 81129019444732304986577506926592,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 70368744177664,
+          "point_work": 81127162534528110970423578984448,
+          "work_upper_bound": 81127162534599587881584552837120,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 140737488355328,
+          "point_work": 81119734894292398723958556327936,
+          "work_upper_bound": 81119734894327554526337252196352,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 281474976710656,
+          "point_work": 81090024333349549667729721524224,
+          "work_upper_bound": 81090024333366827164750175010816,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 562949953421312,
+          "point_work": 80971182089578153302076893954048,
+          "work_upper_bound": 80971182089586624010026024435712,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 1125899906842624,
+          "point_work": 80495813114492567557990606962688,
+          "work_upper_bound": 80495813114496683848050023596032,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        },
+        {
+          "size": 72057594037927936,
+          "easy": 36028797018963968,
+          "point_probes": 2251799813685248,
+          "point_work": 78594337214150224018695505575936,
+          "work_upper_bound": 78594337214152153811135833833472,
+          "conditional_log_size": 27.5,
+          "entropy": 28.5
+        },
+        {
+          "size": 36028797018963968,
+          "easy": 18014398509481984,
+          "point_probes": 4503599627370496,
+          "point_work": 70988433612780848735615193186304,
+          "work_upper_bound": 70988433612781614347551846170624,
+          "conditional_log_size": 27.0,
+          "entropy": 28.0
+        }
+      ]
+    },
+    {
+      "t": 28,
+      "n": 19342813113834066795298816,
+      "core_size": 72057594037927936,
+      "core_optimum": 2596148429267413850294045183574015,
+      "global_optimum_upper_bound": 2596150054063711377130389864710143,
+      "algorithm_work_lower_bound": 38725880736572256119835547001683967,
+      "ratio_lower_bound": 14.916657331095044,
+      "stages": [
+        {
+          "size": 19342813113834066795298816,
+          "easy": 9671406556917033397649408,
+          "point_probes": 134217728,
+          "point_work": 1298074214633706898125424894672896,
+          "work_upper_bound": 1298075036703264236073252554801152,
+          "conditional_log_size": 41.5,
+          "entropy": 42.5
+        },
+        {
+          "size": 9671406556917033397649408,
+          "easy": 4835703278458516698824704,
+          "point_probes": 268435456,
+          "point_work": 1298074214633706871103827197558784,
+          "work_upper_bound": 1298074620832782261619207887126528,
+          "conditional_log_size": 41.0,
+          "entropy": 42.0
+        },
+        {
+          "size": 4835703278458516698824704,
+          "easy": 2417851639229258349412352,
+          "point_probes": 536870912,
+          "point_work": 1298074214633706763017436274884608,
+          "work_upper_bound": 1298074415315392819045835789565952,
+          "conditional_log_size": 40.5,
+          "entropy": 41.5
+        },
+        {
+          "size": 2417851639229258349412352,
+          "easy": 1208925819614629174706176,
+          "point_probes": 1073741824,
+          "point_work": 1298074214633706330671872315752448,
+          "work_upper_bound": 1298074313765623539071378742312960,
+          "conditional_log_size": 40.0,
+          "entropy": 41.0
+        },
+        {
+          "size": 1208925819614629174706176,
+          "easy": 604462909807314587353088,
+          "point_probes": 2147483648,
+          "point_work": 1298074214633704601289615942352896,
+          "work_upper_bound": 1298074263595200295681927866744832,
+          "conditional_log_size": 39.5,
+          "entropy": 40.5
+        },
+        {
+          "size": 604462909807314587353088,
+          "easy": 302231454903657293676544,
+          "point_probes": 4294967296,
+          "point_work": 1298074214633697683760589375012864,
+          "work_upper_bound": 1298074238812214076052837861687296,
+          "conditional_log_size": 39.0,
+          "entropy": 40.0
+        },
+        {
+          "size": 302231454903657293676544,
+          "easy": 151115727451828646838272,
+          "point_probes": 8589934592,
+          "point_work": 1298074214633670013644480958169088,
+          "work_upper_bound": 1298074226571812482338282633428992,
+          "conditional_log_size": 38.5,
+          "entropy": 39.5
+        },
+        {
+          "size": 151115727451828646838272,
+          "easy": 75557863725914323419136,
+          "point_probes": 17179869184,
+          "point_work": 1298074214633559333180042995826688,
+          "work_upper_bound": 1298074220527072703800054552461312,
+          "conditional_log_size": 38.0,
+          "entropy": 39.0
+        },
+        {
+          "size": 75557863725914323419136,
+          "easy": 37778931862957161709568,
+          "point_probes": 34359738368,
+          "point_work": 1298074214633116611322282556522496,
+          "work_upper_bound": 1298074217542094364767407027781632,
+          "conditional_log_size": 37.5,
+          "entropy": 38.5
+        },
+        {
+          "size": 37778931862957161709568,
+          "easy": 18889465931478580854784,
+          "point_probes": 68719476736,
+          "point_work": 1298074214631345723891223619436544,
+          "work_upper_bound": 1298074216066945134678510523121664,
+          "conditional_log_size": 37.0,
+          "entropy": 38.0
+        },
+        {
+          "size": 18889465931478580854784,
+          "easy": 9444732965739290427392,
+          "point_probes": 137438953472,
+          "point_work": 1298074214624262174166953511354368,
+          "work_upper_bound": 1298074215332617146587367249805312,
+          "conditional_log_size": 36.5,
+          "entropy": 37.5
+        },
+        {
+          "size": 9444732965739290427392,
+          "easy": 4722366482869645213696,
+          "point_probes": 274877906944,
+          "point_work": 1298074214595927975269804359548928,
+          "work_upper_bound": 1298074214945383094982366896062464,
+          "conditional_log_size": 36.0,
+          "entropy": 37.0
+        },
+        {
+          "size": 4722366482869645213696,
+          "easy": 2361183241434822606848,
+          "point_probes": 549755813888,
+          "point_work": 1298074214482591179681070313373696,
+          "work_upper_bound": 1298074214654957556266779700887552,
+          "conditional_log_size": 35.5,
+          "entropy": 36.5
+        },
+        {
+          "size": 2361183241434822606848,
+          "easy": 1180591620717411303424,
+          "point_probes": 1099511627776,
+          "point_work": 1298074214029243997325859250765824,
+          "work_upper_bound": 1298074214114246593940547050668032,
+          "conditional_log_size": 35.0,
+          "entropy": 36.0
+        },
+        {
+          "size": 1180591620717411303424,
+          "easy": 590295810358705651712,
+          "point_probes": 2199023255552,
+          "point_work": 1298074212215855267904465244520448,
+          "work_upper_bound": 1298074212257766270288200741158912,
+          "conditional_log_size": 34.5,
+          "entropy": 35.5
+        },
+        {
+          "size": 590295810358705651712,
+          "easy": 295147905179352825856,
+          "point_probes": 4398046511104,
+          "point_work": 1298074204962300350217789707911168,
+          "work_upper_bound": 1298074204982960703281277242966016,
+          "conditional_log_size": 34.0,
+          "entropy": 35.0
+        },
+        {
+          "size": 295147905179352825856,
+          "easy": 147573952589676412928,
+          "point_probes": 8796093022208,
+          "point_work": 1298074175948080679468888538218496,
+          "work_upper_bound": 1298074175958263281608237978222592,
+          "conditional_log_size": 33.5,
+          "entropy": 34.5
+        },
+        {
+          "size": 147573952589676412928,
+          "easy": 73786976294838206464,
+          "point_probes": 17592186044416,
+          "point_work": 1298074059891201996468885812936704,
+          "work_upper_bound": 1298074059896219509695850532044800,
+          "conditional_log_size": 33.0,
+          "entropy": 34.0
+        },
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 35184372088832,
+          "point_work": 1298073595663687264460078818787328,
+          "work_upper_bound": 1298073595666159125878971712929792,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 70368744177664,
+          "point_work": 1298071738753628336407258656145408,
+          "work_upper_bound": 1298071738754845817012523859181568,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 140737488355328,
+          "point_work": 1298064311113392624160793633488896,
+          "work_upper_bound": 1298064311113992134476727427530752,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 281474976710656,
+          "point_work": 1298034600552449775104564798685184,
+          "work_upper_bound": 1298034600552744905558295595450368,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 562949953421312,
+          "point_work": 1297915758308678378738911971115008,
+          "work_upper_bound": 1297915758308823612508545275133952,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 1125899906842624,
+          "point_work": 1297440389333592792994825684123648,
+          "work_upper_bound": 1297440389333664206574116898078720,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 2251799813685248,
+          "point_work": 1295538913433250449455530582736896,
+          "work_upper_bound": 1295538913433285480705232084140032,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 4503599627370496,
+          "point_work": 1287933009831881074172450270347264,
+          "work_upper_bound": 1287933009831898106786240985563136,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        },
+        {
+          "size": 288230376151711744,
+          "easy": 144115188075855872,
+          "point_probes": 9007199254740992,
+          "point_work": 1257509395426403570788329207103488,
+          "work_upper_bound": 1257509395426411560174068162363392,
+          "conditional_log_size": 28.5,
+          "entropy": 29.5
+        },
+        {
+          "size": 144115188075855872,
+          "easy": 72057594037927936,
+          "point_probes": 18014398509481984,
+          "point_work": 1135814937804493552748245326757888,
+          "work_upper_bound": 1135814937804496723282382995587072,
+          "conditional_log_size": 28.0,
+          "entropy": 29.0
+        }
+      ]
+    },
+    {
+      "t": 29,
+      "n": 154742504910672534362390528,
+      "core_size": 288230376151711744,
+      "core_optimum": 41538374868278621172359158709616639,
+      "global_optimum_upper_bound": 41538388330876531683507831438311423,
+      "algorithm_work_lower_bound": 640383279219295407746943594923032575,
+      "ratio_lower_bound": 15.416661670122679,
+      "stages": [
+        {
+          "size": 154742504910672534362390528,
+          "easy": 77371252455336267181195264,
+          "point_probes": 268435456,
+          "point_work": 20769187434139310478093188432134144,
+          "work_upper_bound": 20769194242809526547684677291868160,
+          "conditional_log_size": 43.0,
+          "entropy": 44.0
+        },
+        {
+          "size": 77371252455336267181195264,
+          "easy": 38685626227668133590597632,
+          "point_probes": 536870912,
+          "point_work": 20769187434139310370006797509459968,
+          "work_upper_bound": 20769190799788792177134374257426432,
+          "conditional_log_size": 42.5,
+          "entropy": 43.5
+        },
+        {
+          "size": 38685626227668133590597632,
+          "easy": 19342813113834066795298816,
+          "point_probes": 1073741824,
+          "point_work": 20769187434139309937661233550327808,
+          "work_upper_bound": 20769189097621237727390887751712768,
+          "conditional_log_size": 42.0,
+          "entropy": 43.0
+        },
+        {
+          "size": 19342813113834066795298816,
+          "easy": 9671406556917033397649408,
+          "point_probes": 2147483648,
+          "point_work": 20769187434139308208278977176928256,
+          "work_upper_bound": 20769188256208865546226637735985152,
+          "conditional_log_size": 41.5,
+          "entropy": 42.5
+        },
+        {
+          "size": 9671406556917033397649408,
+          "easy": 4835703278458516698824704,
+          "point_probes": 4294967296,
+          "point_work": 20769187434139301290749950609588224,
+          "work_upper_bound": 20769187840338376681265001123545088,
+          "conditional_log_size": 41.0,
+          "entropy": 42.0
+        },
+        {
+          "size": 4835703278458516698824704,
+          "easy": 2417851639229258349412352,
+          "point_probes": 8589934592,
+          "point_work": 20769187434139273620633842192744448,
+          "work_upper_bound": 20769187634820959676661589409267712,
+          "conditional_log_size": 40.5,
+          "entropy": 41.5
+        },
+        {
+          "size": 2417851639229258349412352,
+          "easy": 1208925819614629174706176,
+          "point_probes": 17179869184,
+          "point_work": 20769187434139162940169404230402048,
+          "work_upper_bound": 20769187533271080148567622166773760,
+          "conditional_log_size": 40.0,
+          "entropy": 41.0
+        },
+        {
+          "size": 1208925819614629174706176,
+          "easy": 604462909807314587353088,
+          "point_probes": 34359738368,
+          "point_work": 20769187434138720218311643791097856,
+          "work_upper_bound": 20769187483100215912701410947366912,
+          "conditional_log_size": 39.5,
+          "entropy": 40.5
+        },
+        {
+          "size": 604462909807314587353088,
+          "easy": 302231454903657293676544,
+          "point_probes": 68719476736,
+          "point_work": 20769187434136949330880584854011904,
+          "work_upper_bound": 20769187458315465723167808228950016,
+          "conditional_log_size": 39.0,
+          "entropy": 40.0
+        },
+        {
+          "size": 302231454903657293676544,
+          "easy": 151115727451828646838272,
+          "point_probes": 137438953472,
+          "point_work": 20769187434129865781156314745929728,
+          "work_upper_bound": 20769187446068008249840195046735872,
+          "conditional_log_size": 38.5,
+          "entropy": 39.5
+        },
+        {
+          "size": 151115727451828646838272,
+          "easy": 75557863725914323419136,
+          "point_probes": 274877906944,
+          "point_work": 20769187434101531582259165594124288,
+          "work_upper_bound": 20769187439995044952859592099889152,
+          "conditional_log_size": 38.0,
+          "entropy": 39.0
+        },
+        {
+          "size": 75557863725914323419136,
+          "easy": 37778931862957161709568,
+          "point_probes": 549755813888,
+          "point_work": 20769187433988194786670431547949056,
+          "work_upper_bound": 20769187436897172540076901313544192,
+          "conditional_log_size": 37.5,
+          "entropy": 38.5
+        },
+        {
+          "size": 37778931862957161709568,
+          "easy": 18889465931478580854784,
+          "point_probes": 1099511627776,
+          "point_work": 20769187433534847604315220485341184,
+          "work_upper_bound": 20769187434970447015026228769849344,
+          "conditional_log_size": 37.0,
+          "entropy": 38.0
+        },
+        {
+          "size": 18889465931478580854784,
+          "easy": 9444732965739290427392,
+          "point_probes": 2199023255552,
+          "point_work": 20769187431721458874893826479095808,
+          "work_upper_bound": 20769187432429813847163744563494912,
+          "conditional_log_size": 36.5,
+          "entropy": 37.5
+        },
+        {
+          "size": 9444732965739290427392,
+          "easy": 4722366482869645213696,
+          "point_probes": 4398046511104,
+          "point_work": 20769187424467903957207150942486528,
+          "work_upper_bound": 20769187424817359076622845339500544,
+          "conditional_log_size": 36.0,
+          "entropy": 37.0
+        },
+        {
+          "size": 4722366482869645213696,
+          "easy": 2361183241434822606848,
+          "point_probes": 8796093022208,
+          "point_work": 20769187395453684286458249772793856,
+          "work_upper_bound": 20769187395626050662458469218516992,
+          "conditional_log_size": 35.5,
+          "entropy": 36.5
+        },
+        {
+          "size": 2361183241434822606848,
+          "easy": 1180591620717411303424,
+          "point_probes": 17592186044416,
+          "point_work": 20769187279396805603458247047512064,
+          "work_upper_bound": 20769187279481808198918447638249472,
+          "conditional_log_size": 35.0,
+          "entropy": 36.0
+        },
+        {
+          "size": 1180591620717411303424,
+          "easy": 590295810358705651712,
+          "point_probes": 35184372088832,
+          "point_work": 20769186815169290871449440053362688,
+          "work_upper_bound": 20769186815211201871557186480504832,
+          "conditional_log_size": 34.5,
+          "entropy": 35.5
+        },
+        {
+          "size": 590295810358705651712,
+          "easy": 295147905179352825856,
+          "point_probes": 70368744177664,
+          "point_work": 20769184958259231943396619890720768,
+          "work_upper_bound": 20769184958279892291974099984449536,
+          "conditional_log_size": 34.0,
+          "entropy": 35.0
+        },
+        {
+          "size": 295147905179352825856,
+          "easy": 147573952589676412928,
+          "point_probes": 140737488355328,
+          "point_work": 20769177530618996231150154868064256,
+          "work_upper_bound": 20769177530629178824449430820749312,
+          "conditional_log_size": 33.5,
+          "entropy": 34.5
+        },
+        {
+          "size": 147573952589676412928,
+          "easy": 73786976294838206464,
+          "point_probes": 281474976710656,
+          "point_work": 20769147820058053382093926033260544,
+          "work_upper_bound": 20769147820063070877904626568396800,
+          "conditional_log_size": 33.0,
+          "entropy": 34.0
+        },
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 562949953421312,
+          "point_work": 20769028977814281985728273205690368,
+          "work_upper_bound": 20769028977816753812842403313221632,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 1125899906842624,
+          "point_work": 20768553608839196399984186918699008,
+          "work_upper_bound": 20768553608840413813035457711177728,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 2251799813685248,
+          "point_work": 20766652132938854056444891817312256,
+          "work_upper_bound": 20766652132939453433763899115569152,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 4503599627370496,
+          "point_work": 20759046229337484681161811504922624,
+          "work_upper_bound": 20759046229337779549843813960777728,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 9007199254740992,
+          "point_work": 20728622614932007177777690441678848,
+          "work_upper_bound": 20728622614932151896448116365197312,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 18014398509481984,
+          "point_work": 20606928157310097159737606561333248,
+          "work_upper_bound": 20606928157310167560006981616926720,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        },
+        {
+          "size": 1152921504606846976,
+          "easy": 576460752303423488,
+          "point_probes": 36028797018963968,
+          "point_work": 20120150326822457078570071785209856,
+          "work_upper_bound": 20120150326822490116976938175168512,
+          "conditional_log_size": 29.5,
+          "entropy": 30.5
+        },
+        {
+          "size": 576460752303423488,
+          "easy": 288230376151711744,
+          "point_probes": 72057594037927936,
+          "point_work": 18173039004871896735885534171234304,
+          "work_upper_bound": 18173039004871909850367649074118656,
+          "conditional_log_size": 29.0,
+          "entropy": 30.0
+        }
+      ]
+    },
+    {
+      "t": 30,
+      "n": 1237940039285380274899124224,
+      "core_size": 1152921504606846976,
+      "core_optimum": 664613997892457937028364282443595775,
+      "global_optimum_upper_bound": 664614109307061403537298746953957375,
+      "algorithm_work_lower_bound": 10578439466454955489438860712276393983,
+      "ratio_lower_bound": 15.91666399842794,
+      "stages": [
+        {
+          "size": 1237940039285380274899124224,
+          "easy": 618970019642690137449562112,
+          "point_probes": 536870912,
+          "point_work": 332306998946228968081836577262665728,
+          "work_upper_bound": 332307055272500755566639037391306752,
+          "conditional_log_size": 44.5,
+          "entropy": 45.5
+        },
+        {
+          "size": 618970019642690137449562112,
+          "easy": 309485009821345068724781056,
+          "point_probes": 1073741824,
+          "point_work": 332306998946228967649491013303533568,
+          "work_upper_bound": 332307026799879851570547104044548096,
+          "conditional_log_size": 44.0,
+          "entropy": 45.0
+        },
+        {
+          "size": 309485009821345068724781056,
+          "easy": 154742504910672534362390528,
+          "point_probes": 2147483648,
+          "point_work": 332306998946228965920108756930134016,
+          "work_upper_bound": 332307012718311902969964128351813632,
+          "conditional_log_size": 43.5,
+          "entropy": 44.5
+        },
+        {
+          "size": 154742504910672534362390528,
+          "easy": 77371252455336267181195264,
+          "point_probes": 4294967296,
+          "point_work": 332306998946228959002579730362793984,
+          "work_upper_bound": 332307005754899175072170872940789760,
+          "conditional_log_size": 43.0,
+          "entropy": 44.0
+        },
+        {
+          "size": 77371252455336267181195264,
+          "easy": 38685626227668133590597632,
+          "point_probes": 8589934592,
+          "point_work": 332306998946228931332463621945950208,
+          "work_upper_bound": 332307002311878413139590514183503872,
+          "conditional_log_size": 42.5,
+          "entropy": 43.5
+        },
+        {
+          "size": 38685626227668133590597632,
+          "easy": 19342813113834066795298816,
+          "point_probes": 17179869184,
+          "point_work": 332306998946228820651999183983607808,
+          "work_upper_bound": 332307000609710748441727485270294528,
+          "conditional_log_size": 42.0,
+          "entropy": 43.0
+        },
+        {
+          "size": 19342813113834066795298816,
+          "easy": 9671406556917033397649408,
+          "point_probes": 34359738368,
+          "point_work": 332306998946228377930141423544303616,
+          "work_upper_bound": 332306999768297935268086410486218752,
+          "conditional_log_size": 41.5,
+          "entropy": 42.5
+        },
+        {
+          "size": 9671406556917033397649408,
+          "easy": 4835703278458516698824704,
+          "point_probes": 68719476736,
+          "point_work": 332306998946226607042710364607217664,
+          "work_upper_bound": 332306999352425682433220132311400448,
+          "conditional_log_size": 41.0,
+          "entropy": 42.0
+        },
+        {
+          "size": 4835703278458516698824704,
+          "easy": 2417851639229258349412352,
+          "point_probes": 137438953472,
+          "point_work": 332306998946219523492986094499135488,
+          "work_upper_bound": 332306999146901209549003404945129472,
+          "conditional_log_size": 40.5,
+          "entropy": 41.5
+        },
+        {
+          "size": 2417851639229258349412352,
+          "easy": 1208925819614629174706176,
+          "point_probes": 274877906944,
+          "point_work": 332306998946191189294088945347330048,
+          "work_upper_bound": 332306999045323106502466547440680960,
+          "conditional_log_size": 40.0,
+          "entropy": 41.0
+        },
+        {
+          "size": 1208925819614629174706176,
+          "easy": 604462909807314587353088,
+          "point_probes": 549755813888,
+          "point_work": 332306998946077852498500211301154816,
+          "work_upper_bound": 332306998995039348192849262167457792,
+          "conditional_log_size": 39.5,
+          "entropy": 40.5
+        },
+        {
+          "size": 604462909807314587353088,
+          "easy": 302231454903657293676544,
+          "point_probes": 1099511627776,
+          "point_work": 332306998945624505316145000238546944,
+          "work_upper_bound": 332306998969803021708351821825703936,
+          "conditional_log_size": 39.0,
+          "entropy": 40.0
+        },
+        {
+          "size": 302231454903657293676544,
+          "easy": 151115727451828646838272,
+          "point_probes": 2199023255552,
+          "point_work": 332306998943811116586723606232301568,
+          "work_upper_bound": 332306998955749259055248744541847552,
+          "conditional_log_size": 38.5,
+          "entropy": 39.5
+        },
+        {
+          "size": 151115727451828646838272,
+          "easy": 75557863725914323419136,
+          "point_probes": 4398046511104,
+          "point_work": 332306998936557561669036930695692288,
+          "work_upper_bound": 332306998942451075039323996387540992,
+          "conditional_log_size": 38.0,
+          "entropy": 39.0
+        },
+        {
+          "size": 75557863725914323419136,
+          "easy": 37778931862957161709568,
+          "point_probes": 8796093022208,
+          "point_work": 332306998907543341998288029525999616,
+          "work_upper_bound": 332306998910452319751076024000970752,
+          "conditional_log_size": 37.5,
+          "entropy": 38.5
+        },
+        {
+          "size": 37778931862957161709568,
+          "easy": 18889465931478580854784,
+          "point_probes": 17592186044416,
+          "point_work": 332306998791486463315288026800717824,
+          "work_upper_bound": 332306998792922062724778577178394624,
+          "conditional_log_size": 37.0,
+          "entropy": 38.0
+        },
+        {
+          "size": 18889465931478580854784,
+          "easy": 9444732965739290427392,
+          "point_probes": 35184372088832,
+          "point_work": 332306998327258948583279219806568448,
+          "work_upper_bound": 332306998327967303553141207426138112,
+          "conditional_log_size": 36.5,
+          "entropy": 37.5
+        },
+        {
+          "size": 9444732965739290427392,
+          "easy": 4722366482869645213696,
+          "point_probes": 70368744177664,
+          "point_work": 332306996470348889655226399643926528,
+          "work_upper_bound": 332306996470698344769892203808948224,
+          "conditional_log_size": 36.0,
+          "entropy": 37.0
+        },
+        {
+          "size": 4722366482869645213696,
+          "easy": 2361183241434822606848,
+          "point_probes": 140737488355328,
+          "point_work": 332306989042708653942979934621270016,
+          "work_upper_bound": 332306989042881020309612314998341632,
+          "conditional_log_size": 35.5,
+          "entropy": 36.5
+        },
+        {
+          "size": 2361183241434822606848,
+          "easy": 1180591620717411303424,
+          "point_probes": 281474976710656,
+          "point_work": 332306959332147711093923705786466304,
+          "work_upper_bound": 332306959332232713670912111030566912,
+          "conditional_log_size": 35.0,
+          "entropy": 36.0
+        },
+        {
+          "size": 1180591620717411303424,
+          "easy": 590295810358705651712,
+          "point_probes": 562949953421312,
+          "point_work": 332306840489903939697558052958896128,
+          "work_upper_bound": 332306840489945850661249974274097152,
+          "conditional_log_size": 34.5,
+          "entropy": 35.5
+        },
+        {
+          "size": 590295810358705651712,
+          "easy": 295147905179352825856,
+          "point_probes": 1125899906842624,
+          "point_work": 332306365120928854111813966671904768,
+          "work_upper_bound": 332306365120949514388615327704416256,
+          "conditional_log_size": 34.0,
+          "entropy": 35.0
+        },
+        {
+          "size": 295147905179352825856,
+          "easy": 147573952589676412928,
+          "point_probes": 2251799813685248,
+          "point_work": 332304463645028511768274671570518016,
+          "work_upper_bound": 332304463645038694220132771726098432,
+          "conditional_log_size": 33.5,
+          "entropy": 34.5
+        },
+        {
+          "size": 147573952589676412928,
+          "easy": 73786976294838206464,
+          "point_probes": 4503599627370496,
+          "point_work": 332296857741427142392991591258128384,
+          "work_upper_bound": 332296857741432159610142064849715200,
+          "conditional_log_size": 33.0,
+          "entropy": 34.0
+        },
+        {
+          "size": 73786976294838206464,
+          "easy": 36893488147419103232,
+          "point_probes": 9007199254740992,
+          "point_work": 332266434127021664889607470194884608,
+          "work_upper_bound": 332266434127024136167845395716636672,
+          "conditional_log_size": 32.5,
+          "entropy": 33.5
+        },
+        {
+          "size": 36893488147419103232,
+          "easy": 18446744073709551616,
+          "point_probes": 18014398509481984,
+          "point_work": 332144739669399754871567386314539008,
+          "work_upper_bound": 332144739669400971203754746538098688,
+          "conditional_log_size": 32.0,
+          "entropy": 33.0
+        },
+        {
+          "size": 18446744073709551616,
+          "easy": 9223372036854775808,
+          "point_probes": 36028797018963968,
+          "point_work": 331657961838912114790399851538415616,
+          "work_upper_bound": 331657961838912712039768034904113152,
+          "conditional_log_size": 31.5,
+          "entropy": 32.5
+        },
+        {
+          "size": 9223372036854775808,
+          "easy": 4611686018427387904,
+          "point_probes": 72057594037927936,
+          "point_work": 329710850516961554447715313924440064,
+          "work_upper_bound": 329710850516961845128049662925733888,
+          "conditional_log_size": 31.0,
+          "entropy": 32.0
+        },
+        {
+          "size": 4611686018427387904,
+          "easy": 2305843009213693952,
+          "point_probes": 144115188075855872,
+          "point_work": 321922405229159313040948366449573888,
+          "work_upper_bound": 321922405229159449518031474285084672,
+          "conditional_log_size": 30.5,
+          "entropy": 31.5
+        },
+        {
+          "size": 2305843009213693952,
+          "easy": 1152921504606846976,
+          "point_probes": 288230376151711744,
+          "point_work": 290768624077950347341822982512181248,
+          "work_upper_bound": 290768624077950401529133699033989120,
+          "conditional_log_size": 30.0,
+          "entropy": 31.0
+        }
+      ]
+    }
+  ]
+}

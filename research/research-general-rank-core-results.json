@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "enumeration_is_validation_only": true,
+  "exhaustive_identifying_instances_n2_through_n4": 101,
+  "random_identifying_instances_n5_through_n9": 80,
+  "cores": 17263,
+  "promised_rank_guesses": 387,
+  "all_minimizers_checked": 387,
+  "structured_nontrivial_core": {
+    "n": 32,
+    "selected_core_size": 24,
+    "selected_core_rank": 6,
+    "discarded_outsiders": 8,
+    "exact_generated_spans_checked": 1786,
+    "core_code_height": 5,
+    "core_code_raw_work": 112,
+    "lifted_raw_work": 112,
+    "identified": 18
+  },
+  "singleton_augmented_coordinate_obstruction": [
+    {
+      "n": 2,
+      "coordinate_code_mean": 1,
+      "minimum_three_quarter_literal_rank": 2
+    },
+    {
+      "n": 4,
+      "coordinate_code_mean": 2,
+      "minimum_three_quarter_literal_rank": 3
+    },
+    {
+      "n": 8,
+      "coordinate_code_mean": 3,
+      "minimum_three_quarter_literal_rank": 6
+    },
+    {
+      "n": 16,
+      "coordinate_code_mean": 4,
+      "minimum_three_quarter_literal_rank": 12
+    }
+  ]
+}

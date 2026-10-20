@@ -1,0 +1,35 @@
+\begin{algorithm}[H]
+\caption{\GradeDP: cumulative-grade interval feasibility or weighted delay}
+\label{alg:grade-dp}
+\KwIn{Ordinary intervals; $r$ capacities $b_0<\cdots<b_{r-1}$;
+feasibility deadlines, or weights, delay levels $d_j=b_j-1$,
+and zero-pattern mass $p_0$.}
+\KwOut{A feasible graded selection, or a minimum surrogate-delay selection.}
+Initialize the state $(c_0,\ldots,c_{r-1};s_0,\ldots,s_{r-1})$ to all zeros,
+with cost zero; all other states are unreachable\;
+\For{$q=1,\ldots,M$}{
+  From each reachable state, try skipping $q$ or selecting it at grade $i$\;
+  A grade-$i$ selection increments $c_j$ and sets $s_j=q$ for all $j\ge i$\;
+  Reject any transition with $c_j>b_j$\;
+  \ForEach{interval $I=[l,q]$ ending here}{
+    \eIf{mode is feasibility}{
+      Reject if $s_j<l$ for its deadline grade $j$\;
+    }{
+      Find the least $j$ with $s_j\ge l$; reject if none\;
+      Add $2w(I)d_j$ to this transition's cost\;
+    }
+  }
+  Keep one feasible witness, or the minimum cost, for each resulting state\;
+}
+In weighted mode add $2p_0c_{r-1}$ to each final state's cost\;
+Reconstruct a winning selection and order it by grade\;
+\KwRet the selection and schedule, or infeasible\;
+\end{algorithm}
+
+For circular demands enumerate the forced first candidate, remove
+its demands, cut there, and reduce \emph{every} capacity by one.
+Residual expected costs still use the original delay levels and add
+$2p_0(1+c_{r-1})$ at completion. In maximum-depth mode append a final
+grade with the total-count cap if it is not already a capacity.
+Section~\ref{sec:quasipolynomial} proves the state invariant and
+the $(M+1)^{O(r)}(B+1)^{O(r)}$ bound.

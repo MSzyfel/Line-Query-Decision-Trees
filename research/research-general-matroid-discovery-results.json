@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "affine_discovery_examples": [
+    {
+      "q": 2,
+      "dimension": 2,
+      "n": 4,
+      "physical_tests": 10,
+      "cardinality_families_tried": 3,
+      "discovered_rank": 3,
+      "positive_budget": 2,
+      "coding_lower_raw": 8,
+      "greedy_upper_raw": 8,
+      "certified_greedy_ratio": "1",
+      "singleton_noise_makes_literal_rank": 4
+    },
+    {
+      "q": 2,
+      "dimension": 3,
+      "n": 8,
+      "physical_tests": 22,
+      "cardinality_families_tried": 3,
+      "discovered_rank": 4,
+      "positive_budget": 3,
+      "coding_lower_raw": 24,
+      "greedy_upper_raw": 24,
+      "certified_greedy_ratio": "1",
+      "singleton_noise_makes_literal_rank": 8
+    },
+    {
+      "q": 3,
+      "dimension": 2,
+      "n": 9,
+      "physical_tests": 21,
+      "cardinality_families_tried": 4,
+      "discovered_rank": 3,
+      "positive_budget": 2,
+      "coding_lower_raw": 30,
+      "greedy_upper_raw": 30,
+      "certified_greedy_ratio": "1",
+      "singleton_noise_makes_literal_rank": 9
+    },
+    {
+      "q": 3,
+      "dimension": 3,
+      "n": 27,
+      "physical_tests": 66,
+      "cardinality_families_tried": 4,
+      "discovered_rank": 4,
+      "positive_budget": 3,
+      "coding_lower_raw": 132,
+      "greedy_upper_raw": 135,
+      "certified_greedy_ratio": "45/44",
+      "singleton_noise_makes_literal_rank": 27
+    },
+    {
+      "q": 5,
+      "dimension": 2,
+      "n": 25,
+      "physical_tests": 55,
+      "cardinality_families_tried": 4,
+      "discovered_rank": 3,
+      "positive_budget": 2,
+      "coding_lower_raw": 136,
+      "greedy_upper_raw": 140,
+      "certified_greedy_ratio": "35/34",
+      "singleton_noise_makes_literal_rank": 25
+    }
+  ],
+  "closure_idempotence_checks": 984,
+  "actual_subset_positive_rank_drop_checks": 21241,
+  "rank_coding_Bellman_checks": 21241,
+  "negative_Bellman_drops_retained": 0,
+  "accepted_small_hyperplane_families": 5,
+  "small_closure_exchange_checks": 63,
+  "constant_response_extension_examples": [
+    {
+      "responses": 3,
+      "dimension": 1,
+      "n": 3,
+      "discovered_rank": 2,
+      "coding_lower_and_exact_OPT": 3
+    },
+    {
+      "responses": 3,
+      "dimension": 2,
+      "n": 9,
+      "discovered_rank": 3,
+      "coding_lower_and_exact_OPT": 18
+    },
+    {
+      "responses": 3,
+      "dimension": 3,
+      "n": 27,
+      "discovered_rank": 4,
+      "coding_lower_and_exact_OPT": 81
+    }
+  ],
+  "multiresponse_rank_and_Bellman_checks": 3264,
+  "binary_convolution_matches_existing_recurrence": true,
+  "two_nonflat_response_decoy_rejected": true,
+  "nonflat_decoy_rejects_strong_affine_certificate": true,
+  "negative_drop_witness": {
+    "matroid": "U_(2,8) direct-sum U_(1,1)",
+    "root_potential": 30,
+    "line_child_potential": 35,
+    "other_child_potential": 0,
+    "signed_query_drop": -5
+  },
+  "discovery_has_no_exponential_oracle": true,
+  "exhaustive_subsets_are_validation_only": true,
+  "no_unrestricted_approximation_claim": true
+}

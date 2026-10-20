@@ -1,0 +1,197 @@
+{
+  "bellman_exhaustive_cases": 24,
+  "maximum_small_search_states": 75,
+  "race_pointwise_path_checks": 450,
+  "balance_menu_rectangle_checks": 945,
+  "equality_potential_checks": 945,
+  "finite_fixtures": [
+    {
+      "n": 32,
+      "M": 4,
+      "L": 3,
+      "width": 1,
+      "depth": 5,
+      "raw_cost": 168,
+      "states": 47,
+      "lower": "3"
+    },
+    {
+      "n": 32,
+      "M": 4,
+      "L": 3,
+      "width": 2,
+      "depth": 5,
+      "raw_cost": 168,
+      "states": 177,
+      "lower": "2"
+    },
+    {
+      "n": 135,
+      "M": 5,
+      "L": 3,
+      "width": 1,
+      "depth": 5,
+      "raw_cost": 1053,
+      "states": 61,
+      "lower": "5"
+    },
+    {
+      "n": 135,
+      "M": 5,
+      "L": 3,
+      "width": 2,
+      "depth": 5,
+      "raw_cost": 1053,
+      "states": 483,
+      "lower": "10/3"
+    },
+    {
+      "n": 96,
+      "M": 6,
+      "L": 2,
+      "width": 1,
+      "depth": 5,
+      "raw_cost": 752,
+      "states": 51,
+      "lower": "9/2"
+    },
+    {
+      "n": 96,
+      "M": 6,
+      "L": 2,
+      "width": 2,
+      "depth": 5,
+      "raw_cost": 752,
+      "states": 346,
+      "lower": "9/4"
+    }
+  ],
+  "positive_banded_menu": [
+    {
+      "n": 24,
+      "M": 6,
+      "L": 1,
+      "selector_state_checks": 5,
+      "greedy_raw_cost": 134,
+      "witness_raw_cost": 128,
+      "upper": "16/3",
+      "search_depth": 10,
+      "search_states": 118,
+      "search_raw_cost": 128
+    },
+    {
+      "n": 96,
+      "M": 6,
+      "L": 2,
+      "selector_state_checks": 5,
+      "greedy_raw_cost": 752,
+      "witness_raw_cost": 704,
+      "upper": "22/3"
+    },
+    {
+      "n": 288,
+      "M": 8,
+      "L": 2,
+      "selector_state_checks": 7,
+      "greedy_raw_cost": 3180,
+      "witness_raw_cost": 2796,
+      "upper": "83/8"
+    },
+    {
+      "n": 640,
+      "M": 10,
+      "L": 2,
+      "selector_state_checks": 9,
+      "greedy_raw_cost": 9056,
+      "witness_raw_cost": 7296,
+      "upper": "57/5"
+    }
+  ],
+  "deterministic_root_rare_band": [
+    {
+      "n": 96,
+      "M": 6,
+      "L": 2,
+      "selectors": 1,
+      "raw_cost": 704,
+      "upper": "22/3",
+      "node_types": {
+        "selector": 5,
+        "gate": 90
+      }
+    },
+    {
+      "n": 576,
+      "M": 6,
+      "L": 2,
+      "selectors": 2,
+      "raw_cost": 6144,
+      "upper": "32/3",
+      "node_types": {
+        "selector": 35,
+        "gate": 540
+      }
+    },
+    {
+      "n": 864,
+      "M": 6,
+      "L": 1,
+      "selectors": 3,
+      "raw_cost": 10368,
+      "upper": "12",
+      "node_types": {
+        "selector": 215,
+        "gate": 648
+      }
+    },
+    {
+      "n": 384,
+      "M": 8,
+      "L": 1,
+      "selectors": 2,
+      "raw_cost": 4384,
+      "upper": "47/4",
+      "node_types": {
+        "selector": 63,
+        "gate": 320
+      }
+    }
+  ],
+  "symbolic_scaling": [
+    {
+      "M": 64,
+      "L": 10,
+      "width": 5,
+      "log2_n": 65.54196310386875,
+      "proven_cost_ratio_lower": 2.0425420597420008
+    },
+    {
+      "M": 256,
+      "L": 32,
+      "width": 16,
+      "log2_n": 263.6379099767093,
+      "proven_cost_ratio_lower": 5.6370743580958464
+    },
+    {
+      "M": 1024,
+      "L": 102,
+      "width": 51,
+      "log2_n": 1029.7123070556372,
+      "proven_cost_ratio_lower": 17.35593218174636
+    },
+    {
+      "M": 4096,
+      "L": 341,
+      "width": 170,
+      "log2_n": 4103.759726974983,
+      "proven_cost_ratio_lower": 57.3520026039007
+    },
+    {
+      "M": 65536,
+      "L": 4096,
+      "width": 2048,
+      "log2_n": 65551.81966036811,
+      "proven_cost_ratio_lower": 682.9861041880619
+    }
+  ]
+}

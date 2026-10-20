@@ -1,0 +1,11 @@
+{
+  "status": "bounded audit only; no LP optimizer or unrestricted approximation",
+  "downward_closed_instances": 56,
+  "template_prefix_columns_checked": 144,
+  "productive_compiler_calls": 52,
+  "exact_profit_subset_values": 3887,
+  "target_families": [
+    "fixed cardinality cap",
+    "forbidden-pair independent sets"
+  ]
+}

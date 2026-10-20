@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "coordinate_product_examples": [
+    {
+      "q": 2,
+      "dimension": 2,
+      "n": 4,
+      "fiber_resources": 4,
+      "potential_and_exact_OPT": 8
+    },
+    {
+      "q": 2,
+      "dimension": 3,
+      "n": 8,
+      "fiber_resources": 12,
+      "potential_and_exact_OPT": 24
+    },
+    {
+      "q": 3,
+      "dimension": 2,
+      "n": 9,
+      "fiber_resources": 6,
+      "potential_and_exact_OPT": 30
+    },
+    {
+      "q": 3,
+      "dimension": 3,
+      "n": 27,
+      "fiber_resources": 27,
+      "potential_and_exact_OPT": 135
+    }
+  ],
+  "all_subset_Bellman_checks": 5392,
+  "actual_stage_and_independent_gain_DP_checks": 36,
+  "sharpened_global_contraction_checks": 18,
+  "affine_with_singleton_noise_lower": 30,
+  "near_pencil_signed_query_drop": -5,
+  "overloaded_ledger_rejected": true,
+  "root_ledger_is_existing_section_12_cone": true,
+  "no_unrestricted_approximation_claim": true
+}

@@ -1,0 +1,123 @@
+{
+  "n": 18,
+  "tests": [
+    536,
+    203199,
+    44160,
+    88107,
+    228858,
+    41456,
+    514,
+    206464,
+    261742
+  ],
+  "m": 9,
+  "greedy_cost": 87,
+  "output_cost": 85,
+  "optimum": 80,
+  "ratio": 1.0625,
+  "history": [
+    {
+      "pass": 0,
+      "incumbent_cost": 87,
+      "base_states": 123,
+      "represented_states": 232,
+      "base_dp_cost": 85,
+      "intersection_dp_cost": 85,
+      "maximum_prize_work_profit": 2,
+      "fragment_splice_cost": 85
+    },
+    {
+      "pass": 1,
+      "incumbent_cost": 85,
+      "base_states": 140,
+      "represented_states": 264,
+      "base_dp_cost": 85,
+      "intersection_dp_cost": 85,
+      "maximum_prize_work_profit": 0,
+      "fragment_splice_cost": 85
+    }
+  ],
+  "evaluations": 18799,
+  "iterations": 30000,
+  "enriched_output_cost": 80,
+  "enriched_ratio": 1.0,
+  "enrichment_history": [
+    {
+      "cost": 85,
+      "base_states": 223,
+      "states": 366,
+      "profit": 5,
+      "candidate_cost": 80
+    },
+    {
+      "cost": 80,
+      "base_states": 282,
+      "states": 414,
+      "profit": 0,
+      "candidate_cost": 80
+    }
+  ],
+  "diagnosis": {
+    "mode": "baseline",
+    "stable_cost": 85,
+    "optimum_cost": 80,
+    "stable_depths": [
+      5,
+      7,
+      4,
+      3,
+      4,
+      6,
+      4,
+      5,
+      5,
+      3,
+      4,
+      4,
+      8,
+      4,
+      4,
+      3,
+      8,
+      4
+    ],
+    "optimal_root_mask": 41456,
+    "missing_optimal_states": [
+      {
+        "mask": 22538,
+        "size": 5,
+        "minimum_base_intersection_arity_up_to_6": 3,
+        "optimal_subtree_cost": 14
+      },
+      {
+        "mask": 22530,
+        "size": 4,
+        "minimum_base_intersection_arity_up_to_6": 3,
+        "optimal_subtree_cost": 9
+      },
+      {
+        "mask": 6146,
+        "size": 3,
+        "minimum_base_intersection_arity_up_to_6": 3,
+        "optimal_subtree_cost": 5
+      },
+      {
+        "mask": 96,
+        "size": 2,
+        "minimum_base_intersection_arity_up_to_6": 3,
+        "optimal_subtree_cost": 2
+      }
+    ],
+    "unrestricted_maximum_prize_work_profit": 5,
+    "supported_actual_fallback_cost": 85,
+    "boundary_actual_fallback_cost": 80,
+    "actual_boundary_diagnostics": {
+      "actual_improvement": 5,
+      "implicit_boundary_edges": 371,
+      "fallback_cost_states": 360
+    },
+    "base_states": 140,
+    "represented_states": 264
+  }
+}

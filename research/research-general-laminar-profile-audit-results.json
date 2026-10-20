@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "floating_search_has_exact_repaired_certificates": true,
+  "combined_exact_separation_cases": 299,
+  "negative_node_profile_deficits_encountered": 342,
+  "quality_search": {
+    "identifying_instances_examined": 438,
+    "nonoptimal_greedy_hierarchies_optimized": 2,
+    "records": [
+      {
+        "n": 8,
+        "tests": [
+          48,
+          72,
+          84,
+          128,
+          186,
+          250
+        ],
+        "greedy": 27,
+        "optimum": 25,
+        "profile_lower": "25",
+        "profile_upper": "25",
+        "cut_rounds": 7,
+        "strict_certified_gap": false
+      },
+      {
+        "n": 8,
+        "tests": [
+          4,
+          10,
+          86,
+          92,
+          190,
+          212,
+          214
+        ],
+        "greedy": 26,
+        "optimum": 25,
+        "profile_lower": "24",
+        "profile_upper": "24",
+        "cut_rounds": 6,
+        "strict_certified_gap": true,
+        "combined_lower": "24",
+        "combined_upper": "24",
+        "combined_cut_rounds": 9
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+\begin{algorithm}[H]
+\caption{\BatchOrders: deterministic family of geometric-batch schedules}
+\label{alg:batch-orders}
+\KwIn{Weighted circular demands and fixed $\beta>1$.}
+\KwOut{All schedules needed for deterministic shift minimization.}
+Compute a minimum cover $Q_*$ of size $k_0$ using $\IntervalCover$\;
+\For{$k=1,\ldots,k_0-1$}{Compute a maximum-weight budget-$k$ set $Q_k$\;}
+Find the first $J$ with $\beta^J\ge k_0$\;
+Form the breakpoints $1,\beta$ and $k/\beta^j\in[1,\beta)$,
+$0\le j\le J$, $1\le k\le k_0$\;
+\ForEach{breakpoint below $\beta$ and each midpoint of consecutive breakpoints}{
+  $u\gets$ that representative; $Q\gets$ empty order\;
+  \For{$j=0,1,\ldots$}{
+    $k\gets\lfloor\beta^ju\rfloor$;
+    $P\gets Q_k$ if $k<k_0$, and $P\gets Q_*$ otherwise\;
+    Greedily order $P$ by newly covered weight, append its productive unused candidates to $Q$\;
+    \If{$k\ge k_0$}{stop this shift's phases\;}
+  }
+  Retain $Q$\;
+}
+\KwRet the retained family, removing duplicate schedules\;
+\end{algorithm}
+
+An empty demand family needs no schedule. Lemma~\ref{lem:mssc}
+bounds the family's minimum joint first-cover and waiting cost.
+The number of representatives is $O(k_0\log k_0)$ for fixed $\beta$.

@@ -1,0 +1,45 @@
+{
+  "separation_checks": 514,
+  "benchmark_certificates": [
+    {
+      "lower_bound": "24",
+      "lower_float": 24.0,
+      "variables": 17,
+      "cut_rounds": 4,
+      "constraints": 29,
+      "simplex_pivots": 31,
+      "certificate_scaling": "1",
+      "case": "cube",
+      "n": 8,
+      "greedy": 24,
+      "exact_optimum": 24
+    },
+    {
+      "lower_bound": "35",
+      "lower_float": 35.0,
+      "variables": 28,
+      "cut_rounds": 6,
+      "constraints": 76,
+      "simplex_pivots": 133,
+      "certificate_scaling": "1",
+      "case": "singletons",
+      "n": 8,
+      "greedy": 35,
+      "exact_optimum": 35
+    },
+    {
+      "lower_bound": "30",
+      "lower_float": 30.0,
+      "variables": 22,
+      "cut_rounds": 4,
+      "constraints": 70,
+      "simplex_pivots": 67,
+      "certificate_scaling": "1",
+      "case": "affine_Q3_d2",
+      "n": 9,
+      "greedy": 30,
+      "exact_optimum": 30
+    }
+  ],
+  "simplex_is_validation_only": true
+}

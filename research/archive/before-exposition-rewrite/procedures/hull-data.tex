@@ -1,0 +1,24 @@
+\begin{algorithm}[H]
+\caption{\HullData: a flat state's witness, supports, and patterns}
+\label{alg:hull-data}
+\KwIn{Flat state $S$ and its count or mass measure; supplied lines.}
+\KwOut{Strict witness $p$, full hull $K$, real vertices $V$, supports $J_i$, partition $\Pi$.}
+Orient every majority inequality as $a_i\cdot p-b_i>0$\;
+Maximize $t$ subject to $a_i\cdot p-b_i\ge t$ and $0\le t\le1$;
+retain a solution with $t>0$\;
+Compute $u_i=-a_{\ell_i}/f_{\ell_i}(p)$ and
+$K=\operatorname{conv}(\{0\}\cup\{u_i\})$\;
+Keep one supplied representative of each real hull vertex in cyclic order\;
+\ForEach{$u_i$}{
+Extend its ray from $0$ to the last point $y$ in $K$\;
+Express $y$ on its boundary edge and scale the coefficients by
+$\|u_i\|/\|y\|$; omit the origin and zero coefficients to form $J_i$\;
+}
+Compute all bits $\mathbf1[v\cdot(h-p)>1]$ and group equal rows into $\Pi$\;
+\KwRet $(p,K,V,(J_i),\Pi)$, retaining the origin's boundary position\;
+\end{algorithm}
+
+The ray scaling is obtained from rational coordinates, without a
+square-root computation. In dimension at most one use segment
+endpoints as supports. Lemmas~\ref{lem:helly} and
+\ref{lem:hull-structure} prove feasibility and the support invariant.

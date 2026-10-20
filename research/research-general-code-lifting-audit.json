@@ -1,0 +1,13 @@
+{
+  "audit": {
+    "audit_cases": 100,
+    "seed": 20261019,
+    "checks": [
+      "direct per-hypothesis execution",
+      "contamination and work identities",
+      "weighted prize lower bound",
+      "collision fallback identifies all",
+      "template prefix DP equals exhaustive pruning"
+    ]
+  }
+}

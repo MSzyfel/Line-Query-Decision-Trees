@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "small_full_portfolio_instances": 24,
+  "exact_independence_event_checks": 838,
+  "accepted_partition_checks": 32,
+  "XOR_joint_independence_caveat_verified": true,
+  "rotating_seed_information_repair": {
+    "factors": 1,
+    "alphabets": [
+      8
+    ],
+    "quotient_size": 8,
+    "contexts": 9,
+    "local_decoders": 1,
+    "exact_local_decoders": 0,
+    "nonuniform_residual_sizes": false,
+    "cost": 1072,
+    "retained_distinct_tests": 8,
+    "n": 128,
+    "initial_cost": 1073,
+    "output_cost": 1072
+  },
+  "rotating_seed_full_portfolio": {
+    "initial_greedy_cost": 1073,
+    "output_cost": 1065,
+    "selected_families": 8,
+    "partition_components": 2,
+    "contexts_summed_across_families": 240,
+    "pool_states": 540,
+    "one_independence_refinement_level": true
+  },
+  "XOR_camouflage_full_portfolio": {
+    "initial_greedy_cost": 404,
+    "output_cost": 400,
+    "selected_families": 21,
+    "partition_components": 4,
+    "contexts_summed_across_families": 681,
+    "pool_states": 458,
+    "one_independence_refinement_level": true
+  },
+  "no_unrestricted_approximation_claim": true
+}

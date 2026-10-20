@@ -1,0 +1,36 @@
+\begin{algorithm}[H]
+\caption{\IntervalCover: exact minimum cover or budgeted coverage}
+\label{alg:interval-cover}
+\KwIn{Ordered interval demands with weights; either \emph{minimum} or budget $k$;
+ordinary or circular order.}
+\KwOut{A minimum hitting set, or a maximum-weight set of size at most $k$.}
+\If{order is circular}{
+  Enumerate a forced selected candidate $v$; delete its hit demands and cut there\;
+  Solve each residual ordinary instance, with budget $k-1$ in budget mode\;
+  \KwRet the best residual solution plus $v$, also considering the empty budget solution\;
+}
+\eIf{mode is \emph{minimum}}{
+  \If{an empty demand exists}{\KwRet infeasible\;}
+  $P\gets\varnothing$\;
+  \While{a demand remains}{
+    Choose the right endpoint $q$ of an earliest-ending remaining demand\;
+    $P\gets P\cup\{q\}$; delete all demands containing $q$\;
+  }
+  \KwRet $P$\;
+}{
+  Set $D(0,0)=0$ and all other unreachable states to $-\infty$\;
+  Precompute $g(p,q)$: weight of intervals containing $q$ with left endpoint $>p$\;
+  \For{$t=1,\ldots,\min\{k,M\}$}{
+    \For{$q=1,\ldots,M$}{
+      $D(t,q)\gets\max_{p<q}(D(t-1,p)+g(p,q))$; store a maximizing $p$\;
+    }
+  }
+  \KwRet the reconstruction of the best state with $t\le k$, including $(0,0)$\;
+}
+\end{algorithm}
+
+For minimum circular cover the forced candidate need only range over
+one nonempty demand. For budget coverage, empty demands contribute
+zero covered weight. The empty family returns the empty set in both
+modes. Lemmas~\ref{lem:minimum-interval-cover} and
+\ref{lem:budget-coverage} establish exactness.

@@ -1,0 +1,247 @@
+{
+  "predicate_truth_table_evaluations": 5624,
+  "verified_full_parent_true_exits": 75,
+  "largest_negative_budget_seen": 3,
+  "hamming_predicates": [
+    {
+      "alphabet": 4,
+      "parents": 1,
+      "exceptions": 0,
+      "full_tuple_aliases": 1,
+      "maximum_negative_answers": 1
+    },
+    {
+      "alphabet": 4,
+      "parents": 1,
+      "exceptions": 1,
+      "full_tuple_aliases": 2,
+      "maximum_negative_answers": 2
+    },
+    {
+      "alphabet": 4,
+      "parents": 2,
+      "exceptions": 0,
+      "full_tuple_aliases": 1,
+      "maximum_negative_answers": 1
+    },
+    {
+      "alphabet": 4,
+      "parents": 2,
+      "exceptions": 1,
+      "full_tuple_aliases": 3,
+      "maximum_negative_answers": 2
+    },
+    {
+      "alphabet": 4,
+      "parents": 2,
+      "exceptions": 2,
+      "full_tuple_aliases": 4,
+      "maximum_negative_answers": 3
+    },
+    {
+      "alphabet": 4,
+      "parents": 3,
+      "exceptions": 0,
+      "full_tuple_aliases": 1,
+      "maximum_negative_answers": 1
+    },
+    {
+      "alphabet": 4,
+      "parents": 3,
+      "exceptions": 1,
+      "full_tuple_aliases": 4,
+      "maximum_negative_answers": 2
+    },
+    {
+      "alphabet": 4,
+      "parents": 3,
+      "exceptions": 2,
+      "full_tuple_aliases": 7,
+      "maximum_negative_answers": 3
+    },
+    {
+      "alphabet": 4,
+      "parents": 4,
+      "exceptions": 0,
+      "full_tuple_aliases": 1,
+      "maximum_negative_answers": 1
+    },
+    {
+      "alphabet": 4,
+      "parents": 4,
+      "exceptions": 1,
+      "full_tuple_aliases": 5,
+      "maximum_negative_answers": 2
+    },
+    {
+      "alphabet": 4,
+      "parents": 4,
+      "exceptions": 2,
+      "full_tuple_aliases": 11,
+      "maximum_negative_answers": 3
+    },
+    {
+      "alphabet": 4,
+      "parents": 5,
+      "exceptions": 0,
+      "full_tuple_aliases": 1,
+      "maximum_negative_answers": 1
+    },
+    {
+      "alphabet": 4,
+      "parents": 5,
+      "exceptions": 1,
+      "full_tuple_aliases": 6,
+      "maximum_negative_answers": 2
+    },
+    {
+      "alphabet": 4,
+      "parents": 5,
+      "exceptions": 2,
+      "full_tuple_aliases": 16,
+      "maximum_negative_answers": 3
+    },
+    {
+      "alphabet": 8,
+      "parents": 3,
+      "exceptions": 0,
+      "full_tuple_aliases": 1,
+      "maximum_negative_answers": 1
+    },
+    {
+      "alphabet": 8,
+      "parents": 3,
+      "exceptions": 1,
+      "full_tuple_aliases": 4,
+      "maximum_negative_answers": 2
+    },
+    {
+      "alphabet": 8,
+      "parents": 3,
+      "exceptions": 2,
+      "full_tuple_aliases": 7,
+      "maximum_negative_answers": 3
+    }
+  ],
+  "fixed_budget_synthesis": [
+    {
+      "alphabet": 4,
+      "parents": 2,
+      "exceptions": 0,
+      "budget": 1,
+      "states": 5,
+      "feasible": true
+    },
+    {
+      "alphabet": 4,
+      "parents": 2,
+      "exceptions": 1,
+      "budget": 2,
+      "states": 11,
+      "feasible": true
+    },
+    {
+      "alphabet": 4,
+      "parents": 3,
+      "exceptions": 1,
+      "budget": 2,
+      "states": 19,
+      "feasible": true
+    },
+    {
+      "alphabet": 4,
+      "parents": 3,
+      "exceptions": 2,
+      "budget": 3,
+      "states": 27,
+      "feasible": true
+    },
+    {
+      "alphabet": 4,
+      "parents": 4,
+      "exceptions": 1,
+      "budget": 2,
+      "states": 29,
+      "feasible": true
+    },
+    {
+      "predicate": "one parent is nonzero",
+      "alphabet": 4,
+      "budget": 1,
+      "states": 9,
+      "feasible": false
+    },
+    {
+      "predicate": "one parent is nonzero",
+      "alphabet": 4,
+      "budget": 2,
+      "states": 19,
+      "feasible": false
+    },
+    {
+      "predicate": "one parent is nonzero",
+      "alphabet": 4,
+      "budget": 3,
+      "states": 7,
+      "feasible": true
+    }
+  ],
+  "dense_predicate_obstructions": [
+    {
+      "alphabet": 4,
+      "n": 16,
+      "actual_code_raw_work": 69,
+      "actual_code_mean": "69/16",
+      "explicit_upper_mean": "23/4",
+      "full_parent_charged_mean": "17/4",
+      "first_identification_lower": "7/4",
+      "charged_to_actual_code": "68/69",
+      "count_states": 16
+    },
+    {
+      "alphabet": 8,
+      "n": 64,
+      "actual_code_raw_work": 401,
+      "actual_code_mean": "401/64",
+      "explicit_upper_mean": "237/32",
+      "full_parent_charged_mean": "59/8",
+      "first_identification_lower": "13/4",
+      "charged_to_actual_code": "472/401",
+      "count_states": 64
+    },
+    {
+      "alphabet": 16,
+      "n": 256,
+      "actual_code_raw_work": 2097,
+      "actual_code_mean": "2097/256",
+      "explicit_upper_mean": "287/32",
+      "full_parent_charged_mean": "199/16",
+      "first_identification_lower": "25/4",
+      "charged_to_actual_code": "3184/2097",
+      "count_states": 256
+    },
+    {
+      "alphabet": 32,
+      "n": 1024,
+      "actual_code_raw_work": 10369,
+      "actual_code_mean": "10369/1024",
+      "explicit_upper_mean": "5435/512",
+      "full_parent_charged_mean": "687/32",
+      "first_identification_lower": "49/4",
+      "charged_to_actual_code": "21984/10369",
+      "count_states": 1024
+    },
+    {
+      "alphabet": 64,
+      "n": 4096,
+      "actual_code_raw_work": 49473,
+      "actual_code_mean": "49473/4096",
+      "explicit_upper_mean": "12669/1024",
+      "full_parent_charged_mean": "2463/64",
+      "first_identification_lower": "97/4",
+      "charged_to_actual_code": "52544/16491",
+      "count_states": 4096
+    }
+  ],
+  "no_unrestricted_optimum_oracle": true
+}

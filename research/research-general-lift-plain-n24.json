@@ -1,0 +1,56 @@
+{
+  "n": 24,
+  "m": 15,
+  "tests": [
+    2343612,
+    12619792,
+    2228224,
+    4269074,
+    921697,
+    15732480,
+    3662846,
+    1081352,
+    263168,
+    73728,
+    4723841,
+    6656,
+    8953217,
+    4734976,
+    12617984
+  ],
+  "mode": "plain",
+  "greedy_cost": 124,
+  "plain_cost": 113,
+  "output_cost": 113,
+  "optimum": 113,
+  "ratio": 1.0,
+  "strong_first_pass_optimum_certificate": false,
+  "plain_history": [
+    {
+      "cost": 124,
+      "candidate_cost": 113,
+      "source_codes": 155,
+      "lifted_codes": 154,
+      "base_states": 398,
+      "states": 1356,
+      "profit": 11
+    },
+    {
+      "cost": 113,
+      "candidate_cost": 113,
+      "source_codes": 214,
+      "lifted_codes": 213,
+      "base_states": 472,
+      "states": 1458,
+      "profit": 0
+    }
+  ],
+  "strong_history": [],
+  "status": "complete",
+  "seed": 2026101801,
+  "iterations_completed": 1200,
+  "evaluations": 930,
+  "seconds": 205.36556601524353,
+  "accepted": 928,
+  "origin": "mutation"
+}

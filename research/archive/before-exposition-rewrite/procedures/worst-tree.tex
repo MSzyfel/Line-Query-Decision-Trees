@@ -1,0 +1,24 @@
+\begin{algorithm}[H]
+\caption{\WorstTree: the priority maximum-depth baseline}
+\label{alg:worst-tree}
+\KwIn{State $S$ and the rational parameters of Section~\ref{sec:worst}.}
+\KwOut{A supplied-query identification tree.}
+\If{$|S|\le1$}{\KwRet its leaf\;}
+\If{a count-balanced supplied line $\ell$ exists}{
+  \KwRet $\ell$ with recursively constructed children $\WorstTree(S_\ell^-)$ and $\WorstTree(S_\ell^+)$\;
+}
+Compute $\HullData(S)$ and recursively build one child $T_A$ per pattern class\;
+\If{the hull has at most two real extreme vertices}{
+  \KwRet their direct pattern stage with the stored children attached\;
+}
+Compute $e_A^{(4)},e_A^{(2)}$ from Lemma~\ref{lem:endpoint-height}\;
+\For{$H=1,\ldots,\lfloor(3+\gamma)(|S|-1)\rfloor$}{
+  $Q\gets\PriorityTrial(S,(c_W(T_A)),(e_A^{(4)},e_A^{(2)}),H)$\;
+  \If{$Q$ is feasible}{
+    Build its first-positive exits, use pointwise $\EndpointCode$ at each exit,
+    and attach the stored class children\;
+    End the all-negative route at the zero singleton when present\;
+    \KwRet this tree\;
+  }
+}
+\end{algorithm}

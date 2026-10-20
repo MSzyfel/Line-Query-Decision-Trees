@@ -1,0 +1,32 @@
+\begin{algorithm}[H]
+\caption{\EndpointCode: legal full-pattern recovery}
+\label{alg:endpoint-code}
+\KwIn{A positive hull vertex $v$, compatible patterns, cached answers;
+code mode; optionally fixed continuation heights $h_A$.}
+\KwOut{A supplied-query decoder whose leaves are full pattern classes.}
+\If{the hull has dimension at most one}{\KwRet the already determined nonzero pattern\;}
+\eIf{$v$ has a cached negative neighbor}{
+  Cut at that neighbor and orient so $v$ is the first positive vertex\;
+}{
+  Cut at a boundary origin, or at the opposite edge met by the ray $v0$\;
+}
+List the realized left and right endpoint pairs in the cut order\;
+\eIf{no continuation heights are supplied}{
+  Search each unfixed endpoint using Algorithm~\ref{alg:alphabetic-code};
+  condition the second search on the first answer\;
+}{
+  \ForEach{endpoint rectangle $R$, in increasing size}{
+    \eIf{$R$ has a single realized class $A$}{$E(R)\gets h_A$\;}{
+      $E(R)\gets\min_\ell(1+\max\{E(R\cap\ell^-),E(R\cap\ell^+)\})$,
+      over proper supplied endpoint thresholds\;
+    }
+  }
+  Reconstruct the minimizing rectangle splits and attach the fixed child codes\;
+}
+\KwRet the decoder; skip fixed endpoints and cached thresholds\;
+\end{algorithm}
+
+Section~\ref{sec:endpoint-geometry} proves the cut is legal without an
+anchor query. With continuation heights this is the complete-exit
+optimization of Section~\ref{sec:polynomial-slots}; its $O(M^4)$
+rectangles and $O(M)$ thresholds give polynomial running time.

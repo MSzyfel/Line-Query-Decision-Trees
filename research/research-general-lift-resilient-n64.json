@@ -1,0 +1,213 @@
+[
+  {
+    "n": 64,
+    "m": 7,
+    "tests": [
+      16017187393205310075,
+      12297829382473034410,
+      14757395258967641292,
+      17361641481138401520,
+      18374966859414961920,
+      18446462603027742720,
+      18446744069414584320
+    ],
+    "mode": "plain",
+    "greedy_cost": 400,
+    "plain_cost": 384,
+    "output_cost": 384,
+    "optimum": 384,
+    "ratio": 1.0,
+    "validation_exact_states": 0,
+    "explicit_optimum_coordinate_certificate": true,
+    "strong_first_pass_optimum_certificate": false,
+    "plain_history": [
+      {
+        "cost": 400,
+        "candidate_cost": 384,
+        "source_codes": 279,
+        "lifted_codes": 278,
+        "base_states": 1056,
+        "states": 1340,
+        "profit": 16
+      },
+      {
+        "cost": 384,
+        "candidate_cost": 384,
+        "source_codes": 379,
+        "lifted_codes": 378,
+        "base_states": 1236,
+        "states": 1340,
+        "profit": 0
+      }
+    ],
+    "strong_history": []
+  },
+  {
+    "n": 64,
+    "m": 8,
+    "tests": [
+      12891601824143120205,
+      13253286129802983405,
+      12297829382473034410,
+      14757395258967641292,
+      17361641481138401520,
+      18374966859414961920,
+      18446462603027742720,
+      18446744069414584320
+    ],
+    "mode": "plain",
+    "greedy_cost": 392,
+    "plain_cost": 384,
+    "output_cost": 384,
+    "optimum": 384,
+    "ratio": 1.0,
+    "validation_exact_states": 0,
+    "explicit_optimum_coordinate_certificate": true,
+    "strong_first_pass_optimum_certificate": false,
+    "plain_history": [
+      {
+        "cost": 392,
+        "candidate_cost": 384,
+        "source_codes": 337,
+        "lifted_codes": 336,
+        "base_states": 1302,
+        "states": 1970,
+        "profit": 8
+      },
+      {
+        "cost": 384,
+        "candidate_cost": 384,
+        "source_codes": 473,
+        "lifted_codes": 472,
+        "base_states": 1566,
+        "states": 1970,
+        "profit": 0
+      }
+    ],
+    "strong_history": []
+  },
+  {
+    "n": 64,
+    "m": 9,
+    "tests": [
+      15341637141256869675,
+      3148604865981730260,
+      16970270295325753815,
+      12297829382473034410,
+      14757395258967641292,
+      17361641481138401520,
+      18374966859414961920,
+      18446462603027742720,
+      18446744069414584320
+    ],
+    "mode": "plain",
+    "greedy_cost": 386,
+    "plain_cost": 384,
+    "output_cost": 384,
+    "optimum": 384,
+    "ratio": 1.0,
+    "validation_exact_states": 0,
+    "explicit_optimum_coordinate_certificate": true,
+    "strong_first_pass_optimum_certificate": false,
+    "plain_history": [
+      {
+        "cost": 386,
+        "candidate_cost": 384,
+        "source_codes": 465,
+        "lifted_codes": 464,
+        "base_states": 1896,
+        "states": 3514,
+        "profit": 2
+      },
+      {
+        "cost": 384,
+        "candidate_cost": 384,
+        "source_codes": 541,
+        "lifted_codes": 540,
+        "base_states": 2146,
+        "states": 3514,
+        "profit": 0
+      }
+    ],
+    "strong_history": []
+  },
+  {
+    "n": 64,
+    "m": 11,
+    "tests": [
+      15510937536323617515,
+      10297566121644136305,
+      15341597404825786155,
+      1669553097490224360,
+      1476473778383797800,
+      12297829382473034410,
+      14757395258967641292,
+      17361641481138401520,
+      18374966859414961920,
+      18446462603027742720,
+      18446744069414584320
+    ],
+    "mode": "plain",
+    "greedy_cost": 384,
+    "plain_cost": 384,
+    "output_cost": 384,
+    "optimum": 384,
+    "ratio": 1.0,
+    "validation_exact_states": 0,
+    "explicit_optimum_coordinate_certificate": true,
+    "strong_first_pass_optimum_certificate": false,
+    "plain_history": [
+      {
+        "cost": 384,
+        "candidate_cost": 384,
+        "source_codes": 535,
+        "lifted_codes": 534,
+        "base_states": 2080,
+        "states": 6264,
+        "profit": 0
+      }
+    ],
+    "strong_history": []
+  },
+  {
+    "n": 64,
+    "m": 14,
+    "tests": [
+      12858105792809963085,
+      16031486541911219835,
+      16767697946835373335,
+      8202377531241606030,
+      12891601824143120205,
+      17983032713879816607,
+      15510937536323617515,
+      1331738235202887240,
+      12297829382473034410,
+      14757395258967641292,
+      17361641481138401520,
+      18374966859414961920,
+      18446462603027742720,
+      18446744069414584320
+    ],
+    "mode": "plain",
+    "greedy_cost": 384,
+    "plain_cost": 384,
+    "output_cost": 384,
+    "optimum": 384,
+    "ratio": 1.0,
+    "validation_exact_states": 0,
+    "explicit_optimum_coordinate_certificate": true,
+    "strong_first_pass_optimum_certificate": false,
+    "plain_history": [
+      {
+        "cost": 384,
+        "candidate_cost": 384,
+        "source_codes": 895,
+        "lifted_codes": 894,
+        "base_states": 3777,
+        "states": 12857,
+        "profit": 0
+      }
+    ],
+    "strong_history": []
+  }
+]

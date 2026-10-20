@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "exact_frontier_comparisons": 60,
+  "literal_policies_enumerated": 737,
+  "actual_frontier_codes_validated": 266,
+  "menu_types": [
+    "two_one_query_macros",
+    "full_greedy_plus_one_query"
+  ],
+  "maximum_action_depth": 2,
+  "maximum_hypotheses": 6,
+  "unrestricted_optimum_not_used": true
+}

@@ -1,0 +1,96 @@
+{
+  "n": 36,
+  "m": 24,
+  "tests": [
+    17188257792,
+    53267601855,
+    11576323200,
+    22023067691,
+    58920238586,
+    11941224944,
+    524288,
+    51841630210,
+    67540614766,
+    1310720,
+    9126805504,
+    10485760,
+    537919488,
+    17196646400,
+    33554432,
+    100696066,
+    4429185024,
+    54123505280,
+    603979776,
+    2315478912,
+    2181038080,
+    4297064448,
+    4718592,
+    34363936768
+  ],
+  "mode": "strong",
+  "greedy_cost": 214,
+  "plain_cost": 196,
+  "output_cost": 196,
+  "optimum": 196,
+  "ratio": 1.0,
+  "validation_exact_states": 5509,
+  "strong_first_pass_optimum_certificate": true,
+  "plain_history": [
+    {
+      "cost": 214,
+      "candidate_cost": 196,
+      "source_codes": 347,
+      "lifted_codes": 346,
+      "base_states": 1183,
+      "states": 8216,
+      "profit": 18
+    },
+    {
+      "cost": 196,
+      "candidate_cost": 196,
+      "source_codes": 448,
+      "lifted_codes": 447,
+      "base_states": 1534,
+      "states": 10089,
+      "profit": 0
+    }
+  ],
+  "strong_history": [],
+  "status": "complete",
+  "seed": 2026101802,
+  "iterations_completed": 500,
+  "evaluations": 422,
+  "seconds": 607.2368824481964,
+  "accepted": 407,
+  "origin": "mutation",
+  "seed_bank_seconds": 96.19267010688782,
+  "explicit_strong_validation": {
+    "cost": 196,
+    "history": [
+      {
+        "cost": 214,
+        "candidate_cost": 196,
+        "source_codes": 2816,
+        "lifted_codes": 2805,
+        "base_states": 2963,
+        "states": 15719,
+        "profit": 18,
+        "actual_improvement": 18,
+        "implicit_boundary_edges": 40903,
+        "fallback_cost_states": 28084
+      },
+      {
+        "cost": 196,
+        "candidate_cost": 196,
+        "source_codes": 2044,
+        "lifted_codes": 2037,
+        "base_states": 3504,
+        "states": 19057,
+        "profit": 0,
+        "actual_improvement": 0,
+        "implicit_boundary_edges": 43690,
+        "fallback_cost_states": 31693
+      }
+    ]
+  }
+}

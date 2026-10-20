@@ -1,0 +1,6 @@
+﻿import Mathlib.Data.Fintype.Card
+#check Fintype.bijective_iff_injective_and_card
+#check Fintype.bijective_iff_injective_iff_surjective
+#check Fintype.card_le_of_injective
+#check Finite.surjective_of_injective
+#check Fintype.bijective_iff_surjective_and_card

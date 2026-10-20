@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "small_oracle_enumeration_is_validation_only": true,
+  "finite_validation": {
+    "instances": 36,
+    "exhaustive_ratio_optimization_cases": 347,
+    "positive_surplus_lifts_checked": 324,
+    "strict_Dinkelbach_updates": 0
+  },
+  "structured_strict_ratio_updates": {
+    "n": 32,
+    "generated_core_spans_checked": 1786,
+    "initial_ratio": "527/14",
+    "optimal_ratio": "81/2",
+    "strict_updates": 2,
+    "core_size": 24,
+    "rank": 6,
+    "continuation_mean_bound": "0",
+    "core_work": 112,
+    "lifted_work": 112,
+    "completed": 18,
+    "actual_finished_prize": 377,
+    "surplus": 243,
+    "positive_profit": 265
+  },
+  "singleton_noise_example": {
+    "n": 64,
+    "all_row_rank": 64,
+    "incumbent_raw_cost": 2079,
+    "selected_coordinate_rows": 6,
+    "core_size": 55,
+    "rank": 7,
+    "continuation_mean_bound": "0",
+    "core_work": 321,
+    "lifted_work": 332,
+    "completed": 49,
+    "actual_finished_prize": 1812,
+    "surplus": 1467,
+    "positive_profit": 1480,
+    "polynomial_menu": {
+      "polynomial_candidates_evaluated": 272,
+      "best": {
+        "selected_rows": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "core_size": 54,
+        "rank": 6,
+        "continuation_mean_bound": "1",
+        "core_work": 314,
+        "lifted_work": 332,
+        "completed": 49,
+        "actual_finished_prize": 1812,
+        "surplus": 44,
+        "positive_profit": 1480
+      }
+    }
+  }
+}

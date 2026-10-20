@@ -1,0 +1,28 @@
+\begin{algorithm}[H]
+\caption{\SlotDP: exact interval deadlines with a rank subset}
+\label{alg:slot-dp}
+\KwIn{Ordinary interval demands and deadlines; region $[l,r]$;
+available absolute ranks $T\subseteq[L]$.}
+\KwOut{A feasible rank assignment, or infeasible.}
+\If{no original demand is wholly contained in $[l,r]$}{\KwRet the empty assignment\;}
+\If{$T=\varnothing$}{\KwRet infeasible\;}
+\If{this state is memoized}{\KwRet its stored result\;}
+$t\gets\min T$\;
+\If{a wholly contained demand has deadline $<t$}{\KwRet infeasible\;}
+\ForEach{$p\in[l,r]$ and $T_L\subseteq T\setminus\{t\}$}{
+  $T_R\gets T\setminus(T_L\cup\{t\})$\;
+  Recurse on $([l,p-1],T_L)$ and $([p+1,r],T_R)$\;
+  \If{both assignments are feasible}{
+    Memoize their union with $(p,t)$ and \KwRet it\;
+  }
+}
+Memoize and return infeasible\;
+\end{algorithm}
+
+Sort selected candidates by their ranks and suppress unused ranks.
+The circular wrapper forces the first candidate, cuts there, and
+subtracts one from surviving deadlines and the slot cap.
+For the optional complete-exit variant, precompute the two oriented
+decoder costs by Algorithm~\ref{alg:endpoint-code}; replace the deadline
+precheck by the two local height tests of
+Section~\ref{sec:polynomial-slots}. The same rank partitions apply.

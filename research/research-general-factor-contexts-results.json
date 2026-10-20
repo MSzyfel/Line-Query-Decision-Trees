@@ -1,0 +1,173 @@
+{
+  "status": "passed",
+  "random_finite_instances": 40,
+  "contexts_in_threshold_audits": 627,
+  "nonuniform_quotient_cases": 4,
+  "unequal_residual_example": {
+    "factors": 2,
+    "alphabets": [
+      2,
+      2
+    ],
+    "quotient_size": 4,
+    "contexts": 9,
+    "local_decoders": 6,
+    "exact_local_decoders": 6,
+    "nonuniform_residual_sizes": true,
+    "cost": 21,
+    "retained_distinct_tests": 2,
+    "retained_row_fallback": false
+  },
+  "cube_context_counts": [
+    {
+      "binary_factors": 1,
+      "n": 2,
+      "contexts": 3
+    },
+    {
+      "binary_factors": 2,
+      "n": 4,
+      "contexts": 9
+    },
+    {
+      "binary_factors": 3,
+      "n": 8,
+      "contexts": 27
+    },
+    {
+      "binary_factors": 4,
+      "n": 16,
+      "contexts": 81
+    },
+    {
+      "binary_factors": 5,
+      "n": 32,
+      "contexts": 243
+    },
+    {
+      "binary_factors": 6,
+      "n": 64,
+      "contexts": 729
+    },
+    {
+      "binary_factors": 7,
+      "n": 128,
+      "contexts": 2187
+    }
+  ],
+  "conditional_eligibility_example": {
+    "alphabet": 5,
+    "admissible_queries": 6,
+    "queries_with_conditional_eligibility": 1,
+    "local_DP": false,
+    "local_states_evaluated": 9,
+    "retained_row_code_work": null,
+    "used_retained_row_code": false,
+    "decoder_raw_cost": 26,
+    "static_singleton_decoder_raw_cost": 28
+  },
+  "retained_row_fallback_example": {
+    "alphabet": 8,
+    "admissible_queries": 5,
+    "queries_with_conditional_eligibility": 0,
+    "local_DP": false,
+    "local_states_evaluated": 15,
+    "retained_row_code_work": 24,
+    "used_retained_row_code": true,
+    "ordinary_decoder_work": 26,
+    "chosen_decoder_work": 24
+  },
+  "multifactor_retained_pool_preserves_old_pool": true,
+  "automatic_private_selector_cases": [
+    {
+      "factors": 3,
+      "alphabets": [
+        2,
+        3,
+        3
+      ],
+      "quotient_size": 18,
+      "contexts": 48,
+      "local_decoders": 40,
+      "exact_local_decoders": 40,
+      "nonuniform_residual_sizes": false,
+      "cost": 78,
+      "retained_distinct_tests": 7,
+      "retained_row_fallback": false,
+      "n": 18,
+      "threshold": 6,
+      "joint_lower": "54",
+      "comparison_upper": "78",
+      "initial_greedy_cost": 78,
+      "pure_queries_have_low_priority": true
+    },
+    {
+      "factors": 3,
+      "alphabets": [
+        2,
+        4,
+        4
+      ],
+      "quotient_size": 32,
+      "contexts": 75,
+      "local_decoders": 55,
+      "exact_local_decoders": 55,
+      "nonuniform_residual_sizes": false,
+      "cost": 176,
+      "retained_distinct_tests": 9,
+      "retained_row_fallback": false,
+      "n": 32,
+      "threshold": 8,
+      "joint_lower": "128",
+      "comparison_upper": "176",
+      "initial_greedy_cost": 176,
+      "pure_queries_have_low_priority": true
+    },
+    {
+      "factors": 3,
+      "alphabets": [
+        3,
+        4,
+        4
+      ],
+      "quotient_size": 48,
+      "contexts": 100,
+      "local_decoders": 65,
+      "exact_local_decoders": 65,
+      "nonuniform_residual_sizes": false,
+      "cost": 296,
+      "retained_distinct_tests": 11,
+      "retained_row_fallback": false,
+      "n": 48,
+      "threshold": 12,
+      "joint_lower": "224",
+      "comparison_upper": "312",
+      "initial_greedy_cost": 296,
+      "pure_queries_have_low_priority": true
+    },
+    {
+      "factors": 3,
+      "alphabets": [
+        4,
+        6,
+        6
+      ],
+      "quotient_size": 144,
+      "contexts": 245,
+      "local_decoders": 119,
+      "exact_local_decoders": 119,
+      "nonuniform_residual_sizes": false,
+      "cost": 1248,
+      "retained_distinct_tests": 16,
+      "retained_row_fallback": false,
+      "n": 144,
+      "threshold": 24,
+      "joint_lower": "1008",
+      "comparison_upper": "1248",
+      "initial_greedy_cost": 1284,
+      "pure_queries_have_low_priority": true
+    }
+  ],
+  "no_unrestricted_approximation_claim": true,
+  "exact_UDT_subset_DP_is_validation_only": true
+}

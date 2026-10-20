@@ -1,0 +1,6 @@
+{
+  "exact_bound_against_unpruned_dp": 48,
+  "resilient_balance_and_marginal_checks": 30,
+  "adaptive_code_execution_and_information_optimality": 32,
+  "seed": 7
+}

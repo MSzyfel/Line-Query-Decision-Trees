@@ -1,0 +1,10 @@
+To turn each stored object into a legal supplied-query tree, the
+procedures use the following conventions. Tables are indexed by
+realized hypotheses or patterns, and ties follow input order. During
+tree assembly, cached answers supply later virtual questions, the
+origin marker records the cut position, and infeasible branches are
+discarded. We then contract every query whose answer is constant on
+the current state, leaving tests that distinguish hypotheses. The
+analysis for each routine gives its parameter values and proves that
+they meet the required bounds.
+

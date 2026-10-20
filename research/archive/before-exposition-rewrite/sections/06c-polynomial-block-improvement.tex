@@ -1,0 +1,501 @@
+\section{A polynomial improvement by scheduling adjacent blocks}
+\label{sec:polynomial-blocks}
+
+The individual-vertex schedule of Section~\ref{sec:mass-improvement}
+can be improved without increasing the running time to quasipolynomial.
+Apply the same exact-coverage and geometric-batch algorithm to adjacent
+hull edges, and account for discovery and endpoint decoding together.
+This first gives a factor below $5.312551$. Retaining orientation
+credits from the first two batches further lowers the factor to
+$5.283310$ for arbitrary-prior expected depth in the general
+supplied-line model. Later refinements change the rational schedule
+score and its certificate, while reusing the stage-to-tree conversion.
+The proof has one ledger: discovery gives an optimal-path restriction
+credit, endpoint recovery leaves a conditional-entropy cost, and
+additional block savings reduce the remaining coefficient of positive
+mass.
+
+\subsection{The polynomial block algorithm}
+
+Use the mass-balanced and mass-flat recursion already described, with
+the new rational threshold
+\[
+ \delta=\frac{138821934}{10^9},\qquad
+ \beta=\frac{3512863}{10^6}.
+\]
+In a flat state, keep the full normalized hull, including the origin
+if it is a hull vertex. Its edges are candidate blocks. A block queries
+its two real endpoints in a fixed order, omitting cached answers; an
+origin endpoint is a free constant-negative marker. Both endpoint tests
+are supplied lines. Do not delete the origin from the cyclic hull order
+and join its neighbors: that would create a pair that need not be an
+edge of the full hull.
+
+Every nonzero positive-vertex interval meets a circular interval of
+edges. These are the block-hit demands. Apply
+Lemma~\ref{lem:mssc} to this incidence system, choosing the shift by
+the rational objective
+\[
+ \MSSC_{\mathrm{blk}}(G)+p_0|G|,
+ \qquad p_0=w(A_0),\quad b=w(S)-p_0.
+\]
+Here $p_0=0$ when the zero pattern is absent. Query blocks until a
+positive endpoint answer or an earlier singleton inference; then learn
+the full hull pattern with the existing alphabetic endpoint codes and
+recurse on its class. A completed negative cover identifies the zero
+pattern, when present.
+
+Let $k_A$ be the first block hitting a nonzero class $A$, and let
+$K=|G|$. If the first queried endpoint is positive, discovery costs
+at most $2k_A-1$ and the endpoint codes have overhead at most four.
+If the second endpoint is the first positive answer, discovery costs
+at most $2k_A$ and its adjacent negative endpoint pins one boundary,
+leaving overhead at most two. An origin block has only one real query.
+Thus every positive route has nonentropy allowance at most
+\[
+ 2(k_A-1)+5=2k_A+3.
+\]
+For the actual discovery partition $\mathcal R$, write
+$J=I(S,\mathcal R)$ and $I=I(S,\Pi)$, where $\Pi$ is the full-pattern
+partition. The chain-rule proof of Lemma~\ref{lem:pruning-macro} gives
+\begin{equation}\label{eq:poly-block-stage}
+ W_{\mathrm{pat}}(S)\le
+ 2\MSSC_{\mathrm{blk}}(G)+3b+2p_0K+\frac{I-J}{\ln2}.
+\end{equation}
+The coefficient is $3b$ for ordinary first-hit ranks, or $5b$ for ranks
+shifted by one. Using $5b$ with ordinary ranks would lose the saving.
+
+Each nonzero discovery exit is contained in the cap of its actual
+first positive endpoint, whose mass is less than $\delta w(S)$.
+Although a block's union can have mass up to $2\delta w(S)$,
+Lemma~\ref{lem:capped-discovery-entropy} still applies at the smaller
+individual cap bound:
+\begin{equation}\label{eq:poly-block-entropy}
+ J\ge b\sigma(\delta),\qquad
+ \sigma(\delta)=-k\delta\ln\delta-r\ln r,
+ \quad k=\lfloor1/\delta\rfloor,\ r=1-k\delta.
+\end{equation}
+Early singleton exits only improve this bound and the query cost.
+
+\subsection{Restriction credit and discrete block savings}
+
+Keep the functions $\Phi_\beta$, $Z_\beta$, $\lambda_\beta$,
+$\nu_\beta$, and $\eta_\beta$ from Lemma~\ref{lem:mssc}. Put
+\[
+ e_\beta(t)=2\bigl[\lambda_\beta t+\eta_\beta-\Phi_\beta(t)\bigr].
+\]
+Then $e_\beta(1)=0$, and
+\[
+ e_\beta(t)=\frac1{\ln\beta}\int_1^t
+ \left[\beta+1-\frac{\lfloor x\rfloor+\lfloor\beta x\rfloor}{x}\right]dx.
+\]
+The integrand is nonnegative, so these discounts are nondecreasing.
+In particular,
+\begin{equation}\label{eq:poly-block-phi}
+ 2\Phi_\beta(t)=2\lambda_\beta(t-1)+2\Phi_\beta(1)-e_\beta(t).
+\end{equation}
+
+Follow a common witness through an expected-optimal tree, using the
+$q$ queries and supporting-hit indices $t_A$ of
+Lemma~\ref{lem:support-prefix}. Replace each witness query by a full-hull
+edge containing its one or two supports; a singleton support may use
+either incident edge. Enlarging a support set can only advance a hit.
+Delete repeated and unproductive comparison blocks. If the zero
+pattern is absent and the terminal singleton remains unhit, append an
+edge incident to one of its positive vertices. Its rank is at most
+$q+1=t_A$. All other classes are hit by rank at most $t_A$ too.
+If $A_0$ is present, no append is needed and the minimum block cover
+size $k_0$ is at most $q$.
+
+Write
+\[
+ D_+=\sum_{A\ne A_0}w(A)(t_A-1),\qquad
+ \Delta=\Delta_{\mathrm E}(S,\Pi).
+\]
+Supporting-prefix credit gives $D_++p_0q\le\Delta$.
+Monotonicity of $\Phi_\beta$ and Lemma~\ref{lem:mssc} give
+\[
+ \MSSC_{\mathrm{blk}}(G)+p_0K
+ \le\sum_{A\ne A_0}w(A)\Phi_\beta(t_A)+p_0 Z_\beta(k_0).
+\]
+The zero term vanishes when $p_0=0$, so no cover-size comparison is
+needed in that case. For the chosen $\beta$, $\lambda_\beta>\nu_\beta$.
+Combining \eqref{eq:poly-block-stage}, \eqref{eq:poly-block-phi}, and
+$Z_\beta(k_0)\le\nu_\beta k_0-1/\ln\beta$ yields
+\begin{equation}\label{eq:poly-block-discrete}
+ \begin{aligned}
+ W_{\mathrm{pat}}(S)\le{}&
+ A\Delta+[3+2\Phi_\beta(1)]b
+ -\sum_t m_t e_\beta(t)-\frac{2p_0}{\ln\beta}
+ +\frac{I-J}{\ln2},\\
+ A={}&2\lambda_\beta=\frac{\beta+1}{\ln\beta}.
+ \end{aligned}
+\end{equation}
+Here $m_t$ is the mass first support-hit at witness index $t$, including
+an appended terminal singleton. Each such analytical support block is
+contained in at most two hull caps, hence $m_t<2\delta w(S)$.
+These witness masses are separate from the actual discovery exits in
+\eqref{eq:poly-block-entropy}; no equality between their ranks or
+partitions is assumed.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{.25\linewidth}p{.34\linewidth}p{.34\linewidth}@{}}
+\hline
+Object & Computed by the algorithm & Used for comparison only\\
+\hline
+First-hit rank & Block rank $k_A$ in the chosen schedule $G$
+ & Supporting-prefix rank $t_A$ on an optimal witness path\\
+Mass partition & Actual discovery exits, each inside one cap
+ & Witness masses $m_t$, each inside at most two caps\\
+Accounting role & Cost $\MSSC_{\rm blk}(G)$ and information $J$
+ & Restriction credit $\Delta$ and discounts $e_\beta(t)$\\
+\hline
+\end{tabular}
+\end{center}
+Exact coverage connects these columns: a budget-$k$ batch covers at
+least the witness prefix mass $M_k=\sum_{t\le k}m_t$. It does not
+identify the algorithm's ranks with the witness ranks. This same
+connection will pay for all later block-mode and initial-batch savings.
+
+Define
+\[
+ N=\lfloor1/(2\delta)\rfloor,\quad s=1-2\delta N,\qquad
+ \chi=2\delta\sum_{t=1}^{N}e_\beta(t)+s e_\beta(N+1).
+\]
+Apply Lemma~\ref{lem:capped-rank-credit} with
+$a_t=e_\beta(t)$, $\tau=e_\beta(N+1)$,
+$E=\{1,\ldots,N\}$, $\mu=0$, and $\zeta=2/\ln\beta$.
+Monotonicity of $e_\beta$ makes these the only possible coefficients
+below $\tau$; the lemma's $\chi$ equals the expression above.
+If
+\begin{equation}\label{eq:poly-block-credit-condition}
+ e_\beta(N+1)\le\chi+\frac2{\ln\beta},
+\end{equation}
+the positive-rank discounts and the zero-route discount together save
+at least $\chi b$. This is the entire mass-cap step: no distribution
+of witness ranks is used beyond $m_t\le2\delta w(S)$.
+Put
+\begin{equation}\label{eq:poly-block-B}
+ B=3+2\Phi_\beta(1)-\chi.
+\end{equation}
+Equation~\eqref{eq:poly-block-discrete} becomes the stronger local bound
+\begin{equation}\label{eq:poly-block-local}
+ W_{\mathrm{pat}}(S)\le A\Delta+B b+\frac{I-J}{\ln2}.
+\end{equation}
+
+If the normalized hull has dimension at most one, query its at most
+two real extreme tests to learn the full pattern directly. Its cost
+is at most $2w(S)$. Since $A>2$ and $B>2$, this is at most
+$A\Delta+B b$: when the zero class exists, the witness path has
+$q\ge1$ at a nonsingleton state and gives $\Delta\ge p_0$;
+when it is absent, $b=w(S)$. Thus this case obeys the same local bound,
+with $J=I$.
+
+\subsection{The general polynomial guarantee}
+
+\begin{theorem}[Improved polynomial expected-depth approximation]
+\label{thm:poly-block-expected}
+For a separating supplied family of binary unit-cost planar line queries
+and arbitrary strictly positive rational priors, the preceding
+deterministic polynomial-time algorithm returns a tree $T_{\mathrm{blk}}$
+such that
+\[
+ c_{\mathrm E}(T_{\mathrm{blk}}(S))
+ \le A\OPT_{\mathrm E}(S)+c\mathcal E(S),\qquad
+ c=\max\{1/h(\delta),\ B/\sigma(\delta)\}.
+\]
+For the rational parameters above,
+\begin{equation}\label{eq:poly-block-factor}
+ \boxed{c_{\mathrm E}(T_{\mathrm{blk}}(\HH))
+ \le\rho_{\mathrm{blk}}\OPT_{\mathrm E}(\HH),\qquad
+ \rho_{\mathrm{blk}}=A+c\ln2<5.312551.}
+\end{equation}
+The running time is polynomial in the geometric input and rational bit
+length, with no dependence of its exponent on the smallest prior.
+\end{theorem}
+\begin{proof}
+Apply Lemma~\ref{lem:stage-conversion} to
+\eqref{eq:poly-block-local} and \eqref{eq:poly-block-entropy}.
+This proves the additive guarantee and its stated ratio.
+
+For completeness, the numerical certificate uses exact rational
+logarithm enclosures obtained from the atanh series
+\eqref{eq:rational-log-bounds}. Here $N=3$, $\lfloor1/\delta\rfloor=7$,
+and
+\[
+ B=7-\frac{\ln6}{\ln\beta}
+       -2\delta[e_\beta(2)+e_\beta(3)]
+       -(1-6\delta)e_\beta(4).
+\]
+Those enclosures certify $\lambda_\beta>\nu_\beta$ and
+\[
+ \begin{aligned}
+ 3.591810178840038&<A<3.591810178840040,\\
+ 5.013509704362398&<B<5.013509704362401,\\
+ e_\beta(4)&<\chi+2/\ln\beta-1.08407,\\
+ \max\{\ln2/h(\delta),\ B\ln2/\sigma(\delta)\}
+ &<1.720740274489660.
+ \end{aligned}
+\]
+In particular \eqref{eq:poly-block-credit-condition} holds and
+$A+c\ln2<5.312550453329700<5.312551$.
+The standalone certificate \texttt{poly-expected-check.py} compares
+exact rational interval bounds, not floating-point evaluations.
+
+The block demands are circular intervals, so all exact budgeted
+coverage and minimum-cover calls are polynomial. There are at most
+as many demanded patterns as hypotheses; the minimum cover size is
+no larger. The shift enumeration has polynomially many rational
+breakpoints, and uses rational rank-weight sums to choose its schedule.
+Logarithms appear only in the analysis. The existing endpoint codes
+are polynomial to construct. Every nonsingleton output class is a
+proper subset; hence the recursive partition has $O(n)$ states and
+the complete construction is polynomial.
+\end{proof}
+
+\subsection{Retaining the first-batch orientation credit}
+
+In an actual scheduled block, let $x,y$ be the newly hit masses
+exclusive to its endpoints and $z$ their shared mass. Querying the
+smaller exclusive mass first makes the larger exclusive mass exit
+second, with a pinned boundary. The nonentropy allowance improves
+from $5(x+y+z)$ to $5(x+y+z)-\max\{x,y\}$, in addition to shifted
+discovery cost. Each cap has mass below $\delta w(S)$, so
+\[
+ \max\{x,y\}\ge\max\{0,x+y+z-\delta w(S)\}.
+\]
+To turn this actual-schedule saving into a general guarantee, couple it
+to the witness through the exact first-batch coverage oracle. Use
+\[
+ \delta_* =\frac{142275675}{10^9}
+\]
+as the balance threshold, keeping the same $\beta$. For each candidate
+shifted schedule $G$, use the orientations just specified and compute
+\[
+ \operatorname{Pin}(G)=\sum_{\text{blocks of }G}\max\{x,y\}.
+\]
+Choose the shift minimizing the rational surrogate
+\begin{equation}\label{eq:poly-oriented-surrogate}
+ F(G)=2\MSSC_{\mathrm{blk}}(G)+2p_0|G|-\operatorname{Pin}(G).
+\end{equation}
+The query-cost bound is now $F(G)+3b+(I-J)/\ln2$.
+Orientation does not change a block's union or its first-hit rank, so
+all coverage sets and greedy block orders remain those of the original
+polynomial batch construction. The actual transcript and its entropy
+may change, but $J\ge b\sigma(\delta_*)$ holds for every shift and
+orientation.
+
+For a log-uniform shift $u\in[1,\beta)$, the first budget is
+$k=\lfloor u\rfloor\in\{1,2,3\}$. Let $H$ be the positive mass covered
+by that batch. It has at most $k$ productive blocks, with newly hit
+masses $g_j$. Consequently
+\[
+ \operatorname{Pin}(G_u)\ge
+ \sum_{j\text{ in first batch}}(g_j-\delta_* w(S))_+
+ \ge (H-k\delta_*w(S))_+.
+\]
+Write $M_k=\sum_{t\le k}m_t$ for the analytical witness mass used
+in \eqref{eq:poly-block-discrete}. A comparison edge cover hits this
+mass within its first $k$ blocks. Exact at-most-$k$ coverage gives
+$H\ge M_k$. If the first budget already reaches the minimum cover size,
+the batch covers all positive mass and the same statement holds.
+Thus, with
+\[
+ P_k=\frac{\ln(\min\{k+1,\beta\}/k)}{\ln\beta},\qquad
+ \mu=\sum_{k=1}^{3}kP_k=3-\frac{\ln6}{\ln\beta},
+\]
+the same shift average used in Lemma~\ref{lem:mssc} satisfies
+\begin{equation}\label{eq:poly-oriented-transfer}
+ \mathbb E[\operatorname{Pin}(G_u)]
+ \ge\sum_{k=1}^{3}P_k(M_k-k\delta_*w(S))
+ =\sum_{t=1}^{3}m_t\sum_{k=t}^{3}P_k-\delta_*w(S)\mu.
+\end{equation}
+This is a transfer between actual coverage and witness mass; it counts
+the orientation credit once. Minimizing
+\eqref{eq:poly-oriented-surrogate} permits this negative term to be
+retained under the same shift average as the first-cover and length
+terms. Minimizing only $\MSSC+p_0|G|$ would not suffice.
+
+Define the effective coefficients
+\[
+ a_t=e_\beta(t)+\sum_{k=t}^{3}P_k\quad(t\le3),\qquad
+ a_t=e_\beta(t)\quad(t\ge4).
+\]
+Explicitly $a_1=1$, $a_2=e_\beta(2)+1-P_1$, and
+$a_3=e_\beta(3)+P_3$. Exact logarithm bounds certify
+$a_1,a_2,a_3<e_\beta(4)$. Monotonicity of $e_\beta$ gives
+$a_t\ge e_\beta(4)$ for $t\ge4$. The first three coefficients need not be ordered. Define
+\[
+ \begin{aligned}
+ \chi_{\mathrm{or}}
+ &=2\delta_*[e_\beta(2)+e_\beta(3)]
+       +(1-6\delta_*)e_\beta(4)+\delta_*\mu,\\
+ B_{\mathrm{or}}&=3+2\Phi_\beta(1)-\chi_{\mathrm{or}}.
+ \end{aligned}
+\]
+These are the coefficients from Lemma~\ref{lem:capped-rank-credit}
+with $\tau=e_\beta(4)$, $E=\{1,2,3\}$, the intercept $\mu$ in
+\eqref{eq:poly-oriented-transfer}, and $\zeta=2/\ln\beta$.
+Indeed $\sum_{t=1}^3\sum_{k=t}^3P_k=\sum_{k=1}^3kP_k=\mu$,
+which explains the positive term $\delta_*\mu$ in $\chi_{\rm or}$.
+The certified condition
+$\chi_{\mathrm{or}}+2/\ln\beta\ge e_\beta(4)$ lets the lemma turn
+all discounts into $\chi_{\rm or}b$. Minimizing the rational
+surrogate retains them under the same shift average. Substitution in
+\eqref{eq:poly-block-discrete} gives
+\[
+ W_{\mathrm{pat}}(S)\le A\Delta+B_{\mathrm{or}}b+(I-J)/\ln2.
+\]
+The degenerate-hull argument also applies because $B_{\mathrm{or}}>2$.
+
+\begin{theorem}[Orientation-aware polynomial approximation]
+\label{thm:poly-oriented-expected}
+In the general binary supplied-line model with arbitrary positive
+rational priors, the block algorithm with threshold $\delta_*$ and
+shift objective \eqref{eq:poly-oriented-surrogate} has approximation
+factor
+\[
+ \boxed{\rho_{\mathrm{or}}=
+ A+\max\{\ln2/h(\delta_*),\ B_{\mathrm{or}}\ln2/\sigma(\delta_*)\}
+ <5.286244.}
+\]
+Its running time is polynomial in the input and rational bit length.
+\end{theorem}
+\begin{proof}
+Apply Lemma~\ref{lem:stage-conversion} to this local ledger and
+\eqref{eq:poly-block-entropy}, with
+\[
+ c_{\mathrm{or}}=\max\{1/h(\delta_*),B_{\mathrm{or}}/\sigma(\delta_*)\}.
+\]
+The exact certificate \texttt{poly-expected-next-check.py} gives
+\[
+ \begin{aligned}
+ 0.771720051343&<\chi_{\mathrm{or}}<0.771720051345,\\
+ 4.802209647029&<B_{\mathrm{or}}<4.802209647032,\\
+ \max\{\ln2/h(\delta_*),B_{\mathrm{or}}\ln2/\sigma(\delta_*)\}
+ &<1.694433600947,\\
+ e_\beta(4)-\max\{a_1,a_2,a_3\}&>0.06815.
+ \end{aligned}
+\]
+It also certifies the zero-route condition. Hence
+$\rho_{\mathrm{or}}<5.286243779788<5.286244$.
+All values in \eqref{eq:poly-oriented-surrogate} are rational
+rank-weight and exclusive-mass sums. For each enumerated shift the
+surrogate and the best block orientations are computable by a
+polynomial incidence scan; schedules and orientations are constant
+between the same rational shift breakpoints. The change preserves the
+polynomial construction and has no minimum-prior dependence.
+\end{proof}
+
+\subsection{A mixed-prefix certificate below 5.283310}
+
+The algorithm can be sharpened slightly further by changing its balance
+threshold to
+\[
+ \delta_\dagger=\frac{142671046}{10^9}.
+\]
+Keep the same block orientations and rational shift objective
+\eqref{eq:poly-oriented-surrogate}. Only the analysis mixes two lower
+bounds on the same actual orientation credit; it does not add those
+credits or change the polynomial scheduler.
+
+For a shift $u$, put $k_0(u)=\lfloor u\rfloor$ and
+$k_1(u)=\lfloor\beta u\rfloor$. The first two batches use at most
+$k_0(u)+k_1(u)$ blocks and cover mass at least $M_{k_1(u)}$.
+If either budget reaches the minimum cover size, the schedule finishes
+and covers all positive mass, which only improves these bounds.
+Thus $\operatorname{Pin}(G_u)$ is at least each of
+\[
+ M_{k_0(u)}-\delta_\dagger w(S)k_0(u),\qquad
+ M_{k_1(u)}-\delta_\dagger w(S)[k_0(u)+k_1(u)].
+\]
+It is therefore at least their convex combination, with second-prefix
+coefficient
+\[
+ \alpha(u)=
+ \begin{cases}
+ 7963376/10^7,&1\le u<4/\beta,\\
+ 952407/10^6,&4/\beta\le u<5/\beta,\\
+ 1,&5/\beta\le u<6/\beta,\\
+ 0,&6/\beta\le u<\beta.
+ \end{cases}
+\]
+On the three nonzero-coefficient ranges, $k_0(u)=1$ and $k_1(u)$ is
+respectively 3, 4, or 5. Define their averaged second-prefix weights
+\[
+ q_0=\frac{7963376}{10^7}\frac{\ln(4/\beta)}{\ln\beta},\quad
+ q_1=\frac{952407}{10^6}\frac{\ln(5/4)}{\ln\beta},\quad
+ q_2=\frac{\ln(6/5)}{\ln\beta}.
+\]
+Relative to the first-prefix bound, each range adds $M_{k_1}-M_1$
+and incurs an additional block-budget charge $k_1\delta_\dagger w(S)$.
+Hence the combined witness discount and averaged pin credit obey
+\[
+ \sum_t m_t e_\beta(t)+\mathbb E[\operatorname{Pin}(G_u)]
+ \ge\sum_t m_t\widetilde a_t-\delta_\dagger w(S)\widetilde\mu,
+\]
+where
+\[
+ \begin{aligned}
+ \widetilde a_1&=1,\\
+ \widetilde a_2&=e_\beta(2)+1-P_1+q_0+q_1+q_2,\\
+ \widetilde a_3&=e_\beta(3)+P_3+q_0+q_1+q_2,\\
+ \widetilde a_4&=e_\beta(4)+q_1+q_2,\\
+ \widetilde a_5&=e_\beta(5)+q_2,\qquad
+ \widetilde a_t=e_\beta(t)\quad(t\ge6),\\
+ \widetilde\mu&=3-\ln6/\ln\beta+3q_0+4q_1+5q_2.
+ \end{aligned}
+\]
+Set $\tau=345603/250000=1.382412$. Exact logarithm enclosures certify
+that only indices $1,3$ have coefficient below $\tau$, while
+$\widetilde a_2,\widetilde a_4,\widetilde a_5,e_\beta(6)>\tau$.
+Monotonicity gives the bound for all later indices.
+Put
+\[
+ \widetilde\chi=\tau-2\delta_\dagger
+                [(\tau-1)+(\tau-\widetilde a_3)]
+                -\delta_\dagger\widetilde\mu,\qquad
+ \widetilde B=3+2\Phi_\beta(1)-\widetilde\chi.
+\]
+Lemma~\ref{lem:capped-rank-credit} now applies with exceptional
+indices $E=\{1,3\}$, intercept $\widetilde\mu$, and
+$\zeta=2/\ln\beta$. Its required condition
+$\widetilde\chi+2/\ln\beta\ge\tau$ is certified below. The local
+stage bound is therefore
+$A\Delta+\widetilde B b+(I-J)/\ln2$.
+
+\begin{theorem}[Mixed-prefix polynomial approximation]
+\label{thm:poly-mixed-expected}
+For general supplied binary unit-cost planar line queries and arbitrary
+strictly positive rational priors, the oriented block algorithm with
+threshold $\delta_\dagger$ has approximation factor
+\[
+ \boxed{\rho_{\mathrm{mix}}=
+ A+\max\{\ln2/h(\delta_\dagger),
+         \widetilde B\ln2/\sigma(\delta_\dagger)\}<5.283310.}
+\]
+It runs in polynomial time in the input and rational bit length.
+\end{theorem}
+\begin{proof}
+Lemma~\ref{lem:stage-conversion} converts the local ledger using
+\eqref{eq:poly-block-entropy}. Exact rational logarithm
+bounds certify the coefficient comparisons, the zero-route condition, and
+\[
+ \begin{aligned}
+ 0.807181228455&<\widetilde\chi<0.807181228458,\\
+ 4.766748469916&<\widetilde B<4.766748469920,\\
+ \max\{\ln2/h(\delta_\dagger),
+         \widetilde B\ln2/\sigma(\delta_\dagger)\}
+ &<1.691499244574.
+ \end{aligned}
+\]
+Together with the previous bound on $A$, these give
+$\rho_{\mathrm{mix}}<5.283309423415<5.283310$.
+The convex-combination coefficients appear only in the proof. The
+algorithm uses the same rational surrogate, supplied queries, and
+polynomial shift enumeration as before, with its new rational balance
+threshold. The complete certificate is included in
+\texttt{poly-expected-next-check.py}.
+\end{proof}
+

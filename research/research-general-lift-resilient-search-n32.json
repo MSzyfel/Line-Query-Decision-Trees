@@ -1,0 +1,51 @@
+{
+  "n": 32,
+  "m": 7,
+  "tests": [
+    3536034228,
+    2277730017,
+    2863311530,
+    3435973836,
+    4042322160,
+    4278255360,
+    4294901760
+  ],
+  "mode": "strong",
+  "greedy_cost": 165,
+  "plain_cost": 160,
+  "output_cost": 160,
+  "optimum": 160,
+  "ratio": 1.0,
+  "validation_exact_states": 0,
+  "explicit_optimum_coordinate_certificate": true,
+  "strong_first_pass_optimum_certificate": true,
+  "plain_history": [
+    {
+      "cost": 165,
+      "candidate_cost": 160,
+      "source_codes": 139,
+      "lifted_codes": 138,
+      "base_states": 446,
+      "states": 562,
+      "profit": 5
+    },
+    {
+      "cost": 160,
+      "candidate_cost": 160,
+      "source_codes": 158,
+      "lifted_codes": 157,
+      "base_states": 451,
+      "states": 562,
+      "profit": 0
+    }
+  ],
+  "strong_history": [],
+  "status": "complete",
+  "seed": 2026101806,
+  "iterations_completed": 1600,
+  "evaluations": 1127,
+  "seconds": 237.34061098098755,
+  "accepted": 1522,
+  "origin": "mutation",
+  "seed_bank_seconds": 1.4296603202819824
+}

@@ -1,0 +1,33 @@
+\begin{algorithm}[H]
+\caption{Exact maximum depth with a distinguished miss hypothesis and bounded caps}
+\label{alg:bounded-caps}
+\KwIn{Distinguished hypothesis $p$; other hypotheses $P$; supplied caps of size at most fixed $b$.}
+\KwOut{An exact minimum-height supplied-query tree.}
+\If{$P=\varnothing$}{\KwRet the zero-query tree\;}
+Compute the minimum supplied-halfplane cover size $K$ of $P$\;
+\For{$D=K,\ldots,K+b-1$}{
+  $d_0\gets\max\{0,D-b+1\}$\;
+  \ForEach{ordered supplied-query suffix of length $q\le D-d_0$}{
+    \ForEach{$R$ contained in the union of its caps}{
+      \If{the suffix does not cover $R$}{\Continue\;}
+      Find a minimum cover $Q$ of $P\setminus R$ using only caps disjoint from $R$\;
+      \If{$|Q|>d_0$ or the cover is infeasible}{\Continue\;}
+      Compute the suffix's first-hit groups $A_j$ on $R\cup\{p\}$\;
+      \If{some $j+c_W(\ExactTree(A_j,\mathrm W))>D-d_0$}{\Continue\;}
+      Execute $Q$ followed by the suffix on the all-miss spine\;
+      Attach exact local supplied-query trees to all positive first-hit groups\;
+      \KwRet this tree\;
+    }
+  }
+}
+\end{algorithm}
+
+The theorem's height interval means the loop needs only the listed
+values of $D$. For each value, the algorithm searches suffixes and
+residual sets; since a suffix has at most $b-1$ queries and each cap
+contains at most $b$ points, its union contains at most $b(b-1)$
+points. An empty suffix therefore permits only $R=\varnothing$. The
+prefix step is a minimum supplied-halfplane cover, computed by the
+polynomial algorithm cited in Theorem~\ref{thm:bounded-cap-height};
+when the instance has the special hull-interval representation, its
+dedicated interval oracle performs the same step.

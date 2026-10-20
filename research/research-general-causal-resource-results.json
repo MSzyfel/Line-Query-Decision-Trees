@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "subset_pricing_is_validation_only": true,
+  "exact_small_pricing_cases": 120,
+  "strict_pricing_DP_updates": 60,
+  "largest_observed_approximation_ratio": "21/10",
+  "large_outsider_example": {
+    "r": 6,
+    "k": 3,
+    "targets": 20,
+    "outsiders": 8000,
+    "cap_reward": 10,
+    "cap_raw_work": 8074,
+    "candidate_exact_density": "5/4037",
+    "certified_optimum_density_upper": "1/800",
+    "certified_approximation_factor": "4037/4000"
+  },
+  "direct_product_checks": {
+    "q": 3,
+    "dimension": 3,
+    "affine_points": 27,
+    "threshold_points": 27,
+    "n": 729,
+    "affine_tests": 39,
+    "necessary_threshold_palette": 26,
+    "pair_cone_raw_upper": "10179/2"
+  }
+}

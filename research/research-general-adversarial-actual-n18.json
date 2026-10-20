@@ -1,0 +1,90 @@
+{
+  "n": 18,
+  "tests": [
+    228858,
+    33282,
+    2176,
+    92523,
+    13136,
+    41456,
+    9772,
+    198272,
+    251503,
+    211391
+  ],
+  "m": 10,
+  "greedy_cost": 80,
+  "output_cost": 78,
+  "baseline_output_cost": 80,
+  "fitness": "actual",
+  "optimum": 78,
+  "ratio": 1.0,
+  "history": [
+    {
+      "cost": 80,
+      "base_states": 325,
+      "states": 1344,
+      "profit": 2,
+      "candidate_cost": 78,
+      "actual_improvement": 2,
+      "implicit_boundary_edges": 30,
+      "fallback_cost_states": 1332
+    },
+    {
+      "cost": 78,
+      "base_states": 375,
+      "states": 1347,
+      "profit": 0,
+      "candidate_cost": 78,
+      "actual_improvement": 0,
+      "implicit_boundary_edges": 20,
+      "fallback_cost_states": 1332
+    }
+  ],
+  "search_status": "wrapped at requested checkpoint; no background process remains",
+  "last_completed_progress_checkpoint": {
+    "n": 18,
+    "iteration": 3300,
+    "distinct_valid_evaluations": 2409,
+    "accepted": 2497,
+    "best_ratio": 1.0,
+    "seconds": 375.15194725990295
+  },
+  "diagnosis": {
+    "mode": "actual",
+    "stable_cost": 78,
+    "optimum_cost": 78,
+    "stable_depths": [
+      5,
+      6,
+      4,
+      3,
+      4,
+      4,
+      5,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      4,
+      6,
+      4
+    ],
+    "optimal_root_mask": 92523,
+    "missing_optimal_states": [],
+    "unrestricted_maximum_prize_work_profit": 0,
+    "supported_actual_fallback_cost": 78,
+    "boundary_actual_fallback_cost": 78,
+    "actual_boundary_diagnostics": {
+      "actual_improvement": 0,
+      "implicit_boundary_edges": 20,
+      "fallback_cost_states": 1332
+    },
+    "base_states": 375,
+    "represented_states": 1347
+  }
+}

@@ -1,0 +1,1828 @@
+{
+  "status": "passed",
+  "query_simulation_cases": 118,
+  "actual_hypothesis_simulations": 2256,
+  "exact_Cartesian_posterior_checks": 1389,
+  "conditional_paid_hit_probability_checks": 261,
+  "pathwise_charged_comparisons": 2256,
+  "maximum_paid_mean": "9/4",
+  "cycles_and_self_parents_included": true,
+  "no_OPT_or_subset_search": true,
+  "common_parent_set_required": true,
+  "examples": [
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 2,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 2,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 2,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 2,
+      "target": 2,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "0"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 2,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 2,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "0"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 2,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 2,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "0"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "0"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [],
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 2,
+      "D": 3,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "7/4"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "9/4"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "1"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "3/2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "3/2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "3/2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "3/2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "3/2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "3/2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "3/2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "3/2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 2,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "2"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "5/4"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "23/16"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "25/16"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "5/4"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "23/16"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "25/16"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 1,
+      "paid_mean": "5/4"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 2,
+      "paid_mean": "5/4"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 0,
+      "D": 3,
+      "paid_mean": "5/4"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 1,
+      "paid_mean": "5/4"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 2,
+      "paid_mean": "5/4"
+    },
+    {
+      "parents": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "size": 4,
+      "target": 1,
+      "D": 3,
+      "paid_mean": "5/4"
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+\section{Polynomial expected depth with improved initial batches}
+\label{sec:first-phase}
+
+The early geometric batches need not retain their original budgets.
+Allowing a different small first budget, and sometimes merging the first
+two batches, improves the general polynomial expected-depth factor to
+below $5.197569$. The later batches and the rational adaptive block modes
+of Section~\ref{sec:adaptive-blocks} remain unchanged. In particular, the
+improvement applies to arbitrary strictly positive rational priors.
+
+The proof can be read in four steps. First specify the enlarged
+polynomial family of actual schedules. Next compute its signed change
+to the first-hit and all-negative costs. Then use one finite table to
+certify the positive-rank coefficients and every possible zero waiting
+length. Finally invoke the same capped-rank and stage-to-tree lemmas
+as for the earlier block variants. The table is a comparison
+distribution used to bound the algorithm's minimum rational score.
+
+\subsection{A larger polynomial family of schedules}
+
+Use the same full-hull edge candidates, exact budgeted coverage sets
+$Q_k$, minimum cover $Q_*$, and greedy ordering within each batch.
+Write $k_{\min}$ for the minimum cover size, reserving
+$k_j=\lfloor\beta^ju\rfloor$ for a shift's geometric budgets. Set
+\begin{equation}\label{eq:first-phase-parameters}
+ \beta=\frac{3512863}{10^6},\qquad
+ \delta=\frac{155223384}{10^9}.
+\end{equation}
+For every shift representative $u\in[1,\beta)$, try these sequences:
+\[
+ \begin{array}{ll}
+ q,k_1,k_2,\ldots,&q\in\{1,\ldots,6\},\quad q<k_1,\\
+ k_1,k_2,\ldots.&
+ \end{array}
+\]
+The second sequence merges the old first two batches. At \emph{every}
+phase, including the first, use $Q_k$ when its budget $k<k_{\min}$;
+otherwise use $Q_*$ and finish. Thus an initial budget reaching
+$k_{\min}$ starts with the minimum cover and has no later phase.
+Omit repeated and unproductive blocks. The original first budget is
+included because $k_0\le3$ and $k_0<k_1$.
+
+For each sequence use Algorithm~\ref{alg:block-mode}, with the same
+$p_*,h_*$ and rational saving $D$ as in
+\eqref{eq:rational-block-saving}. Choose the schedule minimizing
+\eqref{eq:adaptive-shift-objective}. The physical stage bound
+\eqref{eq:adaptive-stage}, the coarsened transcript
+$J_*$, and the individual-cap bound
+\eqref{eq:coarse-discovery-cap} therefore still hold.
+Algorithm~\ref{alg:first-phase-family} records the new family.
+
+Refine the geometric shift partition of
+Algorithm~\ref{alg:batch-orders} by adding every breakpoint
+\begin{equation}\label{eq:initial-shift-refinement}
+ \frac{k}{\beta},\ \frac{k}{\beta^2}\in[1,\beta),
+ \qquad 1\le k\le\lceil\beta^3\rceil.
+\end{equation}
+Use each breakpoint below $\beta$ and choose one interior point from
+each consecutive pair as a representative. This constant
+refinement, for fixed $\beta$, makes both $k_1$ and $k_2$ constant
+on every initial cell even when the minimum-cover size truncates the
+base partition. It also supports the two-budget family in the next
+section. All later executed budgets have their breakpoints in the
+base partition. Thus each breakpoint and open cell has a representative,
+and every schedule and mode score is fixed within each open cell. There
+are at most seven variants per representative. The
+certificate distributions are used only in the proof.
+
+\begin{algorithm}[H]
+\caption{Improved first-phase family for \ExpectedTree}
+\label{alg:first-phase-family}
+\KwIn{Weighted positive-pattern block demands, zero weight $p_0$;
+$\beta,\delta$ from \eqref{eq:first-phase-parameters}.}
+\KwOut{A minimum-score supplied-block schedule.}
+Reuse the coverage sets $Q_k$ and minimum cover $Q_*$ of size $k_{\min}$\;
+Refine the \BatchOrders\ shift partition by
+\eqref{eq:initial-shift-refinement}; use its breakpoints and cell midpoints\;
+\ForEach{shift representative $u$}{
+ $k_1\gets\lfloor\beta u\rfloor$\;
+ $\mathcal V\gets\{(q,1):1\le q\le6,\ q<k_1\}\cup\{(k_1,2)\}$\;
+ \ForEach{$(q,j_0)\in\mathcal V$}{
+  $G\gets$ empty order\;
+  Process the first budget $q$: use $Q_q$ if $q<k_{\min}$,
+  and $Q_*$ otherwise\;
+  Greedily append productive unused blocks by newly covered mass\;
+  \If{$q<k_{\min}$}{
+   \For{$j=j_0,j_0+1,\ldots$}{
+    $k\gets\lfloor\beta^ju\rfloor$;
+    process $Q_k$ if $k<k_{\min}$, and $Q_*$ otherwise\;
+    Greedily append productive unused blocks\;
+    \If{$k\ge k_{\min}$}{stop these phases\;}
+   }
+  }
+  Use Algorithm~\ref{alg:block-mode} to compute rational savings $D$\;
+  Retain $G$ with score $2\MSSC_{\rm blk}(G)+2p_0|G|-\sum D$\;
+ }
+}
+\KwRet a retained schedule of minimum score\;
+\end{algorithm}
+
+Use this routine in place of \BatchOrders\ in the adaptive variant
+of \ExpectedTree, with the new threshold $\delta$ at every recursive
+state. All positive exits still learn the full pattern before child
+attachment. An empty demand family needs no schedule; the direct
+degenerate-hull and singleton cases are handled by \ExpectedTree.
+
+\subsection{Signed first-hit corrections and zero waiting}
+
+The unaveraged accounting bound in the proof of
+Lemma~\ref{lem:mssc} is
+\[
+ \phi_u(t)=\frac{k_0+1}{2}
+  +\frac12\sum_{j\ge0}(k_j+k_{j+1})\mathbf1_{\{t>k_j\}}.
+\]
+For the sequence beginning at $q<k_1$, its counterpart is
+\[
+ \phi_{u,q}(t)=\frac{q+1}{2}
+  +\frac{q+k_1}{2}\mathbf1_{\{t>q\}}
+  +\frac12\sum_{j\ge1}(k_j+k_{j+1})\mathbf1_{\{t>k_j\}}.
+\]
+To compare the schedules, double both invoices. Their common tail
+from phases $j\ge1$ cancels, leaving
+\begin{equation}\label{eq:first-phase-correction}
+ \begin{aligned}
+ d_q(u,t)&=2\bigl(\phi_u(t)-\phi_{u,q}(t)\bigr)\\
+ &=k_0-q+(k_0+k_1)\mathbf1_{\{t>k_0\}}
+              -(q+k_1)\mathbf1_{\{t>q\}}.
+ \end{aligned}
+\end{equation}
+For the merged sequence beginning at $k_1$, its doubled invoice is
+\[
+ 2\phi_{u,\mathrm m}(t)=k_1+1+(k_1+k_2)\mathbf1_{\{t>k_1\}}
+       +\sum_{j\ge2}(k_j+k_{j+1})\mathbf1_{\{t>k_j\}}.
+\]
+Subtracting this from $2\phi_u(t)$ cancels the common tail
+$j\ge2$; the remaining terms give
+\begin{equation}\label{eq:merged-phase-correction}
+ d_{\rm m}(u,t)=k_0-k_1+(k_0+k_1)\mathbf1_{\{t>k_0\}}.
+\end{equation}
+These corrections can be negative. Retaining their signs accounts
+for both accelerated and delayed comparison ranks. The within-batch
+greedy proof applies to either sequence, and each resulting first-hit
+invoice is nondecreasing. Thus a comparison edge hitting a class
+before its supporting-prefix index can only improve its bound.
+Early completion at $Q_*$ preserves the formulas as upper bounds. The
+unrolled residual expression adds only nonnegative terms after the last
+actual phase.
+
+The all-negative route requires a separate correction. The old
+schedule uses the minimum cover of size $k=k_{\min}$, together with
+each earlier budget below $k$, so its length invoice is
+\[
+ k_{\min}+\sum_{j:k_j<k_{\min}}k_j,
+\]
+whereas the regular variant uses
+\[
+ k+q\mathbf1_{\{q<k\}}+\sum_{j\ge1:k_j<k}k_j.
+\]
+Subtracting the old invoice cancels the final cover and the common
+tail $j\ge1$, leaving $z_q=q\mathbf1_{\{q<k\}}-k_0\mathbf1_{\{k_0<k\}}$.
+For the merged variant the invoice is
+\[
+ k+k_1\mathbf1_{\{k_1<k\}}+\sum_{j\ge2:k_j<k}k_j,
+\]
+so the common final-cover and $j\ge2$ terms cancel and leave
+$z_{\rm m}=-k_0\mathbf1_{\{k_0<k\}}$. Thus the two variants
+change the old length accounting by, respectively,
+\begin{equation}\label{eq:first-phase-zero-correction}
+ \begin{aligned}
+ z_q(u,k)&=q\mathbf1_{\{q<k\}}-k_0\mathbf1_{\{k_0<k\}},\\
+ z_{\rm m}(u,k)&=-k_0\mathbf1_{\{k_0<k\}},
+ \qquad k=k_{\min}.
+ \end{aligned}
+\end{equation}
+In particular, this counts all executed prefix blocks before a
+zero-pattern exit, including a first batch that does not complete
+the cover.
+
+\subsection{An eight-row rational certificate}
+
+Keep the witness masses $m_t$, their prefix masses
+$M_q=\sum_{t\le q}m_t$, and the nondecreasing discounts $e_\beta(t)$
+from Section~\ref{sec:polynomial-blocks}. They obey
+\[
+ \sum_t m_t=b,\qquad m_t\le2\delta w,
+ \qquad w=w(S),\quad b=w-p_0.
+\]
+The first budget-$q$ batch covers at least $M_q$, by exact coverage,
+and uses at most $q$ blocks. Lemma~\ref{lem:affine-block-credit} gives
+the following minorants for the \emph{total} saving:
+\[
+ \mathsf A_q=M_q-\delta wq,\qquad
+ \mathsf C_q=c_*M_q-d_*\delta wq,\qquad 0.
+\]
+They hold also when that batch completes $Q_*$ early. As before,
+convex mixtures of these bounds count the actual saving once.
+
+Fix
+\[
+ \begin{aligned}
+ v_1&=\frac{95240701}{10^8},&v_2&=\frac{37279986}{10^8},&
+ v_3&=\frac{4271137}{10^8},\\
+ v_4&=\frac{33933837}{10^8},&v_5&=\frac{36583316}{10^8}.
+ \end{aligned}
+\]
+Average over the log-uniform shift density $1/(u\ln\beta)$.
+The table specifies the conditional distribution of variants and
+saving minorants. A pair $(q,\mathsf L)$ means first budget $q$
+and minorant $\mathsf L$; except for the two marked merged rows,
+the remaining budgets are $k_1,k_2,\ldots$.
+\begin{center}
+\small
+\begin{tabular}{ll}
+\hline
+Shift range & Variant and saving minorant\\
+\hline
+$[1,4/\beta)$ & $(3,\mathsf C_3)$, merged\\
+$[4/\beta,5/\beta)$ & $v_1(4,\mathsf A_4)+(1-v_1)(4,0)$, merged\\
+$[5/\beta,2)$ & $(1,\mathsf C_1)$\\
+$[2,8/\beta)$ & $v_2(1,\mathsf C_1)+(1-v_2)(2,\mathsf C_2)$\\
+$[8/\beta,3)$ & $(2,\mathsf C_2)$\\
+$[3,11/\beta)$ & $v_3(2,\mathsf C_2)+(1-v_3)(3,\mathsf C_3)$\\
+$[11/\beta,12/\beta)$ & $(3,\mathsf C_3)$\\
+$[12/\beta,\beta)$ &
+ \shortstack[l]{$v_4(3,\mathsf C_3)+v_5(5,\mathsf A_5)$\\
+ $\quad +(1-v_4-v_5)(6,0)$}\\
+\hline
+\end{tabular}
+\end{center}
+All conditional weights are nonnegative and sum to one. In the
+merged rows $k_1$ is exactly three or four. Every table row whose
+$k_1$ varies uses its original first budget $q=k_0$, so its phase
+correction is identically zero.
+
+Here are explicit definitions of the analytical coefficients. Begin
+with $a_t=e_\beta(t)$ and $\mu=0$. A row $[l,r)$ has probability
+$P=\ln(r/l)/\ln\beta$. An option of conditional weight $v$, initial
+budget $q$, and minorant $sM_q-\rho\delta w$ contributes
+\begin{equation}\label{eq:first-phase-coefficients}
+ a_t\gets a_t+Pv\bigl[d_q(u,t)+s\mathbf1_{\{t\le q\}}\bigr],
+ \qquad \mu\gets\mu+Pv\rho.
+\end{equation}
+For a merged option use $d_{\rm m}$ instead. All corrections in a
+row are constant in $u$. This gives the joint transfer
+\[
+ \sum_t m_t e_\beta(t)+
+ \mathbb E\left[\sum_t m_t d(u,t)+\operatorname{Save}(G)\right]
+ \ge\sum_t m_t a_t-\delta w\mu.
+\]
+
+Set $\tau=20718779/10^7=2.0718779$. Rational logarithm enclosures
+certify that only $a_1$ is below $\tau$:
+\begin{equation}\label{eq:first-phase-coefficient-certificate}
+ \begin{aligned}
+ 1.223255846141&<a_1<1.223255846143<\tau,\\
+ a_2&>2.07187805487,&a_3&>2.07187805533,\\
+ a_4&>2.07187805471,&a_5&>2.07187805502,\\
+ a_6&>2.07187805311,&a_7&>2.07187805484.
+ \end{aligned}
+\end{equation}
+Every saving cutoff is at most six, and every signed phase correction
+is constant for $t\ge7$. Thus $a_t=e_\beta(t)+\kappa$ for one fixed
+$\kappa$ and all $t\ge7$. Since $a_7>\tau$ and $e_\beta$ is
+nondecreasing, every later coefficient satisfies $a_t\ge a_7>\tau$.
+Define
+\begin{equation}\label{eq:first-phase-chi-B}
+ \chi=\tau-2\delta(\tau-a_1)-\delta\mu,\qquad
+ B=7-\frac{\ln6}{\ln\beta}-\chi.
+\end{equation}
+These are exactly the coefficients of
+Lemma~\ref{lem:capped-rank-credit} with exceptional index $E=\{1\}$.
+To invoke that lemma, it remains to retain the zero-route discount
+under the same table distribution.
+
+\subsection{Retain the zero-route credit and convert the stage}
+
+Let $D_0(k)$ be the table-averaged length change in
+\eqref{eq:first-phase-zero-correction}. The same exact certificate gives
+\[
+ \begin{array}{c|rrrrrrr}
+ k&1&2&3&4&5&6&7\\\hline
+ D_0(k)&0&<-.24242&<-.31657&<-.36504&<-.36504&<-.32434&<-.28498
+ \end{array}
+\]
+For all $k\ge7$ the change is $D_0(7)$: regular initial budgets are
+at most six, $k_0\le3$, and a merged change depends only on $k_0$
+once $k>k_0$. Hence $D_0(k)\le0$ for every possible minimum cover
+size. The modified family retains the original joint mean length bound
+\[
+ \mathbb E[|G|]\le Z_\beta(k_{\min})
+ \le\nu_\beta k_{\min}-\frac1{\ln\beta}.
+\]
+If the zero pattern exists, a supporting witness path of length $r$
+gives $k_{\min}\le r$, as in Section~\ref{sec:polynomial-blocks}.
+Since $\lambda_\beta>\nu_\beta$, the same restriction argument
+retains the doubled zero-route credit $2p_0/\ln\beta$.
+
+The rational certificate also verifies $\chi+2/\ln\beta>\tau$.
+Lemma~\ref{lem:capped-rank-credit}, with $\zeta=2/\ln\beta$,
+therefore turns the coefficient and intercept bounds into the saving
+$\chi b$. This step includes arbitrary zero-pattern mass $p_0$.
+Minimizing the rational surrogate is at most averaging it over the
+table's schedule distribution. The discrete discovery proof and
+\eqref{eq:adaptive-stage} therefore yield
+\begin{equation}\label{eq:first-phase-local}
+ W_{\rm pat}(S)\le A\Delta+B b+\frac{I-J_*}{\ln2},
+ \qquad A=\frac{\beta+1}{\ln\beta}.
+\end{equation}
+The at-most-two-real-tests degenerate hull construction obeys this
+bound too, since $A,B>2$, by the same argument as in the earlier
+block proofs.
+
+\begin{theorem}[Improved initial-batch polynomial approximation]
+\label{thm:first-phase-expected}
+For general supplied binary unit-cost planar line queries and arbitrary
+strictly positive rational priors, the initial-batch adaptive algorithm
+runs in deterministic polynomial time and satisfies
+\[
+ c_{\mathrm E}(T(\HH))\le\rho_{\rm first}\OPT_{\mathrm E}(\HH),
+ \qquad
+ \boxed{\rho_{\rm first}=
+ A+\max\{\ln2/h(\delta),B\ln2/\sigma(\delta)\}<5.197569.}
+\]
+Its running-time exponent has no dependence on the smallest prior.
+\end{theorem}
+\begin{proof}
+Apply Lemma~\ref{lem:stage-conversion} to
+\eqref{eq:first-phase-local} and
+\eqref{eq:coarse-discovery-cap}. The coarsened transcript is a
+function of the full pattern, so $0\le J_*\le I$ as required.
+With the parameters in \eqref{eq:first-phase-parameters},
+$6<1/\delta<7$ and
+\[
+ \sigma(\delta)=-6\delta\ln\delta
+               -(1-6\delta)\ln(1-6\delta).
+\]
+The rational atanh bounds \eqref{eq:rational-log-bounds}, after
+range reduction of every argument to $[1,2]$, reproduce all the
+comparisons above with $N=100$ terms. For completeness, if
+$n_t=\lfloor\beta t\rfloor$ and $2\le t\le7$, the values used are
+\[
+ \begin{aligned}
+ e_\beta(t)={}&
+ \frac{(\beta+1)(t-1)-(t+n_t)\ln t+\ln(t!)}{\ln\beta}\\
+ &-(n_t-3)+\frac{\ln(n_t!/6)}{\ln\beta}.
+ \end{aligned}
+\]
+Together with the eight-row definitions, these give
+\[
+ \begin{aligned}
+ 4.379796439664&<\mu<4.379796439666,\\
+ 1.128579101529&<\chi<1.128579101532,\\
+ 4.445350596842&<B<4.445350596845,\\
+ A+\max\{\ln2/h(\delta),B\ln2/\sigma(\delta)\}
+ &<5.197568047723<5.197569.
+ \end{aligned}
+\]
+The reproducible certificate \texttt{next-expected-check.py} checks
+these inequalities with exact fractions and outward logarithm bounds;
+it also verifies both phase identities and $1{,}950$ finite modified
+batch comparisons, including early minimum-cover completion.
+The fixed parameter table and its outward interval bounds give a
+reproducible certificate for these numerical claims.
+
+The coverage DPs, polynomial finite shift-cell enumeration, constant
+number of initial variants, and disjoint-pattern recursion preserve
+polynomial time. Logarithms and the table mixture appear only in the
+proof. Every actual query remains a supplied endpoint line.
+\end{proof}

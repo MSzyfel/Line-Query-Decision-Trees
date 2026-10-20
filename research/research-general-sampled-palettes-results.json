@@ -1,0 +1,183 @@
+{
+  "core_palette_checks": 80,
+  "results": [
+    {
+      "case": "old12",
+      "n": 12,
+      "greedy": 47,
+      "result": 47,
+      "exact_optimum": 46,
+      "history": [
+        {
+          "incumbent": 47,
+          "candidate": 47,
+          "sample_bound": 4,
+          "palettes": 13,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 23,
+          "total_reachable_states": 134,
+          "source_replay_best": 47,
+          "selected_palette": []
+        }
+      ]
+    },
+    {
+      "case": "adversarial12",
+      "n": 12,
+      "greedy": 48,
+      "result": 46,
+      "exact_optimum": 45,
+      "history": [
+        {
+          "incumbent": 48,
+          "candidate": 46,
+          "sample_bound": 4,
+          "palettes": 12,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 23,
+          "total_reachable_states": 137,
+          "source_replay_best": 47,
+          "selected_palette": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "incumbent": 46,
+          "candidate": 46,
+          "sample_bound": 4,
+          "palettes": 10,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 23,
+          "total_reachable_states": 101,
+          "source_replay_best": 46,
+          "selected_palette": []
+        }
+      ]
+    },
+    {
+      "case": "adversarial14",
+      "n": 14,
+      "greedy": 61,
+      "result": 60,
+      "exact_optimum": 57,
+      "history": [
+        {
+          "incumbent": 61,
+          "candidate": 60,
+          "sample_bound": 4,
+          "palettes": 16,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 23,
+          "total_reachable_states": 218,
+          "source_replay_best": 60,
+          "selected_palette": [
+            6,
+            7
+          ]
+        },
+        {
+          "incumbent": 60,
+          "candidate": 60,
+          "sample_bound": 4,
+          "palettes": 16,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 23,
+          "total_reachable_states": 214,
+          "source_replay_best": 60,
+          "selected_palette": []
+        }
+      ]
+    },
+    {
+      "case": "adversarial16",
+      "n": 16,
+      "greedy": 66,
+      "result": 66,
+      "exact_optimum": 65,
+      "history": [
+        {
+          "incumbent": 66,
+          "candidate": 66,
+          "sample_bound": 4,
+          "palettes": 15,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 23,
+          "total_reachable_states": 159,
+          "source_replay_best": 66,
+          "selected_palette": []
+        }
+      ]
+    },
+    {
+      "case": "adversarial18",
+      "n": 18,
+      "greedy": 87,
+      "result": 82,
+      "exact_optimum": 80,
+      "history": [
+        {
+          "incumbent": 87,
+          "candidate": 83,
+          "sample_bound": 4,
+          "palettes": 23,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 27,
+          "total_reachable_states": 331,
+          "source_replay_best": 86,
+          "selected_palette": [
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "incumbent": 83,
+          "candidate": 82,
+          "sample_bound": 4,
+          "palettes": 18,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 27,
+          "total_reachable_states": 247,
+          "source_replay_best": 82,
+          "selected_palette": [
+            1
+          ]
+        },
+        {
+          "incumbent": 82,
+          "candidate": 82,
+          "sample_bound": 4,
+          "palettes": 20,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 23,
+          "total_reachable_states": 239,
+          "source_replay_best": 82,
+          "selected_palette": []
+        }
+      ]
+    },
+    {
+      "case": "weighted18",
+      "n": 18,
+      "greedy": 82,
+      "result": 82,
+      "exact_optimum": 79,
+      "history": [
+        {
+          "incumbent": 82,
+          "candidate": 82,
+          "sample_bound": 4,
+          "palettes": 21,
+          "maximum_palette_size": 3,
+          "maximum_reachable_states": 23,
+          "total_reachable_states": 296,
+          "source_replay_best": 82,
+          "selected_palette": []
+        }
+      ]
+    }
+  ],
+  "exact_global_optimum_is_validation_only": true
+}

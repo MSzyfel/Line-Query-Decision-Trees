@@ -1,0 +1,103 @@
+\section{Conclusion}
+
+The table collects the approximation factors proved for the two depth
+objectives and the two answer models. Here $\gamma$ is the calibrated
+count-potential coefficient from Section~\ref{sec:worst-calibration},
+and $\rho_{\rm two}$ is the calibrated expected-depth factor from
+Section~\ref{sec:two-phase}.
+
+\begin{center}
+\begin{tabular}{p{0.37\textwidth}p{0.24\textwidth}p{0.27\textwidth}}
+\hline
+Objective & Polynomial time & Quasipolynomial time\\
+\hline
+Maximum depth, binary answers &
+$2+\gamma<4.464966$ & $2+\varepsilon$\\[3pt]
+Maximum depth, on-line answers &
+$4+2\gamma<8.929932$ & $4+\varepsilon$\\[3pt]
+Expected depth, binary answers and arbitrary priors &
+$\rho_{\rm two}<5.182976$ & $2+\varepsilon$\\[3pt]
+Expected depth, on-line answers and arbitrary priors &
+$2\rho_{\rm two}<10.365952$ & $4+\varepsilon$\\
+\hline
+\end{tabular}
+\end{center}
+
+The common-witness normalization is the structural step shared by
+both algorithms. In a flat state, it turns each supplied test into
+an opposite cap and represents that cap by at most two adjacent
+vertices of a convex hull. For each hypothesis, the positive hull
+answers form a circular interval. This representation keeps the
+query family fixed and gives the supplied tests an interval view.
+
+The two objectives use this shared structure in different ways. To
+obtain the maximum-depth guarantee, we follow a common witness through
+an optimal tree. Restricting that tree to a pattern class removes the
+queries on the witness prefix, so that prefix gives the class a
+deadline. The adjacent-support lemma reduces these deadlines to
+singleton and pair blocks, which the scheduler orders. Endpoint
+decoding then uses cached negative answers to preserve the remaining
+height credit. When there are logarithmically many discovery slots, an
+exact Cartesian-tree dynamic program improves the schedule; the global
+cap and priority fallback handle the other cases. Together these steps
+give a factor below $4.464966$.
+
+For expected depth, the algorithm first learns each full hull pattern
+and then recurses within its class. Restricting an optimal tree to a
+class removes queries whose answers are already determined, and that
+saved cost helps pay for the first positive hull answer. The answers
+also reveal information about the pattern, which shortens the endpoint
+code. Exact integer-budget coverage over adjacent hull blocks selects
+when each pattern is found, while the all-negative waiting charge
+accounts for the zero-pattern route. The schedule search chooses the
+first two budgets, geometric shift, and endpoint mode together, because
+asking for a second endpoint can reduce later decoding work. The signed
+first-cover correction registers how moving a batch boundary changes
+each class's first-hit rank, while the endpoint term credits the
+information a second answer provides. Combined with restriction
+savings, these credits telescope over the recursive tree, so each stage
+cost is charged once.
+
+The quasipolynomial algorithms store compatible discovery grades.
+This lets them handle all deadlines together. Their internal bounds
+have leading coefficient arbitrarily close to two and an additive
+count or entropy potential; exact logarithmic-depth lookahead absorbs
+that potential and gives the final $(2+\varepsilon)$ ratio.
+The on-line-answer entries follow from the same factor-two simulation,
+using the binary guarantee with parameter $\varepsilon/2$.
+The algorithms run in quasipolynomial time.
+
+For randomized per-hypothesis depth, the adversary chooses the hidden
+hypothesis before sampling the random tree. Multiplicative weights
+then constructs trees for a sequence of positive rational priors.
+A restricted mixture LP combines these trees to minimize the largest
+per-hypothesis expected depth. Proposition~\ref{prop:randomized-duality}
+identifies the hardest prior as the comparison benchmark, and
+Theorem~\ref{thm:randomized-transfer} shows that the weight updates
+preserve the expected-depth oracle's approximation factor up to an
+arbitrary tolerance. The LP compresses the resulting strategy to at
+most $n$ trees. Since this objective differs from deterministic
+maximum depth, the LP value and its comparison priors provide a
+separate, instance-specific approximation certificate.
+
+The small-cap results also delimit possible hardness constructions.
+With a distinguished all-miss hypothesis and fixed cap size, maximum
+depth is exactly solvable in polynomial time. For expected depth, the
+weighted singleton/pair path-and-cycle subclass with all singleton
+tests has an EPTAS. Consequently, APX-hardness for the current weighted
+pair-path reduction would imply $\mathrm P=\mathrm{NP}$. A broader
+uniform subclass also has a PTAS: fixed-size caps in convex position
+with an all-miss hypothesis, even when singleton tests are absent.
+Clearing short gaps permits exact optimization of the remaining block
+interleavings, and the prefix cost stays a small fraction of the full
+optimum. A constant-factor hardness construction must therefore use
+instances outside this uniform fixed-cap class.
+
+The hardness reductions show that strong NP-completeness persists even
+when all hypotheses lie on a parabola and every query is a supplied
+line. The expected-depth reduction applies to arbitrary positive priors
+and to uniform priors: replacing each weight by a uniform cloud adds a
+fixed internal identification cost to every matching. Several
+approximation questions remain: whether constant-factor
+inapproximability holds, whether the polynomial factors can be lowered,
+and whether the quasipolynomial factors can fall below two.

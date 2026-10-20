@@ -1,0 +1,832 @@
+{
+  "benchmarks": [
+    {
+      "name": "old12",
+      "n": 12,
+      "tests": [
+        96,
+        1042,
+        129,
+        8,
+        2748,
+        3264,
+        3840
+      ],
+      "greedy_cost": 47,
+      "optimum": 46,
+      "runs": {
+        "conditional_only": {
+          "cost": 47,
+          "history": [
+            {
+              "cost": 47,
+              "candidate_cost": 47,
+              "source_codes": 45,
+              "lifted_codes": 0,
+              "base_states": 58,
+              "states": 98,
+              "profit": 0
+            }
+          ]
+        },
+        "global_lift": {
+          "cost": 46,
+          "history": [
+            {
+              "cost": 47,
+              "candidate_cost": 46,
+              "source_codes": 45,
+              "lifted_codes": 44,
+              "base_states": 108,
+              "states": 138,
+              "profit": 1
+            },
+            {
+              "cost": 46,
+              "candidate_cost": 46,
+              "source_codes": 64,
+              "lifted_codes": 63,
+              "base_states": 116,
+              "states": 140,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_conditional_only": {
+          "cost": 46,
+          "history": [
+            {
+              "cost": 47,
+              "candidate_cost": 46,
+              "source_codes": 168,
+              "lifted_codes": 0,
+              "base_states": 92,
+              "states": 118,
+              "profit": 1
+            },
+            {
+              "cost": 46,
+              "candidate_cost": 46,
+              "source_codes": 159,
+              "lifted_codes": 0,
+              "base_states": 102,
+              "states": 132,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_global_lift": {
+          "cost": 46,
+          "history": [
+            {
+              "cost": 47,
+              "candidate_cost": 46,
+              "source_codes": 168,
+              "lifted_codes": 162,
+              "base_states": 121,
+              "states": 140,
+              "profit": 1
+            },
+            {
+              "cost": 46,
+              "candidate_cost": 46,
+              "source_codes": 159,
+              "lifted_codes": 155,
+              "base_states": 126,
+              "states": 140,
+              "profit": 0
+            }
+          ]
+        },
+        "lift_actual_boundary": {
+          "cost": 46,
+          "history": [
+            {
+              "cost": 47,
+              "candidate_cost": 46,
+              "source_codes": 45,
+              "lifted_codes": 44,
+              "base_states": 108,
+              "states": 138,
+              "profit": 1,
+              "actual_improvement": 1,
+              "implicit_boundary_edges": 6,
+              "fallback_cost_states": 127
+            },
+            {
+              "cost": 46,
+              "candidate_cost": 46,
+              "source_codes": 64,
+              "lifted_codes": 63,
+              "base_states": 116,
+              "states": 140,
+              "profit": 0,
+              "actual_improvement": 0,
+              "implicit_boundary_edges": 0,
+              "fallback_cost_states": 127
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "adversarial12",
+      "n": 12,
+      "tests": [
+        3264,
+        700,
+        1153,
+        8,
+        1042,
+        97,
+        3840,
+        1022
+      ],
+      "greedy_cost": 48,
+      "optimum": 45,
+      "runs": {
+        "conditional_only": {
+          "cost": 47,
+          "history": [
+            {
+              "cost": 48,
+              "candidate_cost": 47,
+              "source_codes": 50,
+              "lifted_codes": 0,
+              "base_states": 63,
+              "states": 105,
+              "profit": 1
+            },
+            {
+              "cost": 47,
+              "candidate_cost": 47,
+              "source_codes": 54,
+              "lifted_codes": 0,
+              "base_states": 71,
+              "states": 115,
+              "profit": 0
+            }
+          ]
+        },
+        "global_lift": {
+          "cost": 45,
+          "history": [
+            {
+              "cost": 48,
+              "candidate_cost": 45,
+              "source_codes": 50,
+              "lifted_codes": 49,
+              "base_states": 98,
+              "states": 141,
+              "profit": 3
+            },
+            {
+              "cost": 45,
+              "candidate_cost": 45,
+              "source_codes": 70,
+              "lifted_codes": 69,
+              "base_states": 115,
+              "states": 144,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_conditional_only": {
+          "cost": 45,
+          "history": [
+            {
+              "cost": 48,
+              "candidate_cost": 45,
+              "source_codes": 187,
+              "lifted_codes": 0,
+              "base_states": 96,
+              "states": 130,
+              "profit": 3
+            },
+            {
+              "cost": 45,
+              "candidate_cost": 45,
+              "source_codes": 144,
+              "lifted_codes": 0,
+              "base_states": 121,
+              "states": 146,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_global_lift": {
+          "cost": 45,
+          "history": [
+            {
+              "cost": 48,
+              "candidate_cost": 45,
+              "source_codes": 187,
+              "lifted_codes": 181,
+              "base_states": 120,
+              "states": 144,
+              "profit": 3
+            },
+            {
+              "cost": 45,
+              "candidate_cost": 45,
+              "source_codes": 144,
+              "lifted_codes": 140,
+              "base_states": 133,
+              "states": 146,
+              "profit": 0
+            }
+          ]
+        },
+        "lift_actual_boundary": {
+          "cost": 45,
+          "history": [
+            {
+              "cost": 48,
+              "candidate_cost": 45,
+              "source_codes": 50,
+              "lifted_codes": 49,
+              "base_states": 98,
+              "states": 141,
+              "profit": 3,
+              "actual_improvement": 3,
+              "implicit_boundary_edges": 16,
+              "fallback_cost_states": 133
+            },
+            {
+              "cost": 45,
+              "candidate_cost": 45,
+              "source_codes": 70,
+              "lifted_codes": 69,
+              "base_states": 115,
+              "states": 144,
+              "profit": 0,
+              "actual_improvement": 0,
+              "implicit_boundary_edges": 6,
+              "fallback_cost_states": 133
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "adversarial14",
+      "n": 14,
+      "tests": [
+        536,
+        5860,
+        6400,
+        10368,
+        2061,
+        1027,
+        90,
+        6055
+      ],
+      "greedy_cost": 61,
+      "optimum": 57,
+      "runs": {
+        "conditional_only": {
+          "cost": 60,
+          "history": [
+            {
+              "cost": 61,
+              "candidate_cost": 60,
+              "source_codes": 69,
+              "lifted_codes": 0,
+              "base_states": 84,
+              "states": 143,
+              "profit": 1
+            },
+            {
+              "cost": 60,
+              "candidate_cost": 60,
+              "source_codes": 92,
+              "lifted_codes": 0,
+              "base_states": 110,
+              "states": 171,
+              "profit": 0
+            }
+          ]
+        },
+        "global_lift": {
+          "cost": 57,
+          "history": [
+            {
+              "cost": 61,
+              "candidate_cost": 57,
+              "source_codes": 69,
+              "lifted_codes": 68,
+              "base_states": 148,
+              "states": 215,
+              "profit": 4
+            },
+            {
+              "cost": 57,
+              "candidate_cost": 57,
+              "source_codes": 91,
+              "lifted_codes": 90,
+              "base_states": 177,
+              "states": 221,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_conditional_only": {
+          "cost": 57,
+          "history": [
+            {
+              "cost": 61,
+              "candidate_cost": 57,
+              "source_codes": 314,
+              "lifted_codes": 0,
+              "base_states": 156,
+              "states": 204,
+              "profit": 4
+            },
+            {
+              "cost": 57,
+              "candidate_cost": 57,
+              "source_codes": 255,
+              "lifted_codes": 0,
+              "base_states": 184,
+              "states": 221,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_global_lift": {
+          "cost": 57,
+          "history": [
+            {
+              "cost": 61,
+              "candidate_cost": 57,
+              "source_codes": 314,
+              "lifted_codes": 306,
+              "base_states": 208,
+              "states": 221,
+              "profit": 4
+            },
+            {
+              "cost": 57,
+              "candidate_cost": 57,
+              "source_codes": 255,
+              "lifted_codes": 250,
+              "base_states": 215,
+              "states": 221,
+              "profit": 0
+            }
+          ]
+        },
+        "lift_actual_boundary": {
+          "cost": 57,
+          "history": [
+            {
+              "cost": 61,
+              "candidate_cost": 57,
+              "source_codes": 69,
+              "lifted_codes": 68,
+              "base_states": 148,
+              "states": 215,
+              "profit": 4,
+              "actual_improvement": 4,
+              "implicit_boundary_edges": 18,
+              "fallback_cost_states": 206
+            },
+            {
+              "cost": 57,
+              "candidate_cost": 57,
+              "source_codes": 91,
+              "lifted_codes": 90,
+              "base_states": 177,
+              "states": 221,
+              "profit": 0,
+              "actual_improvement": 0,
+              "implicit_boundary_edges": 0,
+              "fallback_cost_states": 206
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "adversarial16",
+      "n": 16,
+      "tests": [
+        20736,
+        57344,
+        56032,
+        17588,
+        18624,
+        16772,
+        40448,
+        1234,
+        7735
+      ],
+      "greedy_cost": 66,
+      "optimum": 65,
+      "runs": {
+        "conditional_only": {
+          "cost": 66,
+          "history": [
+            {
+              "cost": 66,
+              "candidate_cost": 66,
+              "source_codes": 81,
+              "lifted_codes": 0,
+              "base_states": 98,
+              "states": 182,
+              "profit": 0
+            }
+          ]
+        },
+        "global_lift": {
+          "cost": 65,
+          "history": [
+            {
+              "cost": 66,
+              "candidate_cost": 65,
+              "source_codes": 81,
+              "lifted_codes": 80,
+              "base_states": 164,
+              "states": 254,
+              "profit": 1
+            },
+            {
+              "cost": 65,
+              "candidate_cost": 65,
+              "source_codes": 107,
+              "lifted_codes": 106,
+              "base_states": 182,
+              "states": 255,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_conditional_only": {
+          "cost": 65,
+          "history": [
+            {
+              "cost": 66,
+              "candidate_cost": 65,
+              "source_codes": 200,
+              "lifted_codes": 0,
+              "base_states": 129,
+              "states": 203,
+              "profit": 1
+            },
+            {
+              "cost": 65,
+              "candidate_cost": 65,
+              "source_codes": 180,
+              "lifted_codes": 0,
+              "base_states": 169,
+              "states": 233,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_global_lift": {
+          "cost": 65,
+          "history": [
+            {
+              "cost": 66,
+              "candidate_cost": 65,
+              "source_codes": 200,
+              "lifted_codes": 195,
+              "base_states": 190,
+              "states": 264,
+              "profit": 1
+            },
+            {
+              "cost": 65,
+              "candidate_cost": 65,
+              "source_codes": 180,
+              "lifted_codes": 177,
+              "base_states": 213,
+              "states": 264,
+              "profit": 0
+            }
+          ]
+        },
+        "lift_actual_boundary": {
+          "cost": 65,
+          "history": [
+            {
+              "cost": 66,
+              "candidate_cost": 65,
+              "source_codes": 81,
+              "lifted_codes": 80,
+              "base_states": 164,
+              "states": 254,
+              "profit": 1,
+              "actual_improvement": 1,
+              "implicit_boundary_edges": 30,
+              "fallback_cost_states": 247
+            },
+            {
+              "cost": 65,
+              "candidate_cost": 65,
+              "source_codes": 107,
+              "lifted_codes": 106,
+              "base_states": 182,
+              "states": 255,
+              "profit": 0,
+              "actual_improvement": 0,
+              "implicit_boundary_edges": 27,
+              "fallback_cost_states": 247
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "adversarial18",
+      "n": 18,
+      "tests": [
+        536,
+        203199,
+        44160,
+        88107,
+        228858,
+        41456,
+        514,
+        206464,
+        261742
+      ],
+      "greedy_cost": 87,
+      "optimum": 80,
+      "runs": {
+        "conditional_only": {
+          "cost": 85,
+          "history": [
+            {
+              "cost": 87,
+              "candidate_cost": 85,
+              "source_codes": 98,
+              "lifted_codes": 0,
+              "base_states": 117,
+              "states": 232,
+              "profit": 2
+            },
+            {
+              "cost": 85,
+              "candidate_cost": 85,
+              "source_codes": 110,
+              "lifted_codes": 0,
+              "base_states": 135,
+              "states": 264,
+              "profit": 0
+            }
+          ]
+        },
+        "global_lift": {
+          "cost": 80,
+          "history": [
+            {
+              "cost": 87,
+              "candidate_cost": 80,
+              "source_codes": 98,
+              "lifted_codes": 97,
+              "base_states": 247,
+              "states": 430,
+              "profit": 7
+            },
+            {
+              "cost": 80,
+              "candidate_cost": 80,
+              "source_codes": 153,
+              "lifted_codes": 152,
+              "base_states": 321,
+              "states": 465,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_conditional_only": {
+          "cost": 80,
+          "history": [
+            {
+              "cost": 87,
+              "candidate_cost": 80,
+              "source_codes": 568,
+              "lifted_codes": 0,
+              "base_states": 282,
+              "states": 389,
+              "profit": 7
+            },
+            {
+              "cost": 80,
+              "candidate_cost": 80,
+              "source_codes": 464,
+              "lifted_codes": 0,
+              "base_states": 362,
+              "states": 463,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_global_lift": {
+          "cost": 80,
+          "history": [
+            {
+              "cost": 87,
+              "candidate_cost": 80,
+              "source_codes": 568,
+              "lifted_codes": 560,
+              "base_states": 391,
+              "states": 475,
+              "profit": 7
+            },
+            {
+              "cost": 80,
+              "candidate_cost": 80,
+              "source_codes": 464,
+              "lifted_codes": 459,
+              "base_states": 421,
+              "states": 475,
+              "profit": 0
+            }
+          ]
+        },
+        "lift_actual_boundary": {
+          "cost": 80,
+          "history": [
+            {
+              "cost": 87,
+              "candidate_cost": 80,
+              "source_codes": 98,
+              "lifted_codes": 97,
+              "base_states": 247,
+              "states": 430,
+              "profit": 7,
+              "actual_improvement": 7,
+              "implicit_boundary_edges": 116,
+              "fallback_cost_states": 456
+            },
+            {
+              "cost": 80,
+              "candidate_cost": 80,
+              "source_codes": 153,
+              "lifted_codes": 152,
+              "base_states": 321,
+              "states": 465,
+              "profit": 0,
+              "actual_improvement": 0,
+              "implicit_boundary_edges": 32,
+              "fallback_cost_states": 456
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "weighted18",
+      "n": 18,
+      "tests": [
+        592,
+        211391,
+        44160,
+        88107,
+        228858,
+        33264,
+        514,
+        206464,
+        259695,
+        9772
+      ],
+      "greedy_cost": 82,
+      "optimum": 79,
+      "runs": {
+        "conditional_only": {
+          "cost": 81,
+          "history": [
+            {
+              "cost": 82,
+              "candidate_cost": 81,
+              "source_codes": 110,
+              "lifted_codes": 0,
+              "base_states": 129,
+              "states": 252,
+              "profit": 1
+            },
+            {
+              "cost": 81,
+              "candidate_cost": 81,
+              "source_codes": 148,
+              "lifted_codes": 0,
+              "base_states": 179,
+              "states": 305,
+              "profit": 0
+            }
+          ]
+        },
+        "global_lift": {
+          "cost": 79,
+          "history": [
+            {
+              "cost": 82,
+              "candidate_cost": 79,
+              "source_codes": 110,
+              "lifted_codes": 109,
+              "base_states": 257,
+              "states": 473,
+              "profit": 3
+            },
+            {
+              "cost": 79,
+              "candidate_cost": 79,
+              "source_codes": 140,
+              "lifted_codes": 139,
+              "base_states": 314,
+              "states": 487,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_conditional_only": {
+          "cost": 79,
+          "history": [
+            {
+              "cost": 82,
+              "candidate_cost": 80,
+              "source_codes": 425,
+              "lifted_codes": 0,
+              "base_states": 228,
+              "states": 350,
+              "profit": 2
+            },
+            {
+              "cost": 80,
+              "candidate_cost": 79,
+              "source_codes": 431,
+              "lifted_codes": 0,
+              "base_states": 329,
+              "states": 460,
+              "profit": 1
+            },
+            {
+              "cost": 79,
+              "candidate_cost": 79,
+              "source_codes": 401,
+              "lifted_codes": 0,
+              "base_states": 351,
+              "states": 469,
+              "profit": 0
+            }
+          ]
+        },
+        "weighted_global_lift": {
+          "cost": 79,
+          "history": [
+            {
+              "cost": 82,
+              "candidate_cost": 79,
+              "source_codes": 425,
+              "lifted_codes": 418,
+              "base_states": 350,
+              "states": 491,
+              "profit": 3
+            },
+            {
+              "cost": 79,
+              "candidate_cost": 79,
+              "source_codes": 401,
+              "lifted_codes": 395,
+              "base_states": 412,
+              "states": 493,
+              "profit": 0
+            }
+          ]
+        },
+        "lift_actual_boundary": {
+          "cost": 79,
+          "history": [
+            {
+              "cost": 82,
+              "candidate_cost": 79,
+              "source_codes": 110,
+              "lifted_codes": 109,
+              "base_states": 257,
+              "states": 473,
+              "profit": 3,
+              "actual_improvement": 3,
+              "implicit_boundary_edges": 65,
+              "fallback_cost_states": 474
+            },
+            {
+              "cost": 79,
+              "candidate_cost": 79,
+              "source_codes": 140,
+              "lifted_codes": 139,
+              "base_states": 316,
+              "states": 487,
+              "profit": 0,
+              "actual_improvement": 0,
+              "implicit_boundary_edges": 21,
+              "fallback_cost_states": 474
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

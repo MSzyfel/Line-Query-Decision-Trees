@@ -1,0 +1,24 @@
+\begin{algorithm}[H]
+\caption{\Rollout: exact initial-tree optimization with a baseline}
+\label{alg:rollout}
+\KwIn{State $S$, objective $o$, lookahead $j$, and legal baseline routine $B$.}
+\KwOut{The cheapest initial tree of at most $j$ levels, completed by $B$.}
+\If{$|S|\le1$}{\KwRet its leaf\;}
+\If{$(S,o,j)$ is memoized}{\KwRet the stored tree and cost\;}
+Compute the actual baseline tree $B(S)$ and retain it as the initial best choice\;
+\If{$j>0$}{
+  \ForEach{supplied line $\ell$ splitting $S$}{
+    Recurse on $S_\ell^-,S_\ell^+$ with lookahead $j-1$\;
+    Compare $1+\max\{v_-,v_+\}$ if $o=\mathrm W$,
+    or $w(S)+v_-+v_+$ if $o=\mathrm E$, with the best cost\;
+    Store a lower-cost choice and its two child trees\;
+  }
+}
+Memoize and return the best choice\;
+\end{algorithm}
+
+For Theorem~\ref{thm:qp-two-plus-epsilon}, use Algorithm~\ref{alg:qp-baselines}
+with $\lambda=1+\varepsilon/2$ and
+$k=\min\{n-1,\lceil3\lceil\log_2n\rceil/(1+\varepsilon)\rceil\}$.
+This choice sets the lookahead cap for both objectives; the baseline
+completes every search branch that reaches the cap.

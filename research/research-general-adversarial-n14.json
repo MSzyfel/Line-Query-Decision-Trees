@@ -1,0 +1,94 @@
+{
+  "n": 14,
+  "tests": [
+    536,
+    5860,
+    6400,
+    10368,
+    2061,
+    1027,
+    90,
+    6055
+  ],
+  "m": 8,
+  "greedy_cost": 61,
+  "output_cost": 60,
+  "baseline_output_cost": 60,
+  "fitness": "baseline",
+  "optimum": 57,
+  "ratio": 1.0526315789473684,
+  "history": [
+    {
+      "pass": 0,
+      "incumbent_cost": 61,
+      "base_states": 88,
+      "represented_states": 143,
+      "base_dp_cost": 60,
+      "intersection_dp_cost": 60,
+      "maximum_prize_work_profit": 1,
+      "fragment_splice_cost": 60
+    },
+    {
+      "pass": 1,
+      "incumbent_cost": 60,
+      "base_states": 111,
+      "represented_states": 171,
+      "base_dp_cost": 60,
+      "intersection_dp_cost": 60,
+      "maximum_prize_work_profit": 0,
+      "fragment_splice_cost": 60
+    }
+  ],
+  "evaluations": 9424,
+  "iterations": 15000,
+  "enriched_output_cost": 57,
+  "enriched_ratio": 1.0,
+  "enrichment_history": [
+    {
+      "cost": 60,
+      "base_states": 152,
+      "states": 207,
+      "profit": 3,
+      "candidate_cost": 57
+    },
+    {
+      "cost": 57,
+      "base_states": 171,
+      "states": 210,
+      "profit": 0,
+      "candidate_cost": 57
+    }
+  ],
+  "diagnosis": {
+    "stable_cost": 60,
+    "optimum_cost": 57,
+    "stable_depths": [
+      3,
+      4,
+      3,
+      3,
+      4,
+      7,
+      7,
+      5,
+      4,
+      3,
+      6,
+      3,
+      4,
+      4
+    ],
+    "optimal_root_mask": 6055,
+    "missing_optimal_states": [
+      {
+        "mask": 676,
+        "size": 4,
+        "minimum_base_intersection_arity_up_to_6": 3,
+        "optimal_subtree_cost": 9
+      }
+    ],
+    "unrestricted_maximum_prize_work_profit": 3,
+    "base_states": 111,
+    "represented_states": 171
+  }
+}

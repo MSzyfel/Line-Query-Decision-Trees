@@ -1,0 +1,113 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\DontPrintSemicolon
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetKw{Continue}{continue}
+\SetKw{Reject}{reject}
+\DeclareRobustCommand{\HullData}{\textnormal{\textsc{HullData}}}
+\DeclareRobustCommand{\EndpointCode}{\textnormal{\textsc{EndpointCode}}}
+\DeclareRobustCommand{\IntervalCover}{\textnormal{\textsc{IntervalCover}}}
+\DeclareRobustCommand{\BatchOrders}{\textnormal{\textsc{BatchOrders}}}
+\DeclareRobustCommand{\ExpectedTree}{\textnormal{\textsc{ExpectedTree}}}
+\DeclareRobustCommand{\PriorityTrial}{\textnormal{\textsc{PriorityTrial}}}
+\DeclareRobustCommand{\WorstTree}{\textnormal{\textsc{WorstTree}}}
+\DeclareRobustCommand{\GradeDP}{\textnormal{\textsc{GradeDP}}}
+\DeclareRobustCommand{\SlotDP}{\textnormal{\textsc{SlotDP}}}
+\DeclareRobustCommand{\HybridTree}{\textnormal{\textsc{HybridTree}}}
+\DeclareRobustCommand{\ExactTree}{\textnormal{\textsc{ExactTree}}}
+\DeclareRobustCommand{\Rollout}{\textnormal{\textsc{Rollout}}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}{Claim}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\LL}{\mathcal L}
+\newcommand{\MSSC}{\operatorname{MSSC}}
+\newcommand{\OPT}{\operatorname{OPT}}
+\newenvironment{symboltable}
+ {\begin{center}\small
+  \begin{tabular}{@{}p{0.20\linewidth}p{0.72\linewidth}@{}}
+  \textbf{Symbol}&\textbf{Meaning}\\\hline}
+ {\end{tabular}\end{center}}
+
+\title{Planar Line-Query Decision Trees:\\
+Approximation and Strong NP-Completeness}
+\author{}
+\date{October 13, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A hidden point must be identified from a finite planar hypothesis set
+using only a supplied family of line queries. We minimize either the
+maximum or the expected number of queries. We give polynomial-time
+constant approximations: a factor below $4.464966$ for
+deterministic maximum depth and a factor below $5.182976$ for expected depth
+under arbitrary strictly positive priors. For every fixed
+$\varepsilon>0$, we give quasipolynomial-time $(2+\varepsilon)$
+approximations for both objectives. Multigrade scheduling of adjacent
+support blocks first gives additive bounds with leading coefficient
+arbitrarily close to two; exact logarithmic-depth lookahead removes
+their count and entropy penalties. The geometric step normalizes half-planes
+around a common witness and reduces their convex-hull tests to a
+circular-interval system. For expected depth, the algorithm learns
+the complete hull-test pattern before recursing. Its first positive
+answer is paid for by queries removed from an optimal tree after
+restriction; the remaining pattern information is paid for by entropy.
+An exact interval scheduler exponential only in the number of query
+slots, combined with a logarithmic cap and a priority fallback, gives
+the polynomial maximum-depth improvement. Scheduling adjacent supports
+as blocks credits endpoint information already learned during discovery;
+rational choices between stopping and querying both endpoints, together
+with modified initial coverage batches, sharpen the polynomial expected-depth factor.
+Both quantities telescope over the recursive partitions. Allowing
+an on-line third answer increases the approximation factors by at
+most two. Finally, direct reductions from 3-Partition establish
+strong NP-completeness of both objectives, even for integer-coordinate
+points on a parabola. An exact cloud construction transfers the
+expected-depth reduction to uniform priors. Every query in
+the algorithms and reductions is a supplied line query.
+With a distinguished all-miss hypothesis and bounded cap size,
+maximum depth is exactly solvable in polynomial time. Weighted
+singleton/pair path-and-cycle instances admit an EPTAS for expected depth.
+For uniform priors, fixed-size caps in convex position with a
+distinguished all-miss hypothesis admit a PTAS without singleton tests.
+\end{abstract}
+
+\input{sections/01-introduction}
+\input{sections/02-preliminaries}
+\input{sections/03-common-witness-geometry}
+\input{sections/04-maximum-depth}
+\input{sections/05-scheduling}
+\input{sections/06-expected-depth}
+\input{sections/06c-polynomial-block-improvement}
+\input{sections/06e-adaptive-block-modes}
+\input{sections/06f-first-phase-improvement}
+\input{sections/06g-two-phase-improvement}
+\input{sections/06a-quasipolynomial}
+\input{sections/06d-polynomial-slot-scheduling}
+\input{sections/06b-restricted-approximation}
+\input{sections/06h-uniform-bounded-cap-ptas}
+\input{sections/07-boundary-outcomes}
+\input{sections/08-strong-np-completeness}
+\input{sections/08a-uniform-hardness}
+\input{sections/09-conclusion}
+\appendix
+\input{sections/12-two-phase-certificate}
+\clearpage
+\input{sections/10-references}
+
+\end{document}

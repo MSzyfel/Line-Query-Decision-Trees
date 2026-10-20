@@ -1,0 +1,112 @@
+[
+  {
+    "alphabets": [
+      8,
+      6
+    ],
+    "context_dependent_permutations": false,
+    "n": 48,
+    "m": 38,
+    "initial_cost": 370,
+    "source_population": 8,
+    "source_nodes": 15,
+    "replayed_x0_fibers": 8,
+    "fresh_only_completion_cost": 338,
+    "existing_min_fallback_completion_cost": 338,
+    "proved_mean_bound": "59/8",
+    "uses_intersections": false,
+    "uses_exact_optimization_oracle": false
+  },
+  {
+    "alphabets": [
+      8,
+      6
+    ],
+    "context_dependent_permutations": true,
+    "n": 48,
+    "m": 38,
+    "initial_cost": 370,
+    "source_population": 8,
+    "source_nodes": 15,
+    "replayed_x0_fibers": 8,
+    "fresh_only_completion_cost": 338,
+    "existing_min_fallback_completion_cost": 338,
+    "proved_mean_bound": "59/8",
+    "uses_intersections": false,
+    "uses_exact_optimization_oracle": false
+  },
+  {
+    "alphabets": [
+      10,
+      8
+    ],
+    "context_dependent_permutations": false,
+    "n": 80,
+    "m": 48,
+    "initial_cost": 782,
+    "source_population": 10,
+    "source_nodes": 19,
+    "replayed_x0_fibers": 10,
+    "fresh_only_completion_cost": 672,
+    "existing_min_fallback_completion_cost": 672,
+    "proved_mean_bound": "42/5",
+    "uses_intersections": false,
+    "uses_exact_optimization_oracle": false
+  },
+  {
+    "alphabets": [
+      10,
+      8
+    ],
+    "context_dependent_permutations": true,
+    "n": 80,
+    "m": 48,
+    "initial_cost": 782,
+    "source_population": 10,
+    "source_nodes": 19,
+    "replayed_x0_fibers": 10,
+    "fresh_only_completion_cost": 672,
+    "existing_min_fallback_completion_cost": 672,
+    "proved_mean_bound": "42/5",
+    "uses_intersections": false,
+    "uses_exact_optimization_oracle": false
+  },
+  {
+    "alphabets": [
+      10,
+      8,
+      6
+    ],
+    "context_dependent_permutations": false,
+    "n": 480,
+    "m": 294,
+    "initial_cost": 6292,
+    "source_population": 10,
+    "source_nodes": 19,
+    "replayed_x0_fibers": 10,
+    "fresh_only_completion_cost": 5312,
+    "existing_min_fallback_completion_cost": 5312,
+    "proved_mean_bound": "57/5",
+    "uses_intersections": false,
+    "uses_exact_optimization_oracle": false
+  },
+  {
+    "alphabets": [
+      10,
+      8,
+      6
+    ],
+    "context_dependent_permutations": true,
+    "n": 480,
+    "m": 294,
+    "initial_cost": 6292,
+    "source_population": 10,
+    "source_nodes": 19,
+    "replayed_x0_fibers": 10,
+    "fresh_only_completion_cost": 5312,
+    "existing_min_fallback_completion_cost": 5312,
+    "proved_mean_bound": "57/5",
+    "uses_intersections": false,
+    "uses_exact_optimization_oracle": false
+  }
+]

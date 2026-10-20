@@ -19,15 +19,30 @@ cache/
 lake-manifest.json
 
 # LaTeX build products
+*.pdf
 research/article-build/
+
+# The paper's compiler log and temporary TeX build logs. Keep experiment logs
+# elsewhere in research/ trackable.
+planar-line-decision-trees.log
+research/tmp/pdfs/**/*.log
+
 *.aux
 *.bbl
 *.blg
+*.bcf
 *.fdb_latexmk
 *.fls
+*.lof
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
 *.synctex.gz
 *.toc
-*.out
+*.vrb
+*.xdv
 
 # OS files
 .DS_Store
